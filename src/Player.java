@@ -6,8 +6,16 @@ public class Player {
 		return ID;
 	}
 	
-	public Player(long startTime, int ID){
+	public Player(int ID){
 		this.ID = ID;
-		this.startTime = startTime;
+	}
+	
+	public void start(long time){
+		this.startTime = time;
+	}
+
+	public void end(long time) {
+		this.endTime = time;
+		totalTime = endTime - startTime;
 	}
 }
