@@ -16,9 +16,10 @@ public class test {
 			a.startRace();
 		}
 		
-		for(int i =0; i <5; i++){
+		for(int i =0; i <4; i++){
 			a.players.get(i).end(System.nanoTime());
 		}
+		a.players.get(4).DNF();
 		a.printRace();
 	}
 }

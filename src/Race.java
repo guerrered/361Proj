@@ -70,8 +70,17 @@ public class Race {
 	}
 	
 	
-	public boolean swapRacers(){
+	public boolean swapRacers(int p1, int p2){
 		//TODO
+		Player temp;
+		int tempID;
+		boolean found1 = false;
+		for(int i = 0; i < players.size(); i++){
+			tempID = players.get(i).getID();
+			if(tempID == p1 || tempID == p2){
+				temp = players.get(i);
+			}
+		}
 		//swap not successful
 		return false;
 	}

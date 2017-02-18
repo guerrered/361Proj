@@ -17,7 +17,13 @@ public class Printer {
 			
 			for(int i =0; i <p.size(); i++){
 				tempP = p.get(i);
-				output.write(tempP.getID() + "\t start:" + tempP.startTime + "\t end:" + tempP.endTime + "\t place:" + (i+1) + "\n");
+				if(tempP.DNF){
+					output.write("ID:"+tempP.getID() + "\t start:" + tempP.startTime + "\t end:DNF"  + "\t place:" + (i+1) + "\n");
+
+				}
+				else{
+					output.write("ID:"+tempP.getID() + "\t start:" + tempP.startTime + "\t end:" + tempP.endTime + "\t place:" + (i+1) + "\n");
+				}
 			}
 			
 			output.close();
