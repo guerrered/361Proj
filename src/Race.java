@@ -1,5 +1,10 @@
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,15 +21,19 @@ public class Race {
 		
 		File directory = new File("RaceData");
 		if(!directory.exists()){
-			System.out.println("directory doesn't exist");
+			System.out.println("Directory doesn't exist. New directory has been created.");
 			directory.mkdirs();
 		}
 		curRaceData = new File(temp);
+		BufferedWriter output;
 		try {
 			curRaceData.createNewFile();
+			//write to file
+			output = new BufferedWriter(new FileWriter (curRaceData));
+			output.write("Race #" + fileNumber);
 			fileNumber++;
+			output.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			System.out.println("failed");
 			e.printStackTrace();
 		}
@@ -51,22 +60,25 @@ public class Race {
 		return false;
 	}
 	
+	/*
+	 * Not used for IND
+	 */
 	public void startRace(){
 		for(int i =0; i<players.size(); i++){
 			players.get(i).start(System.nanoTime());
 		}
 	}
 	
-	public void endRace(){
-		for(int i =0; i<players.size(); i++){
-			players.get(i).end(System.nanoTime());
-		}
-	}
 	
 	public boolean swapRacers(){
 		//TODO
 		//swap not successful
 		return false;
+	}
+	
+	public void printRace(){
+		Printer p = new Printer();
+		p.exportToFile(players, curRaceData);
 	}
 	
 }

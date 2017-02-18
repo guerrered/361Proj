@@ -2,6 +2,8 @@
 public class Player {
 	private int ID;
 	long startTime, endTime, totalTime;
+	boolean DNF = false;
+	
 	public int getID(){
 		return ID;
 	}
@@ -17,5 +19,9 @@ public class Player {
 	public void end(long time) {
 		this.endTime = time;
 		totalTime = endTime - startTime;
+	}
+	
+	public void DNF(){
+		DNF = true;
 	}
 }
