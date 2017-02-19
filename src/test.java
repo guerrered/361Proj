@@ -3,7 +3,6 @@ import java.util.Random;
 public class test {
 	public static void main(String[] args){
 		System.out.println(System.nanoTime());
-		
 		Race a = new Race();
 		Race b = new Race();
 		Race c = new Race();
