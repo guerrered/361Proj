@@ -6,7 +6,6 @@ public class test {
 		Race a = new Race();
 		Race b = new Race();
 		Race c = new Race();
-		
 		a.addRunner(23);
 		a.addRunner(34);
 		a.addRunner(56);

@@ -23,6 +23,7 @@ public class UserInterface {
 			readFromConsole(scan);
 		}
 	}
+	
 	public void exit(){
 		// dont want to make it so abrupt
 		System.exit(1);//exit sim

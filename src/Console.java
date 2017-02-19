@@ -3,9 +3,10 @@ public class Console {
 	boolean powerState = false;
 	Printer printer;
 	Race race;
+	Time time;
 	
 	public Console(){
-		
+		time = new Time();
 	}
 	
 	public void Power(){
@@ -25,7 +26,7 @@ public class Console {
 		//start everything over
 	}
 	
-	public void Time(){
+	public void Time(){//sets time
 		
 	}
 	
