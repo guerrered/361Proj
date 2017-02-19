@@ -34,7 +34,6 @@ public class Time {
 				}
 			}
 			seconds++;
-			System.out.println(seconds);
 		}
 	}
 	

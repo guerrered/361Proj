@@ -30,9 +30,9 @@ public class Console {
 		
 	}
 	
-	public void newRun(){
-		endRun(race);
-		race = new Race();
+	public Race newRun(){
+		endRun(race);		
+		return new Race();
 	}
 	
 	public void endRun(Race run){
@@ -40,21 +40,23 @@ public class Console {
 		run= null;
 	}
 	
-	public void Swap(){
-		
+	public void Swap(int ID1, int ID2){
+		race.swapRacers(ID1, ID2);
 	}
 	
-	public void DNF(){
-		
+	public void DNF(int runnerID){
+		race.setDNF(runnerID);
 	}
-	public void Clear(){
-		
+	public void Clear(int runnerID){
+		race.removeRunner(runnerID);
 	}
+	
 	public void Cancel(){
 		
 	}
 	public void Print(){
-		
+		printer.exportToFile(race.players, race.curRaceData);
+		//option to print to console
 	}
 	
 	public void Connect(){

@@ -60,6 +60,14 @@ public class Race {
 		return false;
 	}
 	
+	public void setDNF(int runnerID){
+		for(int i =0; i<players.size(); i++){
+			if(players.get(i).getID()==runnerID){
+				players.get(i).DNF();
+				break;
+			}
+		}
+	}
 	/*
 	 * starts player who is next in line
 	 */
