@@ -2,10 +2,10 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Printer {
-	
 	
 	public void exportToFile(List <Player> p, File file){
 		//print data line for each player 
@@ -32,5 +32,11 @@ public class Printer {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public List<Player> sortByTime(List<Player> p){
+		List<Player> sortedList = new ArrayList<>();
+		
+		return sortedList;
 	}
 }

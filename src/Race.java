@@ -13,6 +13,8 @@ public class Race {
 	List <Player> players = new ArrayList<>();
 	File curRaceData;
 	static int fileNumber = 1;
+	static int queueStartNum = 0;
+	static int queueEndNum = 0;
 	
 	public Race(){
 		String temp = "RaceData/Race" + fileNumber + ".txt";
@@ -37,8 +39,8 @@ public class Race {
 		}
 	}
 	
-	
 	public boolean addRunner(int runnerID){
+		//check to make sure runner doesn't already exist in the system.
 		for(int i =0; i<players.size(); i++){
 			if(players.get(i).getID()==runnerID)return false;
 		}
@@ -59,12 +61,18 @@ public class Race {
 	}
 	
 	/*
-	 * Not used for IND
+	 * starts player who is next in line
 	 */
-	public void startRace(){
-		for(int i =0; i<players.size(); i++){
-			players.get(i).start(System.nanoTime());
+	public void startIND(){
+		if(players.size()>queueStartNum){
+			players.get(queueStartNum).start(System.nanoTime());
+			queueStartNum++;
 		}
+	}
+	
+	public void finishIND(){
+		players.get(queueEndNum).end(System.nanoTime());
+		queueEndNum++;
 	}
 	
 	
