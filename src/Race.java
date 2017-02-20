@@ -30,7 +30,7 @@ public class Race {
 			curRaceData.createNewFile();
 			//write to file
 			output = new BufferedWriter(new FileWriter (curRaceData));
-			output.write("Race #" + fileNumber);
+			output.write("Race #" + fileNumber + '\n');
 			fileNumber++;
 			output.close();
 		} catch (IOException e) {

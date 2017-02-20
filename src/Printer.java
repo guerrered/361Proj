@@ -22,7 +22,8 @@ public class Printer {
 		int place = 1;
 		try {
 			//write to file
-			output = new BufferedWriter(new FileWriter (file));
+			output = new BufferedWriter(new FileWriter (file, true));
+			
 			p = sortByTime(p);
 			for(int i =0; i <p.size(); i++){
 				tempP = p.get(i);
