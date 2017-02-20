@@ -112,4 +112,10 @@ public class Race {
 		p.exportToFile(players, curRaceData);
 	}
 	
+	public void cancel(){
+		for(int i =0; i<players.size(); i++){
+			players.get(i).clear();
+		}
+	}
+	
 }

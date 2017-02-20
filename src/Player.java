@@ -24,4 +24,8 @@ public class Player {
 	public void DNF(){
 		DNF = true;
 	}
+	
+	public void clear(){
+		startTime = endTime = totalTime = 0;
+	}
 }

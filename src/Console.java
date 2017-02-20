@@ -59,7 +59,7 @@ public class Console {
 	}
 	
 	public void Cancel(){
-		
+		race.cancel();
 	}
 	public void Print(){
 		printer.exportToFile(race.players, race.curRaceData);
