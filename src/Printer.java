@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class Printer {
 	
@@ -13,6 +14,11 @@ public class Printer {
 		//print data line for each player 
 		BufferedWriter output;
 		Player tempP;
+		//start times
+		String start;
+		//finish times
+		String finish;
+		
 		int place = 1;
 		try {
 			//write to file
@@ -20,12 +26,24 @@ public class Printer {
 			p = sortByTime(p);
 			for(int i =0; i <p.size(); i++){
 				tempP = p.get(i);
+//				minS = (int) TimeUnit.NANOSECONDS.toMinutes(tempP.startTime);
+//				minF = (int) TimeUnit.NANOSECONDS.toMinutes(tempP.endTime);
+//				secS = (int) TimeUnit.NANOSECONDS.toSeconds(tempP.startTime);
+//				secF = (int) TimeUnit.NANOSECONDS.toSeconds(tempP.endTime);
+//				milliS = (int) TimeUnit.NANOSECONDS.toMillis(tempP.startTime)-(secS*1000);
+//				milliF = (int) TimeUnit.NANOSECONDS.toMillis(tempP.endTime) - (secF*1000);
+				
 				if(!tempP.DNF){
-					output.write("ID:"+tempP.getID() + "\t start:" + tempP.startTime + "\t end:" + tempP.endTime +   "\t elapsed time: "+ tempP.totalTime + "\t place:" + place + "\n");
+					
+					output.write("ID:"+tempP.getID() + "\t start:" + timeFormat(tempP.startTime) + "\t end:"+  
+							timeFormat(tempP.endTime)+  "\t elapsed time: "+ timeFormat(tempP.endTime-tempP.startTime)
+							+ "\t place:" + place + "\n");
+					
+					//increment the place number
 					place++;
 				}
 				else{
-					output.write("ID:"+tempP.getID() + "\t start:" + tempP.startTime + "\t end:DNF" + "\n");
+					output.write("ID:"+tempP.getID() + "\t start:"+ timeFormat(tempP.startTime)+ "\t end:DNF" + "\n");
 				}
 			}
 			
@@ -35,8 +53,27 @@ public class Printer {
 			e.printStackTrace();
 		}
 		
+		
 	}
-	
+	 public static String timeFormat( long duration ) {
+		    final TimeUnit scale = TimeUnit.NANOSECONDS;
+		    
+		    long days = scale.toDays(duration);
+		    duration -= TimeUnit.HOURS.toNanos(days);
+		    long hours = scale.toHours( duration );
+		    duration -= TimeUnit.HOURS.toNanos( hours );
+		    long minutes = scale.toMinutes( duration );
+		    duration -= TimeUnit.MINUTES.toNanos( minutes );
+		    long seconds = scale.toSeconds( duration );
+		    duration -= TimeUnit.SECONDS.toNanos( seconds );
+		    long millis = scale.toMillis( duration );
+		    duration -= TimeUnit.MILLISECONDS.toNanos( seconds );
+		    long nanos = scale.toNanos( duration );
+
+		    return String.format(
+		      "%d h, %d m, %d s, %d ms, %d ns",
+		       hours, minutes, seconds, millis, nanos );
+	 }
 	public List<Player> sortByTime(List<Player> p){
 		List<Player> sortedList = new ArrayList<>(p.size());
 		sortedList.addAll(p);
