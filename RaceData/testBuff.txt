@@ -1,0 +1,4 @@
+Hello this is buffer
+the is the second line
+this is the third line
+ok im out

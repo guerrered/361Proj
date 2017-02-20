@@ -26,8 +26,13 @@ public class Console {
 		//start everything over
 	}
 	
+	public void Exit(){
+		//maybe shouldn't be as abrupt;
+		System.exit(1);
+	}
+	
 	public void Time(){//sets time
-		
+
 	}
 	
 	public Race newRun(){
