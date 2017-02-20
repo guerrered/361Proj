@@ -1,4 +1,3 @@
-Hello this is buffer
-the is the second line
-this is the third line
-ok im out
+1234234 Power
+2345435 Power
+3424254 Exit 

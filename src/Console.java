@@ -6,7 +6,7 @@ public class Console {
 	Time time;
 	
 	public Console(){
-		time = new Time();
+		//time = new Time();
 	}
 	
 	public void Power(){
@@ -20,6 +20,7 @@ public class Console {
 			race = null;
 			printer = null;
 		}
+		System.out.println(powerState);
 	}
 	
 	public void Reset(){
@@ -36,13 +37,14 @@ public class Console {
 	}
 	
 	public Race newRun(){
-		endRun(race);		
+		//endRun(race.getNumber()) getName?;		
 		return new Race();
 	}
 	
-	public void endRun(Race run){
+	public void endRun(int raceNumber){
 		//log old race
-		run= null;
+		//if(race.getNumber()) == raceNumber 
+		// end it 
 	}
 	
 	public void Swap(int ID1, int ID2){
