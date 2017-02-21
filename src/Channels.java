@@ -1,19 +1,42 @@
-import java.util.ArrayList;
-import java.util.List;
 
 public class Channels {
     
 	Boolean power=false;
-	 static List <Channel> Channels = new ArrayList<>();
+	  
+		  static Channel Channels[] = new Channel[8];
+		public Channels()  
+		{
+			Channel ch1=new Channel(1,false);
+			Channel ch2=new Channel(2,false);
+			Channel ch3=new Channel(3,false);
+			Channel ch4=new Channel(4,false);
+			Channel ch5=new Channel(5,false);
+			Channel ch6=new Channel(6,false);
+			Channel ch7=new Channel(7,false);
+			Channel ch8=new Channel(8,false);
+			Channels[0]=ch1; 
+			Channels[1]=ch2;
+			Channels[2]=ch3;
+			Channels[3]=ch4;
+			Channels[4]=ch5;
+			Channels[5]=ch6;
+			Channels[6]=ch7;
+			Channels[7]=ch8;
+			
+			
+		}
+	  
+	 
+	 
 	 
 	 public static Channel getCh(int num)
 	 {
 		 Channel ch=null;
-		 for(int i=0;i<Channels.size();i++)
+		 for(int i=0;i<Channels.length;i++)
 	      {
-	    	  if(Channels.get(i).ChNum==num)
+	    	  if(Channels[i].ChNum==num)
 	    	  {
-	    		  ch=Channels.get(i);
+	    		  ch=Channels[i];
 	    	  }
 	      } 
 		 
@@ -22,11 +45,11 @@ public class Channels {
 	 
 	 public static void Tog(int ChNum)
 	    {
-	    for(int i=0;i<Channels.size();i++)
+	    for(int i=0;i<Channels.length;i++)
 	      {
-	    	  if(Channels.get(i).ChNum==ChNum)
+	    	  if(Channels[i].ChNum==ChNum)
 	    	  {
-	    		  Channels.get(i).connect=!Channels.get(i).connect;
+	    		  Channels[i].connect=!Channels[i].connect;
 	    	  }
 	      }
 	    	
@@ -72,7 +95,12 @@ public class Channels {
 			
 		}
 	}
-    
+    public void getTime()
+    {
+    	
+    	
+    }
+	
     
     
     
