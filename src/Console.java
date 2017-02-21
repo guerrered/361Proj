@@ -30,6 +30,8 @@ public class Console {
 	
 	public void Reset(){
 		//start everything over
+		time= new Time();
+		CurRunOn=false;
 	}
 	
 	public void Exit(){
