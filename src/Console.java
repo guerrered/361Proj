@@ -85,7 +85,9 @@ public class Console {
 		
 		
 	}
-	public void Tog(){
+	public void Tog(int chNum){
+		Channels.Tog(chNum);
+		
 		
 	}
 	
