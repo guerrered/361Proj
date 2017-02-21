@@ -115,8 +115,11 @@ public class Race {
 	// back in the queue as next to start
 	public void cancel(){
 		for(int i =0; i<players.size(); i++){
-			players.get(i).clear();
+			players.get(i).cancel();
 		}
 	}
 	
+	public void clear(){
+		players.clear();
+	}
 }
