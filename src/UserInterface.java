@@ -101,13 +101,13 @@ public class UserInterface {
 			console.Print();
 			break;
 		case("Connect"):
-			console.Connect();
+			console.Connect(Integer.parseInt(instructions[2]));
 			break;
 		case("Disconnect"):
-			console.Disconnect();
+			console.Disconnect(Integer.parseInt(instructions[2]));
 			break;
 		case("Tog"):
-			console.Tog();
+			console.Tog(Integer.parseInt(instructions[2]));
 			break;
 		case("Trig"):
 			console.Trig(Integer.parseInt(instructions[2]));

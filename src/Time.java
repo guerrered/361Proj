@@ -40,9 +40,7 @@ public class Time {
 		System.out.println("Time OverFlow");
 	}
 	
-	public String getTime(){
-		int minutes = seconds / 60; 
-		int secs = seconds % 60;
-		return minutes + ":" + secs + ":" + hundreths;
+	public long getTime(){
+		return seconds * hundreths;
 	}
 }
