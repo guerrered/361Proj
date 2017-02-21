@@ -5,7 +5,7 @@ public class Channels {
     
 	Boolean power=false;
 	 static List <Channel> Channels = new ArrayList<>();
-	
+	 
 	 public static Channel getCh(int num)
 	 {
 		 Channel ch=null;

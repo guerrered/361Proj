@@ -84,6 +84,10 @@ public class Console {
 		{
 			ch.connect();
 		}
+		else
+		{
+			Channels.Channel ch1= new Channels.Channel(chNum, false);
+		}
 		
 		
 	}
