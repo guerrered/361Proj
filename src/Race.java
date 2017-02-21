@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Race {
 	public long clockTime;
-	public int runNumber;
+	public int runNumber=1;
 	public int numRunners;
 	List <Player> players = new ArrayList<>();
 	File curRaceData;
