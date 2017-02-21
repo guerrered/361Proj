@@ -1,6 +1,7 @@
 
 public class Console {
 	boolean powerState = false;
+	
 	boolean CurRunOn = false;
 	Printer printer;
 	Race race;

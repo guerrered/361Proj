@@ -118,6 +118,9 @@ public class UserInterface {
 		case("Finish"):
 			console.Finish();
 			break;
+		default:
+			System.out.println("Not a valid command\n");
+			break;
 		}
 	}
 }
