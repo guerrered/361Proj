@@ -1,3 +1,4 @@
+import java.nio.channels.Channel;
 
 public class Console {
 	boolean powerState = false;
@@ -77,12 +78,22 @@ public class Console {
 		//option to print to console
 	}
 	
-	public void Connect(){
+	public void Connect(int chNum){
+	Channels.Channel ch= Channels.getCh(chNum);
+		if(ch!=null)
+		{
+			ch.connect();
+		}
+		
 		
 	}
 	
-	public void Disconnect(){
-		
+	public void Disconnect(int chNum){
+		Channels.Channel ch=Channels.getCh(chNum);
+		if(ch!=null)
+		{
+			ch.connect();
+		}
 		
 	}
 	public void Tog(int chNum){
@@ -91,12 +102,15 @@ public class Console {
 		
 	}
 	
-	public void Trig(){
+	public void Trig(int chNum){
+		
 		
 	}
 	
 	public void Start(){
 		//trig channel 1
+		
+		
 	}
 	
 	public void Finish(){
