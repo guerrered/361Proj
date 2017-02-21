@@ -110,7 +110,7 @@ public class UserInterface {
 			console.Tog();
 			break;
 		case("Trig"):
-			console.Trig();
+			console.Trig(Integer.parseInt(instructions[2]));
 			break;
 		case("Start"):
 			console.Start();

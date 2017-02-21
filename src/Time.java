@@ -14,11 +14,13 @@ public class Time {
 	}
 	
 	public Time(int seconds, int hundreths){
-		
+		this.seconds =  seconds;
+		this.hundreths = hundreths;
 	}
 	
 	public Time(int minutes, int seconds, int hundreths){
-		
+		this.seconds = 60 * minutes  + seconds;
+		this.hundreths = hundreths;
 	}
 	
 	public void count(){//is counting seconds;
@@ -35,9 +37,12 @@ public class Time {
 			}
 			seconds++;
 		}
+		System.out.println("Time OverFlow");
 	}
 	
 	public String getTime(){
-		return seconds + ":" + hundreths;
+		int minutes = seconds / 60; 
+		int secs = seconds % 60;
+		return minutes + ":" + secs + ":" + hundreths;
 	}
 }

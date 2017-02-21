@@ -102,19 +102,24 @@ public class Console {
 	}
 	
 	public void Trig(int chNum){
-		Channels.Channel ch = Channels.getCh(chNum);
-		ch.getTime();
-		
-		
+				race.startIND();
+				break;
+			case(2):
+				race.finishIND();
+			default:
+				break;
+				System.out.println("Not a Channel");
 	}
 	
 	public void Start(){
+		race.startIND();
 		//trig channel 1
 		Trig(1);
 		
 	}
 	
 	public void Finish(){
+		race.finishIND();
 		//trig channel 2
 		Trig(2);
 	}
