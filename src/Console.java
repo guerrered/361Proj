@@ -1,6 +1,7 @@
 
 public class Console {
 	boolean powerState = false;
+	boolean CurRunOn = false;
 	Printer printer;
 	Race race;
 	Time time;
@@ -14,6 +15,10 @@ public class Console {
 		if(powerState == true){
 			race = new Race();
 			printer = new Printer();
+		}
+		else if(CurRunOn == true)
+		{//forbid force power off during the race
+			System.out.println("The race still going");
 		}
 		else{
 			//save race contents first
@@ -37,6 +42,7 @@ public class Console {
 	}
 	
 	public Race newRun(){
+		CurRunOn =true;
 		//endRun(race.getNumber()) getName?;		
 		return new Race();
 	}
@@ -45,6 +51,8 @@ public class Console {
 		//log old race
 		//if(race.getNumber()) == raceNumber 
 		// end it 
+		CurRunOn=false;
+		
 	}
 	
 	public void Swap(int ID1, int ID2){
