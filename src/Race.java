@@ -67,6 +67,9 @@ public class Race {
 				break;
 			}
 		}
+		//players.get(queueEndNum++).DNF);
+		//DNF shouldnt take parameters
+		//also since technically done w/ incrementing qend# race prevents collision in finish IND
 	}
 	/*
 	 * starts player who is next in line
@@ -117,9 +120,10 @@ public class Race {
 		for(int i =0; i<players.size(); i++){
 			players.get(i).cancel();
 		}
+		//players.get(--queueStartNum).cancel()//cancel last runners start and make it next in line to start
 	}
 	
-	public void clear(){
+	public void clear(){//possibly unneeded
 		players.clear();
 	}
 }

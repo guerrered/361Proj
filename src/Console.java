@@ -59,6 +59,9 @@ public class Console {
 		
 	}
 	
+	public void Num(int ID1){
+		race.addRunner(ID1);
+	}
 	public void Swap(int ID1, int ID2){
 		race.swapRacers(ID1, ID2);
 	}
@@ -88,17 +91,16 @@ public class Console {
 	}
 	
 	public void Disconnect(int chNum){
+		
 		Channels.Channel ch=Channels.getCh(chNum);
 		if(ch!=null)
 		{
-			ch.connect();
+			ch.disconnect();
 		}
 		
 	}
 	public void Tog(int chNum){
 		Channels.Tog(chNum);
-		
-		
 	}
 	
 	public void Trig(int chNum){

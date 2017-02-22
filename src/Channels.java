@@ -31,6 +31,7 @@ public class Channels {
 	 
 	 public static Channel getCh(int num)
 	 {
+		/*
 		 Channel ch=null;
 		 for(int i=0;i<Channels.length;i++)
 	      {
@@ -39,20 +40,21 @@ public class Channels {
 	    		  ch=Channels[i];
 	    	  }
 	      } 
-		 
-		 return ch;
+		 */
+		 return Channels[num-1];
 	 }
 	 
 	 public static void Tog(int ChNum)
 	    {
+		 /*
 	    for(int i=0;i<Channels.length;i++)
 	      {
 	    	  if(Channels[i].ChNum==ChNum)
 	    	  {
 	    		  Channels[i].connect=!Channels[i].connect;
 	    	  }
-	      }
-	    	
+	      }*/
+	    Channels[ChNum-1].connect=!Channels[ChNum-1].connect;
 	    }
 	
 	
@@ -60,9 +62,13 @@ public class Channels {
 	public class Channel
 	{
     public Boolean connect=false;
+    
+    boolean eye;
+    boolean gate;
+    boolean pad;
 	public int ChNum;
     
-    public Channel(int ChNum,Boolean connect)
+    public Channel(int ChNum,Boolean connect)//,String sensor type
     {
     	this.ChNum=ChNum;
     	this.connect=connect;
