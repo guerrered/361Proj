@@ -27,12 +27,6 @@ public class Printer {
 			p = sortByTime(p);
 			for(int i =0; i <p.size(); i++){
 				tempP = p.get(i);
-//				minS = (int) TimeUnit.NANOSECONDS.toMinutes(tempP.startTime);
-//				minF = (int) TimeUnit.NANOSECONDS.toMinutes(tempP.endTime);
-//				secS = (int) TimeUnit.NANOSECONDS.toSeconds(tempP.startTime);
-//				secF = (int) TimeUnit.NANOSECONDS.toSeconds(tempP.endTime);
-//				milliS = (int) TimeUnit.NANOSECONDS.toMillis(tempP.startTime)-(secS*1000);
-//				milliF = (int) TimeUnit.NANOSECONDS.toMillis(tempP.endTime) - (secF*1000);
 				
 				if(!tempP.DNF){
 					
@@ -85,6 +79,9 @@ public class Printer {
 	
 	public static Comparator<Player> timeComparator = new Comparator<Player>(){
 		public int compare(Player p1,Player p2){
+			if(p1.DNF&&p2.DNF)return 0;
+			if(p1.DNF)return 1;
+			if(p2.DNF)return -1;
 			return (int) (p1.totalTime - p2.totalTime);
 		}
 	};
