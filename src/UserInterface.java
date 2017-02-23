@@ -110,7 +110,7 @@ public class UserInterface {
 			console.Print();
 			break;
 		case("Connect"):
-			console.Connect(Integer.parseInt(instructions[2]));
+			console.Connect(instructions[1],Integer.parseInt(instructions[2]));
 			break;
 		case("Disconnect"):
 			console.Disconnect(Integer.parseInt(instructions[2]));

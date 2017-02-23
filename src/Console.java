@@ -105,12 +105,12 @@ public class Console {
 		//option to print to console
 	}
 	
-	public void Connect(int ChNum){
+	public void Connect(String type,int ChNum){
 		if(onCheck()){
 			Channels.Channel ch= channels.getCh(ChNum);
 			if(ch!=null)
 			{
-				ch.connect();
+				ch.connect(type);
 			}
 		}
 	}
