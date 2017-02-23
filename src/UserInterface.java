@@ -41,13 +41,19 @@ public class UserInterface {
 		try(BufferedReader buff = new BufferedReader(new FileReader(fileName))){
 			String currentLine;
 			while((currentLine = buff.readLine()) != null){
-				commandExec(currentLine);
-				try {
-					Thread.sleep(20);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				String[] timegetter = currentLine.split(" ");
+				String[] time = timegetter[0].split(":");
+				long commandTime = (long) (Integer.parseInt(time[0]) * 6000) + (Integer.parseInt(time[1]) * 100) + (Integer.parseInt(time[2]));
+				System.out.println(commandTime);//time it is waiting
+				while(commandTime > console.getTime()){//should wait till time is caught up
+					try {
+						Thread.sleep(1);//check up every milli could be slower/faster 
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
+				commandExec(currentLine);
 			}
 		}catch(IOException e){
 			e.printStackTrace();

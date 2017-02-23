@@ -160,7 +160,9 @@ public class Console {
 			}
 		}
 	}
-
+	public long getTime(){
+		return time.getTime();
+	}
 	private boolean onCheck(){
 		return powerState;
 	}

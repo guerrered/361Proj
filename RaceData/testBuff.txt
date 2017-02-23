@@ -1,17 +1,17 @@
-1234234 Power
-2345435 Connect 1
-3424254 Connect 2
-1234234 Num 45
-7690987 Num 56
-8790876 Num 65
-8706780 Num 23
-2344231 Start
-2134343 Start
-1234231 Finish
-2134234 Start
-2342341 DNF
-2342341 Finish
-1234234 Start
-1234434 Finish
-5543651 Print
-2134324 Exit
+0:15:10 Power
+0:16:15 Connect 1
+0:17:20 Connect 2
+0:18:25 Num 45
+0:19:30 Num 56
+0:20:35 Num 65
+0:21:40 Num 23
+0:22:45 Start
+0:23:50 Start
+0:30:15 Finish
+0:32:65 Start
+0:32:90 DNF
+0:35:24 Finish
+0:36:45 Start
+0:45:30 Finish
+0:47:30 Print
+0:50:00 Exit

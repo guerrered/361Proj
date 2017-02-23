@@ -1,5 +1,5 @@
 Race #1
-ID:56	 start:0 h, 52 m, 47 s, 553 ms, 506045727 ns	 end:DNF
-ID:23	 start:0 h, 52 m, 47 s, 654 ms, 607451663 ns	 end:0 h, 52 m, 47 s, 674 ms, 627826301 ns	 elapsed time: 0 h, 0 m, 0 s, 20 ms, 20374638 ns	 place:1
-ID:45	 start:0 h, 52 m, 47 s, 532 ms, 485820364 ns	 end:0 h, 52 m, 47 s, 573 ms, 526322686 ns	 elapsed time: 0 h, 0 m, 0 s, 40 ms, 40502322 ns	 place:2
-ID:65	 start:0 h, 52 m, 47 s, 593 ms, 546549437 ns	 end:0 h, 52 m, 47 s, 634 ms, 587181168 ns	 elapsed time: 0 h, 0 m, 0 s, 40 ms, 40631731 ns	 place:3
+ID:65	 start:2 h, 13 m, 59 s, 314 ms, 255853472 ns	 end:2 h, 14 m, 1 s, 920 ms, 919796256 ns	 elapsed time: 0 h, 0 m, 2 s, 605 ms, 603942784 ns	 place:1
+ID:45	 start:2 h, 13 m, 49 s, 10 ms, -38690500 ns	 end:2 h, 13 m, 56 s, 789 ms, 733120310 ns	 elapsed time: 0 h, 0 m, 7 s, 778 ms, 771810810 ns	 place:2
+ID:56	 start:2 h, 13 m, 50 s, 70 ms, 20674239 ns	 end:DNF
+ID:23	 start:2 h, 14 m, 3 s, 138 ms, 135445731 ns	 end:2 h, 14 m, 12 s, 87 ms, 75771873 ns	 elapsed time: 0 h, 0 m, 8 s, 949 ms, 941326142 ns	 place:3
