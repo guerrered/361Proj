@@ -14,15 +14,16 @@ public class UserInterface {
 			System.out.println("Enter 'C' for console input or 'F' for file input\n");
 			choice = scan.nextLine();
 		}
-		console = new Console();
 		if(choice.equalsIgnoreCase("f")){
 			System.out.println("Enter the name of the input file");
 			String fileName = scan.nextLine();
 			scan.close();
+			console = new Console();
 			readFromFile(fileName);	
 		}
 		else{
 			System.out.println("Reading from console");
+			console = new Console();
 			readFromConsole(scan);
 		}
 	}
