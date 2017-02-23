@@ -6,6 +6,7 @@ public class test {
 		Race a = new Race();
 		Race b = new Race();
 		Race c = new Race();
+		UserInterface ui = new UserInterface();
 		a.addRunner(29);
 		a.addRunner(34);
 		a.addRunner(56);

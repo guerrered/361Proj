@@ -10,7 +10,6 @@ public class Time {
 	public Time(){
 		seconds = 0;
 		hundreths = 0;
-		count();
 	}
 	
 	public Time(int seconds, int hundreths){
@@ -41,6 +40,6 @@ public class Time {
 	}
 	
 	public long getTime(){
-		return seconds * hundreths;
+		return (long) seconds * 100 +  hundreths;
 	}
 }

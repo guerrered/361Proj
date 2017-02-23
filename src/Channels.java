@@ -31,29 +31,11 @@ public class Channels {
 	 
 	 public static Channel getCh(int num)
 	 {
-		/*
-		 Channel ch=null;
-		 for(int i=0;i<Channels.length;i++)
-	      {
-	    	  if(Channels[i].ChNum==num)
-	    	  {
-	    		  ch=Channels[i];
-	    	  }
-	      } 
-		 */
 		 return Channels[num-1];
 	 }
 	 
 	 public static void Tog(int ChNum)
 	    {
-		 /*
-	    for(int i=0;i<Channels.length;i++)
-	      {
-	    	  if(Channels[i].ChNum==ChNum)
-	    	  {
-	    		  Channels[i].connect=!Channels[i].connect;
-	    	  }
-	      }*/
 	    Channels[ChNum-1].connect=!Channels[ChNum-1].connect;
 	    }
 	
@@ -101,14 +83,6 @@ public class Channels {
 			
 		}
 	}
-    public void getTime()
-    {
-    	
-    	
-    }
-	
-    
-    
     
 	}
 	

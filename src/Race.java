@@ -60,14 +60,15 @@ public class Race {
 		return false;
 	}
 	
-	public void setDNF(int runnerID){
+	public void setDNF(){
+		/*
 		for(int i =0; i<players.size(); i++){
 			if(players.get(i).getID()==runnerID){
 				players.get(i).DNF();
 				break;
 			}
-		}
-		//players.get(queueEndNum++).DNF);
+		}*/
+		players.get(queueEndNum++).DNF();
 		//DNF shouldnt take parameters
 		//also since technically done w/ incrementing qend# race prevents collision in finish IND
 	}
@@ -117,10 +118,11 @@ public class Race {
 	
 	// back in the queue as next to start
 	public void cancel(){
+		/*
 		for(int i =0; i<players.size(); i++){
 			players.get(i).cancel();
-		}
-		//players.get(--queueStartNum).cancel()//cancel last runners start and make it next in line to start
+		}*/
+		players.get(--queueStartNum).cancel();//cancel last runners start and make it next in line to start
 	}
 	
 	public void clear(){//possibly unneeded

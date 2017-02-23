@@ -9,7 +9,10 @@ public class Console {
 	Time time;
 	
 	public Console(){
-		//time = new Time();
+		time = new Time();
+		Runnable r1 = new runnableTimer(time);
+		Thread t1 = new Thread(r1);
+		t1.start();
 	}
 	
 	public void Power(){
@@ -42,7 +45,7 @@ public class Console {
 	}
 	
 	public void Time(){//sets time
-
+			System.out.println(time.getTime());
 	}
 	
 	public Race newRun(){
@@ -66,8 +69,8 @@ public class Console {
 		race.swapRacers(ID1, ID2);
 	}
 	
-	public void DNF(int runnerID){
-		race.setDNF(runnerID);
+	public void DNF(){
+		race.setDNF();
 	}
 	public void Clear(int runnerID){
 		race.removeRunner(runnerID);

@@ -89,7 +89,7 @@ public class UserInterface {
 			console.Swap(Integer.parseInt(instructions[2]), Integer.parseInt(instructions[3]));
 			break;
 		case("DNF"):
-			console.DNF(Integer.parseInt(instructions[2]));
+			console.DNF();
 			break;
 		case("Clear"):
 			console.Clear(Integer.parseInt(instructions[2]));
