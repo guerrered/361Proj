@@ -44,10 +44,7 @@ public class Channels {
 	public class Channel
 	{
     public Boolean connect=false;
-    
-    boolean eye;
-    boolean gate;
-    boolean pad;
+    Sensors sens=new Sensors();
 	public int ChNum;
     
     public Channel(int ChNum,Boolean connect)//,String sensor type
@@ -56,7 +53,7 @@ public class Channels {
     	this.connect=connect;
     }
     
-    public void connect()
+    public void connect(String type)
 	{
 		
 		 if(this.connect=true)
@@ -66,6 +63,20 @@ public class Channels {
 		else
 		{
 			this.connect=true;
+			switch(type.toUpperCase())
+			{
+			case("EYE"):
+				this.sens.EYE();;
+			break;
+			case("GATE"):
+				this.sens.GATE();
+			break;
+			case("PAD"):
+				this.sens.PAD();
+			break;
+				
+			}
+			
 			System.out.println("Channel connected");
 		}
 		
@@ -79,6 +90,7 @@ public class Channels {
 		else
 		{
 			this.connect=false;
+			this.sens.disconnect();
 			System.out.println("Channel disconnected");
 			
 		}
@@ -86,6 +98,8 @@ public class Channels {
 	public boolean connected(){
 		return connect;
 	}
+
+	
     
 	}
 	
