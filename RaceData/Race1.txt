@@ -1,1 +1,5 @@
 Race #1
+ID:56	 start:0 h, 52 m, 47 s, 553 ms, 506045727 ns	 end:DNF
+ID:23	 start:0 h, 52 m, 47 s, 654 ms, 607451663 ns	 end:0 h, 52 m, 47 s, 674 ms, 627826301 ns	 elapsed time: 0 h, 0 m, 0 s, 20 ms, 20374638 ns	 place:1
+ID:45	 start:0 h, 52 m, 47 s, 532 ms, 485820364 ns	 end:0 h, 52 m, 47 s, 573 ms, 526322686 ns	 elapsed time: 0 h, 0 m, 0 s, 40 ms, 40502322 ns	 place:2
+ID:65	 start:0 h, 52 m, 47 s, 593 ms, 546549437 ns	 end:0 h, 52 m, 47 s, 634 ms, 587181168 ns	 elapsed time: 0 h, 0 m, 0 s, 40 ms, 40631731 ns	 place:3

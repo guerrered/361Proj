@@ -3,10 +3,10 @@ import java.util.Random;
 public class test {
 	public static void main(String[] args){
 		System.out.println(System.nanoTime());
+		UserInterface ui = new UserInterface();
 		Race a = new Race();
 		Race b = new Race();
 		Race c = new Race();
-		UserInterface ui = new UserInterface();
 		a.addRunner(29);
 		a.addRunner(34);
 		a.addRunner(56);

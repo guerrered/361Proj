@@ -7,7 +7,6 @@ public class UserInterface {
 	Console console;
 	
 	public UserInterface(){
-		console = new Console();
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Enter 'C' for console input or 'F' for file input\n");
 		String choice = scan.nextLine();
@@ -15,6 +14,7 @@ public class UserInterface {
 			System.out.println("Enter 'C' for console input or 'F' for file input\n");
 			choice = scan.nextLine();
 		}
+		console = new Console();
 		if(choice.equalsIgnoreCase("f")){
 			System.out.println("Enter the name of the input file");
 			String fileName = scan.nextLine();
@@ -42,6 +42,12 @@ public class UserInterface {
 			String currentLine;
 			while((currentLine = buff.readLine()) != null){
 				commandExec(currentLine);
+				try {
+					Thread.sleep(20);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}catch(IOException e){
 			e.printStackTrace();
@@ -84,6 +90,9 @@ public class UserInterface {
 			break;
 		case("endRun"):
 			console.endRun(Integer.parseInt(instructions[2]));//might have to find and remove run with this name/ number ;
+			break;
+		case("Num"):
+			console.Num(Integer.parseInt(instructions[2]));
 			break;
 		case("Swap"):
 			console.Swap(Integer.parseInt(instructions[2]), Integer.parseInt(instructions[3]));

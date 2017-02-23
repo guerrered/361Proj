@@ -128,4 +128,12 @@ public class Race {
 	public void clear(){//possibly unneeded
 		players.clear();
 	}
+	
+	public List<Player> getPlayerList(){
+		return players;
+	}
+	
+	public File getRaceData(){
+		return curRaceData;
+	}
 }

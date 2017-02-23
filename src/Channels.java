@@ -83,8 +83,12 @@ public class Channels {
 			
 		}
 	}
+	public boolean connected(){
+		return connect;
+	}
     
 	}
+	
 	
 	
 }
