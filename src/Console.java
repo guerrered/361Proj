@@ -110,7 +110,7 @@ public class Console {
 			Channels.Channel ch= channels.getCh(ChNum);
 			if(ch!=null)
 			{
-				ch.connect(type);
+				ch.connect(type,race);
 			}
 		}
 	}

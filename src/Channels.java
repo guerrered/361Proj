@@ -53,7 +53,7 @@ public class Channels {
     	this.connect=connect;
     }
     
-    public void connect(String type)
+    public void connect(String type,Race race)
 	{
 		
 		 if(this.connect=true)
@@ -66,13 +66,13 @@ public class Channels {
 			switch(type.toUpperCase())
 			{
 			case("EYE"):
-				this.sens.EYE();;
+				EYE e1=new EYE(this.ChNum,race);
 			break;
 			case("GATE"):
-				this.sens.GATE();
+				GATE g1=new GATE(this.ChNum,race);
 			break;
 			case("PAD"):
-				this.sens.PAD();
+				PAD p1=new PAD(this.ChNum,race);
 			break;
 				
 			}
@@ -90,7 +90,7 @@ public class Channels {
 		else
 		{
 			this.connect=false;
-			this.sens.disconnect();
+			this.sens.unarmed();
 			System.out.println("Channel disconnected");
 			
 		}
@@ -98,7 +98,20 @@ public class Channels {
 	public boolean connected(){
 		return connect;
 	}
-
+     
+	public void trig()
+	{
+		if(this.connected())
+		{
+			
+		}
+		else
+		{
+			System.out.println("Channel has not been connected");
+		}
+		
+	}
+	
 	
     
 	}
