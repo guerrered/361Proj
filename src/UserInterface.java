@@ -47,12 +47,13 @@ public class UserInterface {
 				long commandTime = (long) (Integer.parseInt(time[0]) * 6000) + (Integer.parseInt(time[1]) * 100) + (Integer.parseInt(time[2]));
 				System.out.println(commandTime);//time it is waiting
 				while(commandTime > console.getTime()){//should wait till time is caught up
+					/*
 					try {
 						Thread.sleep(1);//check up every milli could be slower/faster 
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}
+					}*/
 				}
 				commandExec(currentLine);
 			}
