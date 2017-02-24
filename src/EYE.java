@@ -1,4 +1,5 @@
 
+
 public class EYE extends Sensors{
 boolean LightBeam;
 	int ChannelNum;
@@ -30,15 +31,9 @@ public void armed()
 
 public void trig()
 {
-	switch(ChannelNum){
-	case(1):
-		race.startIND();
-		break;
-	case(2):
-		race.finishIND();
-		break;
-	}
-	
+	Channels.Channel ch=Channels.getCh(ChannelNum);
+	ch.trig(race);
+		
 }
 	
 	

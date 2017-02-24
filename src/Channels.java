@@ -99,10 +99,18 @@ public class Channels {
 		return connect;
 	}
      
-	public void trig()
+	public void trig(Race race)
 	{
 		if(this.connected())
 		{
+			switch(this.ChNum){
+			case(1):
+				race.startIND();
+				break;
+			case(2):
+				race.finishIND();
+				break;
+			}
 			
 		}
 		else
