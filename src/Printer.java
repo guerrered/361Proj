@@ -14,43 +14,37 @@ public class Printer {
 		//print data line for each player 
 		BufferedWriter output;
 		Player tempP;
-		//start times
-		String start;
-		//finish times
-		String finish;
-		
 		int place = 1;
+		
 		try {
 			//write to file
 			output = new BufferedWriter(new FileWriter (file, true));
-			
 			p = sortByTime(p);
 			for(int i =0; i <p.size(); i++){
 				tempP = p.get(i);
-				
 				if(!tempP.DNF){
-					
-					output.write("ID:"+tempP.getID() + "\t start:" + timeFormat(tempP.startTime) + "\t end:"+  
+					output.write("ID:"+idFormat(tempP.getID()) + "\t start:" + timeFormat(tempP.startTime) + "\t end:"+  
 							timeFormat(tempP.endTime)+  "\t elapsed time: "+ timeFormat(tempP.endTime-tempP.startTime)
 							+ "\t place:" + place + "\n");
-					
 					//increment the place number
 					place++;
 				}
 				else{
-					output.write("ID:"+tempP.getID() + "\t start:"+ timeFormat(tempP.startTime)+ "\t end:DNF" + "\n");
+					output.write("ID:"+idFormat(tempP.getID()) + "\t start:"+ timeFormat(tempP.startTime)+ "\t end:DNF" + "\n");
 				}
 			}
-			
 			output.close();
 		} catch (IOException e) {
 			System.out.println("failed");
 			e.printStackTrace();
-		}
-		
-		
+		}	
 	}
-	 public static String timeFormat( long duration ) {
+	
+	public static String idFormat(int num){
+		return String.format("%03d", num);
+	}
+	
+	public static String timeFormat( long duration ) {
 		    final TimeUnit scale = TimeUnit.NANOSECONDS;
 		    
 		    long days = scale.toDays(duration);
@@ -62,13 +56,10 @@ public class Printer {
 		    long seconds = scale.toSeconds( duration );
 		    duration -= TimeUnit.SECONDS.toNanos( seconds );
 		    long millis = scale.toMillis( duration );
-		    duration -= TimeUnit.MILLISECONDS.toNanos( seconds );
-		    long nanos = scale.toNanos( duration );
-
-		    return String.format(
-		      "%d h, %d m, %d s, %d ms, %d ns",
-		       hours, minutes, seconds, millis, nanos );
+		    
+		    return String.format("%d h, %02d m, %02d s, %03d ms",hours, minutes, seconds, millis);
 	 }
+	
 	public List<Player> sortByTime(List<Player> p){
 		List<Player> sortedList = new ArrayList<>(p.size());
 		sortedList.addAll(p);
