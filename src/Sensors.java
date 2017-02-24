@@ -1,32 +1,27 @@
 //For Commands CONN<SENSOR><NUMBER>
 public class Sensors {
-    boolean EYE=false;
-    boolean GATE=false;
-    boolean PAD=false;
+  Boolean armed;
 	
-	public void disconnect(){
-		EYE=false;
-		GATE=false;
-		PAD=false;
-		
-	}
-	
-	
-	public void EYE()
+	public void unarmed(){
+	if(armed==false)
 	{
-		EYE=true;
+		System.out.println("Sensor is unarmed");
 	}
-	
-	public void GATE()
-	{
-		GATE=true;
+	else{
+		armed=false;
+	    }
 	}
-	
-	public void PAD()
+	public void armed()
 	{
-	    PAD=true;	
+		if(armed=true)
+		{
+			System.out.println("Sensor is armed");
+		}
+		armed=true;
 	}
 	
 }
+	
+
 
 
