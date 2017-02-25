@@ -110,18 +110,28 @@ public class RaceIndependent {
 		//swap not successful
 		return false;
 	}
+	/*
+	 * player arg is next to run
+	 */
+	public void nextUp(int id){
+		Player temp;
+		for (int i =0; i < players.size(); i++){
+			if(players.get(i).getID()==id){
+				temp = players.get(i);
+				players.remove(i);
+				players.add(queueStartNum, temp);
+			}
+		}
+	}
 	
+	//Prints to console in specified format
 	public void printRace(){
 		Printer p = new Printer();
-		p.exportToFile(players, curRaceData);
+		p.print(players, "IND");
 	}
 	
 	// back in the queue as next to start
 	public void cancel(){
-		/*
-		for(int i =0; i<players.size(); i++){
-			players.get(i).cancel();
-		}*/
 		players.get(--queueStartNum).cancel();//cancel last runners start and make it next in line to start
 	}
 	

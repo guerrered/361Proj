@@ -73,7 +73,7 @@ public class Console {
 	
 	public void Num(int ID1){
 		if(onCheck()){
-			this.race.addRunner(ID1);
+			this.race.nextUp(ID1);
 		}
 	}
 	public void Swap(int ID1, int ID2){
