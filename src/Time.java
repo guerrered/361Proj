@@ -8,7 +8,7 @@ public class Time {
 	int hundreths;
 	
 	public Time(){
-		seconds = 0;
+		seconds = 720;
 		hundreths = 0;
 	}
 	
