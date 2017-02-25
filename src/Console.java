@@ -55,7 +55,7 @@ public class Console {
 	}
 	
 	public void newRun(){
-		if(onCheck()){
+		if(onCheck()&&CurRunOn==false){
 			CurRunOn = true;
 		//endRun(race.getNumber()) getName?;		
 			this.race = new RaceIndependent();
