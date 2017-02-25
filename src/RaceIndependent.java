@@ -6,12 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class RaceIndependent {
-	public long clockTime;
-	public int runNumber=1;
-	public int numRunners;
-	List <Player> players = new ArrayList<>(9999);
-	File curRaceData;
+public class RaceIndependent extends Event {
+	
 	static int fileNumber = 1;
 	static int queueStartNum = 0;
 	static int queueEndNum = 0;
@@ -41,23 +37,11 @@ public class RaceIndependent {
 	
 	public boolean addRunner(int runnerID){
 		//check to make sure runner doesn't already exist in the system.
-		for(int i =0; i<players.size(); i++){
-			if(players.get(i).getID()==runnerID)return false;
-		}
-		players.add(new Player(runnerID));
-		numRunners++;
-		return true;
+		return super.addRunner(runnerID);
 	}
 	
 	public boolean removeRunner(int runnerID){
-		for(int i =0; i<players.size(); i++){
-			if(players.get(i).getID()==runnerID){
-				players.remove(i);
-				numRunners--;
-				return true;
-			}
-		}
-		return false;
+		return super.removeRunner(runnerID);
 	}
 	
 	public void setDNF(){
@@ -89,26 +73,7 @@ public class RaceIndependent {
 	
 	
 	public boolean swapRacers(int p1, int p2){
-		Player temp = null;
-		int tempID;
-		int foundIndex = 0;
-		boolean found1 = false;
-		for(int i = 0; i < players.size(); i++){
-			tempID = players.get(i).getID();
-			if(tempID == p1 || tempID == p2){
-				if(!found1){
-					found1 = true;
-					foundIndex=i;
-					temp = players.get(i);
-				}
-				else{
-					players.set(foundIndex, players.get(i));
-					players.set(i, temp);
-				}
-			}
-		}
-		//swap not successful
-		return false;
+		return super.swapRacers(p1, p2);
 	}
 	/*
 	 * player arg is next to run
@@ -126,8 +91,7 @@ public class RaceIndependent {
 	
 	//Prints to console in specified format
 	public void printRace(){
-		Printer p = new Printer();
-		p.print(players, "IND");
+		super.printRace();
 	}
 	
 	// back in the queue as next to start
@@ -136,14 +100,14 @@ public class RaceIndependent {
 	}
 	
 	public void clear(){//possibly unneeded
-		players.clear();
+		super.clear();
 	}
 	
 	public List<Player> getPlayerList(){
-		return players;
+		return super.players;
 	}
 	
 	public File getRaceData(){
-		return curRaceData;
+		return super.curRaceData;
 	}
 }
