@@ -2,9 +2,9 @@
 public class GATE extends Sensors{
 public boolean Pushed;
 int ChannelNum;	
-Race race;
+RaceIndependent race;
 
-public GATE(int num,Race race)
+public GATE(int num,RaceIndependent race)
 {
 	this.ChannelNum=num;
 	this.race=race;

@@ -5,7 +5,7 @@ public class Console {
 	
 	boolean CurRunOn = false;
 	Printer printer;
-	Race race;
+	RaceIndependent race;
 	Time time;
 	Channels channels;
 	
@@ -20,7 +20,7 @@ public class Console {
 	public void Power(){
 		powerState = !powerState;
 		if(powerState == true){
-			this.race = new Race();
+			this.race = new RaceIndependent();
 			printer = new Printer();
 		}
 		else if(CurRunOn == true)
@@ -58,7 +58,7 @@ public class Console {
 		if(onCheck()){
 			CurRunOn = true;
 		//endRun(race.getNumber()) getName?;		
-			this.race = new Race();
+			this.race = new RaceIndependent();
 		}
 	}
 	

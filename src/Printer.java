@@ -10,6 +10,23 @@ import java.util.concurrent.TimeUnit;
 
 public class Printer {
 	
+	public void print(List<Player> p, long t, String event){
+		Player tempP;
+		for(int i =0; i <p.size(); i++){
+			tempP = p.get(i);
+			if(!tempP.DNF){
+				System.out.println(timeFormat(tempP.startTime) + " " + event + '\n'+  
+						p.get(i).getID() + " " + event + " " + timeFormat(tempP.endTime-tempP.startTime));
+			}
+			else{
+				System.out.println(timeFormat(tempP.startTime) + " " + event + '\n'+  
+						p.get(i).getID() + " " + event + " DNF");	
+				}
+		}
+	}
+	/*
+	 * Not used in sprint 1?
+	 */
 	public void exportToFile(List <Player> p, File file){
 		//print data line for each player 
 		BufferedWriter output;

@@ -3,8 +3,8 @@
 public class EYE extends Sensors{
 boolean LightBeam;
 	int ChannelNum;
-	Race race;
-public EYE(int num,Race race)
+	RaceIndependent race;
+public EYE(int num,RaceIndependent race)
 {
 	this.ChannelNum=num;
 	this.race=race;

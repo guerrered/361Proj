@@ -6,17 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Race {
+public class RaceIndependent {
 	public long clockTime;
 	public int runNumber=1;
 	public int numRunners;
-	List <Player> players = new ArrayList<>();
+	List <Player> players = new ArrayList<>(9999);
 	File curRaceData;
 	static int fileNumber = 1;
 	static int queueStartNum = 0;
 	static int queueEndNum = 0;
 	
-	public Race(){
+	public RaceIndependent(){
 		String temp = "RaceData/Race" + fileNumber + ".txt";
 		
 		File directory = new File("RaceData");

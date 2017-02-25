@@ -54,7 +54,7 @@ public class Channels {
     	this.connect=connect;
     }
     
-    public void connect(String type,Race race)
+    public void connect(String type,RaceIndependent race)
 	{
 		
 		 if(this.connect=true)
@@ -100,7 +100,7 @@ public class Channels {
 		return connect;
 	}
      
-	public void trig(Race race)
+	public void trig(RaceIndependent race)
 	{
 		if(this.connected())
 		{

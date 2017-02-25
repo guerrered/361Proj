@@ -2,9 +2,9 @@
 public class PAD extends Sensors {
 boolean pressure;
 int ChannelNum;
-Race race;
+RaceIndependent race;
 
-public PAD(int num, Race race)
+public PAD(int num, RaceIndependent race)
 {
 	this.ChannelNum=num;
 	this.race=race;
