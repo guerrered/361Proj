@@ -14,19 +14,21 @@ public class Printer {
 		Player tempP;
 		for(int i =0; i <p.size(); i++){
 			tempP = p.get(i);
+			if(tempP.participated()){
 			/*
 			 * Format
 			 * <TIMESTAMP> <EVENT>
 			 * <NUMBER> <EVENT> <EVENT	TIME>
 			 */
 			if(!tempP.DNF){
-				System.out.println(timeFormat(tempP.startTime) + " " + event + '\n'+  
+				System.out.println(timeFormat(tempP.startTime) + " " + event + '\t'+  
 						p.get(i).getID() + " " + event + " " + timeFormat(tempP.endTime-tempP.startTime));
 			}
 			else{
-				System.out.println(timeFormat(tempP.startTime) + " " + event + '\n'+  
+				System.out.println(timeFormat(tempP.startTime) + " " + event + '\t'+  
 						p.get(i).getID() + " " + event + " DNF");	
 				}
+			}
 		}
 	}
 	/*

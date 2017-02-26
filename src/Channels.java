@@ -6,8 +6,8 @@ public class Channels {
 		  static Channel Channels[] = new Channel[8];
 		public Channels()  
 		{
-			Channel ch1=new Channel(1,true);
-			Channel ch2=new Channel(2,true);
+			Channel ch1=new Channel(1,false);
+			Channel ch2=new Channel(2,false);
 			Channel ch3=new Channel(3,false);
 			Channel ch4=new Channel(4,false);
 			Channel ch5=new Channel(5,false);
@@ -99,7 +99,7 @@ public class Channels {
 	public boolean connected(){
 		return connect;
 	}
-     
+    /*
 	public void trig(RaceIndependent race)
 	{
 		if(this.connected())
@@ -120,7 +120,7 @@ public class Channels {
 		}
 		
 	}
-	
+	*/
 	
     
 	}

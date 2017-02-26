@@ -3,6 +3,7 @@ public class Player {
 	private int ID;
 	long startTime, endTime, totalTime;
 	boolean DNF = false;
+	boolean ran = false;
 	
 	public int getID(){
 		return ID;
@@ -12,12 +13,13 @@ public class Player {
 		this.ID = ID;
 	}
 	
-	public void start(long time){
-		this.startTime = time;
+	public void start(){
+		this.startTime = System.nanoTime();
+		this.ran = true;
 	}
 
-	public void end(long time) {
-		this.endTime = time;
+	public void end() {
+		this.endTime = System.nanoTime();
 		totalTime = endTime - startTime;
 	}
 	
@@ -27,5 +29,9 @@ public class Player {
 	
 	public void cancel(){
 		startTime = endTime = totalTime = 0;
+	}
+	
+	public boolean participated(){
+		return ran;
 	}
 }

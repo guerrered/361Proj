@@ -1,5 +1,1 @@
 Race #1
-ID:065	 start:1 h, 04 m, 20 s, 455 ms	 end:1 h, 04 m, 23 s, 037 ms	 elapsed time: 0 h, 00 m, 02 s, 582 ms	 place:1
-ID:045	 start:1 h, 04 m, 10 s, 269 ms	 end:1 h, 04 m, 17 s, 953 ms	 elapsed time: 0 h, 00 m, 07 s, 684 ms	 place:2
-ID:023	 start:1 h, 04 m, 24 s, 248 ms	 end:1 h, 04 m, 33 s, 087 ms	 elapsed time: 0 h, 00 m, 08 s, 838 ms	 place:3
-ID:056	 start:1 h, 04 m, 11 s, 318 ms	 end:DNF

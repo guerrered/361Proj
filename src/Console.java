@@ -8,6 +8,7 @@ public class Console {
 	RaceIndependent race;
 	Time time;
 	Channels channels;
+	String eventType;
 	
 	public Console(){
 		time = new Time();
@@ -21,6 +22,7 @@ public class Console {
 		powerState = !powerState;
 		if(powerState == true){
 			this.race = new RaceIndependent();
+			this.eventType = "IND";
 			printer = new Printer();
 		}
 		else if(CurRunOn == true)
@@ -32,7 +34,6 @@ public class Console {
 			this.race = null;
 			printer = null;
 		}
-		System.out.println(powerState);
 	}
 	
 	public void Reset(){
@@ -48,9 +49,10 @@ public class Console {
 		System.exit(1);
 	}
 	
-	public void Time(){//sets time
+	public void Time(String newTime){//sets time
 		if(onCheck()){
-			System.out.println(time.getTime());
+			this.time.setTime(newTime);
+			//System.out.println(time.getTime());
 		}
 	}
 	
@@ -100,7 +102,8 @@ public class Console {
 	}
 	public void Print(){
 		if(onCheck()){
-			this.race.printRace();
+			//this.race.printRace();
+			this.printer.print(this.race.getPlayerList(), this.eventType);
 		}
 		//option to print to console
 	}
@@ -132,33 +135,27 @@ public class Console {
 	
 	public void Trig(int chNum){
 		if(onCheck()){	
-			switch(chNum){
-				case(1):
-					race.startIND();
-					break;
-				case(2):
-					race.finishIND();
-					break;
-				default:
-					System.out.println("Not a Channel");
+			if(channels.getCh(chNum).connected()){
+				switch(chNum){
+					case(1):
+						race.startIND(this.time.getTime());
+						break;
+					case(2):
+						race.finishIND(this.time.getTime());
+						break;
+					default:
+						System.out.println("Not a Channel");
+			}
 			}
 		}
 	}
 	
 	public void Start(){
-		if(onCheck()){
-			if(channels.getCh(1).connected()){//only start if channel connected
-				this.race.startIND();
-			}
-		}
+		Trig(1);
 	}
 	
 	public void Finish(){
-		if(onCheck()){
-			if(channels.getCh(2).connected()){//finish if channel connected
-				this.race.finishIND();
-			}
-		}
+		Trig(2);
 	}
 	public long getTime(){
 		return time.getTime();

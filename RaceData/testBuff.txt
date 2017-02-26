@@ -1,17 +1,17 @@
-0:15:10 Power
-0:16:15 Connect 1
-0:17:20 Connect 2
-0:18:25 Num 45
-0:19:30 Num 56
-0:20:35 Num 65
-0:21:40 Num 23
-0:22:45 Start
-0:23:50 Start
-0:30:15 Finish
-0:32:65 Start
-0:32:90 DNF
-0:35:24 Finish
-0:36:45 Start
-0:45:30 Finish
-0:47:30 Print
-0:50:00 Exit
+12:05:10 Power
+12:05:50 Time 12:15:00
+12:16:15 Conn 1
+12:17:20 Conn 2
+12:18:00 Num 23
+12:22:45 Start
+12:23:14 Num 45
+12:23:50 Start
+12:30:15 Finish
+12:30:40 Num 65
+12:32:65 Start
+12:32:90 DNF
+12:35:24 Finish
+12:36:45 Start
+12:45:30 Finish
+12:47:30 Print
+12:50:00 Exit

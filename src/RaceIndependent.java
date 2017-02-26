@@ -37,6 +37,11 @@ public class RaceIndependent {
 			System.out.println("failed");
 			e.printStackTrace();
 		}
+		
+		for(int i =0; i<9999; i++){//adds 9999 racers to list
+			Player n = new Player(i);
+			players.add(n);
+		}
 	}
 	
 	public boolean addRunner(int runnerID){
@@ -75,15 +80,15 @@ public class RaceIndependent {
 	/*
 	 * starts player who is next in line
 	 */
-	public void startIND(){
+	public void startIND(long time){
 		if(players.size()>queueStartNum){
-			players.get(queueStartNum).start(System.nanoTime());
+			players.get(queueStartNum).start();
 			queueStartNum++;
 		}
 	}
 	
-	public void finishIND(){
-		players.get(queueEndNum).end(System.nanoTime());
+	public void finishIND(long time){
+		players.get(queueEndNum).end();
 		queueEndNum++;
 	}
 	

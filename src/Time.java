@@ -6,6 +6,7 @@
 public class Time {
 	int seconds;
 	int hundreths;
+	int millis;
 	
 	public Time(){
 		seconds = 720;
@@ -20,6 +21,13 @@ public class Time {
 	public Time(int minutes, int seconds, int hundreths){
 		this.seconds = 60 * minutes  + seconds;
 		this.hundreths = hundreths;
+	}
+	
+	public void setTime(String s){
+		String[] timegetter = s.split(" ");
+		String[] time = timegetter[0].split(":");
+		this.seconds = Integer.parseInt(time[0]) * 60 + (Integer.parseInt(time[1]));
+		this.hundreths = Integer.parseInt(time[2]);
 	}
 	
 	public void count(){//is counting seconds;

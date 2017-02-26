@@ -44,16 +44,16 @@ public class UserInterface {
 			while((currentLine = buff.readLine()) != null){
 				String[] timegetter = currentLine.split(" ");
 				String[] time = timegetter[0].split(":");
-				long commandTime = (long) (Integer.parseInt(time[0]) * 6000) + (Integer.parseInt(time[1]) * 100) + (Integer.parseInt(time[2]));
-				System.out.println(commandTime);//time it is waiting
+				String[] huns = time[2].split(".");
+				long commandTime = (Integer.parseInt(time[0]) * 6000) + (Integer.parseInt(time[1]) * 100) + (Integer.parseInt(time[2]));
 				while(commandTime > console.getTime()){//should wait till time is caught up
-					/*
 					try {
 						Thread.sleep(1);//check up every milli could be slower/faster 
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}*/
+						
+					}
 				}
 				commandExec(currentLine);
 			}
@@ -80,60 +80,63 @@ public class UserInterface {
 	public void commandExec(String command){
 		System.out.println(command);
 		String [] instructions = command.split(" ");
+		instructions[1] = instructions[1].toUpperCase();
 		switch(instructions[1]){
-		case("Power"):
+		case("POWER"):
 			console.Power();
 			break;
-		case("Reset"):
+		case("RESET"):
 			console.Reset();
 			break;
-		case("Exit"):
+		case("EXIT"):
 			this.exit();
 			break;
-		case("Time"):
-			console.Time();
+		case("TIME"):
+			console.Time(instructions[2]);
 			break;
-		case("newRun"):
+		case("NEWRUN"):
 			console.newRun();
 			break;
-		case("endRun"):
+		case("ENDRUN"):
 			console.endRun(Integer.parseInt(instructions[2]));//might have to find and remove run with this name/ number ;
 			break;
-		case("Num"):
+		case("NUM"):
 			console.Num(Integer.parseInt(instructions[2]));
 			break;
-		case("Swap"):
+		case("SWAP"):
 			console.Swap(Integer.parseInt(instructions[2]), Integer.parseInt(instructions[3]));
 			break;
 		case("DNF"):
 			console.DNF();
 			break;
-		case("Clear"):
+		case("CLEAR"):
 			console.Clear(Integer.parseInt(instructions[2]));
 			break;
-		case("Cancel"):
+		case("CANCEL"):
 			console.Cancel();
 			break;
-		case("Print"):
+		case("PRINT"):
 			console.Print();
 			break;
-		case("Connect"):
+		case("CONN"):
 			console.Connect(instructions[1],Integer.parseInt(instructions[2]));
 			break;
-		case("Disconnect"):
+		case("DIS"):
 			console.Disconnect(Integer.parseInt(instructions[2]));
 			break;
-		case("Tog"):
+		case("TOG"):
 			console.Tog(Integer.parseInt(instructions[2]));
 			break;
-		case("Trig"):
+		case("TRIG"):
 			console.Trig(Integer.parseInt(instructions[2]));
 			break;
-		case("Start"):
+		case("START"):
 			console.Start();
 			break;
-		case("Finish"):
+		case("FINISH"):
 			console.Finish();
+			break;
+		case("EVENT"):
 			break;
 		default:
 			System.out.println("Not a valid command\n");
