@@ -42,10 +42,11 @@ public class UserInterface {
 		try(BufferedReader buff = new BufferedReader(new FileReader(fileName))){
 			String currentLine;
 			while((currentLine = buff.readLine()) != null){
-				String[] timegetter = currentLine.split(" ");
+				String[] timegetter = currentLine.split("\t");
 				String[] time = timegetter[0].split(":");
-				String[] huns = time[2].split(".");
-				long commandTime = (Integer.parseInt(time[0]) * 6000) + (Integer.parseInt(time[1]) * 100) + (Integer.parseInt(time[2]));
+				String[] time2 = time[2].split("\\.");//min:sec:hun.milli
+				String[] mills = time2[1].split("\t");
+				long commandTime = (Integer.parseInt(time[0]) * 60000) + (Integer.parseInt(time[1]) * 1000) + (Integer.parseInt(time2[0]) * 10) + (Integer.parseInt(mills[0]));
 				while(commandTime > console.getTime()){//should wait till time is caught up
 					try {
 						Thread.sleep(1);//check up every milli could be slower/faster 
@@ -55,7 +56,8 @@ public class UserInterface {
 						
 					}
 				}
-				commandExec(currentLine);
+				String toExec = currentLine.replaceAll("\t"," ");
+				commandExec(toExec);
 			}
 		}catch(IOException e){
 			e.printStackTrace();

@@ -9,25 +9,26 @@ public class Time {
 	int millis;
 	
 	public Time(){
-		seconds = 720;
-		hundreths = 0;
+		this.seconds = 720;
+		this.hundreths = 0;
+		this.millis = 0;
 	}
 	
-	public Time(int seconds, int hundreths){
+	public Time(int seconds, int hundreths, int millis){
 		this.seconds =  seconds;
 		this.hundreths = hundreths;
+		this.millis = millis;
 	}
 	
-	public Time(int minutes, int seconds, int hundreths){
-		this.seconds = 60 * minutes  + seconds;
-		this.hundreths = hundreths;
-	}
 	
-	public void setTime(String s){
+	public void setTime(String s){//min:sec:hund.milli
+		
 		String[] timegetter = s.split(" ");
 		String[] time = timegetter[0].split(":");
 		this.seconds = Integer.parseInt(time[0]) * 60 + (Integer.parseInt(time[1]));
-		this.hundreths = Integer.parseInt(time[2]);
+		String[] time2 = time[2].split("\\.");
+		this.hundreths = Integer.parseInt(time2[0]);
+		this.millis = Integer.parseInt(time2[1]);
 	}
 	
 	public void count(){//is counting seconds;
@@ -36,7 +37,7 @@ public class Time {
 			while(hundreths < 99){
 				hundreths++;
 				try {
-					Thread.sleep(10);
+					Thread.sleep(10);//sleeps 10 millis
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -47,7 +48,7 @@ public class Time {
 		System.out.println("Time OverFlow");
 	}
 	
-	public long getTime(){
-		return (long) seconds * 100 +  hundreths;
+	public long getTime(){//return in millis
+		return (long) ((seconds * 1000) +  (hundreths * 10) + millis);
 	}
 }
