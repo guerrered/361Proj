@@ -98,7 +98,7 @@ public class UserInterface {
 			console.newRun();
 			break;
 		case("ENDRUN"):
-			console.endRun(Integer.parseInt(instructions[2]));//might have to find and remove run with this name/ number ;
+			console.endRun();//might have to find and remove run with this name/ number ;
 			break;
 		case("NUM"):
 			console.Num(Integer.parseInt(instructions[2]));
@@ -137,6 +137,7 @@ public class UserInterface {
 			console.Finish();
 			break;
 		case("EVENT"):
+			console.Event(instructions[2]);
 			break;
 		default:
 			System.out.println("Not a valid command\n");

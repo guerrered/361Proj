@@ -5,7 +5,7 @@ public class Console {
 	
 	boolean CurRunOn = false;
 	Printer printer;
-	RaceIndependent race;
+	RaceIndependent race;//gonna be Event race
 	Time time;
 	Channels channels;
 	String eventType;
@@ -21,11 +21,12 @@ public class Console {
 	public void Power(){
 		powerState = !powerState;
 		if(powerState == true){
-			this.race = new RaceIndependent();
-			this.eventType = "IND";
+			this.race = new RaceIndependent();//default
+			CurRunOn = true;
+			this.eventType = "IND";//default
 			printer = new Printer();
 		}
-		else if(CurRunOn == true)
+		else if(curRunCheck())
 		{//forbid force power off during the race
 			System.out.println("The race still going");
 		}
@@ -41,6 +42,7 @@ public class Console {
 		if(onCheck()){
 			time= new Time();
 			CurRunOn=false;
+			eventType = "IND";//default type of event;
 		}
 	}
 	
@@ -56,52 +58,58 @@ public class Console {
 		}
 	}
 	
+	public void Event(String event){
+		this.eventType = event;
+	}
+	
 	public void newRun(){
-		if(onCheck()&&CurRunOn==false){
-			CurRunOn = true;
-		//endRun(race.getNumber()) getName?;		
-			this.race = new RaceIndependent();
+		if(onCheck()&& !curRunCheck()){
+			CurRunOn = true;		
+			switch(eventType){//creates different types of races 
+				case("IND"):
+					this.race = new RaceIndependent();
+					break;
+			}
 		}
 	}
 	
-	public void endRun(int raceNumber){
-		if(onCheck()){//log old race
-			//if(race.getNumber()) == raceNumber 
-			// end it 
+	public void endRun(){
+		if(onCheck() && curRunCheck()){//log old race
+			this.race = null;
 			CurRunOn=false;
 		}
 		
 	}
 	
 	public void Num(int ID1){
-		if(onCheck()){
+		if(onCheck() && curRunCheck()){
 			this.race.nextUp(ID1);
 		}
 	}
 	public void Swap(int ID1, int ID2){
-		if(onCheck()){
+		if(onCheck() && curRunCheck()){
 			this.race.swapRacers(ID1, ID2);
 		}
 	}
 	
 	public void DNF(){
-		if(onCheck()){
+		if(onCheck() && curRunCheck()){
 			this.race.setDNF();
 		}
 	}
 	public void Clear(int runnerID){
-		if(onCheck()){
+		if(onCheck() && curRunCheck()){
 			this.race.removeRunner(runnerID);
 		}
 	}
 	
 	public void Cancel(){
-		if(onCheck()){
+		if(onCheck() && curRunCheck()){
 			this.race.cancel();
 		}
 	}
 	public void Print(){
-		if(onCheck()){
+		if(onCheck() && curRunCheck()){
 			//this.race.printRace();
 			this.printer.print(this.race.getPlayerList(), this.eventType);
 		}
@@ -134,7 +142,7 @@ public class Console {
 	}
 	
 	public void Trig(int chNum){
-		if(onCheck()){	
+		if(onCheck() && curRunCheck()){	
 			if(channels.getCh(chNum).connected()){
 				switch(chNum){
 					case(1):
@@ -145,7 +153,7 @@ public class Console {
 						break;
 					default:
 						System.out.println("Not a Channel");
-			}
+				}
 			}
 		}
 	}
@@ -162,5 +170,8 @@ public class Console {
 	}
 	private boolean onCheck(){
 		return powerState;
+	}
+	private boolean curRunCheck(){
+		return CurRunOn;
 	}
 }
