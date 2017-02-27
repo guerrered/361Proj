@@ -1,13 +1,15 @@
+package Sensors;
+
 
 public class PAD extends Sensors {
 boolean pressure;
 int ChannelNum;
-RaceIndependent race;
 
-public PAD(int num, RaceIndependent race)
+
+public PAD(int num)
 {
 	this.ChannelNum=num;
-	this.race=race;
+
 }
 public void unarmed(){
 	if(armed=true)

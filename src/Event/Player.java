@@ -1,10 +1,11 @@
+package Event;
 
 public class Player {
 	private int ID;
-	long startTime, endTime, totalTime;
-	boolean DNF = false;
-	boolean ran = false;
-	boolean running = false;
+	public long startTime, endTime, totalTime;
+	public boolean DNF = false;
+	public boolean ran = false;
+	public boolean running = false;
 	
 	public int getID(){
 		return ID;

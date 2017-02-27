@@ -1,3 +1,9 @@
+package Chronotimer;
+import Event.RaceIndependent;
+import Sensors.EYE;
+import Sensors.GATE;
+import Sensors.PAD;
+import Sensors.Sensors;
 
 public class Channels {
     
@@ -67,13 +73,13 @@ public class Channels {
 			switch(type.toUpperCase())
 			{
 			case("EYE"):
-				EYE e1=new EYE(this.ChNum,race);
+				EYE e1=new EYE(this.ChNum);
 			break;
 			case("GATE"):
-				GATE g1=new GATE(this.ChNum,race);
+				GATE g1=new GATE(this.ChNum);
 			break;
 			case("PAD"):
-				PAD p1=new PAD(this.ChNum,race);
+				PAD p1=new PAD(this.ChNum);
 			break;
 				
 			}

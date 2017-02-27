@@ -1,13 +1,15 @@
+package Sensors;
+
 
 public class GATE extends Sensors{
 public boolean Pushed;
 int ChannelNum;	
-RaceIndependent race;
 
-public GATE(int num,RaceIndependent race)
+
+public GATE(int num)
 {
 	this.ChannelNum=num;
-	this.race=race;
+	
 }
 
 public void unarmed(){

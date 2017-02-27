@@ -1,4 +1,7 @@
 import java.util.*;
+
+import Chronotimer.*;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -66,7 +69,6 @@ public class UserInterface {
 	public void readFromConsole(Scanner scan){
 		//whole system exits with exit command
 		String command;
-		long timeStamp;
 		String toExec;
 		System.out.println("Enter Command\n");
 		while(scan.hasNext()){

@@ -1,3 +1,4 @@
+package Sensors;
 //For Commands CONN<SENSOR><NUMBER>
 public class Sensors {
   Boolean armed;

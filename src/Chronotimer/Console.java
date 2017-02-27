@@ -1,4 +1,6 @@
-
+package Chronotimer;
+import Chronotimer.Channels.Channel;
+import Event.RaceIndependent;
 
 public class Console {
 	boolean powerState = false;
@@ -6,7 +8,7 @@ public class Console {
 	boolean CurRunOn = false;
 	Printer printer;
 	RaceIndependent race;//gonna be Event race
-	Time time;
+	public Time time;
 	Channels channels;
 	String eventType;
 	public Console(){

@@ -1,13 +1,14 @@
+package Sensors;
 
 
 public class EYE extends Sensors{
 boolean LightBeam;
 	int ChannelNum;
-	RaceIndependent race;
-public EYE(int num,RaceIndependent race)
+
+public EYE(int num)
 {
 	this.ChannelNum=num;
-	this.race=race;
+	
 }
 
 public void unarmed(){
