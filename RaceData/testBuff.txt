@@ -12,6 +12,26 @@
 12:32:90.0	DNF
 12:35:24.0	Finish
 12:36:45.0	Start
-12:45:30.0	Finish
-12:47:30.0	Print
-12:50:00.0	Exit
+12:39:30.0	Finish
+12:41:67.0	Start
+12:44:00.0	Start
+12:50:00.0	swap 1 2
+12:51:00.0	swap 5 7
+12:53:11.0	Finish
+12:54:34.0	Finish
+12:56:31.0	Start
+12:57:40.0	Cancel
+12:58:30.0	Print
+13:00:30.0	Start
+13:05:34.0	Finish
+13:07:30.0	Print
+13:08:10.0	endRun
+13:10:40.0	newRun
+13:12:50.0	start
+13:14:10.0	START
+13:18:09.0	finish
+13:19:50.0	finish
+13:21:43.9	print
+13:21:70.0	endrun
+13:22:00.0	Power
+13:22:50.0	Exit

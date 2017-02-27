@@ -13,8 +13,8 @@ public class RaceIndependent {
 	List <Player> players = new ArrayList<>(9999);
 	File curRaceData;
 	static int fileNumber = 1;
-	static int queueStartNum = 0;
-	static int queueEndNum = 0;
+	int queueStartNum = 0;
+	int queueEndNum = 0;
 	
 	public RaceIndependent(){
 		String temp = "RaceData/Race" + fileNumber + ".txt";
@@ -66,16 +66,7 @@ public class RaceIndependent {
 	}
 	
 	public void setDNF(){
-		/*
-		for(int i =0; i<players.size(); i++){
-			if(players.get(i).getID()==runnerID){
-				players.get(i).DNF();
-				break;
-			}
-		}*/
 		players.get(queueEndNum++).DNF();
-		//DNF shouldnt take parameters
-		//also since technically done w/ incrementing qend# race prevents collision in finish IND
 	}
 	/*
 	 * starts player who is next in line
@@ -94,24 +85,28 @@ public class RaceIndependent {
 	
 	
 	public boolean swapRacers(int p1, int p2){
-		Player temp = null;
-		int tempID;
-		int foundIndex = 0;
-		boolean found1 = false;
-		for(int i = 0; i < players.size(); i++){
-			tempID = players.get(i).getID();
-			if(tempID == p1 || tempID == p2){
-				if(!found1){
-					found1 = true;
-					foundIndex=i;
-					temp = players.get(i);
-				}
-				else{
-					players.set(foundIndex, players.get(i));
-					players.set(i, temp);
+			Player temp = null;
+			int tempID;
+			int foundIndex = 0;
+			boolean found1 = false;
+			for(int i = 0; i < players.size(); i++){
+				tempID = players.get(i).getID();
+				if(tempID == p1 || tempID == p2){
+					if(!found1){
+						found1 = true;
+						foundIndex=i;
+						temp = players.get(i);
+					}
+					else{
+						if(temp.isRunning() && players.get(i).isRunning()){//ensures runners are currently participating
+						players.set(foundIndex, players.get(i));
+						players.set(i, temp);
+						return true;
+						}
+					}
 				}
 			}
-		}
+		System.out.println("Players Can't be Swapped");
 		//swap not successful
 		return false;
 	}

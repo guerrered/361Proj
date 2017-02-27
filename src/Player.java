@@ -4,6 +4,7 @@ public class Player {
 	long startTime, endTime, totalTime;
 	boolean DNF = false;
 	boolean ran = false;
+	boolean running = false;
 	
 	public int getID(){
 		return ID;
@@ -14,24 +15,32 @@ public class Player {
 	}
 	
 	public void start(){
+		this.running = true;
 		this.startTime = System.nanoTime();
-		this.ran = true;
 	}
 
 	public void end() {
 		this.endTime = System.nanoTime();
+		this.ran = true;
+		this.running = false;
 		totalTime = endTime - startTime;
 	}
 	
 	public void DNF(){
+		this.running = false;
+		this.ran = true;
 		DNF = true;
 	}
 	
 	public void cancel(){
+		this.running = false;
 		startTime = endTime = totalTime = 0;
 	}
 	
 	public boolean participated(){
 		return ran;
+	}
+	public boolean isRunning(){
+		return running;
 	}
 }

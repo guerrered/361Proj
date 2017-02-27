@@ -9,7 +9,6 @@ public class Console {
 	Time time;
 	Channels channels;
 	String eventType;
-	
 	public Console(){
 		time = new Time();
 		channels = new Channels();

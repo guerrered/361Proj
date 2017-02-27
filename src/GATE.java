@@ -30,7 +30,7 @@ public void armed()
 
 	public void trig()
 	{
-		Channels.Channel ch=Channels.getCh(ChannelNum);
+		//Channels.Channel ch=Channels.getCh(ChannelNum);
 		//ch.trig(race);
 		
 	}

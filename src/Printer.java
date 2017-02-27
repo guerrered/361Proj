@@ -20,14 +20,17 @@ public class Printer {
 			 * <TIMESTAMP> <EVENT>
 			 * <NUMBER> <EVENT> <EVENT	TIME>
 			 */
-			if(!tempP.DNF){
-				System.out.println(timeFormat(tempP.startTime) + " " + event + '\t'+  
+				if(!tempP.DNF){
+					System.out.println(timeFormat(tempP.startTime) + " " + event + '\t'+  
 						p.get(i).getID() + " " + event + " " + timeFormat(tempP.endTime-tempP.startTime));
+				}
+				else{
+						System.out.println(timeFormat(tempP.startTime) + " " + event + '\t'+  
+						p.get(i).getID() + " " + event + " DNF");	
+					}
 			}
 			else{
-				System.out.println(timeFormat(tempP.startTime) + " " + event + '\t'+  
-						p.get(i).getID() + " " + event + " DNF");	
-				}
+				break;//since in order can just break here to save time
 			}
 		}
 	}

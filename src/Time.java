@@ -51,4 +51,9 @@ public class Time {
 	public long getTime(){//return in millis
 		return (long) ((seconds * 1000) +  (hundreths * 10) + millis);
 	}
+	
+	public String getTimeFancy(){
+		String ret = seconds  /60 + ":" + seconds% 60+ ":" + hundreths;
+		return ret;
+	}
 }

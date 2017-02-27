@@ -29,7 +29,6 @@ public class UserInterface {
 	}
 	
 	public void exit(){
-		// dont want to make it so abrupt
 		System.out.println("Exiting...");
 		System.exit(1);
 	}
@@ -72,8 +71,7 @@ public class UserInterface {
 		System.out.println("Enter Command\n");
 		while(scan.hasNext()){
 			command = scan.nextLine();
-			timeStamp = System.currentTimeMillis();
-			toExec = timeStamp + " " + command;
+			toExec = console.time.getTimeFancy() + " " + command;
 			commandExec(toExec);
 			System.out.println("Enter Command\n");
 		}
