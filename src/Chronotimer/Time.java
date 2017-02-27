@@ -1,20 +1,31 @@
 package Chronotimer;
 
 
-/*
- * This class needs to run concurrrently to the rest of the program
+/**
+ * 
+ * @author HiddenBit
+ *
  */
 public class Time {
 	int seconds;
 	int hundreths;
 	int millis;
 	
+	/**
+	 *constructor initiates time at 0:0:0.0 
+	 */
 	public Time(){
 		this.seconds = 0;
 		this.hundreths = 0;
 		this.millis = 0;
 	}
 	
+	/**
+	 * initiates time to seconds/60:seconds%60:hundreths.millis
+	 * @param seconds
+	 * @param hundreths
+	 * @param millis
+	 */
 	public Time(int seconds, int hundreths, int millis){
 		this.seconds =  seconds;
 		this.hundreths = hundreths;
@@ -22,26 +33,39 @@ public class Time {
 	}
 	
 	
-	public void setTime(String s){//min:sec:hund.milli
+	/**
+	 * Sets current time to the given time
+	 * 
+	 * @param s - a string in the form min:sec:hundreths.millis
+	 */
+	public void setTime(String time){
 		
-		String[] timegetter = s.split(" ");
-		String[] time = timegetter[0].split(":");
-		this.seconds = Integer.parseInt(time[0]) * 60 + (Integer.parseInt(time[1]));
-		String[] time2 = time[2].split("\\.");
+		String[] timegetter = time.split(" ");
+		String[] timeSplit = timegetter[0].split(":");
+		this.seconds = Integer.parseInt(timeSplit[0]) * 60 + (Integer.parseInt(timeSplit[1]));
+		String[] time2 = timeSplit[2].split("\\.");
 		this.hundreths = Integer.parseInt(time2[0]);
 		this.millis = Integer.parseInt(time2[1]);
 	}
 	
-	public void count(){//is counting seconds;
+	/**
+	 * keeps track of time after being instantiated preferably concurrently to the machine
+	 *  
+	 */
+	public void count(){
 		while( seconds < 9999){
 			hundreths = 0;
 			while(hundreths < 99){
 				hundreths++;
-				try {
-					Thread.sleep(10);//sleeps 10 millis
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				millis = 0;
+				while(millis < 9){
+					try {
+						Thread.sleep(1);//sleeps 10 millis
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					millis++;
 				}
 			}
 			seconds++;
@@ -49,10 +73,18 @@ public class Time {
 		System.out.println("Time OverFlow");
 	}
 	
-	public long getTime(){//return in millis
+	/**
+	 * 
+	 * @return current time in millis as a long type  
+	 */
+	public long getTime(){
 		return (long) ((seconds * 1000) +  (hundreths * 10) + millis);
 	}
 	
+	/**
+	 * 
+	 * @return current Time as a string
+	 */
 	public String getTimeFancy(){
 		String ret = seconds  /60 + ":" + seconds% 60+ ":" + hundreths;
 		return ret;

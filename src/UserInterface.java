@@ -5,10 +5,17 @@ import Chronotimer.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-
+/**
+ * 
+ * @author HiddenBit
+ *
+ */
 public class UserInterface {
 	Console console;
-	
+	/**
+	 * UserInterface constructor asks user if they want to use the
+	 * console for input or if they have a testing file
+	 */
 	public UserInterface(){
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Enter 'C' for console input or 'F' for file input\n");
@@ -31,6 +38,9 @@ public class UserInterface {
 		}
 	}
 	
+	/**
+	 * exit() terminates the program
+	 */
 	public void exit(){
 		System.out.println("Exiting...");
 		System.exit(1);
@@ -39,6 +49,13 @@ public class UserInterface {
 	/*
 	 * Input format <TIMESTAMP> <CMD> <ARGUMENT LIST> <EOL>
 	 * timestamp for console is time entered
+	 */
+	/**
+	 * readFromFile(String) reads from a given file and executes its instructions in real time
+	 * real time being the time the console reads. commandExec is then called with the instructions.
+	 * <h2>NOTE THE FILE IS READ IN REAL CONSOLE TIME</h2>
+	 * 
+	 * @param fileName - passed by the constructor fileName is the name of  file that will be read/executed
 	 */
 	public void readFromFile(String fileName){//use RaceData/testBuff.txt
 		try(BufferedReader buff = new BufferedReader(new FileReader(fileName))){
@@ -66,6 +83,12 @@ public class UserInterface {
 		}
 	}
 	
+	/**
+	 * readFromConsole() takes user input and prepends the time the console is reading 
+	 * it then calls commandExec to execute the instructions
+	 * 
+	 * @param scan - The scanner that interacts with the user 
+	 */
 	public void readFromConsole(Scanner scan){
 		//whole system exits with exit command
 		String command;
@@ -79,6 +102,12 @@ public class UserInterface {
 		}
 	}
 	
+	/**
+	 * commandExec() takes a string command that will be executed by the machine by using a switch
+	 * to find the right command
+	 * 
+	 * @param command - the instruction to be executed by the machine
+	 */
 	public void commandExec(String command){
 		System.out.println(command);
 		String [] instructions = command.split(" ");
