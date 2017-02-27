@@ -43,7 +43,7 @@ public class Channels {
 	
 	public class Channel
 	{
-    public Boolean connect=false;
+    public boolean connect=false;
     Sensors sens=new Sensors();
     
 	public int ChNum;
