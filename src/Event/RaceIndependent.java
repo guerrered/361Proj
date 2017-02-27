@@ -69,7 +69,12 @@ public class RaceIndependent {
 	}
 	
 	public void setDNF(){
-		players.get(queueEndNum++).DNF();
+		if(players.size()>queueStartNum){
+			players.get(queueEndNum++).DNF();
+		}
+		else{
+			System.out.println("all racers have finished");
+		}
 	}
 	/*
 	 * starts player who is next in line
@@ -79,11 +84,19 @@ public class RaceIndependent {
 			players.get(queueStartNum).start(time);
 			queueStartNum++;
 		}
+		else{
+			System.out.println("all racers have started");
+		}
 	}
 	
 	public void finishIND(long time){
-		players.get(queueEndNum).end(time);
-		queueEndNum++;
+		if(players.size()>queueStartNum){
+			players.get(queueEndNum).end(time);
+			queueEndNum++;
+		}
+		else{
+			System.out.println("all racers have finished");
+		}
 	}
 	
 	

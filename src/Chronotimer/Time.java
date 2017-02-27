@@ -12,7 +12,7 @@ public class Time {
 	int millis;
 	
 	/**
-	 *constructor initiates time at 0:0:0.0 
+	 *constructor initiates time at 0:0:0.0  where format is min:sec:hundreths.millis
 	 */
 	public Time(){
 		this.seconds = 0;
@@ -22,9 +22,9 @@ public class Time {
 	
 	/**
 	 * initiates time to seconds/60:seconds%60:hundreths.millis
-	 * @param seconds
-	 * @param hundreths
-	 * @param millis
+	 * @param seconds 
+	 * @param hundreths - can't be greater than 99
+	 * @param millis - can't be greater than 9 
 	 */
 	public Time(int seconds, int hundreths, int millis){
 		this.seconds =  seconds;
@@ -36,7 +36,8 @@ public class Time {
 	/**
 	 * Sets current time to the given time
 	 * 
-	 * @param s - a string in the form min:sec:hundreths.millis
+	 * @param time - a string in the form min:sec:hundreths.millis
+	 * where hundreths <= 99 and millis <= 9
 	 */
 	public void setTime(String time){
 		
@@ -60,7 +61,7 @@ public class Time {
 				millis = 0;
 				while(millis < 9){
 					try {
-						Thread.sleep(1);//sleeps 10 millis
+						Thread.sleep(1);//sleeps 1 milli
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

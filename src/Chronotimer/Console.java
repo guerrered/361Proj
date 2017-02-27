@@ -1,7 +1,11 @@
 package Chronotimer;
 import Chronotimer.Channels.Channel;
 import Event.RaceIndependent;
-
+/**
+ * 
+ * @author HiddenBit
+ *
+ */
 public class Console {
 	boolean powerState = false;
 	
@@ -13,6 +17,10 @@ public class Console {
 	String eventType;
 	Thread runner;
 	
+	/**
+	 * instantiates a console with a time class that is counting concurrently to it
+	 * also channels are available
+	 */
 	public Console(){
 		time = new Time();
 		channels = new Channels();
@@ -21,6 +29,13 @@ public class Console {
 		runner.start();
 	}
 	
+	/**
+	 * <p>if the machine is off it turns it on creating an independent race along with it 
+	 * also turn on printer</p> 
+	 * <p>else if the machine is on if no events are currently happening it will clear the race
+	 *  and turn the printer off. else it states event is happaning in case of accidental shutdown</p>
+	 * 
+	 */
 	public void Power(){
 		powerState = !powerState;
 		if(powerState == true){
@@ -40,7 +55,11 @@ public class Console {
 		}
 	}
 	
-	public void Reset(){
+	/**
+	 *  Checks if machine is on and resets the time to 0 and creates a brand new race
+	 *  setting the event to "IND" if it had changed
+	 */
+	public void Reset(){//might be able to just set time to 0:0:0.0
 		//start everything over
 		if(onCheck()){
 			this.time= new Time();
@@ -52,23 +71,34 @@ public class Console {
 			eventType = "IND";//default type of event;
 		}
 	}
-	
-	public void Exit(){
-		//maybe shouldn't be as abrupt;
-		System.exit(1);
-	}
-	
+
+	/**
+	 * if the machine is on it sets the current time to that of newtime
+	 * @param newTime
+	 */
 	public void Time(String newTime){//sets time
 		if(onCheck()){
 			this.time.setTime(newTime);
-			//System.out.println(time.getTime());
 		}
 	}
 	
+	/**
+	 * if the machine is on and there isnt an event currently happening it sets the 
+	 * type of event to event otherwise it asks the user to end the current event
+	 * @param event
+	 */
 	public void Event(String event){
-		this.eventType = event;
+		if(onCheck() && !curRunCheck()){
+			this.eventType = event;
+		}
+		else{
+			System.out.println("An event is ongoing end it first.");
+		}
 	}
 	
+	/**
+	 * if the machine is on and there isnt an ecent currently it creates a new event of eventType 
+	 */
 	public void newRun(){
 		if(onCheck()&& !curRunCheck()){
 			CurRunOn = true;		
@@ -80,6 +110,9 @@ public class Console {
 		}
 	}
 	
+	/**
+	 * if the machine is on and there is an event currently running it ends it
+	 */
 	public void endRun(){
 		if(onCheck() && curRunCheck()){//log old race
 			this.race = null;
@@ -87,34 +120,61 @@ public class Console {
 		}
 		
 	}
-	
+	/**
+	 * if the machine is on and an event is happening it 
+	 * sets the racer associated with ID1 as next to start in the race
+	 * @param ID1
+	 */
 	public void Num(int ID1){
 		if(onCheck() && curRunCheck()){
 			this.race.nextUp(ID1);
 		}
 	}
+	
+	/**
+	 * if the machine is on and and event is happening it swaps the ending order of the
+	 * racer associated with ID1 and ID2 
+	 * @param ID1
+	 * @param ID2
+	 */
 	public void Swap(int ID1, int ID2){
 		if(onCheck() && curRunCheck()){
 			this.race.swapRacers(ID1, ID2);
 		}
 	}
 	
+	/**
+	 * if the machine is on and an event is currently happening
+	 * the next runner to finish will get a DNF
+	 */
 	public void DNF(){
 		if(onCheck() && curRunCheck()){
 			this.race.setDNF();
 		}
 	}
+	/**
+	 * if the machine is on and event is currently happening the runner associated with runnerID 
+	 * will be removed from event
+	 * @param runnerID
+	 */
 	public void Clear(int runnerID){
 		if(onCheck() && curRunCheck()){
 			this.race.removeRunner(runnerID);
 		}
 	}
-	
+	/**
+	 * if the machine is on and and event is currently happening the last runner to start will 
+	 * be his start time cleared and will be place back as next to start
+	 */
 	public void Cancel(){
 		if(onCheck() && curRunCheck()){
 			this.race.cancel();
 		}
 	}
+	/**
+	 * if machine is on and and event is currently happening the machine will print 
+	 * all the participating runners
+	 */
 	public void Print(){
 		if(onCheck() && curRunCheck()){
 			//this.race.printRace();
@@ -122,7 +182,11 @@ public class Console {
 		}
 		//option to print to console
 	}
-	
+	/**
+	 * connects to channel chNum an sensor of type
+	 * @param type
+	 * @param ChNum
+	 */
 	public void Connect(String type,int ChNum){
 		if(onCheck()){
 			Channels.Channel ch= channels.getCh(ChNum);
@@ -132,7 +196,10 @@ public class Console {
 			}
 		}
 	}
-	
+	/**
+	 * disconnect the sensor at chNum
+	 * @param chNum
+	 */
 	public void Disconnect(int chNum){
 		if(onCheck()){
 			Channels.Channel ch=channels.getCh(chNum);
@@ -142,12 +209,22 @@ public class Console {
 			}
 		}
 	}
+	/**
+	 * if on turn the channel chNum off and vice versa
+	 * @param chNum
+	 */
 	public void Tog(int chNum){
 		if(onCheck()){
 			channels.Tog(chNum);
 		}
 	}
 	
+	/** 
+	 * triggers the channel chNum
+	 * since it is an independent race trig 1 will start next in line
+	 * trig 2 will end the current runner
+	 * @param chNum
+	 */
 	public void Trig(int chNum){
 		if(onCheck() && curRunCheck()){	
 			if(channels.getCh(chNum).connected()){
@@ -165,19 +242,40 @@ public class Console {
 		}
 	}
 	
+	/**
+	 * shorthand for trig 1
+	 */
 	public void Start(){
 		Trig(1);
 	}
 	
+	
+	/** 
+	 * shorthand for trig 2
+	 */
 	public void Finish(){
 		Trig(2);
 	}
+	/** 
+	 * 
+	 * @return the time currently read by the console
+	 */
 	public long getTime(){
 		return time.getTime();
 	}
+	/**
+	 * 
+	 * @return boolean regarding the powerstate of the machine
+	 * whether it is on or off
+	 */
 	private boolean onCheck(){
 		return powerState;
 	}
+	
+	/**
+	 * 
+	 * @return boolean regarding an event currently being held
+	 */
 	private boolean curRunCheck(){
 		return CurRunOn;
 	}
