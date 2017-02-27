@@ -73,13 +73,13 @@ public class RaceIndependent {
 	 */
 	public void startIND(long time){
 		if(players.size()>queueStartNum){
-			players.get(queueStartNum).start();
+			players.get(queueStartNum).start(time);
 			queueStartNum++;
 		}
 	}
 	
 	public void finishIND(long time){
-		players.get(queueEndNum).end();
+		players.get(queueEndNum).end(time);
 		queueEndNum++;
 	}
 	

@@ -14,13 +14,13 @@ public class Player {
 		this.ID = ID;
 	}
 	
-	public void start(){
+	public void start(long time){
 		this.running = true;
-		this.startTime = System.nanoTime();
+		this.startTime = time;
 	}
 
-	public void end() {
-		this.endTime = System.nanoTime();
+	public void end(long time) {
+		this.endTime = time;
 		this.ran = true;
 		this.running = false;
 		totalTime = endTime - startTime;
