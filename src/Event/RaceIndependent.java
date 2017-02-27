@@ -9,37 +9,14 @@ import java.util.List;
 import Chronotimer.*;
 
 
-public class RaceIndependent {
-	public long clockTime;
-	public int runNumber=1;
-	public int numRunners;
+public class RaceIndependent extends Event{
 	List <Player> players = new ArrayList<>(9999);
-	File curRaceData;
-	static int fileNumber = 1;
 	int queueStartNum = 0;
 	int queueEndNum = 0;
 	
 	public RaceIndependent(){
-		String temp = "RaceData/Race" + fileNumber + ".txt";
-		
-		File directory = new File("RaceData");
-		if(!directory.exists()){
-			System.out.println("Directory doesn't exist. New directory has been created.");
-			directory.mkdirs();
-		}
-		curRaceData = new File(temp);
-		BufferedWriter output;
-		try {
-			curRaceData.createNewFile();
-			//write to file
-			output = new BufferedWriter(new FileWriter (curRaceData));
-			output.write("Race #" + fileNumber + '\n');
-			fileNumber++;
-			output.close();
-		} catch (IOException e) {
-			System.out.println("failed");
-			e.printStackTrace();
-		}
+		//I don't have it creating the output file anymore.
+		//createRaceOutputFile();
 		
 		for(int i =0; i<9999; i++){//adds 9999 racers to list
 			Player n = new Player(i);
@@ -146,7 +123,5 @@ public class RaceIndependent {
 		return players;
 	}
 	
-	public File getRaceData(){
-		return curRaceData;
-	}
+	
 }
