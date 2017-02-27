@@ -72,16 +72,16 @@ public class Printer {
 	}
 	
 	public static String timeFormat( long duration ) {
-		    final TimeUnit scale = TimeUnit.NANOSECONDS;
+		    final TimeUnit scale = TimeUnit.MILLISECONDS;
 		    
 		    long days = scale.toDays(duration);
-		    duration -= TimeUnit.HOURS.toNanos(days);
+		    duration -= TimeUnit.HOURS.toMillis(days);
 		    long hours = scale.toHours( duration );
-		    duration -= TimeUnit.HOURS.toNanos( hours );
+		    duration -= TimeUnit.HOURS.toMillis( hours );
 		    long minutes = scale.toMinutes( duration );
-		    duration -= TimeUnit.MINUTES.toNanos( minutes );
+		    duration -= TimeUnit.MINUTES.toMillis( minutes );
 		    long seconds = scale.toSeconds( duration );
-		    duration -= TimeUnit.SECONDS.toNanos( seconds );
+		    duration -= TimeUnit.SECONDS.toMillis( seconds );
 		    long millis = scale.toMillis( duration );
 		    
 		    return String.format("%d h, %02d m, %02d s, %03d ms",hours, minutes, seconds, millis);
