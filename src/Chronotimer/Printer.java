@@ -23,11 +23,11 @@ public class Printer {
 			 * <NUMBER> <EVENT> <EVENT	TIME>
 			 */
 				if(!tempP.DNF){
-					System.out.println(timeFormat(tempP.startTime) + " " + event + '\t'+  
-						p.get(i).getID() + " " + event + " " + timeFormat(tempP.endTime-tempP.startTime));
+					System.out.println(timeFormat(tempP.getStartTime()) + " " + event + '\t'+  
+						p.get(i).getID() + " " + event + " " + timeFormat(tempP.getTotalTime()));
 				}
 				else{
-						System.out.println(timeFormat(tempP.startTime) + " " + event + '\t'+  
+						System.out.println(timeFormat(tempP.getStartTime()) + " " + event + '\t'+  
 						p.get(i).getID() + " " + event + " DNF");	
 					}
 			}

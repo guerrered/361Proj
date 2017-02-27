@@ -10,7 +10,7 @@ public class Time {
 	int millis;
 	
 	public Time(){
-		this.seconds = 720;
+		this.seconds = 0;
 		this.hundreths = 0;
 		this.millis = 0;
 	}

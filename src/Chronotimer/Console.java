@@ -11,12 +11,14 @@ public class Console {
 	public Time time;
 	Channels channels;
 	String eventType;
+	Thread runner;
+	
 	public Console(){
 		time = new Time();
 		channels = new Channels();
 		Runnable r1 = new runnableTimer(time);
-		Thread t1 = new Thread(r1);
-		t1.start();
+		runner = new Thread(r1);
+		runner.start();
 	}
 	
 	public void Power(){
@@ -41,8 +43,12 @@ public class Console {
 	public void Reset(){
 		//start everything over
 		if(onCheck()){
-			time= new Time();
-			CurRunOn=false;
+			this.time= new Time();
+			Runnable r1 = new runnableTimer(time);
+			this.runner = new Thread(r1);
+			this.runner.start();
+			this.race = new RaceIndependent();
+			//CurRunOn=false;
 			eventType = "IND";//default type of event;
 		}
 	}

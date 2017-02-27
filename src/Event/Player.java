@@ -38,6 +38,14 @@ public class Player {
 		startTime = endTime = totalTime = 0;
 	}
 	
+	public long getTotalTime(){
+		return totalTime;
+	}
+	
+	public long getStartTime(){
+		return startTime;
+	}
+	
 	public boolean participated(){
 		return ran;
 	}
