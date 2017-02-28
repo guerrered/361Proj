@@ -1,9 +1,12 @@
+
+import org.junit.Assert.*;
+
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import Event.RaceIndependent;
+import Event.*;
 
 public class ChronotimerTest {
 	RaceIndependent rIND;
@@ -19,20 +22,20 @@ public class ChronotimerTest {
 	
 	@Test
 	public void testRemovePlayerTwice(){
-		assertTrue(rIND.removeRunner(0));
-		assertFalse(rIND.removeRunner(0));
+		assertTrue(rIND.remove(0));
+		assertFalse(rIND.remove(0));
 	}
 	
 	@Test
 	public void testSwapPlayers(){
 		//swap should fail if neither are running
-		assertFalse(rIND.swapRacers(0, 1));
+		assertFalse(rIND.swap(0, 1));
 		//start 0
-		rIND.startIND(System.currentTimeMillis());
+		rIND.start(System.currentTimeMillis());
 		//start 1
-		rIND.startIND(System.currentTimeMillis());
+		rIND.start(System.currentTimeMillis());
 		
-		assertTrue(rIND.swapRacers(0, 1));
+		assertTrue(rIND.swap(0, 1));
 	}
 
 }
