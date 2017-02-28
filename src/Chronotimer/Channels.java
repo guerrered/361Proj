@@ -4,9 +4,16 @@ import Sensors.EYE;
 import Sensors.GATE;
 import Sensors.PAD;
 import Sensors.Sensors;
-
+/**
+ * 
+ * @author HiddenBit
+ *
+ */
 public class Channels {
-    
+    /*Channels section that load all the channels for the future use.
+	 *
+	 *
+	 */
 	Boolean power=false;
 	  
 		  static Channel Channels[] = new Channel[8];
@@ -31,22 +38,43 @@ public class Channels {
 			
 			
 		}
-	  
+		/**
+		 * Called from the console to connect the channel with type of senser
+		 * @param type
+		 * @param num
+		 */
 	 
+	 public static void connect(String type,int num)
+	 {
+		 Channels[num-1].connect(type);
+		 
+	 }
 	 
+	 /**
+		 * Return Channel base on the channel number as input
+		 * @param num
+		 */
 	 
 	 public static Channel getCh(int num)
 	 {
 		 return Channels[num-1];
 	 }
 	 
+	 /**
+		 * Tog(int ChNum)
+		 * @param ChNum
+		 * Change the power state of the channel, connect/disconnect
+		 */
+	 
 	 public static void Tog(int ChNum)
 	    {
 	    Channels[ChNum-1].connect=!Channels[ChNum-1].connect;
 	    }
 	
-	
-	
+	 /**
+		 * Inner class channel
+		 * 
+		 */ 
 	public class Channel
 	{
     public boolean connect=false;
@@ -54,13 +82,22 @@ public class Channels {
     
 	public int ChNum;
     
+	/**
+	 * Constructor take the channel number and the initial state of connection
+	 * @param ChNum
+	 * @param connection
+	 */
     public Channel(int ChNum,Boolean connect)//,String sensor type
     {
     	this.ChNum=ChNum;
     	this.connect=connect;
     }
     
-    public void connect(String type,RaceIndependent race)
+    /**
+	 * connect method for this channel to connect type of the senser
+	 * @param type
+	 */
+    public void connect(String type)
 	{
 		
 		 if(this.connect=true)
@@ -88,6 +125,11 @@ public class Channels {
 		}
 		
 	}
+    
+    /**
+	 * disconnect the Channel
+	 * 
+	 */
 	public void disconnect()
 	{
 		if(this.connect==false)
@@ -102,6 +144,11 @@ public class Channels {
 			
 		}
 	}
+	
+	/**
+	 * Return the state of this channel
+	 * 
+	 */
 	public boolean connected(){
 		return connect;
 	}

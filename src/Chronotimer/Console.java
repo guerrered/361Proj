@@ -1,5 +1,4 @@
 package Chronotimer;
-import Chronotimer.Channels.Channel;
 import Event.RaceIndependent;
 /**
  * 
@@ -189,11 +188,7 @@ public class Console {
 	 */
 	public void Connect(String type,int ChNum){
 		if(onCheck()){
-			Channels.Channel ch= channels.getCh(ChNum);
-			if(ch!=null)
-			{
-				ch.connect(type,this.race);
-			}
+			Channels.connect(type, ChNum);
 		}
 	}
 	/**

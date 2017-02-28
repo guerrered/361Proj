@@ -7,8 +7,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Chronotimer.*;
+/**
+ * 
+ * @author HiddenBit
+ *
+ */
 
-
+/**
+ * One of the event(function) in the time machine 
+ * 
+ *
+ */
 public class RaceIndependent {
 	public long clockTime;
 	public int runNumber=1;
@@ -19,6 +28,10 @@ public class RaceIndependent {
 	int queueStartNum = 0;
 	int queueEndNum = 0;
 	
+	/**
+	 * Constructor 
+	 *
+	 */
 	public RaceIndependent(){
 		String temp = "RaceData/Race" + fileNumber + ".txt";
 		
@@ -47,6 +60,10 @@ public class RaceIndependent {
 		}
 	}
 	
+	/**
+	 * Method that add runner into the race
+	 *
+	 */
 	public boolean addRunner(int runnerID){
 		//check to make sure runner doesn't already exist in the system.
 		for(int i =0; i<players.size(); i++){
@@ -57,6 +74,10 @@ public class RaceIndependent {
 		return true;
 	}
 	
+	/**
+	 * Method that remove Runner
+	 *
+	 */
 	public boolean removeRunner(int runnerID){
 		for(int i =0; i<players.size(); i++){
 			if(players.get(i).getID()==runnerID){
@@ -68,6 +89,10 @@ public class RaceIndependent {
 		return false;
 	}
 	
+	/**
+	 * Method that set Runner does not finish
+	 *
+	 */
 	public void setDNF(){
 		if(players.size()>queueStartNum){
 			players.get(queueEndNum++).DNF();
@@ -89,6 +114,9 @@ public class RaceIndependent {
 		}
 	}
 	
+	/**
+	 *Player who finished a race will get their own time to the file
+	 */
 	public void finishIND(long time){
 		if(players.size()>queueStartNum){
 			players.get(queueEndNum).end(time);
@@ -99,7 +127,10 @@ public class RaceIndependent {
 		}
 	}
 	
-	
+	/**
+	 * Method that swap the Runner
+	 *
+	 */
 	public boolean swapRacers(int p1, int p2){
 			Player temp = null;
 			int tempID;
@@ -155,10 +186,18 @@ public class RaceIndependent {
 		players.clear();
 	}
 	
+	/**
+	 * Method that return the list of the players
+	 *
+	 */
 	public List<Player> getPlayerList(){
 		return players;
 	}
 	
+	/**
+	 * Method that return current race data
+	 *
+	 */
 	public File getRaceData(){
 		return curRaceData;
 	}

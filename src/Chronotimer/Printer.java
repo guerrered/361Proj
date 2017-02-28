@@ -8,6 +8,11 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import Event.*;
+/**
+ * 
+ * @author HiddenBit
+ *
+ */
 
 
 public class Printer {
@@ -69,10 +74,18 @@ public class Printer {
 		}	
 	}
 	
+	 /**
+		 * Format of the Player ID
+		 * 
+		 */
 	public static String idFormat(int num){
 		return String.format("%03d", num);
 	}
 	
+	 /**
+		 * Format of the time
+		 * 
+		 */
 	public static String timeFormat( long duration ) {
 		    final TimeUnit scale = TimeUnit.MILLISECONDS;
 		    
@@ -89,6 +102,10 @@ public class Printer {
 		    return String.format("%d h, %02d m, %02d s, %03d ms",hours, minutes, seconds, millis);
 	 }
 	
+	 /**
+		 * Sort method that sort the order by time.
+		 * 
+		 */
 	public List<Player> sortByTime(List<Player> p){
 		List<Player> sortedList = new ArrayList<>(p.size());
 		sortedList.addAll(p);
@@ -97,6 +114,10 @@ public class Printer {
 		return sortedList;
 	}
 	
+	 /**
+		 * Comparator that compare players time. 
+		 * 
+		 */
 	public static Comparator<Player> timeComparator = new Comparator<Player>(){
 		public int compare(Player p1,Player p2){
 			if(p1.DNF&&p2.DNF)return 0;
