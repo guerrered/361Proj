@@ -7,7 +7,16 @@ import org.junit.Before;
 import org.junit.Test;
 
 import Event.*;
+/**
+ * 
+ * @author HiddenBit
+ *
+ */
 
+/**
+ * JUnit test setup for testing
+ *
+ */
 public class ChronotimerTest {
 	RaceIndependent rIND;
 	@Before
@@ -15,10 +24,19 @@ public class ChronotimerTest {
 		rIND = new RaceIndependent();
 	}
 	
+	
+	/**
+	 * 
+	 *
+	 */
 	@Test
 	public void testRemovePlayer(){
 		assertTrue(rIND.remove(0));
 	}
+	/**
+	 * Boundary test for remove method
+	 *
+	 */
 	
 	@Test
 	public void testRemovePlayerTwice(){
@@ -26,6 +44,10 @@ public class ChronotimerTest {
 		assertFalse(rIND.remove(0));
 	}
 	
+	/**
+	 * Testing swap method
+	 *
+	 */
 	@Test
 	public void testSwapPlayers(){
 		//swap should fail if neither are running
