@@ -60,8 +60,16 @@ public class UserInterface {
 	public void readFromFile(String fileName){//use RaceData/testBuff.txt
 		try(BufferedReader buff = new BufferedReader(new FileReader(fileName))){
 			String currentLine;
+			long prev = 0;
 			while((currentLine = buff.readLine()) != null){
 				String[] timegetter = currentLine.split("\t");
+				long currentTime = timeParser(timegetter[0]);
+				if(currentTime > prev){
+					String toExec = currentLine.replaceAll("\t",  " ");
+					console.Time(timegetter[0]);
+					commandExec(toExec);
+					//prev = currentTime;
+				}/*
 				String[] time = timegetter[0].split(":");
 				String[] time2 = time[2].split("\\.");//min:sec:hun.milli
 				String[] mills = time2[1].split("\t");
@@ -76,7 +84,7 @@ public class UserInterface {
 					}
 				}
 				String toExec = currentLine.replaceAll("\t"," ");
-				commandExec(toExec);
+				commandExec(toExec);*/
 			}
 		}catch(IOException e){
 			e.printStackTrace();
@@ -174,5 +182,14 @@ public class UserInterface {
 			System.out.println("Not a valid command\n");
 			break;
 		}
+	}
+	
+	public long timeParser(String time){	
+			String[] timeSplit = time.split(":");
+			long seconds = Integer.parseInt(timeSplit[0]) * 60 + (Integer.parseInt(timeSplit[1]));
+			String[] time2 = timeSplit[2].split("\\.");
+			long hundreths = Integer.parseInt(time2[0]);
+			long millis = Integer.parseInt(time2[1]);
+			return seconds + hundreths + millis;
 	}
 }

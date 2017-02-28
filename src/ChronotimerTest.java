@@ -14,7 +14,7 @@ public class ChronotimerTest {
 	
 	@Test
 	public void testRemovePlayer(){
-		assertTrue(rIND.removeRunner(0));
+		assertTrue(rIND.remove(0));
 	}
 	
 	@Test

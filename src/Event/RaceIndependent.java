@@ -51,22 +51,22 @@ public class RaceIndependent extends Event{
 	 * Method that remove Runner
 	 *
 	 */
-	public boolean removeRunner(int runnerID){
+	public void remove(int runnerID){
 		for(int i =0; i<players.size(); i++){
 			if(players.get(i).getID()==runnerID){
 				players.remove(i);
 				numRunners--;
-				return true;
+				//return true;
 			}
 		}
-		return false;
+		//return false;
 	}
 	
 	/**
 	 * Method that set Runner does not finish
 	 *
 	 */
-	public void setDNF(){
+	public void DNF(){
 		if(players.size()>queueStartNum){
 			players.get(queueEndNum++).DNF();
 		}
@@ -77,7 +77,7 @@ public class RaceIndependent extends Event{
 	/*
 	 * starts player who is next in line
 	 */
-	public void startIND(long time){
+	public void start(long time){
 		if(players.size()>queueStartNum){
 			players.get(queueStartNum).start(time);
 			queueStartNum++;
@@ -90,7 +90,7 @@ public class RaceIndependent extends Event{
 	/**
 	 *Player who finished a race will get their own time to the file
 	 */
-	public void finishIND(long time){
+	public void finish(long time){
 		if(players.size()>queueStartNum){
 			players.get(queueEndNum).end(time);
 			queueEndNum++;
@@ -104,12 +104,13 @@ public class RaceIndependent extends Event{
 	 * Method that swap the Runner
 	 *
 	 */
-	public boolean swapRacers(int p1, int p2){
+	public  void swap(int p1, int p2){
 			Player temp = null;
 			int tempID;
 			int foundIndex = 0;
 			boolean found1 = false;
-			for(int i = 0; i < players.size(); i++){
+			int i;
+			for(i = 0; i < players.size(); i++){
 				tempID = players.get(i).getID();
 				if(tempID == p1 || tempID == p2){
 					if(!found1){
@@ -121,19 +122,21 @@ public class RaceIndependent extends Event{
 						if(temp.isRunning() && players.get(i).isRunning()){//ensures runners are currently participating
 						players.set(foundIndex, players.get(i));
 						players.set(i, temp);
-						return true;
+						break;
+						//		return true;
 						}
 					}
 				}
 			}
-		System.out.println("Players Can't be Swapped");
-		//swap not successful
-		return false;
+			if(i == players.size()){
+				System.out.println("Players Can't be Swapped");
+			}//swap not successful
+		//return false;
 	}
 	/*
 	 * player arg is next to run
 	 */
-	public void nextUp(int id){
+	public void next(int id){
 		Player temp;
 		for (int i =0; i < players.size(); i++){
 			if(players.get(i).getID()==id){

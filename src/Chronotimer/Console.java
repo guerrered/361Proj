@@ -1,5 +1,5 @@
 package Chronotimer;
-import Event.RaceIndependent;
+import Event.*;
 /**
  * 
  * @author HiddenBit
@@ -10,7 +10,7 @@ public class Console {
 	
 	boolean CurRunOn = false;
 	Printer printer;
-	RaceIndependent race;//gonna be Event race
+	Event race;//gonna be Event race
 	public Time time;
 	Channels channels;
 	String eventType;
@@ -62,7 +62,7 @@ public class Console {
 		//start everything over
 		if(onCheck()){
 			this.time= new Time();
-			Runnable r1 = new runnableTimer(time);
+			Runnable r1 = new runnableTimer(time);//might want to make it time("0:0:0.0"); instead of messing with threads
 			this.runner = new Thread(r1);
 			this.runner.start();
 			this.race = new RaceIndependent();
@@ -126,7 +126,7 @@ public class Console {
 	 */
 	public void Num(int ID1){
 		if(onCheck() && curRunCheck()){
-			this.race.nextUp(ID1);
+			this.race.next(ID1);
 		}
 	}
 	
@@ -138,7 +138,7 @@ public class Console {
 	 */
 	public void Swap(int ID1, int ID2){
 		if(onCheck() && curRunCheck()){
-			this.race.swapRacers(ID1, ID2);
+			this.race.swap(ID1, ID2);
 		}
 	}
 	
@@ -148,7 +148,7 @@ public class Console {
 	 */
 	public void DNF(){
 		if(onCheck() && curRunCheck()){
-			this.race.setDNF();
+			this.race.DNF();
 		}
 	}
 	/**
@@ -158,7 +158,7 @@ public class Console {
 	 */
 	public void Clear(int runnerID){
 		if(onCheck() && curRunCheck()){
-			this.race.removeRunner(runnerID);
+			this.race.remove(runnerID);
 		}
 	}
 	/**
@@ -225,10 +225,10 @@ public class Console {
 			if(channels.getCh(chNum).connected()){
 				switch(chNum){
 					case(1):
-						race.startIND(this.time.getTime());
+						race.start(this.time.getTime());
 						break;
 					case(2):
-						race.finishIND(this.time.getTime());
+						race.finish(this.time.getTime());
 						break;
 					default:
 						System.out.println("Not a Channel");
