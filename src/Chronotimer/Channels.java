@@ -1,9 +1,6 @@
 package Chronotimer;
-import Event.RaceIndependent;
-import Sensors.EYE;
-import Sensors.GATE;
-import Sensors.PAD;
-import Sensors.Sensors;
+import Sensors.*;
+
 /**
  * 
  * @author HiddenBit
@@ -38,17 +35,44 @@ public class Channels {
 			
 			
 		}
+		
+	 public static void trig(int num)
+	 {
+			if(Channels[num-1].connected()){
+				switch(num){
+					case(1):
+						Console.race.start(Console.time.getTime());
+						break;
+					case(2):
+						Console.race.finish(Console.time.getTime());
+						break;
+					default:
+						System.out.println("Not a Channel");
+				}
+			}
+	 }
+		
+		
 		/**
 		 * Called from the console to connect the channel with type of senser
 		 * @param type
 		 * @param num
 		 */
-	 
+	
 	 public static void connect(String type,int num)
 	 {
 		 Channels[num-1].connect(type);
 		 
 	 }
+		/**
+		 * Called from the console to disconnect the channel
+		 *
+		 */
+	 public static void disconnect(int num)
+	 {
+		 Channels[num-1].disconnect();
+	 }
+	 
 	 
 	 /**
 		 * Return Channel base on the channel number as input
@@ -110,13 +134,13 @@ public class Channels {
 			switch(type.toUpperCase())
 			{
 			case("EYE"):
-				EYE e1=new EYE(this.ChNum);
+				new EYE(this.ChNum);
 			break;
 			case("GATE"):
-				GATE g1=new GATE(this.ChNum);
+				new GATE(this.ChNum);
 			break;
 			case("PAD"):
-				PAD p1=new PAD(this.ChNum);
+				new PAD(this.ChNum);
 			break;
 				
 			}

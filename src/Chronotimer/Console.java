@@ -10,8 +10,8 @@ public class Console {
 	
 	boolean CurRunOn = false;
 	Printer printer;
-	Event race;//gonna be Event race
-	public Time time;
+	public static Event race;//gonna be Event race
+	public static Time time;
 	Channels channels;
 	String eventType;
 	Thread runner;
@@ -38,7 +38,7 @@ public class Console {
 	public void Power(){
 		powerState = !powerState;
 		if(powerState == true){
-			this.race = new RaceIndependent();//default
+			Console.race = new RaceIndependent();//default
 			CurRunOn = true;
 			this.eventType = "IND";//default
 			printer = new Printer();
@@ -49,7 +49,7 @@ public class Console {
 		}
 		else{
 			//save race contents first
-			this.race = null;
+			Console.race = null;
 			printer = null;
 		}
 	}
@@ -61,11 +61,11 @@ public class Console {
 	public void Reset(){//might be able to just set time to 0:0:0.0
 		//start everything over
 		if(onCheck()){
-			this.time= new Time();
+			Console.time= new Time();
 			Runnable r1 = new runnableTimer(time);//might want to make it time("0:0:0.0"); instead of messing with threads
 			this.runner = new Thread(r1);
 			this.runner.start();
-			this.race = new RaceIndependent();
+			Console.race = new RaceIndependent();
 			//CurRunOn=false;
 			eventType = "IND";//default type of event;
 		}
@@ -77,7 +77,7 @@ public class Console {
 	 */
 	public void Time(String newTime){//sets time
 		if(onCheck()){
-			this.time.setTime(newTime);
+			Console.time.setTime(newTime);
 		}
 	}
 	
@@ -103,7 +103,7 @@ public class Console {
 			CurRunOn = true;		
 			switch(eventType){//creates different types of races 
 				case("IND"):
-					this.race = new RaceIndependent();
+					Console.race = new RaceIndependent();
 					break;
 			}
 		}
@@ -114,7 +114,7 @@ public class Console {
 	 */
 	public void endRun(){
 		if(onCheck() && curRunCheck()){//log old race
-			this.race = null;
+			Console.race = null;
 			CurRunOn=false;
 		}
 		
@@ -126,7 +126,7 @@ public class Console {
 	 */
 	public void Num(int ID1){
 		if(onCheck() && curRunCheck()){
-			this.race.next(ID1);
+			Console.race.next(ID1);
 		}
 	}
 	
@@ -138,7 +138,7 @@ public class Console {
 	 */
 	public void Swap(int ID1, int ID2){
 		if(onCheck() && curRunCheck()){
-			this.race.swap(ID1, ID2);
+			Console.race.swap(ID1, ID2);
 		}
 	}
 	
@@ -148,7 +148,7 @@ public class Console {
 	 */
 	public void DNF(){
 		if(onCheck() && curRunCheck()){
-			this.race.DNF();
+			Console.race.DNF();
 		}
 	}
 	/**
@@ -158,7 +158,7 @@ public class Console {
 	 */
 	public void Clear(int runnerID){
 		if(onCheck() && curRunCheck()){
-			this.race.remove(runnerID);
+			Console.race.remove(runnerID);
 		}
 	}
 	/**
@@ -167,7 +167,7 @@ public class Console {
 	 */
 	public void Cancel(){
 		if(onCheck() && curRunCheck()){
-			this.race.cancel();
+			Console.race.cancel();
 		}
 	}
 	/**
@@ -177,7 +177,7 @@ public class Console {
 	public void Print(){
 		if(onCheck() && curRunCheck()){
 			//this.race.printRace();
-			this.printer.print(this.race.getPlayerList(), this.eventType);
+			this.printer.print(Console.race.getPlayerList(), this.eventType);
 		}
 		//option to print to console
 	}
@@ -197,11 +197,7 @@ public class Console {
 	 */
 	public void Disconnect(int chNum){
 		if(onCheck()){
-			Channels.Channel ch=channels.getCh(chNum);
-			if(ch!=null)
-			{
-				ch.disconnect();
-			}
+			Channels.disconnect(chNum);
 		}
 	}
 	/**
@@ -210,7 +206,7 @@ public class Console {
 	 */
 	public void Tog(int chNum){
 		if(onCheck()){
-			channels.Tog(chNum);
+			Channels.Tog(chNum);
 		}
 	}
 	
@@ -222,18 +218,7 @@ public class Console {
 	 */
 	public void Trig(int chNum){
 		if(onCheck() && curRunCheck()){	
-			if(channels.getCh(chNum).connected()){
-				switch(chNum){
-					case(1):
-						race.start(this.time.getTime());
-						break;
-					case(2):
-						race.finish(this.time.getTime());
-						break;
-					default:
-						System.out.println("Not a Channel");
-				}
-			}
+		Channels.trig(chNum);
 		}
 	}
 	

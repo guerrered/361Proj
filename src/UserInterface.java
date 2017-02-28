@@ -104,7 +104,7 @@ public class UserInterface {
 		System.out.println("Enter Command\n");
 		while(scan.hasNext()){
 			command = scan.nextLine();
-			toExec = console.time.getTimeFancy() + " " + command;
+			toExec = Console.time.getTimeFancy() + " " + command;
 			commandExec(toExec);
 			System.out.println("Enter Command\n");
 		}
