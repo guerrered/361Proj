@@ -35,6 +35,10 @@ public class Channels {
 			
 			
 		}
+		/**
+		 * Called from the console to trigger the channel and record the player start time and end time
+		 * 
+		 */
 		
 	 public static void trig(int num)
 	 {
