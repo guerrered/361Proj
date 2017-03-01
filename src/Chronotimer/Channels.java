@@ -1,9 +1,6 @@
 package Chronotimer;
-import Event.RaceIndependent;
-import Sensors.EYE;
-import Sensors.GATE;
-import Sensors.PAD;
-import Sensors.Sensors;
+import Sensors.*;
+
 /**
  * 
  * @author HiddenBit
@@ -78,7 +75,7 @@ public class Channels {
 	public class Channel
 	{
     public boolean connect=false;
-    Sensors sens=new Sensors();
+    Sensors sens;
     
 	public int ChNum;
     
@@ -110,13 +107,13 @@ public class Channels {
 			switch(type.toUpperCase())
 			{
 			case("EYE"):
-				EYE e1=new EYE(this.ChNum);
+				new EYE(this.ChNum);
 			break;
 			case("GATE"):
-				GATE g1=new GATE(this.ChNum);
+				new GATE(this.ChNum);
 			break;
 			case("PAD"):
-				PAD p1=new PAD(this.ChNum);
+				new PAD(this.ChNum);
 			break;
 				
 			}
