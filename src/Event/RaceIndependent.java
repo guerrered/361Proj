@@ -67,8 +67,10 @@ public class RaceIndependent extends Event{
 	 *
 	 */
 	public void DNF(){
-		if(players.size()>queueStartNum){
-			players.get(queueEndNum++).DNF();
+		if(players.size()>queueEndNum){
+			if(players.get(queueEndNum).isRunning()){//check if active
+				players.get(queueEndNum++).DNF();
+			}
 		}
 		else{
 			System.out.println("all racers have finished");
@@ -79,8 +81,9 @@ public class RaceIndependent extends Event{
 	 */
 	public void start(long time){
 		if(players.size()>queueStartNum){
-			players.get(queueStartNum).start(time);
-			queueStartNum++;
+			if(!players.get(queueStartNum).participated()){//check if already ran
+				players.get(queueStartNum++).start(time);
+			}
 		}
 		else{
 			System.out.println("all racers have started");
@@ -91,9 +94,10 @@ public class RaceIndependent extends Event{
 	 *Player who finished a race will get their own time to the file
 	 */
 	public void finish(long time){
-		if(players.size()>queueStartNum){
-			players.get(queueEndNum).end(time);
-			queueEndNum++;
+		if(players.size()>queueEndNum){
+			if(players.get(queueEndNum).isRunning()){//check if active
+				players.get(queueEndNum++).end(time);
+			}
 		}
 		else{
 			System.out.println("all racers have finished");
@@ -139,7 +143,7 @@ public class RaceIndependent extends Event{
 	public void next(int id){
 		Player temp;
 		for (int i =0; i < players.size(); i++){
-			if(players.get(i).getID()==id){
+			if(players.get(i).getID()==id && !players.get(i).participated()){//cant run again if already ran
 				temp = players.get(i);
 				players.remove(i);
 				players.add(queueStartNum, temp);
@@ -155,7 +159,9 @@ public class RaceIndependent extends Event{
 	
 	// back in the queue as next to start
 	public void cancel(){
-		players.get(--queueStartNum).cancel();//cancel last runners start and make it next in line to start
+		if(queueStartNum > 0 && players.get(queueStartNum - 1).isRunning()){
+			players.get(--queueStartNum).cancel();//cancel last runner to start and make it next in line to start
+		}
 	}
 	
 	public void clear(){//possibly unneeded
