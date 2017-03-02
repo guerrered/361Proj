@@ -100,6 +100,24 @@ public class RaceIndependent extends Event{
 		}
 	}
 	
+	public void swap()
+	{
+		Player p1,p2;
+		p1=players.get(queueStartNum);
+		p2=players.get(queueStartNum-1);
+		if(p1.running&&p2.running)
+		{
+			players.set(queueStartNum, p2);
+			players.set(queueStartNum-1, p1);
+		}
+		else
+		{
+			System.out.println("Cannot be swap");
+		}
+		
+	}
+	
+	
 	/**
 	 * Method that swap the Runner
 	 *
@@ -134,7 +152,7 @@ public class RaceIndependent extends Event{
 		//return false;
 	}
 	/*
-	 * player arg is next to run
+	 * player are is next to run
 	 */
 	public void next(int id){
 		Player temp;
