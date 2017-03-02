@@ -133,6 +133,19 @@ public class RaceIndependent extends Event{
 			}//swap not successful
 		//return false;
 	}
+	
+	/**
+	 * Swaps the last 2 runners to start race if they are racing
+	 *
+	 */
+	public void swap(){
+		if(players.get(queueStartNum - 1).isRunning() && players.get(queueStartNum - 2).isRunning()){
+			Player temp = players.get(queueStartNum -1);
+			players.set(queueStartNum - 1, players.get(queueStartNum - 2));
+			players.set(queueStartNum - 2, temp);
+		}
+	}
+	 
 	/*
 	 * player arg is next to run
 	 */

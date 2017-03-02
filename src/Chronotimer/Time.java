@@ -7,9 +7,9 @@ package Chronotimer;
  *
  */
 public class Time {
-	int seconds;
-	int hundreths;
-	int millis;
+	long seconds;
+	long hundreths;
+	long millis;
 	
 	/**
 	 *constructor initiates time at 0:0:0.0  where format is min:sec:hundreths.millis
@@ -26,7 +26,7 @@ public class Time {
 	 * @param hundreths - can't be greater than 99
 	 * @param millis - can't be greater than 9 
 	 */
-	public Time(int seconds, int hundreths, int millis){
+	public Time(long seconds, long hundreths, long millis){
 		this.seconds =  seconds;
 		this.hundreths = hundreths;
 		this.millis = millis;
@@ -43,10 +43,10 @@ public class Time {
 		
 		String[] timegetter = time.split(" ");
 		String[] timeSplit = timegetter[0].split(":");
-		this.seconds = Integer.parseInt(timeSplit[0]) * 60 + (Integer.parseInt(timeSplit[1]));
+		this.seconds = Long.parseLong(timeSplit[0]) * 60 + (Long.parseLong(timeSplit[1]));
 		String[] time2 = timeSplit[2].split("\\.");
-		this.hundreths = Integer.parseInt(time2[0]);
-		this.millis = Integer.parseInt(time2[1]);
+		this.hundreths = Long.parseLong(time2[0]);
+		this.millis = Long.parseLong(time2[1]);
 	}
 	
 	/**
@@ -54,7 +54,7 @@ public class Time {
 	 *  
 	 */
 	public void count(){
-		while( seconds < 9999){
+		while(true){
 			hundreths = 0;
 			while(hundreths < 99){
 				hundreths++;
@@ -71,7 +71,6 @@ public class Time {
 			}
 			seconds++;
 		}
-		System.out.println("Time OverFlow");
 	}
 	
 	/**
@@ -79,7 +78,7 @@ public class Time {
 	 * @return current time in millis as a long type  
 	 */
 	public long getTime(){
-		return (long) ((seconds * 1000) +  (hundreths * 10) + millis);
+		return ((seconds * 1000) +  (hundreths * 10) + millis);
 	}
 	
 	/**

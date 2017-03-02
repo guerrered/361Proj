@@ -143,7 +143,12 @@ public class UserInterface {
 			console.Num(Integer.parseInt(instructions[2]));
 			break;
 		case("SWAP"):
-			console.Swap(Integer.parseInt(instructions[2]), Integer.parseInt(instructions[3]));
+			if(instructions.length > 2 ){//if extra arguments contained then they are the swap places
+				console.Swap(Integer.parseInt(instructions[2]), Integer.parseInt(instructions[3]));
+			}
+			else{
+				console.Swap();
+			}
 			break;
 		case("DNF"):
 			console.DNF();

@@ -142,6 +142,12 @@ public class Console {
 		}
 	}
 	
+	public void Swap(){
+		if(onCheck() && curRunCheck()){
+			this.race.swap();
+		}
+	}
+	
 	/**
 	 * if the machine is on and an event is currently happening
 	 * the next runner to finish will get a DNF

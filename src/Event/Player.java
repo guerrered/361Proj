@@ -51,7 +51,10 @@ public class Player {
 		this.endTime = time;
 		this.ran = true;
 		this.running = false;
-		totalTime = endTime - startTime;
+		this.totalTime = this.endTime - this.startTime;
+		if(this.totalTime > 9999990){//timeoverflow for player 9999seconds 99hundreths 
+			DNF();
+		}
 	}
 	
 	/**
@@ -61,7 +64,7 @@ public class Player {
 	public void DNF(){
 		this.running = false;
 		this.ran = true;
-		DNF = true;
+		this.DNF = true;
 	}
 	
 	/**

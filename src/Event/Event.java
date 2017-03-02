@@ -66,6 +66,9 @@ public class Event {
 	public void finish(long time){	
 	}
 	
+	public void swap(){
+		
+	}
 	/**
 	 * Super class' method that swap the order between two player with ID number. 
 	 *
