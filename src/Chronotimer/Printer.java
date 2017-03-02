@@ -17,6 +17,15 @@ import Event.*;
 
 public class Printer {
 	
+	/**
+	 * print() outputs the race times following the format: 
+	 *
+	 * <TIMESTAMP> <EVENT>
+	 * <NUMBER> <EVENT> <EVENT	TIME>
+	 * 
+	 * @param p - the list of players that need to be printed.
+	 * @param event - the event name 
+	 */
 	public void print(List<Player> p, String event){
 		Player tempP;
 		for(int i =0; i <p.size(); i++){
@@ -41,8 +50,11 @@ public class Printer {
 			}
 		}
 	}
-	/*
-	 * Not used in sprint 1?
+	
+	/**
+	 * export() exports data to file (not used until Sprint 2)
+	 * @param p - the list of players that will have their data exported.
+	 * @param file - the file that will be written to.
 	 */
 	public void export(List <Player> p, File file){
 		//print data line for each player 
@@ -75,16 +87,18 @@ public class Printer {
 	}
 	
 	 /**
-		 * Format of the Player ID
-		 * 
+		 * idFormat() Format of the Player ID (adds zeros if number isn't 3 digits)
+		 * @param num - the ID number to be formatted
+		 * @return the ID zero filled
 		 */
 	public static String idFormat(int num){
 		return String.format("%03d", num);
 	}
 	
 	 /**
-		 * Format of the time
-		 * 
+		 * timeFormat() converts milliseconds into hours minutes seconds and milliseconds.
+		 * @param duration - In milliseconds
+		 * @return properly formatted time
 		 */
 	public static String timeFormat( long duration ) {
 		    final TimeUnit scale = TimeUnit.MILLISECONDS;
@@ -103,8 +117,9 @@ public class Printer {
 	 }
 	
 	 /**
-		 * Sort method that sort the order by time.
-		 * 
+		 * sortByTime() Sort method that sort the order by time.
+		 * @param p - list of players to be sorted
+		 * @return List of sorted players
 		 */
 	public List<Player> sortByTime(List<Player> p){
 		List<Player> sortedList = new ArrayList<>(p.size());
@@ -116,7 +131,7 @@ public class Printer {
 	
 	 /**
 		 * Comparator that compare players time. 
-		 * 
+		 * @return comparison value
 		 */
 	public static Comparator<Player> timeComparator = new Comparator<Player>(){
 		public int compare(Player p1,Player p2){
