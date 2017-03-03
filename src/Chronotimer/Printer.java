@@ -113,7 +113,7 @@ public class Printer {
 		    duration -= TimeUnit.SECONDS.toMillis( seconds );
 		    long millis = scale.toMillis( duration );
 		    
-		    return String.format("%d h, %02d m, %02d s, %03d ms",hours, minutes, seconds, millis);
+		    return String.format("%d h, %02d m, %02d s, %03d hs",hours, minutes, seconds, millis);
 	 }
 	
 	 /**

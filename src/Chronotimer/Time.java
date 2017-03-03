@@ -7,17 +7,26 @@ package Chronotimer;
  *
  */
 public class Time {
+	long hours;
+	long min;
 	long seconds;
 	long hundreths;
 	long millis;
 	
 	/**
-	 *constructor initiates time at 0:0:0.0  where format is min:sec:hundreths.millis
+	 *constructor initiates time to current system time
 	 */
 	public Time(){
-		this.seconds = 0;
-		this.hundreths = 0;
-		this.millis = 0;
+		long curr = System.nanoTime() / 1000000;
+		this.hours = curr / 3600000;
+		curr = curr % 3600000;
+		this.min = curr / 60000;
+		curr = curr % 60000;
+		this.seconds = curr / 1000;
+		curr = curr % 1000;
+		this.hundreths = curr / 10;
+		curr = curr % 10;
+		this.millis = curr;
 	}
 	
 	/**
@@ -36,17 +45,18 @@ public class Time {
 	/**
 	 * Sets current time to the given time
 	 * 
-	 * @param time - a string in the form min:sec:hundreths.millis
-	 * where hundreths <= 99 and millis <= 9
+	 * @param time - a string in the form   hour:min:sec.hundreth
+	 * 
 	 */
 	public void setTime(String time){
 		
 		String[] timegetter = time.split(" ");
 		String[] timeSplit = timegetter[0].split(":");
-		this.seconds = Long.parseLong(timeSplit[0]) * 60 + (Long.parseLong(timeSplit[1]));
+		this.hours = Long.parseLong(timeSplit[0]);
+		this.min = Long.parseLong(timeSplit[1]);
 		String[] time2 = timeSplit[2].split("\\.");
-		this.hundreths = Long.parseLong(time2[0]);
-		this.millis = Long.parseLong(time2[1]);
+		this.seconds = Long.parseLong(time2[0]);
+		this.hundreths = Long.parseLong(time2[1]) * 10;
 	}
 	
 	/**
@@ -55,21 +65,32 @@ public class Time {
 	 */
 	public void count(){
 		while(true){
-			hundreths = 0;
-			while(hundreths < 99){
-				hundreths++;
-				millis = 0;
-				while(millis < 9){
-					try {
-						Thread.sleep(1);//sleeps 1 milli
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+			while(this.hours < 24){
+				while(this.min < 60){
+					while(this.seconds < 60){
+						while(this.hundreths < 99){
+							while(this.millis < 9){
+								try {
+									Thread.sleep(1);//sleeps 1 milli
+								} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								this.millis++;
+							}
+							millis = 0;
+							this.hundreths++;
+						}
+						hundreths = 0;
+						this.seconds++;
 					}
-					millis++;
+					seconds = 0;
+					this.min++;
 				}
+				min = 0;
+				this.hours++;
 			}
-			seconds++;
+			hours = 0;
 		}
 	}
 	
@@ -78,15 +99,43 @@ public class Time {
 	 * @return current time in millis as a long type  
 	 */
 	public long getTime(){
-		return ((seconds * 1000) +  (hundreths * 10) + millis);
+		return (this.hours * 3600000) + (this.min * 60000) + (this.seconds * 1000) + (this.hundreths * 10) + this.millis;
 	}
 	
 	/**
 	 * 
-	 * @return current Time as a string
+	 * @return current Time as a string with format <hours>:<minutes>:<seconds>.<hundreths>
 	 */
 	public String getTimeFancy(){
-		String ret = seconds  /60 + ":" + seconds% 60+ ":" + hundreths;
+		String hoursString;
+		String minString;
+		String secString;
+		String hundString;
+		if(this.hours < 10){
+			hoursString = "0" + this.hours+":";
+		}
+		else{
+			hoursString = this.hours + ":";
+		}
+		if(this.min < 10){
+			minString = "0" + this.min+":";
+		}
+		else{
+			minString = this.min + ":";
+		}
+		if(this.seconds < 10){
+			secString = "0" + this.seconds + ".";
+		}
+		else{
+			secString = this.seconds + ".";
+		}
+		if(this.hundreths < 10){
+			hundString = "0" + this.hundreths;
+		}
+		else{
+			hundString = "" + this.hundreths;
+		}
+		String ret = hoursString + minString  + secString + hundString;
 		return ret;
 	}
 }

@@ -10,8 +10,8 @@ public class Console {
 	
 	boolean CurRunOn = false;
 	Printer printer;
-	Event race;//gonna be Event race
-	public Time time;
+	Event race;
+	Time time;
 	Channels channels;
 	String eventType;
 	Thread runner;
@@ -43,10 +43,6 @@ public class Console {
 			this.eventType = "IND";//default
 			printer = new Printer();
 		}
-		else if(curRunCheck())
-		{//forbid force power off during the race
-			System.out.println("The race still going");
-		}
 		else{
 			//save race contents first
 			this.race = null;
@@ -58,16 +54,14 @@ public class Console {
 	 *  Checks if machine is on and resets the time to 0 and creates a brand new race
 	 *  setting the event to "IND" if it had changed
 	 */
-	public void Reset(){//might be able to just set time to 0:0:0.0
+	public void Reset(){
 		//start everything over
 		if(onCheck()){
-			this.time= new Time();
-			Runnable r1 = new runnableTimer(time);//might want to make it time("0:0:0.0"); instead of messing with threads
-			this.runner = new Thread(r1);
-			this.runner.start();
-			this.race = new RaceIndependent();
-			//CurRunOn=false;
+			time.setTime("0:0:0.0");
 			eventType = "IND";//default type of event;
+			this.race = new RaceIndependent();
+			CurRunOn = true;
+			printer = new Printer();
 		}
 	}
 
@@ -96,7 +90,7 @@ public class Console {
 	}
 	
 	/**
-	 * if the machine is on and there isnt an ecent currently it creates a new event of eventType 
+	 * if the machine is on and there isnt an event currently it creates a new event of eventType 
 	 */
 	public void newRun(){
 		if(onCheck()&& !curRunCheck()){
@@ -182,10 +176,8 @@ public class Console {
 	 */
 	public void Print(){
 		if(onCheck() && curRunCheck()){
-			//this.race.printRace();
 			this.printer.print(this.race.getPlayerList(), this.eventType);
 		}
-		//option to print to console
 	}
 	/**
 	 * connects to channel chNum an sensor of type
@@ -263,6 +255,10 @@ public class Console {
 	 */
 	public long getTime(){
 		return time.getTime();
+	}
+	
+	public String getTimeAsString(){
+		return time.getTimeFancy();
 	}
 	/**
 	 * 

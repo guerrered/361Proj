@@ -46,10 +46,6 @@ public class UserInterface {
 		System.exit(1);
 	}
 	
-	/*
-	 * Input format <TIMESTAMP> <CMD> <ARGUMENT LIST> <EOL>
-	 * timestamp for console is time entered
-	 */
 	/**
 	 * readFromFile(String) reads from a given file and executes its instructions in real time
 	 * real time being the time the console reads. commandExec is then called with the instructions.
@@ -60,31 +56,11 @@ public class UserInterface {
 	public void readFromFile(String fileName){//use RaceData/testBuff.txt
 		try(BufferedReader buff = new BufferedReader(new FileReader(fileName))){
 			String currentLine;
-			long prev = 0;
 			while((currentLine = buff.readLine()) != null){
 				String[] timegetter = currentLine.split("\t");
-				long currentTime = timeParser(timegetter[0]);
-				if(currentTime > prev){
-					String toExec = currentLine.replaceAll("\t",  " ");
-					console.Time(timegetter[0]);
-					commandExec(toExec);
-					//prev = currentTime;
-				}/*
-				String[] time = timegetter[0].split(":");
-				String[] time2 = time[2].split("\\.");//min:sec:hun.milli
-				String[] mills = time2[1].split("\t");
-				long commandTime = (Integer.parseInt(time[0]) * 60000) + (Integer.parseInt(time[1]) * 1000) + (Integer.parseInt(time2[0]) * 10) + (Integer.parseInt(mills[0]));
-				while(commandTime > console.getTime()){//should wait till time is caught up
-					try {
-						Thread.sleep(1);//check up every milli could be slower/faster 
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-						
-					}
-				}
-				String toExec = currentLine.replaceAll("\t"," ");
-				commandExec(toExec);*/
+				String toExec = currentLine.replaceAll("\t",  " ");
+				console.Time(timegetter[0]);
+				commandExec(toExec);
 			}
 		}catch(IOException e){
 			e.printStackTrace();
@@ -98,13 +74,12 @@ public class UserInterface {
 	 * @param scan - The scanner that interacts with the user 
 	 */
 	public void readFromConsole(Scanner scan){
-		//whole system exits with exit command
 		String command;
 		String toExec;
 		System.out.println("Enter Command\n");
 		while(scan.hasNext()){
 			command = scan.nextLine();
-			toExec = console.time.getTimeFancy() + " " + command;
+			toExec = console.getTimeAsString() + " " + command;
 			commandExec(toExec);
 			System.out.println("Enter Command\n");
 		}
@@ -137,7 +112,7 @@ public class UserInterface {
 			console.newRun();
 			break;
 		case("ENDRUN"):
-			console.endRun();//might have to find and remove run with this name/ number ;
+			console.endRun();
 			break;
 		case("NUM"):
 			console.Num(Integer.parseInt(instructions[2]));
@@ -189,12 +164,4 @@ public class UserInterface {
 		}
 	}
 	
-	public long timeParser(String time){	
-			String[] timeSplit = time.split(":");
-			long seconds = Integer.parseInt(timeSplit[0]) * 60 + (Integer.parseInt(timeSplit[1]));
-			String[] time2 = timeSplit[2].split("\\.");
-			long hundreths = Integer.parseInt(time2[0]);
-			long millis = Integer.parseInt(time2[1]);
-			return seconds + hundreths + millis;
-	}
 }
