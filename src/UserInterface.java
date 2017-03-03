@@ -106,7 +106,12 @@ public class UserInterface {
 			this.exit();
 			break;
 		case("TIME"):
-			console.Time(instructions[2]);
+			if(instructions.length < 3){
+				System.out.println("Format for time command is <hour>:<min>:<sec>.<hundreths>");
+			}
+			else{
+				console.Time(instructions[2]);
+			}
 			break;
 		case("NEWRUN"):
 			console.newRun();
@@ -115,7 +120,12 @@ public class UserInterface {
 			console.endRun();
 			break;
 		case("NUM"):
-			console.Num(Integer.parseInt(instructions[2]));
+			if(instructions.length < 3){
+				System.out.println("Enter a runnerId with NUM command");
+			}
+			else{
+				console.Num(Integer.parseInt(instructions[2]));
+			}
 			break;
 		case("SWAP"):
 			if(instructions.length > 2 ){//if extra arguments contained then they are the swap places
@@ -129,7 +139,12 @@ public class UserInterface {
 			console.DNF();
 			break;
 		case("CLEAR"):
-			console.Clear(Integer.parseInt(instructions[2]));
+			if(instructions.length < 3){
+				System.out.println("Enter a runnerId with CLEAR command");
+			}
+			else{
+				console.Clear(Integer.parseInt(instructions[2]));
+			}
 			break;
 		case("CANCEL"):
 			console.Cancel();
@@ -144,10 +159,20 @@ public class UserInterface {
 			console.Disconnect(Integer.parseInt(instructions[2]));
 			break;
 		case("TOG"):
-			console.Tog(Integer.parseInt(instructions[2]));
+			if(instructions.length < 3){
+				System.out.println("Enter a channel number with TOG command");
+			}
+			else{
+				console.Tog(Integer.parseInt(instructions[2]));
+			}
 			break;
 		case("TRIG"):
-			console.Trig(Integer.parseInt(instructions[2]));
+			if(instructions.length < 3){
+				System.out.println("Enter a channel number with TRIG command");
+			}
+			else{
+				console.Trig(Integer.parseInt(instructions[2]));
+			}
 			break;
 		case("START"):
 			console.Start();
@@ -156,7 +181,12 @@ public class UserInterface {
 			console.Finish();
 			break;
 		case("EVENT"):
-			console.Event(instructions[2]);
+			if(instructions.length < 3){
+				System.out.println("Enter a String with Event command");
+			}
+			else{
+				console.Event(instructions[2]);
+			}
 			break;
 		default:
 			System.out.println("Not a valid command\n");

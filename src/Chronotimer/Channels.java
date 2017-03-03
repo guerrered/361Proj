@@ -136,8 +136,8 @@ public class Channels {
 		else
 		{
 			this.connect=false;
-			this.sens.unarmed();
-			System.out.println("Channel disconnected");
+			//this.sens.unarmed();
+			System.out.println("Channel " + this.ChNum + " disconnected");
 			
 		}
 	}

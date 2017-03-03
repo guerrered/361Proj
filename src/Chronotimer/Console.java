@@ -52,16 +52,19 @@ public class Console {
 	
 	/**
 	 *  Checks if machine is on and resets the time to 0 and creates a brand new race
-	 *  setting the event to "IND" if it had changed
+	 *  setting the event to "IND" if it had changed also turns 
 	 */
 	public void Reset(){
 		//start everything over
 		if(onCheck()){
 			time.setTime("0:0:0.0");
 			eventType = "IND";//default type of event;
+			Disconnect(1);
+			Disconnect(2);
 			this.race = new RaceIndependent();
 			CurRunOn = true;
 			printer = new Printer();
+			
 		}
 	}
 
@@ -93,12 +96,18 @@ public class Console {
 	 * if the machine is on and there isnt an event currently it creates a new event of eventType 
 	 */
 	public void newRun(){
-		if(onCheck()&& !curRunCheck()){
-			CurRunOn = true;		
-			switch(eventType){//creates different types of races 
-				case("IND"):
-					this.race = new RaceIndependent();
-					break;
+		
+		if(onCheck()){
+			if(!curRunCheck()){
+				CurRunOn = true;		
+				switch(eventType){//creates different types of races 
+					case("IND"):
+						this.race = new RaceIndependent();
+						break;
+				}
+			}
+			else{
+				System.out.println("End the current run first");
 			}
 		}
 	}
