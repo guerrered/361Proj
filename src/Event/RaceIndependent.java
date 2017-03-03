@@ -152,7 +152,7 @@ public class RaceIndependent extends Event{
 	public void next(int id){
 		Player temp;
 		for (int i =0; i < players.size(); i++){
-			if(players.get(i).getID()==id && !players.get(i).participated()){//cant run again if already ran
+			if(players.get(i).getID()==id && !players.get(i).participated() && !players.get(i).isRunning()){//cant run again if already ran
 				temp = players.get(i);
 				players.remove(i);
 				players.add(queueStartNum, temp);
