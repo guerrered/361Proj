@@ -139,10 +139,12 @@ public class RaceIndependent extends Event{
 	 *
 	 */
 	public void swap(){
-		if(players.get(queueStartNum - 1).isRunning() && players.get(queueStartNum - 2).isRunning()){
-			Player temp = players.get(queueStartNum -1);
-			players.set(queueStartNum - 1, players.get(queueStartNum - 2));
-			players.set(queueStartNum - 2, temp);
+		if(queueStartNum >= 2){
+			if(players.get(queueStartNum - 1).isRunning() && players.get(queueStartNum - 2).isRunning()){ 
+				Player temp = players.get(queueStartNum -1);
+				players.set(queueStartNum - 1, players.get(queueStartNum - 2));
+				players.set(queueStartNum - 2, temp);
+			}
 		}
 	}
 	 

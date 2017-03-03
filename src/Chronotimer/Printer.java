@@ -32,7 +32,7 @@ public class Printer {
 			tempP = p.get(i);
 			if(tempP.participated()){
 			/*
-			 * Format
+			 * Format 
 			 * <START> <EVENT>
 			 * <NUMBER> <FINISH> <EVENT	TIME>
 			 */
