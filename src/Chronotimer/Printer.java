@@ -33,16 +33,16 @@ public class Printer {
 			if(tempP.participated()){
 			/*
 			 * Format
-			 * <TIMESTAMP> <EVENT>
-			 * <NUMBER> <EVENT> <EVENT	TIME>
+			 * <START> <EVENT>
+			 * <NUMBER> <FINISH> <EVENT	TIME>
 			 */
 				if(!tempP.DNF){
-					System.out.println(timeFormat(tempP.getStartTime()) + " " + event + '\t'+  
-						p.get(i).getID() + " " + event + " " + timeFormat(tempP.getTotalTime()));
+					System.out.println("Start: "+timeFormat(tempP.getStartTime()) + " Event: " + event + '\t'+ "ID: "+  
+						p.get(i).getID() + " Finish: " + timeFormat(tempP.endTime) + " Total: " + timeFormat(tempP.getTotalTime()));
 				}
 				else{
-						System.out.println(timeFormat(tempP.getStartTime()) + " " + event + '\t'+  
-						p.get(i).getID() + " " + event + " DNF");	
+						System.out.println("Start: "+timeFormat(tempP.getStartTime()) + " Event: " + event + '\t'+ "ID: "  
+						+p.get(i).getID() + " DNF");	
 					}
 			}
 			else{
@@ -113,7 +113,7 @@ public class Printer {
 		    duration -= TimeUnit.SECONDS.toMillis( seconds );
 		    long millis = scale.toMillis( duration );
 		    
-		    return String.format("%d h, %02d m, %02d s, %03d hs",hours, minutes, seconds, millis);
+		    return String.format("%d:%02d:%02d:%03d",hours, minutes, seconds, millis);
 	 }
 	
 	 /**

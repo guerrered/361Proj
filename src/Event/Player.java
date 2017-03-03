@@ -92,6 +92,14 @@ public class Player {
 	}
 	
 	/**
+	 * Method return player's end time.
+	 *
+	 */
+	public long getEndTime(){
+		return endTime;
+	}
+	
+	/**
 	 * Method check whether player had run.
 	 *
 	 */
