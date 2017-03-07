@@ -51,41 +51,6 @@ public class Printer {
 		}
 	}
 	
-	/**
-	 * export() exports data to file (not used until Sprint 2)
-	 * @param p - the list of players that will have their data exported.
-	 * @param file - the file that will be written to.
-	 */
-	public void export(List <Player> p, File file){
-		//print data line for each player 
-		BufferedWriter output;
-		Player tempP;
-		int place = 1;
-		
-		try {
-			//write to file
-			output = new BufferedWriter(new FileWriter (file, true));
-			p = sortByTime(p);
-			for(int i =0; i <p.size(); i++){
-				tempP = p.get(i);
-				if(!tempP.DNF){
-					output.write("ID:"+idFormat(tempP.getID()) + "\t start:" + timeFormat(tempP.startTime) + "\t end:"+  
-							timeFormat(tempP.endTime)+  "\t elapsed time: "+ timeFormat(tempP.endTime-tempP.startTime)
-							+ "\t place:" + place + "\n");
-					//increment the place number
-					place++;
-				}
-				else{
-					output.write("ID:"+idFormat(tempP.getID()) + "\t start:"+ timeFormat(tempP.startTime)+ "\t end:DNF" + "\n");
-				}
-			}
-			output.close();
-		} catch (IOException e) {
-			System.out.println("failed");
-			e.printStackTrace();
-		}	
-	}
-	
 	 /**
 		 * idFormat() Format of the Player ID (adds zeros if number isn't 3 digits)
 		 * @param num - the ID number to be formatted

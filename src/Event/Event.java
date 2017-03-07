@@ -29,7 +29,7 @@ public class Event {
 	 * Method that write data to the file for export 
 	 *
 	 */
-	public void createRaceOutputFile(){
+	public File createRaceOutputFile(){
 		String temp = "RaceData/Race" + fileNumber + ".txt";
 		
 		File directory = new File("RaceData");
@@ -42,14 +42,15 @@ public class Event {
 		try {
 			curRaceData.createNewFile();
 			//write to file
-			output = new BufferedWriter(new FileWriter (curRaceData));
-			output.write("Race #" + fileNumber + '\n');
+			//output = new BufferedWriter(new FileWriter (curRaceData));
+			//output.write("Race #" + fileNumber + '\n');
 			fileNumber++;
-			output.close();
+			//output.close();
 		} catch (IOException e) {
 			System.out.println("failed");
 			e.printStackTrace();
 		}
+		return curRaceData;
 	}
 	
 	/**

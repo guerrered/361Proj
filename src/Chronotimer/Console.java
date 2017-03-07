@@ -1,4 +1,11 @@
 package Chronotimer;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 import Event.*;
 /**
  * 
@@ -303,5 +310,43 @@ public class Console {
 	 */
 	private boolean curRunCheck(){
 		return CurRunOn;
+	}
+	
+	/**
+	 * export() exports data to file (not used until Sprint 2)
+	 * @param p - the list of players that will have their data exported.
+	 * @param file - the file that will be written to.
+	 */
+	public void export(List <Player> p){
+		//TODO
+		File file = race.createRaceOutputFile();
+	}
+	 /**
+		 * timeFormat() converts milliseconds into hours minutes seconds and milliseconds. Helper method for export.
+		 * @param duration - In milliseconds
+		 * @return properly formatted time
+		 */
+	public static String timeFormat( long duration ) {
+		    final TimeUnit scale = TimeUnit.MILLISECONDS;
+		    
+		    long days = scale.toDays(duration);
+		    duration -= TimeUnit.HOURS.toMillis(days);
+		    long hours = scale.toHours( duration );
+		    duration -= TimeUnit.HOURS.toMillis( hours );
+		    long minutes = scale.toMinutes( duration );
+		    duration -= TimeUnit.MINUTES.toMillis( minutes );
+		    long seconds = scale.toSeconds( duration );
+		    duration -= TimeUnit.SECONDS.toMillis( seconds );
+		    long millis = scale.toMillis( duration );
+		    
+		    return String.format("%d:%02d:%02d:%03d",hours, minutes, seconds, millis);
+	 }
+	 /**
+	 * idFormat() Format of the Player ID (adds zeros if number isn't 3 digits)
+	 * @param num - the ID number to be formatted
+	 * @return the ID zero filled
+	 */
+	public static String idFormat(int num){
+		return String.format("%03d", num);
 	}
 }
