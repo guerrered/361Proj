@@ -107,13 +107,13 @@ public class Channels {
 			switch(type.toUpperCase())
 			{
 			case("EYE"):
-				new EYE(this.ChNum);
+				sens=new EYE(this.ChNum);
 			break;
 			case("GATE"):
-				new GATE(this.ChNum);
+				sens=new GATE(this.ChNum);
 			break;
 			case("PAD"):
-				new PAD(this.ChNum);
+				sens=new PAD(this.ChNum);
 			break;
 				
 			}
@@ -122,6 +122,30 @@ public class Channels {
 		}
 		
 	}
+    
+    public void Notify()
+    {
+    	if(sens!=null)
+    	{
+    		if(sens.trigState())
+    		{
+    			
+    		}
+    	}
+    	
+    	
+    }
+    
+    
+    public Sensors getSens()
+    {
+    	return this.sens;
+    }
+    
+    public void removeSens()
+    {
+    	sens=null;
+    }
     
     /**
 	 * disconnect the Channel

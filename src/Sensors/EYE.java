@@ -11,7 +11,7 @@ package Sensors;
  *
  */
 public class EYE extends Sensors{
-boolean LightBeam;
+boolean trigState;
 	int ChannelNum;
 
 	/**
@@ -52,14 +52,22 @@ public void armed()
 }
 
 
+public boolean trigState()
+{
+	  return trigState;
+}
+
 /**
  * Method that will trig the channel, it will be implement in spring 2 
  *
  */
-public void trig()
+public boolean trig()
 {
 	//Channels.Channel ch=Channels.getCh(ChannelNum);
 	//ch.trig(race);
+	
+	
+	return trigState=!trigState;
 		
 }
 	

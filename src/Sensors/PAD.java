@@ -7,7 +7,7 @@ package Sensors;
 
 
 public class PAD extends Sensors {
-boolean pressure;
+boolean trigState;
 int ChannelNum;
 
 /**
@@ -25,11 +25,14 @@ public PAD(int num)
  *
  */
 public void unarmed(){
-	if(armed=true)
+	if(armed=false)
 	{
 		System.out.println("Sensor is armed");
 	}
-	armed=true;
+	else{
+	armed=false;
+	this.ChannelNum=-1;
+	}
 }
 
 
@@ -43,18 +46,30 @@ public void armed()
 	{
 		System.out.println("Sensor is armed");
 	}
+	else{
+	
 	armed=true;
+	}
 }
+
+public boolean trigState()
+{
+	  return trigState;
+}
+
 
 /**
  * Method that will trig the channel, it will be implement in spring 2 
  *
  */
-public void trig()
+
+public boolean trig()
 {
 	//Channels.Channel ch=Channels.getCh(ChannelNum);
 	//ch.trig(race);
 	
+	
+	return trigState=!trigState;
 }
 
 	

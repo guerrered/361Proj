@@ -11,7 +11,7 @@ package Sensors;
  * Super class 
  *
  */
-public class Sensors {
+public abstract class Sensors {
   Boolean armed;
 	
 	public void unarmed(){
@@ -21,6 +21,7 @@ public class Sensors {
 	{
 		
 	}
+	public abstract boolean trigState();
 	
 }
 	
