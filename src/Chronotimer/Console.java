@@ -86,6 +86,8 @@ public class Console {
 	public void Event(String event){
 		if(onCheck() && !curRunCheck()){
 			this.eventType = event;
+			//new event need to be created
+			System.out.println("Event had changed to"+event);
 		}
 		else{
 			System.out.println("An event is ongoing end it first.");
