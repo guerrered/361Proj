@@ -24,6 +24,11 @@ public GATE(int num)
 	
 }
 
+public void trigStateReset()
+{
+	trigState=false;
+}
+
 /**
  * Method that unarmed the sensor on the channel 
  *

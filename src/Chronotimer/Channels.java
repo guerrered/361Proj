@@ -129,6 +129,9 @@ public class Channels {
     	{
     		if(sens.trigState())
     		{
+    			//do something that trig the event start or finish
+    			
+    			sens.trigStateReset();
     			
     		}
     	}

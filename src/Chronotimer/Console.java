@@ -237,6 +237,23 @@ public class Console {
 					case(2):
 						race.finish(this.time.getTime());
 						break;
+					case(3):
+						race.start(this.time.getTime());
+					case(4):
+						race.finish(this.time.getTime());
+						break;
+					case(5):
+						race.start(this.time.getTime());
+						break;
+					case(6):
+						race.finish(this.time.getTime());
+						break;
+					case(7):
+						race.start(this.time.getTime());
+						break;
+					case(8):
+						race.finish(this.time.getTime());
+						break;
 					default:
 						System.out.println("Not a Channel");
 				}

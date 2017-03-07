@@ -51,6 +51,10 @@ public void armed()
 	armed=true;
 }
 
+public void trigStateReset()
+{
+	trigState=false;
+}
 
 public boolean trigState()
 {

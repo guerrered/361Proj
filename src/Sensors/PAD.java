@@ -35,6 +35,10 @@ public void unarmed(){
 	}
 }
 
+public void trigStateReset()
+{
+	trigState=false;
+}
 
 /**
  * Method that armed the sensor on the channel 

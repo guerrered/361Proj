@@ -14,14 +14,10 @@ package Sensors;
 public abstract class Sensors {
   Boolean armed;
 	
-	public void unarmed(){
-	
-	}
-	public void armed()
-	{
-		
-	}
+	public abstract void unarmed();
+	public abstract void armed();
 	public abstract boolean trigState();
+	public abstract void trigStateReset();
 	
 }
 	
