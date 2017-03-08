@@ -59,6 +59,8 @@ public class Event {
 	 */
 	public void start(long time){
 	}
+	public void start(long time, int lane){
+	}
 	
 	/**
 	 * Super class' method that record finish time
@@ -66,9 +68,13 @@ public class Event {
 	 */
 	public void finish(long time){	
 	}
+	public void finish(long time, int lane){
+	}
 	
 	public void swap(){
-		
+	}
+	
+	public void swap(int lane){
 	}
 	/**
 	 * Super class' method that swap the order between two player with ID number. 
@@ -92,6 +98,9 @@ public class Event {
 	public void cancel(){
 	}
 	
+	public void cancel(int lane){
+	}
+	
 	/**
 	 * Super class' method calling the new runner for the race
 	 *
@@ -104,6 +113,9 @@ public class Event {
 	 *
 	 */
 	public void DNF(){
+	}
+	
+	public void DNF(int lane){
 	}
 	
 	/**

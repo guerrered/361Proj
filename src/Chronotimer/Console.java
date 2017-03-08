@@ -45,9 +45,9 @@ public class Console {
 	public void Power(){
 		powerState = !powerState;
 		if(powerState == true){
+			this.eventType = "IND";//default
 			this.race = new RaceIndependent();//default
 			CurRunOn = true;
-			this.eventType = "IND";//default
 			printer = new Printer();
 		}
 		else{
@@ -66,7 +66,7 @@ public class Console {
 		if(onCheck()){
 			time.setTime("0:0:0.0");
 			eventType = "IND";//default type of event;
-			Disconnect(1);
+			Disconnect(1);//may want to disconnect all channels
 			Disconnect(2);
 			this.race = new RaceIndependent();
 			CurRunOn = true;
@@ -112,6 +112,9 @@ public class Console {
 				switch(eventType){//creates different types of races 
 					case("IND"):
 						this.race = new RaceIndependent();
+						break;
+					case("PARIND"):
+						this.race = new parallelIndependent();
 						break;
 				}
 			}
@@ -239,32 +242,36 @@ public class Console {
 	public void Trig(int chNum){
 		if(onCheck() && curRunCheck()){	
 			if(channels.getCh(chNum).connected()){
-				switch(chNum){
-					case(1):
-						race.start(this.time.getTime());
-						break;
-					case(2):
-						race.finish(this.time.getTime());
-						break;
-					case(3):
-						race.start(this.time.getTime());
-					case(4):
-						race.finish(this.time.getTime());
-						break;
-					case(5):
-						race.start(this.time.getTime());
-						break;
-					case(6):
-						race.finish(this.time.getTime());
-						break;
-					case(7):
-						race.start(this.time.getTime());
-						break;
-					case(8):
-						race.finish(this.time.getTime());
-						break;
-					default:
-						System.out.println("Not a Channel");
+				switch(eventType){
+				case("IND"):
+					switch(chNum){
+						case(1):
+							race.start(this.time.getTime());
+							break;
+						case(2):
+							race.finish(this.time.getTime());
+							break;
+						default:
+							System.out.println("Not a Channel");
+					}
+					break;
+				case("PARIND"):
+					switch(chNum){
+						case(1):
+							race.start(this.time.getTime(),1);//lane 1
+							break;
+						case(2):
+							race.finish(this.time.getTime(),1);
+							break;
+						case(3):
+							race.start(this.time.getTime(),2);//lane 2
+							break;
+						case(4):
+							race.finish(this.time.getTime(),2);
+							break;
+						default:
+							System.out.println("Not a Channel");
+					}
 				}
 			}
 		}
