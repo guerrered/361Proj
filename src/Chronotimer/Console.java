@@ -361,12 +361,12 @@ public class Console {
 	
 	/**
 	 * export() exports data to file
-	 * @param p - the list of players that will have their data exported.
 	 * @param file - the file that will be written to.
 	 * @throws IOException 
 	 */
-	public void export(List <Player> p) throws IOException{
+	public void export() throws IOException{
 		//TODO
+		List<Player> p = race.getPlayerList();
 		File file = race.createRaceOutputFile();
 		FileWriter fw = new FileWriter(file);
 		String data;
@@ -376,8 +376,11 @@ public class Console {
 		
 		try {
 			for(Player player: p){
-				data = gson.toJson(player.toString());
-				fw.write(data);
+				if(player.ran){
+					data = gson.toJson(player.toString());
+					fw.write(data);
+				}
+				
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -388,7 +391,7 @@ public class Console {
 	}
 	
 	public String toString(Player p){
-		String str=eventType+" ";
+		String str=time.getTimeFancy()+" "+eventType+ "\n" + idFormat(p.getID())+ " " + eventType + " " + timeFormat(p.totalTime);
 		
 		return str;
 		
