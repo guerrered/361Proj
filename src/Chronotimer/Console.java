@@ -343,13 +343,34 @@ public class Console {
 	}
 	
 	/**
-	 * export() exports data to file (not used until Sprint 2)
+	 * export() exports data to file
 	 * @param p - the list of players that will have their data exported.
 	 * @param file - the file that will be written to.
 	 */
 	public void export(List <Player> p){
 		//TODO
 		File file = race.createRaceOutputFile();
+		FileWriter fw;
+		String data;
+		
+		Gson gson = new Gson();
+		data = gson.toJson(p);
+		try {
+			fw = new FileWriter(file);
+			fw.write(data);
+			fw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public String toString(Player p){
+		String str=eventType+" ";
+		
+		return str;
+		
 	}
 	 /**
 		 * timeFormat() converts milliseconds into hours minutes seconds and milliseconds. Helper method for export.
