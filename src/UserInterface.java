@@ -180,6 +180,14 @@ public class UserInterface {
 		case("PRINT"):
 			console.Print();
 			break;
+		case("EXPORT"):
+			try {
+				console.export();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
 		case("CONN"):
 			console.Connect(instructions[1],Integer.parseInt(instructions[2]));
 			break;
