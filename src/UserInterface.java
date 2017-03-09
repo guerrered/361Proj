@@ -128,15 +128,22 @@ public class UserInterface {
 			}
 			break;
 		case("SWAP"):
-			if(instructions.length > 2 ){//if extra arguments contained then they are the swap places
+			if(instructions.length  == 4 ){//if extra arguments contained then they are the swap places
 				console.Swap(Integer.parseInt(instructions[2]), Integer.parseInt(instructions[3]));
 			}
+			else if(instructions.length == 3)
+				console.Swap(Integer.parseInt(instructions[2]));
 			else{
 				console.Swap();
 			}
 			break;
 		case("DNF"):
-			console.DNF();
+			if(instructions.length == 2){
+				console.DNF();
+			}	
+			else if(instructions.length == 3){
+				console.DNF(Integer.parseInt(instructions[2]));
+			}
 			break;
 		case("CLEAR"):
 			if(instructions.length < 3){
@@ -147,7 +154,12 @@ public class UserInterface {
 			}
 			break;
 		case("CANCEL"):
-			console.Cancel();
+			if(instructions.length == 2){
+				console.Cancel();
+			}	
+			else if(instructions.length == 3){
+				console.Cancel(Integer.parseInt(instructions[2]));
+			}
 			break;
 		case("PRINT"):
 			console.Print();
