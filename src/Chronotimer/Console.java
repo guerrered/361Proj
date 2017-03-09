@@ -161,7 +161,15 @@ public class Console {
 	
 	public void Swap(){
 		if(onCheck() && curRunCheck()){
-			this.race.swap();
+			switch(eventType){
+				case("IND"):
+					this.race.swap();
+					break;
+				case("PARIND")://if we just get a swap from the console it will swap the players in the first lane
+					this.race.swap(1);
+					break;
+			}
+			
 		}
 	}
 	
@@ -180,7 +188,14 @@ public class Console {
 	 */
 	public void DNF(){
 		if(onCheck() && curRunCheck()){
-			this.race.DNF();
+			switch(eventType){
+			case("IND"):
+				this.race.DNF();
+				break;
+			case("PARIND")://if we just get a swap from the console it will swap the players in the first lane
+				this.race.DNF(1);
+				break;
+		}
 		}
 	}
 	public void DNF(int lane){

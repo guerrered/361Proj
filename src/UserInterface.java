@@ -97,16 +97,26 @@ public class UserInterface {
 		instructions[1] = instructions[1].toUpperCase();
 		switch(instructions[1]){
 		case("POWER"):
-			console.Power();
+			if(instructions.length == 2){
+				console.Power();
+			}
+			else{
+				System.out.println("Too many arguments");
+			}
 			break;
 		case("RESET"):
-			console.Reset();
+			if(instructions.length == 2){
+				console.Reset();
+			}
+			else{
+			System.out.println("Too many arguments");
+			}
 			break;
 		case("EXIT"):
 			this.exit();
 			break;
 		case("TIME"):
-			if(instructions.length < 3){
+			if(instructions.length != 3){
 				System.out.println("Format for time command is <hour>:<min>:<sec>.<hundreths>");
 			}
 			else{
@@ -133,8 +143,11 @@ public class UserInterface {
 			}
 			else if(instructions.length == 3)
 				console.Swap(Integer.parseInt(instructions[2]));
-			else{
+			else if(instructions.length == 2){
 				console.Swap();
+			}
+			else{
+				System.out.println("Too many arguments");
 			}
 			break;
 		case("DNF"):
@@ -144,9 +157,12 @@ public class UserInterface {
 			else if(instructions.length == 3){
 				console.DNF(Integer.parseInt(instructions[2]));
 			}
+			else{
+				System.out.println("Too many arguments");
+			}
 			break;
 		case("CLEAR"):
-			if(instructions.length < 3){
+			if(instructions.length != 3){
 				System.out.println("Enter a runnerId with CLEAR command");
 			}
 			else{
@@ -179,7 +195,7 @@ public class UserInterface {
 			}
 			break;
 		case("TRIG"):
-			if(instructions.length < 3){
+			if(instructions.length != 3){
 				System.out.println("Enter a channel number with TRIG command");
 			}
 			else{
@@ -187,13 +203,23 @@ public class UserInterface {
 			}
 			break;
 		case("START"):
-			console.Start();
+			if(instructions.length == 2){
+				console.Start();
+			}
+			else{
+				System.out.println("Too many arguments");
+			}
 			break;
 		case("FINISH"):
-			console.Finish();
+			if(instructions.length == 2){
+				console.Finish();
+			}
+			else{
+				System.out.println("Too many arguments");
+			}
 			break;
 		case("EVENT"):
-			if(instructions.length < 3){
+			if(instructions.length != 3){
 				System.out.println("Enter a String with Event command");
 			}
 			else{
