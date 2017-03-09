@@ -163,6 +163,15 @@ public class Console {
 		}
 	}
 	
+
+	public void Swap(int lane){
+		if(onCheck() && curRunCheck()){
+			if(eventType.equals("PARIND")){///check so it does not call event that is not parallel
+				this.race.swap(lane);
+			}
+		}
+	}
+	
 	/**
 	 * if the machine is on and an event is currently happening
 	 * the next runner to finish will get a DNF
@@ -170,6 +179,13 @@ public class Console {
 	public void DNF(){
 		if(onCheck() && curRunCheck()){
 			this.race.DNF();
+		}
+	}
+	public void DNF(int lane){
+		if(onCheck() && curRunCheck()){
+			if(eventType.equals("PARIND")){
+					this.race.DNF(lane);
+			}
 		}
 	}
 	/**
@@ -189,6 +205,13 @@ public class Console {
 	public void Cancel(){
 		if(onCheck() && curRunCheck()){
 			this.race.cancel();
+		}
+	}
+	public void Cancel(int lane){
+		if(onCheck() && curRunCheck()){
+			if(eventType.equals("PARIND")){
+				this.race.cancel();
+			}
 		}
 	}
 	/**

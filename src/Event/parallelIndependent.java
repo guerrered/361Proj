@@ -7,7 +7,9 @@ public class parallelIndependent  extends Event{
 	List <Player> lane1 = new ArrayList<>();
 	List <Player> lane2 = new ArrayList<>();
 	
-	int queueStartNum = 0;
+	int queueStartNum = 0;//general start
+	int queue1Start = 0;//start lane 1
+	int queue2Start=0;
 	int queue1EndNum = 0;
 	int queue2EndNum = 0;
 	
@@ -52,9 +54,11 @@ public class parallelIndependent  extends Event{
 					p.start(time);
 					if(lane == 1){
 						lane1.add(p);
+						queue1Start++;
 					}
 					else if(lane == 2){
 						lane2.add(p);
+						queue2Start++;
 					}
 				}
 			}
@@ -89,6 +93,7 @@ public class parallelIndependent  extends Event{
 	 * @param lane	the lane in which the racer is participating
 	 */
 	public void DNF(int lane){
+		System.out.println("here");
 		if(lane == 1){
 			if(lane1.size() > queue1EndNum){
 				if(lane1.get(queue1EndNum).isRunning()){//breaks in raceInd
@@ -96,8 +101,8 @@ public class parallelIndependent  extends Event{
 				}
 			}
 		}
-		else if(lane == 2){
-			if(lane2.size() > queue2EndNum){
+		else if(lane2.size() > queue2EndNum){
+			if(queue2Start > 0){
 				if(lane2.get(queue2EndNum).isRunning()){
 					lane2.get(queue2EndNum++).DNF();
 				}
@@ -111,8 +116,14 @@ public class parallelIndependent  extends Event{
 	 * 	as their next start may be in a different lane
 	 * @param lane
 	 */
-	public void cancel(int lane){//cancel last to start UNFINISHED next to finish in particular lane not necessarily last to start
+	public void cancel(){//cancel last to start UNFINISHED next to finish in particular lane not necessarily last to start
 		if(queueStartNum > 0){
+			Player canceled = players.get(--queueStartNum);
+			canceled.cancel();
+			lane1.remove(canceled);//we don't know which lane they were in if not in one it wont remove anything
+			lane2.remove(canceled);
+			
+			/*
 			int startInd;
 			if(lane == 1){
 				if(queue1EndNum < lane1.size()){
@@ -137,13 +148,13 @@ public class parallelIndependent  extends Event{
 						lane2.remove(canceled);//possible for player to start in different lane
 					}
 				}
-			}
+			}*/
 		}
 	}
 	
-	public void swap(int lane){//swaps the last two runners to start in a specific lane
+	public void swap(int lane){//swaps the next two runners to finish in a specific lane
 		if(lane == 1){
-			if(queue1EndNum > 1){//at least 2 players active
+			if(queue1EndNum < lane1.size()){//at least 2 players active
 				if(lane1.get(queue1EndNum +1).isRunning()){
 					if(lane1.get(queue1EndNum).isRunning()){
 						Player temp = lane1.get(queue1EndNum + 1);
@@ -154,7 +165,7 @@ public class parallelIndependent  extends Event{
 			}
 		}
 		else if( lane == 2){
-			if(queue2EndNum > 1){//at least 2 players active
+			if(queue2EndNum < lane2.size()){//at least 2 players active
 				if(lane2.get(queue2EndNum + 1).isRunning()){
 					if(lane2.get(queue2EndNum).isRunning()){
 						Player temp = lane2.get(queue2EndNum + 1);

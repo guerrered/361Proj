@@ -26,7 +26,7 @@ public class Printer {
 	 * @param p - the list of players that need to be printed.
 	 * @param event - the event name 
 	 */
-	public void print(List<Player> p, String event){
+	public void print(List<Player> p, String event){///might want to sort finish times with parind//
 		Player tempP;
 		for(int i =0; i <p.size(); i++){
 			tempP = p.get(i);
@@ -45,9 +45,9 @@ public class Printer {
 						+p.get(i).getID() + " DNF");	
 					}
 			}
-			else{
+			/*else{
 				break;//since in order can just break here to save time
-			}
+			}*/
 		}
 	}
 	

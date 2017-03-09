@@ -57,6 +57,7 @@ public class Time {
 		String[] time2 = timeSplit[2].split("\\.");
 		this.seconds = Long.parseLong(time2[0]);
 		this.hundreths = Long.parseLong(time2[1]) * 10;
+		this.millis = 0;
 	}
 	
 	/**
