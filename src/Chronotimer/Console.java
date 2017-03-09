@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import com.google.gson.Gson;
+
 import Event.*;
 /**
  * 
@@ -39,7 +41,7 @@ public class Console {
 	 * <p>if the machine is off it turns it on creating an independent race along with it 
 	 * also turn on printer</p> 
 	 * <p>else if the machine is on if no events are currently happening it will clear the race
-	 *  and turn the printer off. else it states event is happaning in case of accidental shutdown</p>
+	 *  and turn the printer off. else it states event is happening in case of accidental shutdown</p>
 	 * 
 	 */
 	public void Power(){
@@ -159,7 +161,15 @@ public class Console {
 	
 	public void Swap(){
 		if(onCheck() && curRunCheck()){
-			this.race.swap();
+			switch(eventType){
+				case("IND"):
+					this.race.swap();
+					break;
+				case("PARIND")://if we just get a swap from the console it will swap the players in the first lane
+					this.race.swap(1);
+					break;
+			}
+			
 		}
 	}
 	
@@ -178,7 +188,14 @@ public class Console {
 	 */
 	public void DNF(){
 		if(onCheck() && curRunCheck()){
-			this.race.DNF();
+			switch(eventType){
+			case("IND"):
+				this.race.DNF();
+				break;
+			case("PARIND")://if we just get a swap from the console it will swap the players in the first lane
+				this.race.DNF(1);
+				break;
+		}
 		}
 	}
 	public void DNF(int lane){
@@ -343,13 +360,41 @@ public class Console {
 	}
 	
 	/**
-	 * export() exports data to file (not used until Sprint 2)
-	 * @param p - the list of players that will have their data exported.
+	 * export() exports data to file
 	 * @param file - the file that will be written to.
+	 * @throws IOException 
 	 */
-	public void export(List <Player> p){
+	public void export() throws IOException{
 		//TODO
+		List<Player> p = race.getPlayerList();
 		File file = race.createRaceOutputFile();
+		FileWriter fw = new FileWriter(file);
+		String data;
+		
+		Gson gson = new Gson();
+		
+		
+		try {
+			for(Player player: p){
+				if(player.ran){
+					data = gson.toJson(player.toString());
+					fw.write(data);
+				}
+				
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		fw.close();
+		
+	}
+	
+	public String toString(Player p){
+		String str=time.getTimeFancy()+" "+eventType+ "\n" + idFormat(p.getID())+ " " + eventType + " " + timeFormat(p.totalTime);
+		
+		return str;
+		
 	}
 	 /**
 		 * timeFormat() converts milliseconds into hours minutes seconds and milliseconds. Helper method for export.

@@ -18,7 +18,7 @@ import java.util.*;
  *
  */
 public class Event {
-	static int fileNumber = 1;
+	public static int fileNumber = 1;
 	File curRaceData;
 	List <Player> players = new ArrayList<>(9999);
 	public long clockTime;
@@ -30,15 +30,16 @@ public class Event {
 	 *
 	 */
 	public File createRaceOutputFile(){
-		String temp = "RaceData/Race" + fileNumber + ".txt";
+		String zeroLead = String.format("%03d", fileNumber);
+		String temp = "USB/RUN" + zeroLead + ".txt";
 		
-		File directory = new File("RaceData");
+		File directory = new File("USB");
 		if(!directory.exists()){
 			System.out.println("Directory doesn't exist. New directory has been created.");
 			directory.mkdirs();
 		}
 		curRaceData = new File(temp);
-		BufferedWriter output;
+//		BufferedWriter output;
 		try {
 			curRaceData.createNewFile();
 			//write to file

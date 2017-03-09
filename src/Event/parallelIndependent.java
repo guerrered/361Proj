@@ -1,6 +1,7 @@
 package Event;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class parallelIndependent  extends Event{
 	List <Player> players = new ArrayList<>(9999);
@@ -93,7 +94,6 @@ public class parallelIndependent  extends Event{
 	 * @param lane	the lane in which the racer is participating
 	 */
 	public void DNF(int lane){
-		System.out.println("here");
 		if(lane == 1){
 			if(lane1.size() > queue1EndNum){
 				if(lane1.get(queue1EndNum).isRunning()){//breaks in raceInd
@@ -182,7 +182,35 @@ public class parallelIndependent  extends Event{
 		
 	}
 	
-	public List<Player> getPlayerList(){
-		return players;
+
+	 /**
+		 * sortByTime() Sort method that sort the order by time.
+		 * @param p - list of players to be sorted
+		 * @return List of sorted players
+		 */
+	public List<Player> sortByFinishTime(List<Player> p){
+		List<Player> sortedList = new ArrayList<>(p.size());
+		sortedList.addAll(p);
+	    
+		sortedList.sort(timeComparator);
+		return sortedList;
+	}
+	
+	 /**
+		 * Comparator that compare players time. 
+		 * @return comparison value
+		 */
+	public static Comparator<Player> timeComparator = new Comparator<Player>(){
+		public int compare(Player p1,Player p2){
+			if(p1.DNF&&p2.DNF)return 0;
+			if(p1.DNF)return 1;
+			if(p2.DNF)return -1;
+			return (int) (p1.endTime - p2.endTime);
+		}
+	};
+	
+	public List<Player> getPlayerList(){//returns in order of finish like the raceIndepent did
+		List<Player> printList = sortByFinishTime(players);
+		return printList;
 	}
 }
