@@ -348,23 +348,27 @@ public class Console {
 	 * export() exports data to file
 	 * @param p - the list of players that will have their data exported.
 	 * @param file - the file that will be written to.
+	 * @throws IOException 
 	 */
-	public void export(List <Player> p){
+	public void export(List <Player> p) throws IOException{
 		//TODO
 		File file = race.createRaceOutputFile();
-		FileWriter fw;
+		FileWriter fw = new FileWriter(file);
 		String data;
 		
 		Gson gson = new Gson();
-		data = gson.toJson(p);
+		
+		
 		try {
-			fw = new FileWriter(file);
-			fw.write(data);
-			fw.close();
+			for(Player player: p){
+				data = gson.toJson(player.toString());
+				fw.write(data);
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		fw.close();
 		
 	}
 	

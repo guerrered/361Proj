@@ -8,6 +8,7 @@ import java.io.File;
 import org.junit.Before;
 import org.junit.Test;
 
+import Chronotimer.Console;
 import Event.*;
 /**
  * 
@@ -22,11 +23,14 @@ import Event.*;
 public class ChronotimerTest {
 	RaceIndependent rIND;
 	parallelIndependent pIND;
+	Console console;
 	@Before
 	public void setup() {
 		rIND = new RaceIndependent();
 		pIND = new parallelIndependent();
+		console = new Console();
 	}
+	
 	
 	@Test
 	public void testMakeDirectory(){
