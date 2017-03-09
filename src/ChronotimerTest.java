@@ -3,6 +3,8 @@ import org.junit.Assert.*;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,45 +21,29 @@ import Event.*;
  */
 public class ChronotimerTest {
 	RaceIndependent rIND;
+	parallelIndependent pIND;
 	@Before
 	public void setup() {
 		rIND = new RaceIndependent();
+		pIND = new parallelIndependent();
 	}
 	
-	
-	/**
-	 * 
-	 *
-	 */
 	@Test
-	public void testRemovePlayer(){
-		assertTrue(rIND.remove(0));
-	}
-	/**
-	 * Boundary test for remove method
-	 *
-	 */
-	
-	@Test
-	public void testRemovePlayerTwice(){
-		assertTrue(rIND.remove(0));
-		assertFalse(rIND.remove(0));
-	}
-	
-	/**
-	 * Testing swap method
-	 *
-	 */
-	@Test
-	public void testSwapPlayers(){
-		//swap should fail if neither are running
-		assertFalse(rIND.swap(0, 1));
-		//start 0
-		rIND.start(System.currentTimeMillis());
-		//start 1
-		rIND.start(System.currentTimeMillis());
+	public void testMakeDirectory(){
+		//if there is a directory, delete it so we can test directory creation.
+		File dir = new File("USB");
+		if(dir.exists()){
+			for(File f: dir.listFiles()){
+				f.delete(); 
+			}
+			dir.delete();
+		}
 		
-		assertTrue(rIND.swap(0, 1));
+		assertFalse(dir.exists());
+		
+		rIND.createRaceOutputFile();
+		assertTrue(dir.exists());
 	}
+
 
 }

@@ -30,15 +30,15 @@ public class Event {
 	 *
 	 */
 	public File createRaceOutputFile(){
-		String temp = "RaceData/Race" + fileNumber + ".txt";
+		String temp = "USB/Race" + fileNumber + ".txt";
 		
-		File directory = new File("RaceData");
+		File directory = new File("USB");
 		if(!directory.exists()){
 			System.out.println("Directory doesn't exist. New directory has been created.");
 			directory.mkdirs();
 		}
 		curRaceData = new File(temp);
-		BufferedWriter output;
+//		BufferedWriter output;
 		try {
 			curRaceData.createNewFile();
 			//write to file

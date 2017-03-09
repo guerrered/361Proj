@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import com.google.gson.Gson;
+
 import Event.*;
 /**
  * 
@@ -39,7 +41,7 @@ public class Console {
 	 * <p>if the machine is off it turns it on creating an independent race along with it 
 	 * also turn on printer</p> 
 	 * <p>else if the machine is on if no events are currently happening it will clear the race
-	 *  and turn the printer off. else it states event is happaning in case of accidental shutdown</p>
+	 *  and turn the printer off. else it states event is happening in case of accidental shutdown</p>
 	 * 
 	 */
 	public void Power(){
