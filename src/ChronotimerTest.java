@@ -56,6 +56,28 @@ public class ChronotimerTest {
 	
 	
 	@Test
+	public void testAddTwice(){
+		rIND.addRunner(1);
+		//ID:1 is already in the list
+		assertFalse(rIND.addRunner(1));
+	}
+	
+	@Test
+	public void testRemove(){
+		rIND.addRunner(1);
+		assertTrue(rIND.remove(1));
+		assertFalse(rIND.contains(1));
+	}
+	
+	//ensures program won't break down
+	@Test
+	public void testRemoveTwice(){
+		rIND.addRunner(1);
+		assertTrue(rIND.remove(1));
+		assertFalse(rIND.remove(1));
+	}
+	
+	@Test
 	public void testMakeDirectory(){
 		//if there is a directory, delete it so we can test directory creation.
 		File dir = new File("USB");

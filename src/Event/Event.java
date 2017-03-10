@@ -123,8 +123,8 @@ public class Event {
 	 * Super class' method that remove specify player with the same ID number
 	 *
 	 */
-	public void remove(int id){
-		
+	public boolean remove(int id){
+		return true;
 	}
 	/**
 	 * Super class' method that return current race data
@@ -132,5 +132,13 @@ public class Event {
 	 */
 	public File getRaceData(){
 		return curRaceData;
+	}
+	
+	public boolean contains(int id){
+		for(int i=0; i<players.size(); i++){
+			if(players.get(i).getID()==id)
+				return true;
+		}
+		return false;
 	}
 }

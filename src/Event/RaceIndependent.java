@@ -45,17 +45,18 @@ public class RaceIndependent extends Event{
 	
 	/**
 	 * Method that remove Runner
+	 * @return true if successful
 	 *
 	 */
-	public void remove(int runnerID){
+	public boolean remove(int runnerID){
 		for(int i =0; i<players.size(); i++){
 			if(players.get(i).getID()==runnerID){
 				players.remove(i);
 				numRunners--;
-				//return true;
+				return true;
 			}
 		}
-		//return false;
+		return false;
 	}
 	
 	/**
