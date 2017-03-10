@@ -28,16 +28,19 @@ public class parallelIndependent  extends Event{
 	
 	/**
 	 * sets runner id as next to start in race
+	 * @return 
 	 */
-	public void next(int id){
+	public boolean next(int id){
 		Player temp;
 		for (int i =0; i < players.size(); i++){
 			if(players.get(i).getID()==id && !players.get(i).participated() &&!players.get(i).isRunning()){//cant run again if already ran
 				temp = players.get(i);
 				players.remove(i);
 				players.add(queueStartNum, temp);
+				return true;
 			}
 		}
+		return false;
 	}
 	
 	/**
