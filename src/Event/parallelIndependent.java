@@ -49,7 +49,7 @@ public class parallelIndependent  extends Event{
 	 * @param time	current system time 
 	 * @param lane	the lane in which runner will run
 	 */
-	public void start(long time, int lane){
+	public boolean start(long time, int lane){
 		if(queueStartNum < players.size()){
 			if(!players.get(queueStartNum).isRunning()){//breaks in raceInd
 				if(!players.get(queueStartNum).participated()){
@@ -57,13 +57,16 @@ public class parallelIndependent  extends Event{
 					p.start(time);
 					if(lane == 1){
 						lane1.add(p);
+						return true;
 					}
 					else if(lane == 2){
 						lane2.add(p);
+						return true;
 					}
 				}
 			}
 		}
+		return false;
 	}
 	
 	/**
@@ -72,11 +75,12 @@ public class parallelIndependent  extends Event{
 	 * @param time	system time "finish time" for runner
 	 * @param lane	lane where runner is running
 	 */
-	public void finish(long time, int lane){
+	public boolean finish(long time, int lane){
 		if(lane == 1){
 			if(lane1.size() > queue1EndNum){
 				if(lane1.get(queue1EndNum).isRunning()){//breaks in raceInd
 					lane1.get(queue1EndNum++).end(time);//preemptively point spot to next however if nothing is present it wont be able to execute if it gets here
+					return true;
 				}
 			}
 		}
@@ -84,9 +88,11 @@ public class parallelIndependent  extends Event{
 			if(lane2.size() > queue2EndNum){
 				if(lane2.get(queue2EndNum).isRunning()){
 					lane2.get(queue2EndNum++).end(time);
+					return true;
 				}
 			}
 		}
+		return false;
 	}
 	
 	/**
@@ -160,6 +166,9 @@ public class parallelIndependent  extends Event{
 				}
 			}
 		}
+	}
+	public Player getRacer(int ID){
+		return players.get(ID);
 	}
 
 	 /**

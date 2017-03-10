@@ -53,23 +53,29 @@ public class Event {
 		}
 		return curRaceData;
 	}
-	
+	public Player getRacer(int ID){
+		return players.get(ID);
+	}
 	/**
 	 * Super class' method that record start time.
 	 *
 	 */
-	public void start(long time){
+	public boolean start(long time){
+		return true;
 	}
-	public void start(long time, int lane){
+	public boolean start(long time, int lane){
+		return true;
 	}
 	
 	/**
 	 * Super class' method that record finish time
 	 *
 	 */
-	public void finish(long time){	
+	public boolean finish(long time){	
+		return true;
 	}
-	public void finish(long time, int lane){
+	public boolean finish(long time, int lane){
+		return true;
 	}
 	
 	public boolean swap(){

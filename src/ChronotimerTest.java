@@ -40,7 +40,7 @@ public class ChronotimerTest {
 		 * From Sprint0 document:
 		 *The default type of competition is IND.
 		 *The default run number is	1.
-         *Channels default to “disarmed” on	power up
+         *Channels default to ï¿½disarmedï¿½ on	power up
 		 */
 		assertFalse(console.powerState);
 		//turn on console
@@ -127,6 +127,47 @@ public class ChronotimerTest {
 		rIND.createRaceOutputFile();
 		assertTrue(dir.exists());
 	}
+	
+	@Test
+	public void testRunAllPlayersIND(){
+		for(int i = 0; i < 9999; i++){
+			rIND.start(0);
+			rIND.finish(1);
+		}
+		assertFalse(rIND.start(0));//max bib num is 9999 so 10000 should not run
+	}
+	
+	@Test
+	public void testRunAllPlayersPARIND(){
+		for(int i = 0; i < 9999; i++){
+			pIND.start(0 , 1);
+			pIND.finish(1, 1);
+		}
+		assertFalse(pIND.start(0,1));//max bib num is 9999 so 10000 should not run
+	}
+	
+	@Test
+	public void testDNFIND(){
+		rIND.start(0);
+		rIND.DNF();
+		Player tested = rIND.getRacer(0);
+		assertTrue(tested.DNF);
+		
+	}
+	@Test
+	public void testDNFPARIND(){
+		pIND.start(0,1);//runner in lane 1
+		pIND.DNF(1);
+		Player tested = pIND.getRacer(0);
+		assertTrue(tested.DNF);
+		
+		pIND.start(0,2);//runner in lane 2
+		pIND.DNF(2);
+		Player tested2 = pIND.getRacer(1);
+		assertTrue(tested2.DNF);
+		
+	}
+	
 
 
 }

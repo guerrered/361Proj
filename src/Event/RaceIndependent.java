@@ -76,29 +76,32 @@ public class RaceIndependent extends Event{
 	/*
 	 * starts player who is next in line
 	 */
-	public void start(long time){
+	public boolean start(long time){
 		if(players.size()>queueStartNum){
 			if(!players.get(queueStartNum).participated()){//check if already ran
 				players.get(queueStartNum++).start(time);
+				return true;
 			}
 		}
-		else{
-			System.out.println("all racers have started");
-		}
+	
+		return false;
+			//System.out.println("all racers have started");
 	}
 	
 	/**
 	 *Player who finished a race will get their own time to the file
 	 */
-	public void finish(long time){
+	public boolean finish(long time){
 		if(players.size()>queueEndNum){
 			if(players.get(queueEndNum).isRunning()){//check if active
 				players.get(queueEndNum++).end(time);
+				return true;
 			}
 		}
-		else{
-			System.out.println("all racers have finished");
-		}
+		return false;
+		
+		//System.out.println("all racers have finished");
+		
 	}
 	
 	/**
@@ -163,6 +166,9 @@ public class RaceIndependent extends Event{
 				players.add(queueStartNum, temp);
 			}
 		}
+	}
+	public Player getRacer(int ID){
+		return players.get(ID);
 	}
 	
 	//Prints to console in specified format
