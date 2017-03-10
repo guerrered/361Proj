@@ -75,6 +75,40 @@ public class ChronotimerTest {
 		rIND.addRunner(1);
 		assertTrue(rIND.remove(1));
 		assertFalse(rIND.remove(1));
+		
+	}
+	
+	@Test
+	public void testSwapIND(){
+		//start two racers
+		
+		rIND.start(System.currentTimeMillis());
+		rIND.start(System.currentTimeMillis());
+		assertTrue(rIND.swap());
+		try {
+			//pause
+			Thread.sleep(10);
+			rIND.finish(System.currentTimeMillis());
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		rIND.finish(System.currentTimeMillis());
+		//the first player should have a longer total time than the player that started second.
+		assertTrue(rIND.getPlayerList().get(0).totalTime<rIND.getPlayerList().get(1).totalTime);
+	}
+	
+	@Test
+	public void testSwapBeforeRaceIND(){
+		assertFalse(rIND.swap());
+		
+		rIND.start(System.currentTimeMillis());
+		assertFalse(rIND.swap());
+		
+		rIND.start(System.currentTimeMillis());
+		assertTrue(rIND.swap());
 	}
 	
 	@Test

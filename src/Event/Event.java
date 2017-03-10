@@ -72,7 +72,8 @@ public class Event {
 	public void finish(long time, int lane){
 	}
 	
-	public void swap(){
+	public boolean swap(){
+		return false;
 	}
 	
 	public void swap(int lane){
