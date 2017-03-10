@@ -11,9 +11,10 @@ package Sensors;
  *
  */
 public class EYE extends Sensors{
-boolean trigState;
+//boolean trigState;
 	int ChannelNum;
-
+	boolean armed;
+	
 	/**
 	 * Constructor for linking channel number to sensor
 	 *
@@ -23,6 +24,12 @@ public EYE(int num)
 	this.ChannelNum=num;
 	
 }
+
+public int getPairNum()
+{
+	return ChannelNum;
+}
+
 
 /**
  * Method that unarmed the sensor on the channel 
@@ -51,6 +58,9 @@ public void armed()
 	armed=true;
 }
 
+/*
+
+
 public void trigStateReset()
 {
 	trigState=false;
@@ -60,11 +70,14 @@ public boolean trigState()
 {
 	  return trigState;
 }
+*/
+
 
 /**
  * Method that will trig the channel, it will be implement in spring 2 
  *
  */
+/*
 public boolean trig()
 {
 	//Channels.Channel ch=Channels.getCh(ChannelNum);
@@ -75,5 +88,5 @@ public boolean trig()
 		
 }
 	
-	
+*/	
 }

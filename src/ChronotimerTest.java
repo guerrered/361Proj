@@ -27,11 +27,14 @@ public class ChronotimerTest {
 	RaceIndependent rIND;
 	parallelIndependent pIND;
 	Console console;
+	invoker invoker;
 	@Before
 	public void setup() {
 		rIND = new RaceIndependent();
 		pIND = new parallelIndependent();
 		console = new Console();
+		
+		invoker = new invoker(console);
 	}
 	
 	@Test
@@ -48,9 +51,9 @@ public class ChronotimerTest {
 		
 		assertEquals("IND",console.getRaceType());
 		assertEquals(1,console.getRaceNum());
-		Channels c = console.getChannels();
+		//Channels c = console.getChannels();
 		for(int i=1; i<=8; i++){
-			assertFalse(c.getCh(i).connected());
+			assertFalse(Channels.getCh(i).connected());
 		}
 	}
 	
@@ -208,5 +211,24 @@ public class ChronotimerTest {
 		pIND.finish(0,1);
 		assertFalse(pIND.finish(0,1));//finish after last runner running finished parallel
 	}
-
+	
+	@Test
+	public void testSensors()
+	{
+		console.Power();
+		console.Connect("eye", 1);
+		assertEquals("eye".toUpperCase(), Channels.SensorSet[0].getClass().getSimpleName());
+		console.Connect("pad", 2);
+		assertEquals("pad".toUpperCase(),Channels.SensorSet[1].getClass().getSimpleName());
+		assertEquals(1,Channels.SensorSet[0].getPairNum());
+		assertEquals(2,Channels.SensorSet[1].getPairNum());
+		
+	}
+	@Test
+	public void testSensorsTrig()
+	{
+		
+	}
+	
+	
 }

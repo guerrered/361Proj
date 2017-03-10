@@ -7,9 +7,9 @@ package Sensors;
 
 
 public class PAD extends Sensors {
-boolean trigState;
+//boolean trigState;
 int ChannelNum;
-
+boolean armed;
 /**
  * Constructor for linking channel number to sensor
  *
@@ -18,6 +18,11 @@ public PAD(int num)
 {
 	this.ChannelNum=num;
 
+}
+
+public int getPairNum()
+{
+	return ChannelNum;
 }
 
 /**
@@ -35,10 +40,12 @@ public void unarmed(){
 	}
 }
 
+/*
 public void trigStateReset()
 {
 	trigState=false;
 }
+*/
 
 /**
  * Method that armed the sensor on the channel 
@@ -56,17 +63,19 @@ public void armed()
 	}
 }
 
+/*
 public boolean trigState()
 {
 	  return trigState;
 }
-
+*/
 
 /**
  * Method that will trig the channel, it will be implement in spring 2 
  *
  */
 
+/*
 public boolean trig()
 {
 	//Channels.Channel ch=Channels.getCh(ChannelNum);
@@ -75,6 +84,6 @@ public boolean trig()
 	
 	return trigState=!trigState;
 }
-
+*/
 	
 }

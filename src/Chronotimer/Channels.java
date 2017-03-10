@@ -1,6 +1,7 @@
 package Chronotimer;
 import Sensors.*;
 
+
 /**
  * 
  * @author HiddenBit
@@ -12,7 +13,7 @@ public class Channels {
 	 *
 	 */
 	Boolean power=false;
-	  
+	  public static Sensors[] SensorSet = new Sensors[8];
 		  static Channel Channels[] = new Channel[8];
 		public Channels()  
 		{
@@ -35,12 +36,16 @@ public class Channels {
 			
 			
 		}
-		/**
+		
+	 public static Sensors[] getSensorSet()
+	 {
+		 return SensorSet;
+	 }
+	 /**
 		 * Called from the console to connect the channel with type of senser
 		 * @param type
 		 * @param num
 		 */
-	 
 	 public static void connect(String type,int num)
 	 {
 		 Channels[num-1].connect(type);
@@ -74,7 +79,7 @@ public class Channels {
 		 */ 
 	public class Channel
 	{
-    public boolean connect=false;
+    boolean connect=false;
     Sensors sens;
     
 	public int ChNum;
@@ -97,32 +102,38 @@ public class Channels {
     public void connect(String type)
 	{
 		
-		 if(this.connect=true)
-		{
-			System.out.println("Channel had been connected");
-		}
-		else
-		{
+//		 if(this.connect=true)
+	//	{
+		//	System.out.println("Channel had been connected");
+		//}
+		//else
+		//{
 			this.connect=true;
 			switch(type.toUpperCase())
 			{
 			case("EYE"):
 				sens=new EYE(this.ChNum);
+				SensorSet[this.ChNum-1]=sens;
 			break;
 			case("GATE"):
 				sens=new GATE(this.ChNum);
+				SensorSet[this.ChNum-1]=sens;
 			break;
 			case("PAD"):
 				sens=new PAD(this.ChNum);
+			    SensorSet[this.ChNum-1]=sens;
 			break;
-				
+			default:
+				System.out.println("Not such sensor\n");
+				break;
 			}
 			
-			System.out.println("Channel connected");
-		}
+		//	System.out.println("Channel connected");
+	//	}
 		
 	}
-    
+ 
+   /* 
     public void Notify()
     {
     	if(sens!=null)
@@ -138,7 +149,7 @@ public class Channels {
     	
     	
     }
-    
+    */
     
     public Sensors getSens()
     {

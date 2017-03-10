@@ -1,5 +1,4 @@
 package Chronotimer;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -36,6 +35,16 @@ public class Console {
 		runner = new Thread(r1);
 		runner.start();
 	}
+	/**
+	 * Get type of the Event
+	 * 
+	 */
+	public String getEvent()
+	{
+		return eventType;
+	}
+	
+	
 	
 	/**
 	 * <p>if the machine is off it turns it on creating an independent race along with it 
@@ -256,7 +265,7 @@ public class Console {
 	 */
 	public void Disconnect(int chNum){
 		if(onCheck()){
-			Channels.Channel ch=channels.getCh(chNum);
+			Channels.Channel ch=Channels.getCh(chNum);
 			if(ch!=null)
 			{
 				ch.disconnect();
@@ -269,7 +278,7 @@ public class Console {
 	 */
 	public void Tog(int chNum){
 		if(onCheck()){
-			channels.Tog(chNum);
+			Channels.Tog(chNum);
 		}
 	}
 	
@@ -281,7 +290,7 @@ public class Console {
 	 */
 	public void Trig(int chNum){
 		if(onCheck() && curRunCheck()){	
-			if(channels.getCh(chNum).connected()){
+			if(Channels.getCh(chNum).connected()){
 				switch(eventType){
 				case("IND"):
 					switch(chNum){
