@@ -145,6 +145,8 @@ public class Channels implements Subject, Observer{
 				{
 					case("EYE"):
 						sens=new EYE(this.ChNum);
+					
+					
 						break;
 					case("GATE"):
 						sens=new GATE(this.ChNum);
@@ -152,6 +154,8 @@ public class Channels implements Subject, Observer{
 					case("PAD"):
 						sens=new PAD(this.ChNum);
 						break;
+					default:
+						throw new IllegalArgumentException();
 				}	
 				sens.register(this);
 			System.out.println("Channel connected");
