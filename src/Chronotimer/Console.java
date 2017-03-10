@@ -19,7 +19,7 @@ public class Console implements Observer{
 	
 	boolean CurRunOn = false;
 	Printer printer;
-	Event race;
+	public Event race;
 	Time time;
 	Channels channels;
 	String eventType;
@@ -39,6 +39,10 @@ public class Console implements Observer{
 		Thread listener = new Thread(r2);
 		listener.start();
 	}
+	
+	
+	
+	
 	
 	public void update(int ChNum){
 		Trig(ChNum);

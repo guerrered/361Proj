@@ -239,7 +239,7 @@ public class ChronotimerTest {
 		assertEquals(rIND.getPlayerList().get(0).getID(),3);
 	}
 	@Test
-	public void SensenTest()
+	public void testSensorTest()
 	{
 		console.Power();
 		console.Connect("eye", 1);
@@ -247,7 +247,36 @@ public class ChronotimerTest {
 		Channel ch=chs.getCh(1);
 		assertTrue(ch.getSens()!=null);
 		assertEquals("eye".toUpperCase(),ch.getSens().getClass().getSimpleName());
+		ch.removeSens();
+		assertTrue(ch.getSens()==null);
+		console.Connect("pad", 1);
+		assertEquals("pad".toUpperCase(),ch.getSens().getClass().getSimpleName());
+		ch.removeSens();
+		assertTrue(ch.getSens()==null);
+		console.Connect("gate", 1);
+		assertEquals("gate".toUpperCase(),ch.getSens().getClass().getSimpleName());
+		ch.removeSens();
+		assertTrue(ch.getSens()==null);
 	}
+	
+	
+	@Test
+	public void SenserTrig()
+	{
+		console.Power();
+		console.Connect("eye", 1);
+		console.Connect("eye", 2);
+		Channels chs=console.getChannels();
+		Channel ch1=chs.getCh(1);
+		Channel ch2=chs.getCh(2);
+		
+		ch1.getSens().notifyObserver();
+		ch2.getSens().notifyObserver();
+		
+		assertTrue(console.race.getPlayerList().get(0).ran);
+		
+	}
+	
 	
 	
 	

@@ -57,7 +57,7 @@ public void register(Observer o){
 	obs = o;
 }
 public void notifyObserver(){
-	obs.update(ChannelNum);
+	obs.update(1);
 }
 
 public void trigStateReset()

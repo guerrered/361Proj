@@ -129,7 +129,7 @@ public class Channels implements Subject, Observer{
 		public void connect(String type)
 		{
 		
-			if(this.connect==true)
+			if(this.connect==true&&this.sens!=null)
 			{
 				System.out.println("Channel had been connected");
 			}
@@ -140,12 +140,15 @@ public class Channels implements Subject, Observer{
 				{
 					case("EYE"):
 						sens=new EYE(this.ChNum);
+					    sens.register(obs);
 						break;
 					case("GATE"):
 						sens=new GATE(this.ChNum);
+					    sens.register(obs);
 						break;
 					case("PAD"):
 						sens=new PAD(this.ChNum);
+					sens.register(obs);
 						break;
 				}	
 			System.out.println("Channel connected");
