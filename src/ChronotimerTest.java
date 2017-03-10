@@ -208,5 +208,35 @@ public class ChronotimerTest {
 		pIND.finish(0,1);
 		assertFalse(pIND.finish(0,1));//finish after last runner running finished parallel
 	}
+	
+	@Test
+	public void testRunSameTwice(){
+		rIND.start(0);
+		rIND.finish(1);
+		
+		//can't run the same race again.
+		assertFalse(rIND.next(0));
+	}
+	
+	@Test
+	public void testNextUpWhileRunning(){
+		//By default #0 runs first.
+		rIND.start(0);
+		//Try to get #0 to restart.
+		assertFalse(rIND.next(0));
+	}
+	
+	//NUM command
+	@Test
+	public void testRunNext(){
+		//by default, bib #0 runs first so we'll try to have bib #3 start.
+		
+		rIND.next(3);
+		rIND.start(0);
+		rIND.finish(1);
+		
+		assertTrue(rIND.getPlayerList().get(0).ran);
+		assertEquals(rIND.getPlayerList().get(0).getID(),3);
+	}
 
 }

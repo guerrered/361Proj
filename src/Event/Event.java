@@ -111,9 +111,11 @@ public class Event {
 	
 	/**
 	 * Super class' method calling the new runner for the race
+	 * @return 
 	 *
 	 */
-	public void next(int ID){
+	public boolean next(int ID){
+		return false;
 	}
 	
 	/**
