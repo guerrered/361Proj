@@ -261,19 +261,77 @@ public class ChronotimerTest {
 	
 	
 	@Test
-	public void SenserTrig()
+	public void testSensorTrig()
 	{
 		console.Power();
 		console.Connect("eye", 1);
 		console.Connect("eye", 2);
-
 		console.getChannels().getCh(1).getSens().notifyObserver();
 		console.getChannels().getCh(2).getSens().notifyObserver();
-		assertTrue(console.race.getPlayerList().get(0).participated());
+		assertTrue(console.race.getPlayerList().get(0).ran);
+		
+		console.getChannels().getCh(1).removeSens();
+		console.getChannels().getCh(2).removeSens();
+		console.Connect("PAD", 1);
+		console.Connect("pad", 2);
+		console.getChannels().getCh(1).getSens().notifyObserver();
+		console.getChannels().getCh(2).getSens().notifyObserver();
+		assertTrue(console.race.getPlayerList().get(1).ran);
+		
+		console.getChannels().getCh(1).removeSens();
+		console.getChannels().getCh(2).removeSens();
+		console.Connect("Gate", 1);
+		console.Connect("gate", 2);
+		console.getChannels().getCh(1).getSens().notifyObserver();
+		console.getChannels().getCh(2).getSens().notifyObserver();
+		assertTrue(console.race.getPlayerList().get(2).ran);
 		
 	}
 	
+	@Test(expected = IllegalArgumentException.class)
+	public void testSensorIllegal() 
+	{
+		console.Power();
+		console.Connect("yes", 1);
+	}
 	
+	@Test
+	public void testSensorAfterPowerOff()
+	{
+		console.Power();
+		console.Connect("eye", 1);
+		console.Connect("eye", 2);
+		console.getChannels().getCh(1).getSens().notifyObserver();
+		console.getChannels().getCh(2).getSens().notifyObserver();
+		assertTrue(console.race.getPlayerList().get(0).ran);
+		console.Power();
+		console.Power();
+		assertEquals(null,console.getChannels().getCh(1).getSens());
+		assertEquals(null,console.getChannels().getCh(2).getSens());
+		assertFalse(console.race.getPlayerList().get(0).ran);
+		
+	}
+	
+	@Test
+	public void testSensorInParaRace()
+	{
+		console.Power();
+		console.endRun();
+		console.Event("PARIND");
+		console.Connect("pad", 1);
+		console.Connect("pad", 2);
+		console.Connect("gate", 3);
+		console.Connect("gate", 4);
+		console.newRun();
+		assertFalse(console.race.getPlayerList().get(0).participated());
+		assertFalse(console.race.getPlayerList().get(1).participated());
+		console.getChannels().getCh(1).getSens().notifyObserver();
+		console.getChannels().getCh(2).getSens().notifyObserver();
+		assertTrue(console.race.getRacer(0).participated());
+		assertTrue(console.race.getRacer(0).ran);
+		assertFalse(console.race.getRacer(1).participated());
+		
+	}
 	
 	
 

@@ -62,6 +62,9 @@ public class Console implements Observer{
 			this.race = new RaceIndependent();//default
 			CurRunOn = true;
 			printer = new Printer();
+			for(int i = 1; i < 8; i++){
+			channels.getCh(i).removeSens();;
+			}
 		}
 		else{
 			//save race contents first
@@ -108,7 +111,7 @@ public class Console implements Observer{
 		if(onCheck() && !curRunCheck()){
 			this.eventType = event;
 			//new event need to be created
-			System.out.println("Event has changed to"+event);
+			System.out.println("Event has changed to "+ event);
 		}
 		else{
 			System.out.println("An event is ongoing end it first.");
