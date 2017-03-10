@@ -1,4 +1,7 @@
 package Sensors;
+
+import Chronotimer.Observer;
+
 /**
  * 
  * @author HiddenBit
@@ -9,7 +12,7 @@ package Sensors;
 public class PAD extends Sensors {
 boolean trigState;
 int ChannelNum;
-
+Observer obs;
 /**
  * Constructor for linking channel number to sensor
  *
@@ -33,6 +36,13 @@ public void unarmed(){
 	armed=false;
 	this.ChannelNum=-1;
 	}
+}
+
+public void register(Observer o){
+	obs = o;
+}
+public void notifyObserver(){
+	obs.update(1);
 }
 
 public void trigStateReset()
@@ -69,9 +79,7 @@ public boolean trigState()
 
 public boolean trig()
 {
-	//Channels.Channel ch=Channels.getCh(ChannelNum);
-	//ch.trig(race);
-	
+	notifyObserver();
 	
 	return trigState=!trigState;
 }

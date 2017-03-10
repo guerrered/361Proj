@@ -1,4 +1,5 @@
 package Sensors;
+import Chronotimer.Subject;
 //For Commands CONN<SENSOR><NUMBER>
 /**
  * 
@@ -11,7 +12,7 @@ package Sensors;
  * Super class 
  *
  */
-public abstract class Sensors {
+public abstract class Sensors implements Subject {
   Boolean armed;
 	
 	public abstract void unarmed();

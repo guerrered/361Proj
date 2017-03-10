@@ -5,6 +5,7 @@ package Sensors;
  *
  */
 
+import Chronotimer.Observer;
 
 /**
  * Child class extends super class
@@ -13,6 +14,7 @@ package Sensors;
 public class EYE extends Sensors{
 boolean trigState;
 	int ChannelNum;
+	Observer obs;
 
 	/**
 	 * Constructor for linking channel number to sensor
@@ -51,6 +53,13 @@ public void armed()
 	armed=true;
 }
 
+public void register(Observer o){
+	obs = o;
+}
+public void notifyObserver(){
+	obs.update(1);
+}
+
 public void trigStateReset()
 {
 	trigState=false;
@@ -67,11 +76,8 @@ public boolean trigState()
  */
 public boolean trig()
 {
-	//Channels.Channel ch=Channels.getCh(ChannelNum);
-	//ch.trig(race);
-	
-	
-	return trigState=!trigState;
+	notifyObserver();
+	return trigState=!trigState;//return not needed?
 		
 }
 	

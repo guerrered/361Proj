@@ -6,14 +6,29 @@ import Sensors.*;
  * @author HiddenBit
  *
  */
-public class Channels {
+public class Channels implements Subject, Observer{
     /*Channels section that load all the channels for the future use.
 	 *
 	 *
 	 */
-	Boolean power=false;
-	  
-		  static Channel Channels[] = new Channel[8];
+		Boolean power=false;
+		static Channel Channels[] = new Channel[8];
+		Observer cons;
+		int Triggered = -1;
+		
+		public void update(int chNum){
+			Triggered = chNum;
+		}
+		
+		public void register(Observer o){
+			cons = o;
+		}
+		
+		public void notifyObserver(){
+			cons.update(Triggered);
+			Triggered = -1;
+		}
+		
 		public Channels()  
 		{
 			Channel ch1=new Channel(1,false);
@@ -33,6 +48,9 @@ public class Channels {
 			Channels[6]=ch7;
 			Channels[7]=ch8;
 			
+			for(int i = 0; i < 7; i++){
+				Channels[i].register(this);
+			}
 			
 		}
 		/**
@@ -41,18 +59,21 @@ public class Channels {
 		 * @param num
 		 */
 	 
-	 public static void connect(String type,int num)
+	 public void connect(String type,int num)
 	 {
 		 Channels[num-1].connect(type);
 		 
 	 }
 	 
+	 public void disconnect(int num){
+		 Channels[num - 1].disconnect();
+	 }
 	 /**
 		 * Return Channel base on the channel number as input
 		 * @param num
 		 */
 	 
-	 public static Channel getCh(int num)
+	 public  Channel getCh(int num)
 	 {
 		 return Channels[num-1];
 	 }
@@ -63,7 +84,7 @@ public class Channels {
 		 * Change the power state of the channel, connect/disconnect
 		 */
 	 
-	 public static void Tog(int ChNum)
+	 public  void Tog(int ChNum)
 	    {
 	    Channels[ChNum-1].connect=!Channels[ChNum-1].connect;
 	    }
@@ -72,52 +93,61 @@ public class Channels {
 		 * Inner class channel
 		 * 
 		 */ 
-	public class Channel
-	{
-    public boolean connect=false;
-    Sensors sens;
-    
-	public int ChNum;
-    
-	/**
-	 * Constructor take the channel number and the initial state of connection
-	 * @param ChNum
-	 * @param connection
-	 */
-    public Channel(int ChNum,Boolean connect)//,String sensor type
-    {
-    	this.ChNum=ChNum;
-    	this.connect=connect;
-    }
-    
-    /**
-	 * connect method for this channel to connect type of the senser
-	 * @param type
-	 */
-    public void connect(String type)
-	{
+	public class Channel implements Subject, Observer{
+		public boolean connect=false;
+		Sensors sens;
+		public int ChNum;
+		Observer obs;
 		
-		 if(this.connect=true)
-		{
-			System.out.println("Channel had been connected");
+		public void update(int ChNum){
+			notifyObserver();
 		}
-		else
+		public void register(Observer o){
+			obs = o;
+		}
+		public void notifyObserver(){
+			obs.update(ChNum);
+		}
+    
+		/**
+		 * Constructor take the channel number and the initial state of connection
+		 * @param ChNum
+		 * @param connection
+		 */
+		public Channel(int ChNum,Boolean connect)//,String sensor type
 		{
-			this.connect=true;
-			switch(type.toUpperCase())
+			this.ChNum=ChNum;
+			this.connect=connect;
+		}
+		public void Trig(){
+			notifyObserver();
+		}
+		/**
+		 * connect method for this channel to connect type of the senser
+		 * @param type
+		 */
+		public void connect(String type)
+		{
+		
+			if(this.connect=true)
 			{
-			case("EYE"):
-				sens=new EYE(this.ChNum);
-			break;
-			case("GATE"):
-				sens=new GATE(this.ChNum);
-			break;
-			case("PAD"):
-				sens=new PAD(this.ChNum);
-			break;
-				
+				System.out.println("Channel had been connected");
 			}
-			
+			else
+			{
+				this.connect=true;
+				switch(type.toUpperCase())
+				{
+					case("EYE"):
+						sens=new EYE(this.ChNum);
+						break;
+					case("GATE"):
+						sens=new GATE(this.ChNum);
+						break;
+					case("PAD"):
+						sens=new PAD(this.ChNum);
+						break;
+				}	
 			System.out.println("Channel connected");
 		}
 		
@@ -176,29 +206,7 @@ public class Channels {
 	public boolean connected(){
 		return connect;
 	}
-    /*
-	public void trig(RaceIndependent race)
-	{
-		if(this.connected())
-		{
-			switch(this.ChNum){
-			case(1):
-				race.startIND();
-				break;
-			case(2):
-				race.finishIND();
-				break;
-			}
-			
-		}
-		else
-		{
-			System.out.println("Channel has not been connected");
-		}
-		
-	}
-	*/
-	
+
     
 	}
 	

@@ -207,7 +207,8 @@ public class UserInterface {
 				System.out.println("Enter a channel number with TRIG command");
 			}
 			else{
-				console.Trig(Integer.parseInt(instructions[2]));
+				//console.Trig(Integer.parseInt(instructions[2]));
+				console.getChannels().getCh(Integer.parseInt(instructions[2])).Trig();
 			}
 			break;
 		case("START"):

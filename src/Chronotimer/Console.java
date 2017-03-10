@@ -14,7 +14,7 @@ import Event.*;
  * @author HiddenBit
  *
  */
-public class Console {
+public class Console implements Observer{
 	public boolean powerState = false;
 	
 	boolean CurRunOn = false;
@@ -23,7 +23,6 @@ public class Console {
 	Time time;
 	Channels channels;
 	String eventType;
-	Thread runner;
 	
 	/**
 	 * instantiates a console with a time class that is counting concurrently to it
@@ -32,9 +31,17 @@ public class Console {
 	public Console(){
 		time = new Time();
 		channels = new Channels();
+		channels.register(this);
 		Runnable r1 = new runnableTimer(time);
-		runner = new Thread(r1);
-		runner.start();
+		Thread timer = new Thread(r1);
+		timer.start();
+		Runnable r2 = new ChannelListener(channels);
+		Thread listener = new Thread(r2);
+		listener.start();
+	}
+	
+	public void update(int ChNum){
+		Trig(ChNum);
 	}
 	
 	/**
@@ -67,7 +74,7 @@ public class Console {
 		//start everything over
 		if(onCheck()){
 			time.setTime("0:0:0.0");
-			for(int i = 1; i < 8;i++){//disconnect all channels
+			for(int i = 1; i < 9;i++){//disconnect all channels
 				Disconnect(i);
 			}
 			eventType = "IND";//default type of event;
@@ -247,7 +254,7 @@ public class Console {
 	 */
 	public void Connect(String type,int ChNum){
 		if(onCheck()){
-			Channels.connect(type, ChNum);
+			channels.connect(type, ChNum);
 		}
 	}
 	/**
@@ -256,11 +263,7 @@ public class Console {
 	 */
 	public void Disconnect(int chNum){
 		if(onCheck()){
-			Channels.Channel ch=channels.getCh(chNum);
-			if(ch!=null)
-			{
-				ch.disconnect();
-			}
+			channels.disconnect(chNum);
 		}
 	}
 	/**

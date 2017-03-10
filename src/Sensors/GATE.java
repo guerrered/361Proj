@@ -5,6 +5,7 @@ package Sensors;
  *
  */
 
+import Chronotimer.Observer;
 
 /**
  * Child class extends super class
@@ -13,6 +14,7 @@ package Sensors;
 public class GATE extends Sensors{
 public boolean trigState;
 int ChannelNum;	
+Observer obs;
 
 /**
  * Constructor for linking channel number to sensor
@@ -23,6 +25,13 @@ public GATE(int num)
 	this.ChannelNum=num;
 	
 }
+public void register(Observer o){
+	obs = o;
+}
+public void notifyObserver(){
+	obs.update(1);
+}
+
 
 public void trigStateReset()
 {
@@ -75,8 +84,7 @@ public boolean trigState()
  
 	public boolean trig()
 	{
-		//Channels.Channel ch=Channels.getCh(ChannelNum);
-		//ch.trig(race);
+		notifyObserver();
 		
 		return trigState=!trigState;
 	}
