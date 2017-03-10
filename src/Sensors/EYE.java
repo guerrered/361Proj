@@ -57,6 +57,7 @@ public void register(Observer o){
 	obs = o;
 }
 public void notifyObserver(){
+	System.out.println(obs.toString());
 	obs.update(1);
 }
 
