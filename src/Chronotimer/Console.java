@@ -15,7 +15,7 @@ import Event.*;
  *
  */
 public class Console {
-	boolean powerState = false;
+	public boolean powerState = false;
 	
 	boolean CurRunOn = false;
 	Printer printer;
@@ -360,6 +360,30 @@ public class Console {
 	}
 	
 	/**
+	 * 
+	 * @return string of event type
+	 */
+	public String getRaceType(){
+		return eventType;
+	}
+	
+	/**
+	 * 
+	 * @return int run number
+	 */
+	public int getRaceNum(){
+		return race.runNumber;
+	}
+	
+	/**
+	 * 
+	 * @return getter for channels
+	 */
+	public Channels getChannels(){
+		return channels;
+	}
+	
+	/**
 	 * export() exports data to file
 	 * @param file - the file that will be written to.
 	 * @throws IOException 
@@ -376,7 +400,9 @@ public class Console {
 		
 		try {
 			for(Player player: p){
+				
 				if(player.ran){
+					System.out.println("j");
 					data = gson.toJson(player.toString());
 					fw.write(data);
 				}

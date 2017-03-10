@@ -4,10 +4,13 @@ import org.junit.Assert.*;
 import static org.junit.Assert.*;
 
 import java.io.File;
+import java.io.IOException;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import Chronotimer.Channels;
+import Chronotimer.Channels.Channel;
 import Chronotimer.Console;
 import Event.*;
 /**
@@ -29,6 +32,26 @@ public class ChronotimerTest {
 		rIND = new RaceIndependent();
 		pIND = new parallelIndependent();
 		console = new Console();
+	}
+	
+	@Test
+	public void testDefaults(){
+		/*
+		 * From Sprint0 document:
+		 *The default type of competition is IND.
+		 *The default run number is	1.
+         *Channels default to “disarmed” on	power up
+		 */
+		assertFalse(console.powerState);
+		//turn on console
+		console.Power();
+		
+		assertEquals("IND",console.getRaceType());
+		assertEquals(1,console.getRaceNum());
+		Channels c = console.getChannels();
+		for(int i=1; i<=8; i++){
+			assertFalse(c.getCh(i).connected());
+		}
 	}
 	
 	
