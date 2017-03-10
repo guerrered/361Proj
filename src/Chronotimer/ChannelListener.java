@@ -14,9 +14,6 @@ public class ChannelListener implements Runnable{
 			}catch(InterruptedException e){
 				e.printStackTrace();
 			}
-			if(ch.Triggered > -1){
-				ch.notifyObserver();
-			}
 		}
 	}
 }

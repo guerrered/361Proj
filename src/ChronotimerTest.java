@@ -266,14 +266,10 @@ public class ChronotimerTest {
 		console.Power();
 		console.Connect("eye", 1);
 		console.Connect("eye", 2);
-		Channels chs=console.getChannels();
-		Channel ch1=chs.getCh(1);
-		Channel ch2=chs.getCh(2);
-		
-		ch1.getSens().notifyObserver();
-		ch2.getSens().notifyObserver();
-		
-		assertTrue(console.race.getPlayerList().get(0).ran);
+
+		console.getChannels().getCh(1).getSens().notifyObserver();
+		console.getChannels().getCh(2).getSens().notifyObserver();
+		assertTrue(console.race.getPlayerList().get(0).participated());
 		
 	}
 	

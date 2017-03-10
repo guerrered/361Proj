@@ -17,7 +17,9 @@ public class Channels implements Subject, Observer{
 		int Triggered = -1;
 		
 		public void update(int chNum){
+			System.out.println("trigger heard");
 			Triggered = chNum;
+			notifyObserver();
 		}
 		
 		public void register(Observer o){
@@ -25,12 +27,14 @@ public class Channels implements Subject, Observer{
 		}
 		
 		public void notifyObserver(){
+			System.out.println("triggering ch");
 			cons.update(Triggered);
 			Triggered = -1;
 		}
 		
 		public Channels()  
 		{
+
 			Channel ch1=new Channel(1,false);
 			Channel ch2=new Channel(2,false);
 			Channel ch3=new Channel(3,false);
@@ -100,7 +104,7 @@ public class Channels implements Subject, Observer{
 		Observer obs;
 		
 		public void update(int ChNum){
-			notifyObserver();
+			Trig();
 		}
 		public void register(Observer o){
 			obs = o;
@@ -120,6 +124,7 @@ public class Channels implements Subject, Observer{
 			this.connect=connect;
 		}
 		public void Trig(){
+			System.out.println("Triggering");
 			notifyObserver();
 		}
 		/**
@@ -140,39 +145,23 @@ public class Channels implements Subject, Observer{
 				{
 					case("EYE"):
 						sens=new EYE(this.ChNum);
-					    sens.register(obs);
 						break;
 					case("GATE"):
 						sens=new GATE(this.ChNum);
-					    sens.register(obs);
 						break;
 					case("PAD"):
 						sens=new PAD(this.ChNum);
-					sens.register(obs);
 						break;
 				}	
+				sens.register(this);
 			System.out.println("Channel connected");
 		}
 		
 	}
-    /*
-    public void Notify()
-    {
-    	if(sens!=null)
-    	{
-    		if(sens.trigState())
-    		{
-    			//do something that trig the event start or finish
-    			
-    			sens.trigStateReset();
-    			
-    		}
-    	}
-    	
-    	
-    }
-    */
-    
+	public String toString(){
+		return "I'm " + ChNum;
+	}
+ 
     public Sensors getSens()
     {
     	return this.sens;
