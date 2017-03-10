@@ -261,7 +261,7 @@ public class ChronotimerTest {
 	
 	
 	@Test
-	public void SenserTrig()
+	public void testChTrigBySens()
 	{
 		console.Power();
 		console.Connect("eye", 1);
@@ -269,6 +269,7 @@ public class ChronotimerTest {
 		Channels chs=console.getChannels();
 		Channel ch1=chs.getCh(1);
 		Channel ch2=chs.getCh(2);
+		
 		
 		ch1.getSens().notifyObserver();
 		ch2.getSens().notifyObserver();

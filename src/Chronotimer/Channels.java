@@ -22,6 +22,9 @@ public class Channels implements Subject, Observer{
 		
 		public void register(Observer o){
 			cons = o;
+			for(int i = 0; i < 7; i++){
+				Channels[i].register(cons);
+			}
 		}
 		
 		public void notifyObserver(){
@@ -48,9 +51,7 @@ public class Channels implements Subject, Observer{
 			Channels[6]=ch7;
 			Channels[7]=ch8;
 			
-			for(int i = 0; i < 7; i++){
-				Channels[i].register(this);
-			}
+			
 			
 		}
 		/**
@@ -97,7 +98,7 @@ public class Channels implements Subject, Observer{
 		public boolean connect=false;
 		Sensors sens;
 		public int ChNum;
-		Observer obs;
+		public Observer obs;
 		
 		public void update(int ChNum){
 			notifyObserver();
@@ -140,17 +141,15 @@ public class Channels implements Subject, Observer{
 				{
 					case("EYE"):
 						sens=new EYE(this.ChNum);
-					    sens.register(obs);
 						break;
 					case("GATE"):
 						sens=new GATE(this.ChNum);
-					    sens.register(obs);
 						break;
 					case("PAD"):
 						sens=new PAD(this.ChNum);
-					sens.register(obs);
 						break;
 				}	
+				sens.register(this.obs);
 			System.out.println("Channel connected");
 		}
 		

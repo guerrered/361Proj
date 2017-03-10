@@ -14,7 +14,7 @@ import Chronotimer.Observer;
 public class EYE extends Sensors{
 boolean trigState;
 	int ChannelNum;
-	Observer obs;
+public	Observer obs;
 
 	/**
 	 * Constructor for linking channel number to sensor
@@ -57,7 +57,7 @@ public void register(Observer o){
 	obs = o;
 }
 public void notifyObserver(){
-	obs.update(1);
+	obs.update(ChannelNum);
 }
 
 public void trigStateReset()
