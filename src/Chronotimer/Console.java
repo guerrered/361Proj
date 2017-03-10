@@ -67,9 +67,10 @@ public class Console {
 		//start everything over
 		if(onCheck()){
 			time.setTime("0:0:0.0");
+			for(int i = 1; i < 8;i++){//disconnect all channels
+				Disconnect(i);
+			}
 			eventType = "IND";//default type of event;
-			Disconnect(1);//may want to disconnect all channels
-			Disconnect(2);
 			this.race = new RaceIndependent();
 			CurRunOn = true;
 			printer = new Printer();
@@ -96,7 +97,7 @@ public class Console {
 		if(onCheck() && !curRunCheck()){
 			this.eventType = event;
 			//new event need to be created
-			System.out.println("Event had changed to"+event);
+			System.out.println("Event has changed to"+event);
 		}
 		else{
 			System.out.println("An event is ongoing end it first.");
@@ -107,7 +108,6 @@ public class Console {
 	 * if the machine is on and there isnt an event currently it creates a new event of eventType 
 	 */
 	public void newRun(){
-		
 		if(onCheck()){
 			if(!curRunCheck()){
 				CurRunOn = true;		

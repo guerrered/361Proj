@@ -2,17 +2,19 @@ package Event;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Comparator;
-
+/**
+ * 
+ * @author HiddenBit
+ *
+ */
 public class parallelIndependent  extends Event{
 	List <Player> players = new ArrayList<>(9999);
 	List <Player> lane1 = new ArrayList<>();
 	List <Player> lane2 = new ArrayList<>();
 	
-	int queueStartNum = 0;//general start
-	int queue1Start = 0;//start lane 1
-	int queue2Start=0;
-	int queue1EndNum = 0;
-	int queue2EndNum = 0;
+	int queueStartNum = 0;//general start value
+	int queue1EndNum = 0;//lane 1
+	int queue2EndNum = 0;//lane 2
 	
 	/**
 	 * Constructor initiates a list with 9999 players
@@ -55,11 +57,9 @@ public class parallelIndependent  extends Event{
 					p.start(time);
 					if(lane == 1){
 						lane1.add(p);
-						queue1Start++;
 					}
 					else if(lane == 2){
 						lane2.add(p);
-						queue2Start++;
 					}
 				}
 			}
@@ -101,60 +101,45 @@ public class parallelIndependent  extends Event{
 				}
 			}
 		}
-		else if(lane2.size() > queue2EndNum){
-			if(queue2Start > 0){
+		else if(lane == 2){
+			 if(lane2.size() > queue2EndNum){
 				if(lane2.get(queue2EndNum).isRunning()){
-					lane2.get(queue2EndNum++).DNF();
+						lane2.get(queue2EndNum++).DNF();
 				}
 			}
 		}
 	}
 	
 	/**
-	 * 	cancels the next runner to finish in a specific lane
+	 * 	cancels the last runner to start in 
 	 * 	furthermore the runner is removed from the lane list
 	 * 	as their next start may be in a different lane
-	 * @param lane
+	 * 
 	 */
-	public void cancel(){//cancel last to start UNFINISHED next to finish in particular lane not necessarily last to start
+	public void cancel(){//cancel last to start 
 		if(queueStartNum > 0){
-			Player canceled = players.get(--queueStartNum);
-			canceled.cancel();
-			lane1.remove(canceled);//we don't know which lane they were in if not in one it wont remove anything
-			lane2.remove(canceled);
-			
-			/*
-			int startInd;
-			if(lane == 1){
-				if(queue1EndNum < lane1.size()){
-					if(lane1.get(queue1EndNum).isRunning()){
-						Player canceled = lane1.get(queue1EndNum);
-						canceled.cancel();
-						startInd = players.indexOf(canceled);
-						players.remove(startInd);
-						players.add(queueStartNum, canceled );
-						lane1.remove(canceled);//possible for player to start in different lane
-					}
+			if(players.get(queueStartNum - 1).isRunning()){//checks if player is running
+				Player canceled = players.get(--queueStartNum);//put runner back as next to start
+				canceled.cancel();
+				if(lane1.contains(canceled)){//we don't know which lane the runner was in
+					lane1.remove(canceled);
+				}
+				else{//if not in first lane then must be in 2nd
+					lane2.remove(canceled);
 				}
 			}
-			else if(lane == 2){
-				if(queue2EndNum < lane2.size()){
-					if(lane2.get(queue2EndNum).isRunning()){
-						Player canceled = lane2.get(queue2EndNum);
-						canceled.cancel();
-						startInd = players.indexOf(canceled);
-						players.remove(startInd);
-						players.add(queueStartNum, canceled );
-						lane2.remove(canceled);//possible for player to start in different lane
-					}
-				}
-			}*/
 		}
 	}
 	
+	
+	/**
+	 * swaps the next next 2 runners to finish in the specified lane
+	 * if no lane is specified the console will automatically choose lane 1
+	 * 
+	 */
 	public void swap(int lane){//swaps the next two runners to finish in a specific lane
 		if(lane == 1){
-			if(queue1EndNum < lane1.size()){//at least 2 players active
+			if(queue1EndNum  + 1 < lane1.size()){//at least 2 players active
 				if(lane1.get(queue1EndNum +1).isRunning()){
 					if(lane1.get(queue1EndNum).isRunning()){
 						Player temp = lane1.get(queue1EndNum + 1);
@@ -165,7 +150,7 @@ public class parallelIndependent  extends Event{
 			}
 		}
 		else if( lane == 2){
-			if(queue2EndNum < lane2.size()){//at least 2 players active
+			if(queue2EndNum + 1< lane2.size()){//at least 2 players active
 				if(lane2.get(queue2EndNum + 1).isRunning()){
 					if(lane2.get(queue2EndNum).isRunning()){
 						Player temp = lane2.get(queue2EndNum + 1);
@@ -176,15 +161,9 @@ public class parallelIndependent  extends Event{
 			}
 		}
 	}
-	
-	// not sure we want this anymore might as well remove from ind also
-	public void swap(int ID1, int ID2, int lane){
-		
-	}
-	
 
 	 /**
-		 * sortByTime() Sort method that sort the order by time.
+		 * sortByTime() Sort method that sort the order by endtime.
 		 * @param p - list of players to be sorted
 		 * @return List of sorted players
 		 */
@@ -209,6 +188,10 @@ public class parallelIndependent  extends Event{
 		}
 	};
 	
+	/**
+	 * returns a list of players sorted by their finish time
+	 * @return player list
+	 */
 	public List<Player> getPlayerList(){//returns in order of finish like the raceIndepent did
 		List<Player> printList = sortByFinishTime(players);
 		return printList;
