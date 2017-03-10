@@ -165,9 +165,48 @@ public class ChronotimerTest {
 		pIND.DNF(2);
 		Player tested2 = pIND.getRacer(1);
 		assertTrue(tested2.DNF);
-		
 	}
 	
-
+	@Test
+	public void testCancelIND(){
+		Player canceled = rIND.getRacer(0);
+		rIND.start(0);
+		rIND.cancel();
+		assertFalse(canceled.isRunning());
+	}
+	
+	@Test
+	public void testCancelPARIND(){
+		Player canceled = pIND.getRacer(0);//tests cancel on first player
+		pIND.start(0,1);
+		pIND.cancel();
+		assertFalse(canceled.isRunning());
+		
+		pIND.start(0,1);//tests cancel in separate lanes
+		pIND.start(0,2);
+		Player canceled2 = pIND.getRacer(1);
+		pIND.cancel();
+		assertFalse(canceled2.isRunning());
+		pIND.finish(1);
+		
+		pIND.start(0,1);//test cancel for runners in same lane
+		Player canceled3 = pIND.getRacer(2);
+		pIND.start(0,1);
+		pIND.cancel();
+		assertFalse(canceled3.isRunning());
+	}
+	
+	@Test
+	public void testNoFinishNoRunner(){
+		assertFalse(rIND.finish(0)); //finish when no runners have started
+		assertFalse(pIND.finish(0,1));
+		rIND.start(0);
+		pIND.start(0,1);
+		rIND.finish(1);
+		assertFalse(pIND.finish(1,2));//finish on 2nd lane when there is runner in first
+		assertFalse(rIND.finish(1));//finish after last runner running finished
+		pIND.finish(0,1);
+		assertFalse(pIND.finish(0,1));//finish after last runner running finished parallel
+	}
 
 }
