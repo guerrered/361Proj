@@ -129,7 +129,7 @@ public class Channels implements Subject, Observer{
 		public void connect(String type)
 		{
 		
-			if(this.connect=true)
+			if(this.connect==true)
 			{
 				System.out.println("Channel had been connected");
 			}
@@ -152,7 +152,7 @@ public class Channels implements Subject, Observer{
 		}
 		
 	}
-    
+    /*
     public void Notify()
     {
     	if(sens!=null)
@@ -168,7 +168,7 @@ public class Channels implements Subject, Observer{
     	
     	
     }
-    
+    */
     
     public Sensors getSens()
     {

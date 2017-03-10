@@ -238,5 +238,18 @@ public class ChronotimerTest {
 		assertTrue(rIND.getPlayerList().get(0).ran);
 		assertEquals(rIND.getPlayerList().get(0).getID(),3);
 	}
+	@Test
+	public void SensenTest()
+	{
+		console.Power();
+		console.Connect("eye", 1);
+		Channels chs=console.getChannels();
+		Channel ch=chs.getCh(1);
+		assertTrue(ch.getSens()!=null);
+		assertEquals("eye".toUpperCase(),ch.getSens().getClass().getSimpleName());
+	}
+	
+	
+	
 
 }
