@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,6 +14,7 @@ import org.junit.Test;
 import Chronotimer.Channels;
 import Chronotimer.Channels.Channel;
 import Chronotimer.Console;
+import Chronotimer.ExportObject;
 import Event.*;
 /**
  * 
@@ -330,6 +333,32 @@ public class ChronotimerTest {
 		assertTrue(console.race.getRacer(0).participated());
 		assertTrue(console.race.getRacer(0).ran);
 		assertFalse(console.race.getRacer(1).participated());
+		
+	}
+	
+	@Test
+	public void testLoad() throws IOException{
+		console.Power();
+		console.Connect("pad", 1);
+		console.Connect("pad", 2);
+		console.getChannels().getCh(1).getSens().notifyObserver();
+		console.getChannels().getCh(2).getSens().notifyObserver();
+		
+		
+		File dir = new File("USB");
+		if(dir.exists()){
+			for(File f: dir.listFiles()){
+				f.delete(); 
+			}
+			dir.delete();
+		}
+		console.export();
+		List<ExportObject> eo = new ArrayList<ExportObject>();
+		eo = console.load(1);
+		
+		for(ExportObject exportObject : eo){
+			exportObject.printEO();
+		}
 		
 	}
 	

@@ -1,9 +1,13 @@
 package Chronotimer;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 import com.google.gson.Gson;
@@ -401,34 +405,52 @@ public class Console implements Observer{
 	public void export() throws IOException{
 		//TODO
 		List<Player> p = race.getPlayerList();
+		
 		File file = race.createRaceOutputFile();
 		FileWriter fw = new FileWriter(file);
-		String data;
+		String data="";
 		
 		Gson gson = new Gson();
 		
 		
-		try {
-			for(Player player: p){
-				
-				if(player.ran){
-					System.out.println("j");
-					data = gson.toJson(player.toString());
-					fw.write(data);
-				}
-				
+		for(Player player: p){
+			if(player.ran){
+				//data += toString(player);
+				data = gson.toJson(new ExportObject(time.getTimeFancy(), eventType, player.getID(), timeFormat(player.getTotalTime())));
+				fw.write(data);
 			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
+		//data = gson.toJson(eo);
+		
 		fw.close();
+		
 		
 	}
 	
-	public String toString(Player p){
-		String str=time.getTimeFancy()+" "+eventType+ "\n" + idFormat(p.getID())+ " " + eventType + " " + timeFormat(p.totalTime);
+	public List<ExportObject> load(int raceNumber){
+		List<ExportObject> eo= new ArrayList<>();
+		String str="";
+		File file = new File("USB/RUN"+idFormat(raceNumber)+".txt");
+		try {
+			Scanner read = new Scanner(file);
+			while(read.hasNext()){
+				str+=read.next();
+			}
+			read.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Gson gson = new Gson();
+		eo.add(gson.fromJson(str, ExportObject.class));
 		
+		
+		
+		return eo;
+	}
+	
+	public String toString(Player p){
+		String str=time.getTimeFancy()+"\t"+eventType+ "\n" + idFormat(p.getID())+ "\t" + eventType + "\t" + timeFormat(p.totalTime)+"\n";
 		return str;
 		
 	}
