@@ -406,6 +406,14 @@ public class ChronotimerTest {
 		
 	}
 	
+	@Test
+	public void testClearSavedData() throws IOException{
+		File dir = new File("USB");
+		console.clearSavedData();
+		assertTrue(dir.listFiles().length==0);
+		
+	}
+	
 	
 
 }

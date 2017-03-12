@@ -1,5 +1,4 @@
 package Chronotimer;
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -19,6 +18,7 @@ import Event.*;
  * @author HiddenBit
  *
  */
+
 public class Console implements Observer{
 	public boolean powerState = false;
 	
@@ -126,6 +126,7 @@ public class Console implements Observer{
 			this.race = new RaceIndependent();
 			CurRunOn = true;
 			printer = new Printer();
+			clearSavedData();
 			log.delete();
 			try {
 				log.createNewFile();
@@ -521,6 +522,22 @@ public class Console implements Observer{
 		
 		
 		return eo;
+	}
+	/*
+	 * clears USB folder
+	 * 
+	 * returns success
+	 */
+	public boolean clearSavedData(){
+		File dir = new File("USB");
+		if(dir.exists()){
+			for(File file:dir.listFiles()){
+				file.delete();
+			}
+			return true;
+		}
+		return false;
+		
 	}
 	
 	public String toString(Player p){
