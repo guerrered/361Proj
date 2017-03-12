@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,6 +14,7 @@ import org.junit.Test;
 import Chronotimer.Channels;
 import Chronotimer.Channels.Channel;
 import Chronotimer.Console;
+import Chronotimer.ExportObject;
 import Event.*;
 /**
  * 
@@ -350,7 +353,12 @@ public class ChronotimerTest {
 			dir.delete();
 		}
 		console.export();
-		System.out.println(console.load(1));
+		List<ExportObject> eo = new ArrayList<ExportObject>();
+		eo = console.load(1);
+		
+		for(ExportObject exportObject : eo){
+			exportObject.printEO();
+		}
 		
 	}
 	

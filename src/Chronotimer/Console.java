@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -404,6 +405,7 @@ public class Console implements Observer{
 	public void export() throws IOException{
 		//TODO
 		List<Player> p = race.getPlayerList();
+		
 		File file = race.createRaceOutputFile();
 		FileWriter fw = new FileWriter(file);
 		String data="";
@@ -413,17 +415,20 @@ public class Console implements Observer{
 		
 		for(Player player: p){
 			if(player.ran){
-				data += toString(player);
+				//data += toString(player);
+				data = gson.toJson(new ExportObject(time.getTimeFancy(), eventType, player.getID(), timeFormat(player.getTotalTime())));
+				fw.write(data);
 			}
 		}
-		data = gson.toJson(data);
-		fw.write(data);
+		//data = gson.toJson(eo);
+		
 		fw.close();
 		
 		
 	}
 	
-	public String load(int raceNumber){
+	public List<ExportObject> load(int raceNumber){
+		List<ExportObject> eo= new ArrayList<>();
 		String str="";
 		File file = new File("USB/RUN"+idFormat(raceNumber)+".txt");
 		try {
@@ -437,11 +442,11 @@ public class Console implements Observer{
 			e.printStackTrace();
 		}
 		Gson gson = new Gson();
-		str = gson.fromJson(str, String.class);
+		eo.add(gson.fromJson(str, ExportObject.class));
 		
 		
 		
-		return str;
+		return eo;
 	}
 	
 	public String toString(Player p){
