@@ -338,6 +338,7 @@ public class ChronotimerTest {
 	
 	@Test
 	public void testLoad() throws IOException{
+		File file;
 		console.Power();
 		console.Connect("pad", 1);
 		console.Connect("pad", 2);
@@ -352,9 +353,52 @@ public class ChronotimerTest {
 			}
 			dir.delete();
 		}
-		console.export();
+		file = console.export();
 		List<ExportObject> eo = new ArrayList<ExportObject>();
-		eo = console.load(1);
+		eo = console.load(file);
+		
+		for(ExportObject exportObject : eo){
+			exportObject.printEO();
+		}
+		
+	}
+	@Test
+	public void testLoadMultiple() throws IOException{
+		console.Power();
+		File file;
+		console.Connect("pad", 1);
+		console.Connect("pad", 2);
+		console.getChannels().getCh(1).getSens().notifyObserver();
+		console.getChannels().getCh(2).getSens().notifyObserver();
+		console.getChannels().getCh(1).getSens().notifyObserver();
+		console.getChannels().getCh(2).getSens().notifyObserver();
+		
+		File dir = new File("USB");
+		if(dir.exists()){
+			for(File f: dir.listFiles()){
+				f.delete(); 
+			}
+			dir.delete();
+		}
+		file = console.export();
+		List<ExportObject> eo = new ArrayList<ExportObject>();
+		eo = console.load(file);
+		
+		for(ExportObject exportObject : eo){
+			exportObject.printEO();
+		}
+		
+		console.endRun();
+		console.newRun();
+		console.Connect("pad", 1);
+		console.Connect("pad", 2);
+		console.getChannels().getCh(1).getSens().notifyObserver();
+		console.getChannels().getCh(2).getSens().notifyObserver();
+		console.getChannels().getCh(1).getSens().notifyObserver();
+		console.getChannels().getCh(2).getSens().notifyObserver();
+		
+		file =console.export();
+		eo = console.load(file);
 		
 		for(ExportObject exportObject : eo){
 			exportObject.printEO();

@@ -11,6 +11,7 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import Event.*;
 /**
@@ -472,10 +473,10 @@ public class Console implements Observer{
 	 * @param file - the file that will be written to.
 	 * @throws IOException 
 	 */
-	public void export() throws IOException{
+	public File export() throws IOException{
 		//TODO
 		List<Player> p = race.getPlayerList();
-		
+		List<ExportObject> eo = new ArrayList<>();
 		File file = race.createRaceOutputFile();
 		FileWriter fw = new FileWriter(file);
 		String data="";
@@ -486,21 +487,24 @@ public class Console implements Observer{
 		for(Player player: p){
 			if(player.ran){
 				//data += toString(player);
-				data = gson.toJson(new ExportObject(time.getTimeFancy(), eventType, player.getID(), timeFormat(player.getTotalTime())));
-				fw.write(data);
+				
+				//data = gson.toJson(new ExportObject(time.getTimeFancy(), eventType, player.getID(), timeFormat(player.getTotalTime())));
+				eo.add(new ExportObject(time.getTimeFancy(), eventType, player.getID(), timeFormat(player.getTotalTime())));
+				
 			}
 		}
-		//data = gson.toJson(eo);
-		
+		data = gson.toJson(eo);
+		fw.write(data);
 		fw.close();
+		return file;
 		
 		
 	}
 	
-	public List<ExportObject> load(int raceNumber){
+	public List<ExportObject> load(File file){
 		List<ExportObject> eo= new ArrayList<>();
 		String str="";
-		File file = new File("USB/RUN"+idFormat(raceNumber)+".txt");
+		//File file = new File("USB/RUN"+idFormat(file1)+".txt");
 		try {
 			Scanner read = new Scanner(file);
 			while(read.hasNext()){
@@ -512,7 +516,7 @@ public class Console implements Observer{
 			e.printStackTrace();
 		}
 		Gson gson = new Gson();
-		eo.add(gson.fromJson(str, ExportObject.class));
+		eo = gson.fromJson(str, new TypeToken<ArrayList<ExportObject>>() {}.getType());
 		
 		
 		
