@@ -43,7 +43,7 @@ public class UserInterface {
 	 */
 	public void exit(){
 		System.out.println("Exiting...");
-		System.exit(1);
+		console.exit();
 	}
 	
 	/**
@@ -59,7 +59,7 @@ public class UserInterface {
 			while((currentLine = buff.readLine()) != null){
 				String[] timegetter = currentLine.split("\t");
 				String toExec = currentLine.replaceAll("\t",  " ");
-				console.Time(timegetter[0]);
+				console.time.setTime(timegetter[0]);
 				commandExec(toExec);
 			}
 		}catch(IOException e){
@@ -213,7 +213,7 @@ public class UserInterface {
 			break;
 		case("START"):
 			if(instructions.length == 2){
-				console.Start();
+				console.Trig(1);
 			}
 			else{
 				System.out.println("Too many arguments");
@@ -221,7 +221,7 @@ public class UserInterface {
 			break;
 		case("FINISH"):
 			if(instructions.length == 2){
-				console.Finish();
+				console.Trig(2);
 			}
 			else{
 				System.out.println("Too many arguments");

@@ -24,9 +24,12 @@ public class Console implements Observer{
 	boolean CurRunOn = false;
 	Printer printer;
 	public Event race;
-	Time time;
+	public Time time;
 	Channels channels;
 	String eventType;
+	File log;
+	public FileWriter logWriter;
+	BufferedWriter bw;
 	
 	/**
 	 * instantiates a console with a time class that is counting concurrently to it
@@ -42,6 +45,18 @@ public class Console implements Observer{
 		Runnable r2 = new ChannelListener(channels);
 		Thread listener = new Thread(r2);
 		listener.start();
+		log = new File ("RaceData/log.txt");
+		try{
+			log.createNewFile();
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+		try {
+			logWriter = new FileWriter(log,true);
+			bw = new BufferedWriter(logWriter);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
@@ -75,8 +90,26 @@ public class Console implements Observer{
 			this.race = null;
 			printer = null;
 		}
+		writeToLog("Power");
 	}
 	
+	public void exit(){
+		
+			try {
+				bw.close();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			try {
+				logWriter.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		System.exit(1);
+	}
 	/**
 	 *  Checks if machine is on and resets the time to 0 and creates a brand new race
 	 *  setting the event to "IND" if it had changed also turns 
@@ -92,7 +125,20 @@ public class Console implements Observer{
 			this.race = new RaceIndependent();
 			CurRunOn = true;
 			printer = new Printer();
-			
+			log.delete();
+			try {
+				log.createNewFile();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				logWriter = new FileWriter(log);
+				bw = new BufferedWriter(logWriter);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -104,6 +150,7 @@ public class Console implements Observer{
 		if(onCheck()){
 			this.time.setTime(newTime);
 		}
+		writeToLog("Time " + newTime);
 	}
 	
 	/**
@@ -120,6 +167,8 @@ public class Console implements Observer{
 		else{
 			System.out.println("An event is ongoing end it first.");
 		}
+		
+		writeToLog("Event " + event);
 	}
 	
 	/**
@@ -142,6 +191,8 @@ public class Console implements Observer{
 				System.out.println("End the current run first");
 			}
 		}
+		
+		writeToLog("newrun");
 	}
 	
 	/**
@@ -152,7 +203,7 @@ public class Console implements Observer{
 			this.race = null;
 			CurRunOn=false;
 		}
-		
+		writeToLog("endrun");
 	}
 	/**
 	 * if the machine is on and an event is happening it 
@@ -163,6 +214,7 @@ public class Console implements Observer{
 		if(onCheck() && curRunCheck()){
 			this.race.next(ID1);
 		}
+		writeToLog("Num " + ID1);
 	}
 	
 	/**
@@ -175,6 +227,7 @@ public class Console implements Observer{
 		if(onCheck() && curRunCheck()){
 			this.race.swap(ID1, ID2);
 		}
+		writeToLog("Swap " + ID1 +" "+  ID2);
 	}
 	
 	public void Swap(){
@@ -189,6 +242,7 @@ public class Console implements Observer{
 			}
 			
 		}
+		writeToLog("Swap");
 	}
 	
 
@@ -198,6 +252,7 @@ public class Console implements Observer{
 				this.race.swap(lane);
 			}
 		}
+		writeToLog("Swap " + lane);
 	}
 	
 	/**
@@ -213,15 +268,18 @@ public class Console implements Observer{
 			case("PARIND")://if we just get a swap from the console it will swap the players in the first lane
 				this.race.DNF(1);
 				break;
+			}
 		}
-		}
+		writeToLog("DNF");
 	}
+	
 	public void DNF(int lane){
 		if(onCheck() && curRunCheck()){
 			if(eventType.equals("PARIND")){
 					this.race.DNF(lane);
 			}
 		}
+		writeToLog("DNF " + lane);
 	}
 	/**
 	 * if the machine is on and event is currently happening the runner associated with runnerID 
@@ -232,6 +290,7 @@ public class Console implements Observer{
 		if(onCheck() && curRunCheck()){
 			this.race.remove(runnerID);
 		}
+		writeToLog("Clear " + runnerID);
 	}
 	/**
 	 * if the machine is on and and event is currently happening the last runner to start will 
@@ -241,7 +300,9 @@ public class Console implements Observer{
 		if(onCheck() && curRunCheck()){
 			this.race.cancel();
 		}
+		writeToLog("Cancel");
 	}
+	//might erase
 	public void Cancel(int lane){
 		if(onCheck() && curRunCheck()){
 			if(eventType.equals("PARIND")){
@@ -257,6 +318,7 @@ public class Console implements Observer{
 		if(onCheck() && curRunCheck()){
 			this.printer.print(this.race.getPlayerList(), this.eventType);
 		}
+		writeToLog("Print");
 	}
 	/**
 	 * connects to channel chNum an sensor of type
@@ -267,6 +329,7 @@ public class Console implements Observer{
 		if(onCheck()){
 			channels.connect(type, ChNum);
 		}
+		writeToLog("Connect " + type + " "+ChNum);
 	}
 	/**
 	 * disconnect the sensor at chNum
@@ -276,6 +339,7 @@ public class Console implements Observer{
 		if(onCheck()){
 			channels.disconnect(chNum);
 		}
+		writeToLog("Disconnect " + chNum);
 	}
 	/**
 	 * if on turn the channel chNum off and vice versa
@@ -285,6 +349,7 @@ public class Console implements Observer{
 		if(onCheck()){
 			channels.Tog(chNum);
 		}
+		writeToLog("Tog " + chNum);
 	}
 	
 	/** 
@@ -329,13 +394,17 @@ public class Console implements Observer{
 				}
 			}
 		}
+		writeToLog("Trig " + chNum);
 	}
 	
+	
+	//might remove start and finish and have ui handle that
 	/**
 	 * shorthand for trig 1
 	 */
 	public void Start(){
 		Trig(1);
+		writeToLog("Start");
 	}
 	
 	
@@ -344,6 +413,7 @@ public class Console implements Observer{
 	 */
 	public void Finish(){
 		Trig(2);
+		writeToLog("Finish");
 	}
 	/** 
 	 * 
@@ -481,5 +551,14 @@ public class Console implements Observer{
 	 */
 	public static String idFormat(int num){
 		return String.format("%03d", num);
+	}
+	
+	public void writeToLog(String toLog){
+		try {
+			bw.write(getTimeAsString() + " " + toLog + " \n");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
