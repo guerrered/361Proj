@@ -333,6 +333,27 @@ public class ChronotimerTest {
 		
 	}
 	
+	@Test
+	public void testLoad() throws IOException{
+		console.Power();
+		console.Connect("pad", 1);
+		console.Connect("pad", 2);
+		console.getChannels().getCh(1).getSens().notifyObserver();
+		console.getChannels().getCh(2).getSens().notifyObserver();
+		
+		
+		File dir = new File("USB");
+		if(dir.exists()){
+			for(File f: dir.listFiles()){
+				f.delete(); 
+			}
+			dir.delete();
+		}
+		console.export();
+		System.out.println(console.load(1));
+		
+	}
+	
 	
 
 }

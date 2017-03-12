@@ -1,9 +1,12 @@
 package Chronotimer;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 import com.google.gson.Gson;
@@ -403,32 +406,46 @@ public class Console implements Observer{
 		List<Player> p = race.getPlayerList();
 		File file = race.createRaceOutputFile();
 		FileWriter fw = new FileWriter(file);
-		String data;
+		String data="";
 		
 		Gson gson = new Gson();
 		
 		
-		try {
-			for(Player player: p){
-				
-				if(player.ran){
-					System.out.println("j");
-					data = gson.toJson(player.toString());
-					fw.write(data);
-				}
-				
+		for(Player player: p){
+			if(player.ran){
+				data += toString(player);
 			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
+		data = gson.toJson(data);
+		fw.write(data);
 		fw.close();
+		
 		
 	}
 	
-	public String toString(Player p){
-		String str=time.getTimeFancy()+" "+eventType+ "\n" + idFormat(p.getID())+ " " + eventType + " " + timeFormat(p.totalTime);
+	public String load(int raceNumber){
+		String str="";
+		File file = new File("USB/RUN"+idFormat(raceNumber)+".txt");
+		try {
+			Scanner read = new Scanner(file);
+			while(read.hasNext()){
+				str+=read.next();
+			}
+			read.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Gson gson = new Gson();
+		str = gson.fromJson(str, String.class);
 		
+		
+		
+		return str;
+	}
+	
+	public String toString(Player p){
+		String str=time.getTimeFancy()+"\t"+eventType+ "\n" + idFormat(p.getID())+ "\t" + eventType + "\t" + timeFormat(p.totalTime)+"\n";
 		return str;
 		
 	}
