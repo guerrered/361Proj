@@ -18,7 +18,7 @@ import java.util.*;
  *
  */
 public class Event {
-	public static int fileNumber = 1;
+	public int fileNumber = 1;
 	File curRaceData;
 	List <Player> players = new ArrayList<>(9999);
 	public long clockTime;
@@ -141,6 +141,14 @@ public class Event {
 	 */
 	public File getRaceData(){
 		return curRaceData;
+	}
+	
+	public int getFileNumber(){
+		return fileNumber;
+	}
+	
+	public void setFileNumber(int i){
+		fileNumber = i;
 	}
 	
 	public boolean contains(int id){

@@ -202,6 +202,12 @@ public class Console implements Observer{
 	 */
 	public void endRun(){
 		if(onCheck() && curRunCheck()){//log old race
+			try {
+				export();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			this.race = null;
 			CurRunOn=false;
 		}
@@ -493,6 +499,12 @@ public class Console implements Observer{
 				eo.add(new ExportObject(time.getTimeFancy(), eventType, player.getID(), timeFormat(player.getTotalTime())));
 				
 			}
+		}
+		
+		if(eo.size()==0){
+			race.setFileNumber(race.getFileNumber()-1);
+			fw.close();
+			return null;
 		}
 		data = gson.toJson(eo);
 		fw.write(data);

@@ -414,6 +414,19 @@ public class ChronotimerTest {
 		
 	}
 	
+	@Test
+	public void testBlankRun(){
+		if(!console.powerState){
+			console.Power();
+		}
+		console.newRun();
+		console.endRun();
+		
+		assertEquals(rIND.fileNumber,1);
+		
+		
+	}
+	
 	
 
 }
