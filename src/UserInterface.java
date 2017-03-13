@@ -3,6 +3,7 @@ import java.util.*;
 import Chronotimer.*;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 /**
@@ -27,6 +28,12 @@ public class UserInterface {
 		if(choice.equalsIgnoreCase("f")){
 			System.out.println("Enter the name of the input file");
 			String fileName = scan.nextLine();
+			File nameChecker  = new File(fileName);
+			while(!nameChecker.exists()){
+				System.out.println("Enter the name of the input file");
+				fileName = scan.nextLine();
+				nameChecker = new File(fileName);
+			}
 			scan.close();
 			console = new Console();
 			readFromFile(fileName);	
@@ -109,11 +116,16 @@ public class UserInterface {
 				console.Reset();
 			}
 			else{
-			System.out.println("Too many arguments");
+				System.out.println("Too many arguments");
 			}
 			break;
 		case("EXIT"):
-			this.exit();
+			if(instructions.length == 2){
+				this.exit();
+			}
+			else{
+				System.out.println("Too many arguments");
+			}
 			break;
 		case("TIME"):
 			if(instructions.length != 3){
@@ -124,13 +136,23 @@ public class UserInterface {
 			}
 			break;
 		case("NEWRUN"):
-			console.newRun();
+			if(instructions.length == 2){
+				console.newRun();
+			}
+			else{	
+				System.out.println("too Many Arguments");
+			}
 			break;
 		case("ENDRUN"):
-			console.endRun();
+			if(instructions.length ==2){
+				console.endRun();
+			}
+			else{
+				System.out.println("Too many Arguments");
+			}
 			break;
 		case("NUM"):
-			if(instructions.length < 3){
+			if(instructions.length != 3){
 				System.out.println("Enter a runnerId with NUM command");
 			}
 			else{
@@ -141,7 +163,7 @@ public class UserInterface {
 			if(instructions.length  == 4 ){//if extra arguments contained then they are the swap places
 				console.Swap(Integer.parseInt(instructions[2]), Integer.parseInt(instructions[3]));
 			}
-			else if(instructions.length == 3)
+			else if(instructions.length == 3)//swaps at lane
 				console.Swap(Integer.parseInt(instructions[2]));
 			else if(instructions.length == 2){
 				console.Swap();
@@ -176,16 +198,29 @@ public class UserInterface {
 			else if(instructions.length == 3){
 				console.Cancel(Integer.parseInt(instructions[2]));
 			}
+			else{
+				System.out.println("too many arguments");
+			}
 			break;
 		case("PRINT"):
-			console.Print();
+			if(instructions.length == 2){
+				console.Print();
+			}
+			else{
+				System.out.println("Too many argunments");
+			}
 			break;
 		case("EXPORT"):
-			try {
-				console.export();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			if(instructions.length == 2){
+				try {
+					console.export();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			else{
+				System.out.println("too Many arguments");
 			}
 			break;
 		case("CONN"):

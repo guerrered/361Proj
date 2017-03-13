@@ -471,7 +471,9 @@ public class ChronotimerTest {
 	@Test
 	public void testChangeEventCurrentRun(){
 		console.Power();
-		assertFalse(console.Event("PARIND"));
+		assertFalse(console.Event("PARIND"));//cant change event
+		assertTrue(console.endRun());
+		assertTrue(console.Event("PARIND"));//event changes
 	}
 	
 	@Test
@@ -482,8 +484,8 @@ public class ChronotimerTest {
 	@Test
 	public void testEndRun(){
 		console.Power();
-		assertTrue(console.endRun());
-		assertFalse(console.endRun());
+		assertTrue(console.endRun()); 
+		assertFalse(console.endRun());//cant end run if no run
 	}
 	
 	@Test
@@ -491,7 +493,7 @@ public class ChronotimerTest {
 		console.Power();
 		assertTrue(console.Reset());
 		console.Power();
-		assertFalse(console.Reset());
+		assertFalse(console.Reset());//cant reset if power off
 	}
 	
 	@Test
@@ -500,12 +502,12 @@ public class ChronotimerTest {
 		for(int i = 1; i <= 8 ; i++){//channel on
 			assertTrue(console.Tog(i));
 		}
-		for(int i = 1; i <= 8 ; i++){//channel on
+		for(int i = 1; i <= 8 ; i++){//channels off
 			assertFalse(console.Tog(i));
 		}
 	}
 	@Test
-	public void testTrigger(){
+	public void testTriggerChannelONOFF(){
 		console.Power();
 		for(int i = 1; i <= 8 ; i++){//channel on
 			console.Tog(i);
@@ -519,6 +521,25 @@ public class ChronotimerTest {
 		for(int i = 1; i <= 8; i++){
 			assertFalse(console.Trig(i));
 		}	
+	}
+	
+	@Test
+	public void testTriggerNoRun(){
+		console.Power();
+		console.endRun();
+		for(int i = 1; i <= 8 ; i++){//channel on
+			console.Tog(i);
+		}
+		for(int i = 1; i <= 8; i++){
+			assertFalse(console.Trig(i)); //no race nothing to receive trigger signal
+		}
+	}
+	
+	@Test
+	public void testTrigPowerOFF(){
+		for(int i = 1; i <= 8; i++){
+			assertFalse(console.Trig(i)); //console off no trigger heard
+		}
 	}
 	
 

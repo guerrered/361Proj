@@ -41,6 +41,7 @@ public class Player {
 	 */
 	public void start(long time){
 		this.running = true;
+		this.cancel = false; 
 		this.startTime = time;
 	}
 
@@ -74,7 +75,7 @@ public class Player {
 	 */
 	public void cancel(){
 		this.running = false;
-		togCancel();
+		this.cancel = true;
 		startTime = endTime = totalTime = 0;
 	}
 	/**

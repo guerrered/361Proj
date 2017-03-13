@@ -75,7 +75,7 @@ public class Console implements Observer{
 	public boolean Power(){
 		if(powerState)
 		{
-			for(int i = 1; i < 8; i++){
+			for(int i = 1; i <= 8; i++){
 				Disconnect(i);
 				}
 		}
