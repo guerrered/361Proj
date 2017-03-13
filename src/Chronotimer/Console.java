@@ -72,7 +72,7 @@ public class Console implements Observer{
 	 *  and turn the printer off. else it states event is happening in case of accidental shutdown</p>
 	 * 
 	 */
-	public void Power(){
+	public boolean Power(){
 		if(powerState)
 		{
 			for(int i = 1; i < 8; i++){
@@ -93,11 +93,11 @@ public class Console implements Observer{
 			printer = null;
 		}
 		writeToLog("Power");
+		return powerState;
 		
 	}
 	
 	public void exit(){
-		
 			try {
 				bw.close();
 			} catch (IOException e1) {
@@ -117,7 +117,7 @@ public class Console implements Observer{
 	 *  Checks if machine is on and resets the time to 0 and creates a brand new race
 	 *  setting the event to "IND" if it had changed also turns 
 	 */
-	public void Reset(){
+	public boolean Reset(){
 		//start everything over
 		if(onCheck()){
 			time.setTime("0:0:0.0");
@@ -144,7 +144,9 @@ public class Console implements Observer{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			return true;
 		}
+		return false;
 	}
 
 	/**
@@ -163,23 +165,25 @@ public class Console implements Observer{
 	 * type of event to event otherwise it asks the user to end the current event
 	 * @param event
 	 */
-	public void Event(String event){
+	public boolean Event(String event){
+		writeToLog("Event " + event);
 		if(onCheck() && !curRunCheck()){
 			this.eventType = event;
 			//new event need to be created
 			System.out.println("Event has changed to "+ event);
+			return true;
 		}
 		else{
 			System.out.println("An event is ongoing end it first.");
+			return false;
 		}
-		
-		writeToLog("Event " + event);
 	}
 	
 	/**
 	 * if the machine is on and there isnt an event currently it creates a new event of eventType 
 	 */
-	public void newRun(){
+	public boolean newRun(){
+		writeToLog("newrun");
 		if(onCheck()){
 			if(!curRunCheck()){
 				CurRunOn = true;		
@@ -191,19 +195,21 @@ public class Console implements Observer{
 						this.race = new parallelIndependent();
 						break;
 				}
+				return true;
 			}
 			else{
 				System.out.println("End the current run first");
+				return false;
 			}
 		}
-		
-		writeToLog("newrun");
+		return false;
 	}
 	
 	/**
 	 * if the machine is on and there is an event currently running it ends it
 	 */
-	public void endRun(){
+	public boolean endRun(){
+		writeToLog("endrun");
 		if(onCheck() && curRunCheck()){//log old race
 			try {
 				export();
@@ -213,8 +219,9 @@ public class Console implements Observer{
 			}
 			this.race = null;
 			CurRunOn=false;
+			return true;
 		}
-		writeToLog("endrun");
+		return false;
 	}
 	/**
 	 * if the machine is on and an event is happening it 
@@ -356,11 +363,12 @@ public class Console implements Observer{
 	 * if on turn the channel chNum off and vice versa
 	 * @param chNum
 	 */
-	public void Tog(int chNum){
+	public boolean Tog(int chNum){
+		writeToLog("Tog " + chNum);
 		if(onCheck()){
 			channels.Tog(chNum);
 		}
-		writeToLog("Tog " + chNum);
+		return channels.getCh(chNum).connect;
 	}
 	
 	/** 
@@ -369,7 +377,8 @@ public class Console implements Observer{
 	 * trig 2 will end the current runner
 	 * @param chNum
 	 */
-	public void Trig(int chNum){
+	public boolean Trig(int chNum){
+		writeToLog("Trig " + chNum);
 		if(onCheck() && curRunCheck()){	
 			if(channels.getCh(chNum).connected()){
 				switch(eventType){
@@ -403,9 +412,12 @@ public class Console implements Observer{
 							System.out.println("Not a Channel");
 					}
 				}
+				return true;
 			}
+			return false;
 		}
-		writeToLog("Trig " + chNum);
+		return false;
+		
 	}
 	
 	public long getTime(){

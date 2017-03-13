@@ -43,7 +43,7 @@ public class ChronotimerTest {
 		 * From Sprint0 document:
 		 *The default type of competition is IND.
 		 *The default run number is	1.
-         *Channels default to �disarmed� on	power up
+         *Channels default to ���disarmed��� on	power up
 		 */
 		assertFalse(console.powerState);
 		//turn on console
@@ -429,6 +429,11 @@ public class ChronotimerTest {
 	}
 	
 	@Test
+	public void testAddNewRunCurrentRun(){
+		console.Power();
+		assertFalse(console.newRun());//cant create new run while current is on
+	}
+	@Test
 	public void testExportEventCodes(){
 		if(!console.powerState){
 			console.Power();
@@ -463,6 +468,58 @@ public class ChronotimerTest {
 		
 	}
 	
+	@Test
+	public void testChangeEventCurrentRun(){
+		console.Power();
+		assertFalse(console.Event("PARIND"));
+	}
+	
+	@Test
+	public void testChangePowerState(){
+		assertTrue(console.Power());
+		assertFalse(console.Power());
+	}
+	@Test
+	public void testEndRun(){
+		console.Power();
+		assertTrue(console.endRun());
+		assertFalse(console.endRun());
+	}
+	
+	@Test
+	public void testReset(){
+		console.Power();
+		assertTrue(console.Reset());
+		console.Power();
+		assertFalse(console.Reset());
+	}
+	
+	@Test
+	public void testTog(){
+		console.Power();
+		for(int i = 1; i <= 8 ; i++){//channel on
+			assertTrue(console.Tog(i));
+		}
+		for(int i = 1; i <= 8 ; i++){//channel on
+			assertFalse(console.Tog(i));
+		}
+	}
+	@Test
+	public void testTrigger(){
+		console.Power();
+		for(int i = 1; i <= 8 ; i++){//channel on
+			console.Tog(i);
+		}
+		for(int i = 1; i <= 8; i++){
+			assertTrue(console.Trig(i));
+		}
+		for(int i = 1; i <= 8 ; i++){//channel off
+			console.Tog(i);
+		}
+		for(int i = 1; i <= 8; i++){
+			assertFalse(console.Trig(i));
+		}	
+	}
 	
 
 }
