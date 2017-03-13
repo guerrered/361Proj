@@ -18,7 +18,7 @@ import java.util.*;
  *
  */
 public class Event {
-	public int fileNumber = 1;
+	public static int fileNumber = 1;
 	File curRaceData;
 	List <Player> players = new ArrayList<>(9999);
 	public long clockTime;

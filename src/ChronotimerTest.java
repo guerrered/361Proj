@@ -418,11 +418,12 @@ public class ChronotimerTest {
 	public void testBlankRun(){
 		if(!console.powerState){
 			console.Power();
+			console.Reset();
 		}
 		console.newRun();
 		console.endRun();
 		
-		assertEquals(rIND.fileNumber,1);
+		assertEquals(Event.fileNumber,1);
 		
 		
 	}

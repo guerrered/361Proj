@@ -124,6 +124,7 @@ public class Console implements Observer{
 			}
 			eventType = "IND";//default type of event;
 			this.race = new RaceIndependent();
+			race.setFileNumber(1);
 			CurRunOn = true;
 			printer = new Printer();
 			clearSavedData();
