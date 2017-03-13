@@ -10,16 +10,15 @@ import Chronotimer.Observer;
 
 
 public class PAD extends Sensors {
-boolean trigState;
-int ChannelNum;
+
 Observer obs;
 /**
  * Constructor for linking channel number to sensor
  *
  */
-public PAD(int num)
+public PAD()
 {
-	this.ChannelNum=num;
+
 
 }
 
@@ -34,7 +33,7 @@ public void unarmed(){
 	}
 	else{
 	armed=false;
-	this.ChannelNum=-1;
+
 	}
 }
 
@@ -45,10 +44,7 @@ public void notifyObserver(){
 	obs.update(1);
 }
 
-public void trigStateReset()
-{
-	trigState=false;
-}
+
 
 /**
  * Method that armed the sensor on the channel 
@@ -66,10 +62,7 @@ public void armed()
 	}
 }
 
-public boolean trigState()
-{
-	  return trigState;
-}
+
 
 
 /**
@@ -81,7 +74,7 @@ public boolean trig()
 {
 	notifyObserver();
 	
-	return trigState=!trigState;
+	return true;
 }
 
 	

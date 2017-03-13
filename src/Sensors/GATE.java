@@ -12,31 +12,26 @@ import Chronotimer.Observer;
  *
  */
 public class GATE extends Sensors{
-public boolean trigState;
-int ChannelNum;	
+	
 Observer obs;
 
 /**
  * Constructor for linking channel number to sensor
  *
  */
-public GATE(int num)
+public GATE()
 {
-	this.ChannelNum=num;
+	
 	
 }
 public void register(Observer o){
 	obs = o;
 }
 public void notifyObserver(){
-	obs.update(ChannelNum);
+	obs.update(1);
 }
 
 
-public void trigStateReset()
-{
-	trigState=false;
-}
 
 /**
  * Method that unarmed the sensor on the channel 
@@ -49,7 +44,6 @@ public void unarmed(){
 	}
 	else{
 	armed=true;
-	ChannelNum=-1;
 	}
 }
 
@@ -69,12 +63,6 @@ public void armed()
 	}
 }
 
-public boolean trigState()
-{
-	  return trigState;
-}
-
-
 
 /**
  * Method that will trig the channel, it will be implement in spring 2 
@@ -86,7 +74,7 @@ public boolean trigState()
 	{
 		notifyObserver();
 		
-		return trigState=!trigState;
+		return true;
 	}
 	
 	

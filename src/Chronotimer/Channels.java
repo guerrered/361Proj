@@ -17,7 +17,6 @@ public class Channels implements Subject, Observer{
 		int Triggered = -1;
 		
 		public void update(int chNum){
-			System.out.println("trigger heard");
 			Triggered = chNum;
 			notifyObserver();
 		}
@@ -27,7 +26,6 @@ public class Channels implements Subject, Observer{
 		}
 		
 		public void notifyObserver(){
-			System.out.println("triggering ch");
 			cons.update(Triggered);
 			Triggered = -1;
 		}
@@ -145,13 +143,13 @@ public class Channels implements Subject, Observer{
 				switch(type.toUpperCase())
 				{
 					case("EYE"):
-						sens=new EYE(this.ChNum);
+						sens=new EYE();
 						break;
 					case("GATE"):
-						sens=new GATE(this.ChNum);
+						sens=new GATE();
 						break;
 					case("PAD"):
-						sens=new PAD(this.ChNum);
+						sens=new PAD();
 						break;
 					default:
 						throw new IllegalArgumentException();

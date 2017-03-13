@@ -17,9 +17,7 @@ public abstract class Sensors implements Subject {
 	
 	public abstract void unarmed();
 	public abstract void armed();
-	public abstract boolean trigState();
-	public abstract void trigStateReset();
-	
+
 }
 	
 

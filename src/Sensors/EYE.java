@@ -12,17 +12,16 @@ import Chronotimer.Observer;
  *
  */
 public class EYE extends Sensors{
-boolean trigState;
-	int ChannelNum;
+
 	Observer obs;
 
 	/**
 	 * Constructor for linking channel number to sensor
 	 *
 	 */
-public EYE(int num)
+public EYE()
 {
-	this.ChannelNum=num;
+
 	
 }
 
@@ -57,19 +56,11 @@ public void register(Observer o){
 	obs = o;
 }
 public void notifyObserver(){
-	System.out.println(obs.toString());
+
 	obs.update(1);
 }
 
-public void trigStateReset()
-{
-	trigState=false;
-}
 
-public boolean trigState()
-{
-	  return trigState;
-}
 
 /**
  * Method that will trig the channel, it will be implement in spring 2 
@@ -78,7 +69,7 @@ public boolean trigState()
 public boolean trig()
 {
 	notifyObserver();
-	return trigState=!trigState;//return not needed?
+	return true;//return not needed?
 		
 }
 	
