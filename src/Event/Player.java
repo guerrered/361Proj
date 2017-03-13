@@ -17,6 +17,7 @@ public class Player {
 	public boolean DNF = false;
 	public boolean ran = false;
 	public boolean running = false;
+	public boolean cancel =false;
 	
 	/**
 	 * Method that return player ID.
@@ -73,6 +74,7 @@ public class Player {
 	 */
 	public void cancel(){
 		this.running = false;
+		togCancel();
 		startTime = endTime = totalTime = 0;
 	}
 	/**
@@ -112,5 +114,13 @@ public class Player {
 	 */
 	public boolean isRunning(){
 		return running;
+	}
+	
+	/*
+	 * setter for boolean cancel
+	 */
+	public boolean togCancel(){
+		cancel=!cancel;
+		return cancel;
 	}
 }

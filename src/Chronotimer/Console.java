@@ -473,11 +473,19 @@ public class Console implements Observer{
 		
 		
 		for(Player player: p){
-			if(player.ran){
-				//data += toString(player);
-				
-				//data = gson.toJson(new ExportObject(time.getTimeFancy(), eventType, player.getID(), timeFormat(player.getTotalTime())));
-				eo.add(new ExportObject(time.getTimeFancy(), eventType, player.getID(), timeFormat(player.getTotalTime())));
+			if(player.participated()||player.cancel||player.running){
+				if(player.DNF){
+					eo.add(new ExportObject(time.getTimeFancy(), eventType, idFormat(player.getID()),"DNF" ,""));	
+				}
+				else if(player.isRunning()){
+					eo.add(new ExportObject(time.getTimeFancy(), eventType, idFormat(player.getID()),"TRIG", ""));
+				}
+				else if(player.cancel){
+					eo.add(new ExportObject(time.getTimeFancy(), eventType, idFormat(player.getID()),"CANCEL", ""));
+				}
+				else{
+					eo.add(new ExportObject(time.getTimeFancy(), eventType, idFormat(player.getID()),"ELAPSED", timeFormat(player.getTotalTime())));
+				}
 				
 			}
 		}

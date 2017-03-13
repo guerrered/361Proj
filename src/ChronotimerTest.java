@@ -428,6 +428,41 @@ public class ChronotimerTest {
 		
 	}
 	
+	@Test
+	public void testExportEventCodes(){
+		if(!console.powerState){
+			console.Power();
+			console.Reset();
+		}
+		console.newRun();
+		console.Connect("pad", 1);
+		console.Connect("pad", 2);
+		
+		//first runs normally
+		console.getChannels().getCh(1).getSens().notifyObserver();
+		console.getChannels().getCh(2).getSens().notifyObserver();
+		
+		//DNF
+		console.getChannels().getCh(1).getSens().notifyObserver();
+		console.DNF();
+		
+		//In progress
+		console.getChannels().getCh(1).getSens().notifyObserver();
+		
+		
+		//cancelled run
+		console.getChannels().getCh(1).getSens().notifyObserver();
+		console.Cancel();
+		
+		
+		
+		console.endRun();
+		
+
+		
+		
+	}
+	
 	
 
 }
