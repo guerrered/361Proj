@@ -30,7 +30,7 @@ public class Console implements Observer{
 	String eventType;
 	File log;
 	public FileWriter logWriter;
-	BufferedWriter bw;
+	BufferedWriter bufferedLogWrite;
 	
 	/**
 	 * instantiates a console with a time class that is counting concurrently to it
@@ -51,7 +51,7 @@ public class Console implements Observer{
 		}
 		try {
 			logWriter = new FileWriter(log,true);
-			bw = new BufferedWriter(logWriter);
+			bufferedLogWrite = new BufferedWriter(logWriter);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -99,7 +99,7 @@ public class Console implements Observer{
 	
 	public void exit(){
 			try {
-				bw.close();
+				bufferedLogWrite.close();
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -139,7 +139,7 @@ public class Console implements Observer{
 			}
 			try {
 				logWriter = new FileWriter(log);
-				bw = new BufferedWriter(logWriter);
+				bufferedLogWrite = new BufferedWriter(logWriter);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -166,25 +166,28 @@ public class Console implements Observer{
 	 * @param event
 	 */
 	public boolean Event(String event){
-		writeToLog("Event " + event);
-		if(onCheck() && !curRunCheck()){
-			this.eventType = event;
-			//new event need to be created
-			System.out.println("Event has changed to "+ event);
-			return true;
+		if(onCheck()){
+			writeToLog("Event " + event);
+			if(!curRunCheck()){
+				this.eventType = event;
+				//new event need to be created
+				System.out.println("Event has changed to "+ event);
+				return true;
+			}
+			else{
+				System.out.println("An event is ongoing end it first.");
+				return false;
+			}
 		}
-		else{
-			System.out.println("An event is ongoing end it first.");
-			return false;
-		}
+		return false;
 	}
 	
 	/**
 	 * if the machine is on and there isnt an event currently it creates a new event of eventType 
 	 */
 	public boolean newRun(){
-		writeToLog("newrun");
 		if(onCheck()){
+			writeToLog("newrun");
 			if(!curRunCheck()){
 				CurRunOn = true;		
 				switch(eventType){//creates different types of races 
@@ -209,17 +212,19 @@ public class Console implements Observer{
 	 * if the machine is on and there is an event currently running it ends it
 	 */
 	public boolean endRun(){
-		writeToLog("endrun");
-		if(onCheck() && curRunCheck()){//log old race
-			try {
-				export();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		if(onCheck()){//log old race
+			writeToLog("endrun");
+			if(curRunCheck()){
+				try {
+					export();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				this.race = null;
+				CurRunOn=false;
+				return true;
 			}
-			this.race = null;
-			CurRunOn=false;
-			return true;
 		}
 		return false;
 	}
@@ -364,11 +369,13 @@ public class Console implements Observer{
 	 * @param chNum
 	 */
 	public boolean Tog(int chNum){
-		writeToLog("Tog " + chNum);
 		if(onCheck()){
+			writeToLog("Tog " + chNum);
 			channels.Tog(chNum);
-		}
-		return channels.getCh(chNum).connect;
+			return channels.getCh(chNum).connect; //true or false depending on channel state
+		}										 // For testing purposes
+		return false;//failed cause off
+		
 	}
 	
 	/** 
@@ -378,46 +385,48 @@ public class Console implements Observer{
 	 * @param chNum
 	 */
 	public boolean Trig(int chNum){
-		writeToLog("Trig " + chNum);
-		if(onCheck() && curRunCheck()){	
-			if(channels.getCh(chNum).connected()){
-				switch(eventType){
-				case("IND"):
-					switch(chNum){
-						case(1):
-							race.start(this.time.getTime());
+		if(onCheck()){	
+			writeToLog("Trig " + chNum);
+			if(curRunCheck()){
+				if(channels.getCh(chNum).connected()){
+					switch(eventType){
+						case("IND"):
+							switch(chNum){
+								case(1):
+									race.start(this.time.getTime());
+									break;
+								case(2):
+									race.finish(this.time.getTime());
+									break;
+								default:
+									System.out.println("Not a Channel");
+							}
 							break;
-						case(2):
-							race.finish(this.time.getTime());
-							break;
-						default:
-							System.out.println("Not a Channel");
+						case("PARIND"):
+							switch(chNum){
+								case(1):
+									race.start(this.time.getTime(),1);//lane 1
+									break;
+								case(2):
+									race.finish(this.time.getTime(),1);
+									break;
+								case(3):
+									race.start(this.time.getTime(),2);//lane 2
+									break;
+								case(4):
+									race.finish(this.time.getTime(),2);
+									break;
+								default:
+									System.out.println("Not a Channel");
+							}
+						}
+						return true;
 					}
-					break;
-				case("PARIND"):
-					switch(chNum){
-						case(1):
-							race.start(this.time.getTime(),1);//lane 1
-							break;
-						case(2):
-							race.finish(this.time.getTime(),1);
-							break;
-						case(3):
-							race.start(this.time.getTime(),2);//lane 2
-							break;
-						case(4):
-							race.finish(this.time.getTime(),2);
-							break;
-						default:
-							System.out.println("Not a Channel");
-					}
+					return false;
 				}
-				return true;
+				return false;
 			}
 			return false;
-		}
-		return false;
-		
 	}
 	
 	public long getTime(){
@@ -589,7 +598,7 @@ public class Console implements Observer{
 	
 	public void writeToLog(String toLog){
 		try {
-			bw.write(getTimeAsString() + " " + toLog + " \n");
+			bufferedLogWrite.write(getTimeAsString() + " " + toLog + " \n");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

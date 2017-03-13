@@ -123,7 +123,6 @@ public class Channels implements Subject, Observer{
 			this.connect=connect;
 		}
 		public void Trig(){
-			System.out.println("Triggering");
 			notifyObserver();
 		}
 		/**
