@@ -43,9 +43,6 @@ public class Console implements Observer{
 		Runnable r1 = new runnableTimer(time);
 		Thread timer = new Thread(r1);
 		timer.start();
-		Runnable r2 = new ChannelListener(channels);
-		Thread listener = new Thread(r2);
-		listener.start();
 		log = new File ("RaceData/log.txt");
 		try{
 			log.createNewFile();
@@ -76,15 +73,19 @@ public class Console implements Observer{
 	 * 
 	 */
 	public void Power(){
+		if(powerState)
+		{
+			for(int i = 1; i < 8; i++){
+				Disconnect(i);
+				}
+		}
 		powerState = !powerState;
 		if(powerState == true){
 			this.eventType = "IND";//default
 			this.race = new RaceIndependent();//default
 			CurRunOn = true;
 			printer = new Printer();
-			for(int i = 1; i < 8; i++){
-			channels.getCh(i).removeSens();;
-			}
+			
 		}
 		else{
 			//save race contents first
@@ -92,6 +93,7 @@ public class Console implements Observer{
 			printer = null;
 		}
 		writeToLog("Power");
+		
 	}
 	
 	public void exit(){
@@ -406,28 +408,6 @@ public class Console implements Observer{
 		writeToLog("Trig " + chNum);
 	}
 	
-	
-	//might remove start and finish and have ui handle that
-	/**
-	 * shorthand for trig 1
-	 */
-	public void Start(){
-		Trig(1);
-		writeToLog("Start");
-	}
-	
-	
-	/** 
-	 * shorthand for trig 2
-	 */
-	public void Finish(){
-		Trig(2);
-		writeToLog("Finish");
-	}
-	/** 
-	 * 
-	 * @return the time currently read by the console
-	 */
 	public long getTime(){
 		return time.getTime();
 	}

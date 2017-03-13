@@ -71,6 +71,7 @@ public class Channels implements Subject, Observer{
 	 
 	 public void disconnect(int num){
 		 Channels[num - 1].disconnect();
+		 Channels[num - 1].removeSens();
 	 }
 	 /**
 		 * Return Channel base on the channel number as input
