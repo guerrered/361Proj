@@ -553,5 +553,38 @@ public class ChronotimerTest {
 		}
 	}
 	
+	@Test
+	public void testSensorHandleInorderTriger()
+	{
+		console.Power();
+		console.Connect("eye", 1);
+		console.Connect("eye", 2);
+		console.getChannels().getCh(2).getSens().notifyObserver();
+		assertFalse(console.race.getPlayerList().get(0).ran);
+		
+	}
+	
+	@Test
+	public void testSensorHandleInorderTrigerPar()
+	{
+		console.Power();
+		console.endRun();
+		console.Event("PARIND");
+		console.Connect("pad", 1);
+		console.Connect("pad", 2);
+		console.Connect("gate", 3);
+		console.Connect("gate", 4);
+		console.newRun();
+		assertFalse(console.race.getPlayerList().get(0).participated());
+		assertFalse(console.race.getPlayerList().get(1).participated());
+		console.getChannels().getCh(2).getSens().notifyObserver();
+		console.getChannels().getCh(4).getSens().notifyObserver();
+		assertFalse(console.race.getRacer(0).participated());
+		assertFalse(console.race.getRacer(0).ran);
+		assertFalse(console.race.getRacer(1).participated());
+		
+	}
+	
+	
 
 }
