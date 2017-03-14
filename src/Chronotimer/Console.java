@@ -58,9 +58,10 @@ public class Console implements Observer{
 	}
 	
 	
-	
-	
-	
+	/**
+	 *  Method that implement from Observer class that to trigger channels
+	 *  
+	 */
 	public void update(int ChNum){
 		Trig(ChNum);
 	}
@@ -97,6 +98,10 @@ public class Console implements Observer{
 		
 	}
 	
+	/**
+	 *  
+	 *  
+	 */
 	public void exit(){
 			try {
 				bufferedLogWrite.close();
@@ -253,6 +258,10 @@ public class Console implements Observer{
 		writeToLog("Swap " + ID1 +" "+  ID2);
 	}
 	
+	/**
+	 *  Method that swap the first two runner
+	 *  
+	 */
 	public void Swap(){
 		if(onCheck() && curRunCheck()){
 			switch(eventType){
@@ -269,6 +278,10 @@ public class Console implements Observer{
 	}
 	
 
+	/**
+	 *  Method that swaps the next two runners to finish in a specific lane
+	 *  
+	 */
 	public void Swap(int lane){
 		if(onCheck() && curRunCheck()){
 			if(eventType.equals("PARIND")){///check so it does not call event that is not parallel
@@ -296,6 +309,10 @@ public class Console implements Observer{
 		writeToLog("DNF");
 	}
 	
+	/**
+	 *  Method that sets the next runner to finish in a specific lane as DNF 
+	 *  
+	 */
 	public void DNF(int lane){
 		if(onCheck() && curRunCheck()){
 			if(eventType.equals("PARIND")){
@@ -429,10 +446,18 @@ public class Console implements Observer{
 			return false;
 	}
 	
+	/**
+	 * method that return time in long format
+	 * 
+	 */
 	public long getTime(){
 		return time.getTime();
 	}
 	
+	/**
+	 * method that return time in String format
+	 * 
+	 */
 	public String getTimeAsString(){
 		return time.getTimeFancy();
 	}
@@ -524,6 +549,10 @@ public class Console implements Observer{
 		
 	}
 	
+	/**
+	 * method that load file of a form of Json and set it back to Gson and return it
+	 * 
+	 */
 	public List<ExportObject> load(File file){
 		List<ExportObject> eo= new ArrayList<>();
 		String str="";
@@ -562,6 +591,10 @@ public class Console implements Observer{
 		
 	}
 	
+	/**
+	 * method that return string in certain format
+	 * 
+	 */
 	public String toString(Player p){
 		String str=time.getTimeFancy()+"\t"+eventType+ "\n" + idFormat(p.getID())+ "\t" + eventType + "\t" + timeFormat(p.totalTime)+"\n";
 		return str;
@@ -596,6 +629,10 @@ public class Console implements Observer{
 		return String.format("%03d", num);
 	}
 	
+	/**
+	 * 
+	 * 
+	 */
 	public void writeToLog(String toLog){
 		try {
 			bufferedLogWrite.write(getTimeAsString() + " " + toLog + " \n");

@@ -170,6 +170,11 @@ public class parallelIndependent  extends Event{
 			}
 		}
 	}
+	
+
+	/**
+	 * Method that return Player based on ID number
+	 */
 	public Player getRacer(int ID){
 		return players.get(ID);
 	}

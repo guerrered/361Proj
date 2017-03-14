@@ -15,6 +15,9 @@ public class runnableTimer implements Runnable{
 		this.timer = t;
 	}
 	
+	/**
+	 * Execute timer
+	 */
 	public void run(){
 		timer.count();
 	}

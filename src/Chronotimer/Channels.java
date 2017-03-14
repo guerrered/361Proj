@@ -16,20 +16,38 @@ public class Channels implements Subject, Observer{
 		Observer cons;
 		int Triggered = -1;
 		
+		/**
+		 * method that notifyObserver to do some action
+		 * 
+		 */
 		public void update(int chNum){
 			Triggered = chNum;
 			notifyObserver();
 		}
 		
+		/**
+		 * method that register Observer for observing 
+		 * 
+		 */
 		public void register(Observer o){
 			cons = o;
 		}
 		
+
+		/**
+		 * method that notifyObserver and do action
+		 * 
+		 */
 		public void notifyObserver(){
 			cons.update(Triggered);
 			Triggered = -1;
 		}
 		
+
+		/**
+		 * Constructor 
+		 * 
+		 */
 		public Channels()  
 		{
 
@@ -67,6 +85,11 @@ public class Channels implements Subject, Observer{
 		 
 	 }
 	 
+
+		/**
+		 * method that disconnect channel and sensors based on the channel number
+		 * 
+		 */
 	 public void disconnect(int num){
 		 Channels[num - 1].disconnect();
 		 Channels[num - 1].removeSens();
@@ -102,12 +125,27 @@ public class Channels implements Subject, Observer{
 		public int ChNum;
 		Observer obs;
 		
+
+		/**
+		 * method that action  
+		 * 
+		 */
 		public void update(int ChNum){
 			Trig();
 		}
+
+		/**
+		 * method that register Observer for observing 
+		 * 
+		 */
 		public void register(Observer o){
 			obs = o;
 		}
+
+		/**
+		 * method that notify Observer to do action
+		 * 
+		 */
 		public void notifyObserver(){
 			obs.update(ChNum);
 		}
@@ -122,6 +160,11 @@ public class Channels implements Subject, Observer{
 			this.ChNum=ChNum;
 			this.connect=connect;
 		}
+
+		/**
+		 * method that Notify the Observer
+		 * 
+		 */
 		public void Trig(){
 			notifyObserver();
 		}
@@ -162,11 +205,21 @@ public class Channels implements Subject, Observer{
 		return "I'm " + ChNum;
 	}
  
+
+	/**
+	 * method that return channel's sensor
+	 * 
+	 */
     public Sensors getSens()
     {
     	return this.sens;
     }
     
+
+	/**
+	 * method that remove channel's sensor
+	 * 
+	 */
     public void removeSens()
     {
     	sens=null;
