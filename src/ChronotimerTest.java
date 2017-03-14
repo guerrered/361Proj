@@ -471,9 +471,11 @@ public class ChronotimerTest {
 	@Test
 	public void testChangeEventCurrentRun(){
 		console.Power();
+		assertEquals("IND", console.getRaceType());
 		assertFalse(console.Event("PARIND"));//cant change event
 		assertTrue(console.endRun());
 		assertTrue(console.Event("PARIND"));//event changes
+		assertEquals("PARIND", console.getRaceType());
 	}
 	
 	@Test
@@ -491,7 +493,16 @@ public class ChronotimerTest {
 	@Test
 	public void testReset(){
 		console.Power();
+		console.endRun();
+		console.Event("PARIND");
+		assertEquals("PARIND", console.getRaceType());
+		console.newRun();
+		console.endRun();
+		console.newRun();
+		assertNotEquals(1, console.race.getFileNumber());//multiple races have been created
 		assertTrue(console.Reset());
+		assertEquals("IND", console.getRaceType());//event should revert to IND after reset
+		assertEquals(1, console.race.getFileNumber());//race # reset to 1
 		console.Power();
 		assertFalse(console.Reset());//cant reset if power off
 	}
