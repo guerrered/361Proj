@@ -22,6 +22,7 @@ public class ExportObject {
 		this.totaltime=totalTime;
 		this.eventCode=eventCode;
 		
+		printEO();
 	}
 
 
