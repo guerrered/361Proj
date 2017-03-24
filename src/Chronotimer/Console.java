@@ -356,9 +356,9 @@ public class Console implements Observer{
 	 */
 	public void Print(){
 		if(onCheck() && curRunCheck()){
+			writeToLog("Print");
 			this.printer.print(this.race.getPlayerList(), this.eventType);
 		}
-		writeToLog("Print");
 	}
 	/**
 	 * connects to channel chNum an sensor of type
@@ -367,9 +367,9 @@ public class Console implements Observer{
 	 */
 	public void Connect(String type,int ChNum){
 		if(onCheck()){
+			writeToLog("Connect " + type + " "+ChNum);
 			channels.connect(type, ChNum);
 		}
-		writeToLog("Connect " + type + " "+ChNum);
 	}
 	/**
 	 * disconnect the sensor at chNum
@@ -377,9 +377,9 @@ public class Console implements Observer{
 	 */
 	public void Disconnect(int chNum){
 		if(onCheck()){
+			writeToLog("Disconnect " + chNum);
 			channels.disconnect(chNum);
 		}
-		writeToLog("Disconnect " + chNum);
 	}
 	/**
 	 * if on turn the channel chNum off and vice versa

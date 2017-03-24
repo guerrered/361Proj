@@ -224,7 +224,7 @@ public class UserInterface {
 			}
 			break;
 		case("CONN"):
-			console.Connect(instructions[1],Integer.parseInt(instructions[2]));
+			console.Connect(instructions[2],Integer.parseInt(instructions[3]));
 			break;
 		case("DIS"):
 			console.Disconnect(Integer.parseInt(instructions[2]));

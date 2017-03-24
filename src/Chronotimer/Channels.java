@@ -177,7 +177,7 @@ public class Channels implements Subject, Observer{
 		
 			if(this.connect==true&&this.sens!=null)
 			{
-				System.out.println("Channel had been connected");
+				System.out.println("Channel is currently connected");
 			}
 			else
 			{
