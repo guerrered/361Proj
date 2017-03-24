@@ -11,6 +11,7 @@ public class parallelIndependent  extends Event{
 	List <Player> players = new ArrayList<>(9999);
 	List <Player> lane1 = new ArrayList<>();
 	List <Player> lane2 = new ArrayList<>();
+	List <Player> endList = new ArrayList<>();
 	
 	int queueStartNum = 0;//general start value
 	int queue1EndNum = 0;//lane 1
@@ -82,6 +83,7 @@ public class parallelIndependent  extends Event{
 		if(lane == 1){
 			if(lane1.size() > queue1EndNum){
 				if(lane1.get(queue1EndNum).isRunning()){//breaks in raceInd
+					endList.add(lane1.get(queue1EndNum));
 					lane1.get(queue1EndNum++).end(time);//preemptively point spot to next however if nothing is present it wont be able to execute if it gets here
 					return true;
 				}
@@ -90,6 +92,7 @@ public class parallelIndependent  extends Event{
 		else if(lane == 2){
 			if(lane2.size() > queue2EndNum){
 				if(lane2.get(queue2EndNum).isRunning()){
+					endList.add(lane2.get(queue2EndNum));
 					lane2.get(queue2EndNum++).end(time);
 					return true;
 				}
@@ -106,6 +109,7 @@ public class parallelIndependent  extends Event{
 		if(lane == 1){
 			if(lane1.size() > queue1EndNum){
 				if(lane1.get(queue1EndNum).isRunning()){//breaks in raceInd
+					endList.add(lane1.get(queue1EndNum));
 					lane1.get(queue1EndNum++).DNF();//preemptively point spot to next however if nothing is present it wont be able to execute if it gets here
 				}
 			}
@@ -113,6 +117,7 @@ public class parallelIndependent  extends Event{
 		else if(lane == 2){
 			 if(lane2.size() > queue2EndNum){
 				if(lane2.get(queue2EndNum).isRunning()){
+						endList.add(lane2.get(queue2EndNum));
 						lane2.get(queue2EndNum++).DNF();
 				}
 			}
@@ -213,4 +218,8 @@ public class parallelIndependent  extends Event{
 		List<Player> printList = sortByFinishTime(players);
 		return printList;
 	}
+	public List<Player> getEndList(){
+		return endList;
+	}
+	
 }

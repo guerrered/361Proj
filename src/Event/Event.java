@@ -21,6 +21,7 @@ public class Event {
 	public static int fileNumber = 1;
 	File curRaceData;
 	List <Player> players = new ArrayList<>(9999);
+	List <Player> endList = new ArrayList<>();
 	public long clockTime;
 	public int runNumber=1;
 	public int numRunners;
@@ -157,5 +158,8 @@ public class Event {
 				return true;
 		}
 		return false;
+	}
+	public List<Player> getEndList(){
+		return endList;
 	}
 }

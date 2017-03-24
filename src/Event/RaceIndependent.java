@@ -14,6 +14,7 @@ public class RaceIndependent extends Event{
 	List <Player> players = new ArrayList<>(9999);
 	int queueStartNum = 0;
 	int queueEndNum = 0;
+	List<Player> endList = new ArrayList<>();
 	
 	/**
 	 * Constructor 
@@ -66,6 +67,7 @@ public class RaceIndependent extends Event{
 	public void DNF(){
 		if(players.size()>queueEndNum){
 			if(players.get(queueEndNum).isRunning()){//check if active
+				endList.add(players.get(queueEndNum));
 				players.get(queueEndNum++).DNF();
 			}
 		}
@@ -94,6 +96,7 @@ public class RaceIndependent extends Event{
 	public boolean finish(long time){
 		if(players.size()>queueEndNum){
 			if(players.get(queueEndNum).isRunning()){//check if active
+				endList.add(players.get(queueEndNum));
 				players.get(queueEndNum++).end(time);
 				return true;
 			}
@@ -197,6 +200,8 @@ public class RaceIndependent extends Event{
 	public List<Player> getPlayerList(){
 		return players;
 	}
-	
+	public List<Player> getEndList(){
+		return endList;
+	}
 	
 }

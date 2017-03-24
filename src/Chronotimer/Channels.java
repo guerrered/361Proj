@@ -104,6 +104,9 @@ public class Channels implements Subject, Observer{
 		 return Channels[num-1];
 	 }
 	 
+	 public boolean isConnected(int num){
+		 return Channels[num -1].connect;
+	 }
 	 /**
 		 * Tog(int ChNum)
 		 * @param ChNum

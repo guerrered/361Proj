@@ -224,13 +224,23 @@ public class UserInterface {
 			}
 			break;
 		case("CONN"):
-			console.Connect(instructions[2],Integer.parseInt(instructions[3]));
+			if(instructions.length == 4){
+				console.Connect(instructions[2],Integer.parseInt(instructions[3]));
+			}
+			else{
+				System.out.println("Enter a sensor type as well as a channel number");
+			}
 			break;
 		case("DIS"):
-			console.Disconnect(Integer.parseInt(instructions[2]));
+			if(instructions.length == 3){
+				console.Disconnect(Integer.parseInt(instructions[2]));
+			}
+			else{
+				System.out.println("Enter channel num");
+			}
 			break;
 		case("TOG"):
-			if(instructions.length < 3){
+			if(instructions.length != 3){
 				System.out.println("Enter a channel number with TOG command");
 			}
 			else{

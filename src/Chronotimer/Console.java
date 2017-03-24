@@ -77,8 +77,10 @@ public class Console implements Observer{
 		if(powerState)
 		{
 			for(int i = 1; i <= 8; i++){
-				Disconnect(i);
+				if(channels.isConnected(i)){
+					Disconnect(i);
 				}
+			}
 		}
 		powerState = !powerState;
 		if(powerState == true){
@@ -127,7 +129,9 @@ public class Console implements Observer{
 		if(onCheck()){
 			time.setTime("0:0:0.0");
 			for(int i = 1; i < 9;i++){//disconnect all channels
-				Disconnect(i);
+				if(channels.isConnected(i)){
+					Disconnect(i);
+				}
 			}
 			eventType = "IND";//default type of event;
 			this.race = new RaceIndependent();
@@ -357,7 +361,7 @@ public class Console implements Observer{
 	public void Print(){
 		if(onCheck() && curRunCheck()){
 			writeToLog("Print");
-			this.printer.print(this.race.getPlayerList(), this.eventType);
+			this.printer.print(this.race.getEndList(), this.eventType);
 		}
 	}
 	/**
@@ -405,7 +409,7 @@ public class Console implements Observer{
 		if(onCheck()){	
 			writeToLog("Trig " + chNum);
 			if(curRunCheck()){
-				if(channels.getCh(chNum).connected()){
+				if(channels.isConnected(chNum)){
 					switch(eventType){
 						case("IND"):
 							switch(chNum){
