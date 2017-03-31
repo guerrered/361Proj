@@ -85,7 +85,7 @@ public class Console implements Observer{
 		powerState = !powerState;
 		if(powerState == true){
 			this.eventType = "IND";//default
-			this.race = new RaceIndependent();//default
+			this.race = new Independent();//default
 			CurRunOn = true;
 			printer = new Printer();
 			
@@ -134,7 +134,7 @@ public class Console implements Observer{
 				}
 			}
 			eventType = "IND";//default type of event;
-			this.race = new RaceIndependent();
+			this.race = new Independent();
 			race.setFileNumber(1);
 			CurRunOn = true;
 			printer = new Printer();
@@ -201,7 +201,7 @@ public class Console implements Observer{
 				CurRunOn = true;		
 				switch(eventType){//creates different types of races 
 					case("IND"):
-						this.race = new RaceIndependent();
+						this.race = new Independent();
 						break;
 					case("PARIND"):
 						this.race = new parallelIndependent();

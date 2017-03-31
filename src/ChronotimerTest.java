@@ -27,12 +27,12 @@ import Event.*;
  *
  */
 public class ChronotimerTest {
-	RaceIndependent rIND;
+	Independent rIND;
 	parallelIndependent pIND;
 	Console console;
 	@Before
 	public void setup() {
-		rIND = new RaceIndependent();
+		rIND = new Independent();
 		pIND = new parallelIndependent();
 		console = new Console();
 	}
