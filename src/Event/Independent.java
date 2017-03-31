@@ -21,9 +21,6 @@ public class Independent extends Event{
 	 *
 	 */
 	public Independent(){
-		//I don't have it creating the output file anymore.
-		//createRaceOutputFile();
-		
 		for(int i =0; i<9999; i++){//adds 9999 racers to list
 			Player n = new Player(i);
 			players.add(n);
