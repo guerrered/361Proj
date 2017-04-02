@@ -29,11 +29,13 @@ import Event.*;
 public class ChronotimerTest {
 	Independent rIND;
 	parallelIndependent pIND;
+	Group group;
 	Console console;
 	@Before
 	public void setup() {
 		rIND = new Independent();
 		pIND = new parallelIndependent();
+		group = new Group();
 		console = new Console();
 	}
 	
@@ -583,6 +585,33 @@ public class ChronotimerTest {
 		assertFalse(console.race.getRacer(0).ran);
 		assertFalse(console.race.getRacer(1).participated());
 		
+	}
+	
+	@Test
+	public void testGroupSimple(){
+		console.Power();
+		console.endRun();
+		console.Connect("pad", 1);
+		console.Connect("gate", 2);
+		console.Event("GROUP");
+		assertEquals("GROUP", console.getRaceType());
+		console.getChannels().getCh(1).getSens().notifyObserver();
+		console.getChannels().getCh(2).getSens().notifyObserver();
+		console.getChannels().getCh(2).getSens().notifyObserver();
+		console.getChannels().getCh(2).getSens().notifyObserver();
+		
+		console.endRun();
+		
+	}
+	
+	@Test
+	public void testGroupSecondStart(){
+		console.Power();
+		console.endRun();
+		group.start(0);
+		assertFalse(group.start(0));
+		group.finish(1);
+		assertFalse(group.start(0));
 	}
 	
 	

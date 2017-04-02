@@ -206,6 +206,9 @@ public class Console implements Observer{
 					case("PARIND"):
 						this.race = new parallelIndependent();
 						break;
+					case("GROUP"):
+						this.race = new Group();
+						break;
 				}
 				return true;
 			}
@@ -436,6 +439,18 @@ public class Console implements Observer{
 									break;
 								case(4):
 									race.finish(this.time.getTime(),2);
+									break;
+								default:
+									System.out.println("Not a Channel");
+							}
+							break;
+						case("GROUP"):
+							switch(chNum){
+								case(1):
+									race.start(this.time.getTime());
+									break;
+								case(2):
+									race.finish(time.getTime());
 									break;
 								default:
 									System.out.println("Not a Channel");
