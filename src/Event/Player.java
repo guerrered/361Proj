@@ -124,4 +124,8 @@ public class Player {
 		cancel=!cancel;
 		return cancel;
 	}
+
+	public void setID(int ID) {
+		this.ID = ID;
+	}
 }
