@@ -48,7 +48,7 @@ public class UserInterface {
 		{
 			System.out.println("GUI is opening");
 			console=new Console();
-			GUI gui=new GUI(console);
+			new GUI(console);
 			
 		}
 	}

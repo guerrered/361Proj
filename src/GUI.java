@@ -16,10 +16,9 @@ public class GUI extends javax.swing.JFrame {
     /**
      * Creates new form MainFrame
      */
-	Console con;
-	
+    Console con;
     public GUI(Console con) {
-        this.con =con;
+        this.con=con;
         initComponents();
         setVisible(true);
     }
@@ -106,10 +105,25 @@ public class GUI extends javax.swing.JFrame {
         });
 
         JStart3.setText("         ");
+        JStart3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JStart3ActionPerformed(evt);
+            }
+        });
 
         JStart5.setText("          ");
+        JStart5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JStart5ActionPerformed(evt);
+            }
+        });
 
         JStart7.setText("          ");
+        JStart7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JStart7ActionPerformed(evt);
+            }
+        });
 
         JStartLabel.setText("Start");
 
@@ -157,10 +171,25 @@ public class GUI extends javax.swing.JFrame {
         });
 
         JFinish4.setText("         ");
+        JFinish4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JFinish4ActionPerformed(evt);
+            }
+        });
 
         JFinish6.setText("          ");
+        JFinish6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JFinish6ActionPerformed(evt);
+            }
+        });
 
         JFinish8.setText("          ");
+        JFinish8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JFinish8ActionPerformed(evt);
+            }
+        });
 
         jToggleButton2.setText("OFF");
         jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -225,24 +254,74 @@ public class GUI extends javax.swing.JFrame {
         });
 
         jNum3.setText("3");
+        jNum3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jNum3ActionPerformed(evt);
+            }
+        });
 
         jNum4.setText("4");
+        jNum4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jNum4ActionPerformed(evt);
+            }
+        });
 
         jNum5.setText("5");
+        jNum5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jNum5ActionPerformed(evt);
+            }
+        });
 
         jNum6.setText("6");
+        jNum6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jNum6ActionPerformed(evt);
+            }
+        });
 
         jNum7.setText("7");
+        jNum7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jNum7ActionPerformed(evt);
+            }
+        });
 
         jNum8.setText("8");
+        jNum8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jNum8ActionPerformed(evt);
+            }
+        });
 
         jNum9.setText("9");
+        jNum9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jNum9ActionPerformed(evt);
+            }
+        });
 
         jNumStar.setText("*");
+        jNumStar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jNumStarActionPerformed(evt);
+            }
+        });
 
         jNum0.setText("0");
+        jNum0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jNum0ActionPerformed(evt);
+            }
+        });
 
         jNumPound.setText("#");
+        jNumPound.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jNumPoundActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -309,6 +388,11 @@ public class GUI extends javax.swing.JFrame {
         });
 
         jSwap.setText("SWAP");
+        jSwap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSwapActionPerformed(evt);
+            }
+        });
 
         jChan.setText("CHAN");
 
@@ -543,6 +627,91 @@ public class GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_MeExitActionPerformed
 
+
+    private void JStart1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JStart1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JStart1ActionPerformed
+
+    private void JFinish2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JFinish2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JFinish2ActionPerformed
+
+    private void JStart3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JStart3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JStart3ActionPerformed
+
+    private void JFinish4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JFinish4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JFinish4ActionPerformed
+    
+    private void JStart5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JStart5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JStart5ActionPerformed
+
+    private void JFinish6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JFinish6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JFinish6ActionPerformed
+
+    private void JStart7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JStart7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JStart7ActionPerformed
+
+    private void JFinish8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JFinish8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JFinish8ActionPerformed
+
+    private void jNum1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jNum1ActionPerformed
+
+    private void jNum2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jNum2ActionPerformed
+
+    private void jNum3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jNum3ActionPerformed
+
+    private void jNum4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jNum4ActionPerformed
+
+    private void jNum5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jNum5ActionPerformed
+
+    private void jNum6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jNum6ActionPerformed
+
+    private void jNum7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jNum7ActionPerformed
+
+    private void jNum8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jNum8ActionPerformed
+
+    private void jNum9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jNum9ActionPerformed
+
+    private void jNumStarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNumStarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jNumStarActionPerformed
+
+    private void jNum0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum0ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jNum0ActionPerformed
+
+    private void jNumPoundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNumPoundActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jNumPoundActionPerformed
+    
+    private void jFunctionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFunctionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFunctionActionPerformed
+
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
         if(jToggleButton1.isSelected())
@@ -553,17 +722,9 @@ public class GUI extends javax.swing.JFrame {
         {
             jToggleButton1.setText("OFF");
         }
-        
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
-    private void JStart1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JStart1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JStart1ActionPerformed
-
-    private void JFinish2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JFinish2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JFinish2ActionPerformed
-
+        
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
                 // TODO add your handling code here:
                    if(jToggleButton2.isSelected())
@@ -576,18 +737,7 @@ public class GUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
-    private void jNum1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jNum1ActionPerformed
-
-    private void jNum2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jNum2ActionPerformed
-
-    private void jFunctionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFunctionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFunctionActionPerformed
-
+    
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
         // TODO add your handling code here:
            if(jToggleButton3.isSelected())
@@ -600,6 +750,19 @@ public class GUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jToggleButton3ActionPerformed
 
+    private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
+        // TODO add your handling code here:
+           if(jToggleButton4.isSelected())
+        {
+            jToggleButton4.setText("ON");
+        }
+        else
+        {
+            jToggleButton4.setText("OFF");
+        }
+    }//GEN-LAST:event_jToggleButton4ActionPerformed
+
+    
     private void jToggleButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton5ActionPerformed
         // TODO add your handling code here:
            if(jToggleButton5.isSelected())
@@ -611,18 +774,6 @@ public class GUI extends javax.swing.JFrame {
             jToggleButton5.setText("OFF");
         }
     }//GEN-LAST:event_jToggleButton5ActionPerformed
-
-    private void jToggleButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton7ActionPerformed
-        // TODO add your handling code here:
-           if(jToggleButton7.isSelected())
-        {
-            jToggleButton7.setText("ON");
-        }
-        else
-        {
-            jToggleButton7.setText("OFF");
-        }
-    }//GEN-LAST:event_jToggleButton7ActionPerformed
 
     private void jToggleButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton6ActionPerformed
         // TODO add your handling code here:
@@ -636,17 +787,17 @@ public class GUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jToggleButton6ActionPerformed
 
-    private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
+    private void jToggleButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton7ActionPerformed
         // TODO add your handling code here:
-           if(jToggleButton4.isSelected())
+           if(jToggleButton7.isSelected())
         {
-            jToggleButton4.setText("ON");
+            jToggleButton7.setText("ON");
         }
         else
         {
-            jToggleButton4.setText("OFF");
+            jToggleButton7.setText("OFF");
         }
-    }//GEN-LAST:event_jToggleButton4ActionPerformed
+    }//GEN-LAST:event_jToggleButton7ActionPerformed
 
     private void jToggleButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton8ActionPerformed
         // TODO add your handling code here:
@@ -684,10 +835,15 @@ public class GUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jPrinterPwrActionPerformed
 
+   
+
+    private void jSwapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSwapActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jSwapActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    
     /*
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -720,8 +876,7 @@ public class GUI extends javax.swing.JFrame {
             }
         });
     }
-    */
-    
+	*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel J1357Label;
