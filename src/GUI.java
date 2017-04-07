@@ -111,14 +111,14 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        JStart5.setText("          ");
+        JStart5.setText("         ");
         JStart5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JStart5ActionPerformed(evt);
             }
         });
 
-        JStart7.setText("          ");
+        JStart7.setText("         ");
         JStart7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JStart7ActionPerformed(evt);
@@ -177,14 +177,14 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        JFinish6.setText("          ");
+        JFinish6.setText("         ");
         JFinish6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JFinish6ActionPerformed(evt);
             }
         });
 
-        JFinish8.setText("          ");
+        JFinish8.setText("         ");
         JFinish8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JFinish8ActionPerformed(evt);
@@ -396,9 +396,9 @@ public class GUI extends javax.swing.JFrame {
 
         jChan.setText("CHAN");
 
-        J2468Label2.setText("       2                   4                  6                  8");
+        J2468Label2.setText("         2                     4                    6                    8");
 
-        J1357Label1.setText("       1                   3                  5                  7");
+        J1357Label1.setText("         1                     3                    5                    7");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -471,10 +471,10 @@ public class GUI extends javax.swing.JFrame {
                             .addGroup(JPanel1Layout.createSequentialGroup()
                                 .addGroup(JPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(JFinish2)
-                                    .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(JPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(JPanel1Layout.createSequentialGroup()
-                                        .addGap(12, 12, 12)
+                                        .addGap(18, 18, 18)
                                         .addComponent(JFinish4)
                                         .addGap(18, 18, 18)
                                         .addComponent(JFinish6)
@@ -482,11 +482,11 @@ public class GUI extends javax.swing.JFrame {
                                         .addComponent(JFinish8))
                                     .addGroup(JPanel1Layout.createSequentialGroup()
                                         .addGap(18, 18, 18)
-                                        .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(34, 34, 34)
-                                        .addComponent(jToggleButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(35, 35, 35)
-                                        .addComponent(jToggleButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jToggleButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jToggleButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(J2468Label1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(JPanel1Layout.createSequentialGroup()
                                 .addComponent(JStart1)
@@ -497,13 +497,13 @@ public class GUI extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(JStart7))
                             .addGroup(JPanel1Layout.createSequentialGroup()
-                                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(35, 35, 35)
-                                .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(31, 31, 31)
-                                .addComponent(jToggleButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(32, 32, 32)
-                                .addComponent(jToggleButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jToggleButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18,18, 18)
+                                .addComponent(jToggleButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(JPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -630,34 +630,58 @@ public class GUI extends javax.swing.JFrame {
 
     private void JStart1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JStart1ActionPerformed
         // TODO add your handling code here:
+    	if(con.powerState==true){
+    	con.getChannels().getCh(1).Trig();
+    	}
     }//GEN-LAST:event_JStart1ActionPerformed
 
     private void JFinish2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JFinish2ActionPerformed
         // TODO add your handling code here:
+    	if(con.powerState==true){
+    	con.getChannels().getCh(2).Trig();
+    	}
     }//GEN-LAST:event_JFinish2ActionPerformed
 
     private void JStart3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JStart3ActionPerformed
         // TODO add your handling code here:
+    	if(con.powerState==true){
+    	con.getChannels().getCh(3).Trig();
+    	}
     }//GEN-LAST:event_JStart3ActionPerformed
 
     private void JFinish4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JFinish4ActionPerformed
         // TODO add your handling code here:
+    	if(con.powerState==true){
+    	con.getChannels().getCh(4).Trig();
+    	}
     }//GEN-LAST:event_JFinish4ActionPerformed
     
     private void JStart5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JStart5ActionPerformed
         // TODO add your handling code here:
+    	if(con.powerState==true){
+    	con.getChannels().getCh(5).Trig();
+    	}
     }//GEN-LAST:event_JStart5ActionPerformed
 
     private void JFinish6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JFinish6ActionPerformed
         // TODO add your handling code here:
+    	if(con.powerState==true){
+    	con.getChannels().getCh(6).Trig();
+    	}
     }//GEN-LAST:event_JFinish6ActionPerformed
 
     private void JStart7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JStart7ActionPerformed
         // TODO add your handling code here:
+    	if(con.powerState==true){
+    	con.getChannels().getCh(7).Trig();
+    	}
     }//GEN-LAST:event_JStart7ActionPerformed
 
     private void JFinish8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JFinish8ActionPerformed
         // TODO add your handling code here:
+    	if(con.powerState==true){
+    	con.getChannels().getCh(8).Trig();
+    	}
     }//GEN-LAST:event_JFinish8ActionPerformed
 
     private void jNum1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum1ActionPerformed
@@ -714,131 +738,174 @@ public class GUI extends javax.swing.JFrame {
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
-        if(jToggleButton1.isSelected())
+    	if(con.powerState==true){
+    	if(jToggleButton1.isSelected())
         {
             jToggleButton1.setText("ON");
+            con.Tog(1);
         }
         else
         {
             jToggleButton1.setText("OFF");
+            con.Tog(1);
         }
+    	}
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
         
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
                 // TODO add your handling code here:
-                   if(jToggleButton2.isSelected())
+    	if(con.powerState==true){
+         if(jToggleButton2.isSelected())
         {
             jToggleButton2.setText("ON");
+            con.Tog(2);
         }
         else
         {
             jToggleButton2.setText("OFF");
+            con.Tog(2);
         }
+    	}
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
         // TODO add your handling code here:
+    	if(con.powerState==true){
            if(jToggleButton3.isSelected())
         {
             jToggleButton3.setText("ON");
+            con.Tog(3);
         }
         else
         {
             jToggleButton3.setText("OFF");
+            con.Tog(3);
         }
+    	}
     }//GEN-LAST:event_jToggleButton3ActionPerformed
 
     private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
         // TODO add your handling code here:
+    	if(con.powerState==true){
            if(jToggleButton4.isSelected())
         {
             jToggleButton4.setText("ON");
+            con.Tog(4);
         }
         else
         {
             jToggleButton4.setText("OFF");
+            con.Tog(4);
         }
+    	}
     }//GEN-LAST:event_jToggleButton4ActionPerformed
 
     
     private void jToggleButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton5ActionPerformed
         // TODO add your handling code here:
+    	if(con.powerState==true){
            if(jToggleButton5.isSelected())
         {
             jToggleButton5.setText("ON");
+            con.Tog(5);
         }
         else
         {
             jToggleButton5.setText("OFF");
+            con.Tog(5);
         }
+    	}
     }//GEN-LAST:event_jToggleButton5ActionPerformed
 
     private void jToggleButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton6ActionPerformed
         // TODO add your handling code here:
+    	if(con.powerState==true){
            if(jToggleButton6.isSelected())
         {
             jToggleButton6.setText("ON");
+            con.Tog(6);
         }
         else
         {
             jToggleButton6.setText("OFF");
+            con.Tog(6);
         }
+    	}
     }//GEN-LAST:event_jToggleButton6ActionPerformed
 
     private void jToggleButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton7ActionPerformed
         // TODO add your handling code here:
+    	if(con.powerState==true){
            if(jToggleButton7.isSelected())
         {
             jToggleButton7.setText("ON");
+            con.Tog(7);
         }
         else
         {
             jToggleButton7.setText("OFF");
+            con.Tog(7);
         }
+    	}
     }//GEN-LAST:event_jToggleButton7ActionPerformed
 
     private void jToggleButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton8ActionPerformed
         // TODO add your handling code here:
+    	if(con.powerState==true){
            if(jToggleButton8.isSelected())
         {
             jToggleButton8.setText("ON");
+            con.Tog(7);
         }
         else
         {
             jToggleButton8.setText("OFF");
+            con.Tog(7);
         }
+    	}
     }//GEN-LAST:event_jToggleButton8ActionPerformed
 
     private void jPowerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPowerActionPerformed
         // TODO add your handling code here:
-           if(jPower.isSelected())
+    	
+    	if(jPower.isSelected())
         {
             jPower.setText("Power:ON");
+            con.Power();
         }
         else
         {
             jPower.setText("Power:OFF");
+            con.Power();
         }
+    	
     }//GEN-LAST:event_jPowerActionPerformed
 
     private void jPrinterPwrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPrinterPwrActionPerformed
         // TODO add your handling code here:
-           if(jPrinterPwr.isSelected())
+    	if(con.powerState==true){
+    	if(jPrinterPwr.isSelected())
         {
             jPrinterPwr.setText("Printer Pwr:ON");
+            con.printer.Power();
         }
         else
         {
             jPrinterPwr.setText("Printer Pwr:OFF");
+            con.printer.Power();
         }
+    	}
     }//GEN-LAST:event_jPrinterPwrActionPerformed
 
    
 
     private void jSwapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSwapActionPerformed
         // TODO add your handling code here:
+    	if(con.powerState==true){
+    	con.Swap();	
+    	}
     }//GEN-LAST:event_jSwapActionPerformed
 
     /**

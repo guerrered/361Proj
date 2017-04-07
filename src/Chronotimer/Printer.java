@@ -16,6 +16,13 @@ import Event.*;
 
 
 public class Printer {
+	Boolean PrinterPower=false;
+	
+	public void Power()
+	{
+		PrinterPower=!PrinterPower;
+	}
+	
 	
 	/**
 	 * print() outputs the race times following the format: 

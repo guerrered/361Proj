@@ -23,7 +23,7 @@ public class Console implements Observer{
 	public boolean powerState = false;
 	
 	boolean CurRunOn = false;
-	Printer printer;
+	public Printer printer;
 	public Event race;
 	public Time time;
 	Channels channels;
