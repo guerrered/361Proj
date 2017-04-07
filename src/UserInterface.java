@@ -19,10 +19,10 @@ public class UserInterface {
 	 */
 	public UserInterface(){
 		Scanner scan = new Scanner(System.in);
-		System.out.println("Enter 'C' for console input or 'F' for file input\n");
+		System.out.println("Enter 'C' for console input , 'F' for file input, and 'G' for GUI\n");
 		String choice = scan.nextLine();
-		while(!choice.equalsIgnoreCase("c") && !choice.equalsIgnoreCase("F")){
-			System.out.println("Enter 'C' for console input or 'F' for file input\n");
+		while(!choice.equalsIgnoreCase("c") && !choice.equalsIgnoreCase("F")&&!choice.equalsIgnoreCase("G")){
+			System.out.println("Enter 'C' for console input or 'F' for file input, and 'G' for GUI\n");
 			choice = scan.nextLine();
 		}
 		if(choice.equalsIgnoreCase("f")){
@@ -38,10 +38,18 @@ public class UserInterface {
 			console = new Console();
 			readFromFile(fileName);	
 		}
-		else{
+		else if(choice.equalsIgnoreCase("c"))
+		{
 			System.out.println("Reading from console");
 			console = new Console();
 			readFromConsole(scan);
+		}
+		else
+		{
+			System.out.println("GUI is opening");
+			console=new Console();
+			GUI gui=new GUI(console);
+			
 		}
 	}
 	
