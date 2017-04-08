@@ -367,6 +367,13 @@ public class Console implements Observer{
 			this.printer.print(this.race.getEndList(), this.eventType);
 		}
 	}
+	
+	public void printerPower(){
+		if(onCheck()){
+			writeToLog("PrinterPower");
+			this.printer.Power();
+		}
+	}
 	/**
 	 * connects to channel chNum an sensor of type
 	 * @param type

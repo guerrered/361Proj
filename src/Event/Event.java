@@ -22,6 +22,7 @@ public class Event {
 	File curRaceData;
 	List <Player> players = new ArrayList<>(9999);
 	List <Player> endList = new ArrayList<>();
+	List <Player> displayList = new ArrayList<>();
 	public long clockTime;
 	public int runNumber=1;
 	public int numRunners;
@@ -162,4 +163,19 @@ public class Event {
 	public List<Player> getEndList(){
 		return endList;
 	}
+	
+	/**
+	 * 
+	 * @returns the list of players that will be displayed on console screen
+	 */
+	public List<Player> getDisplayList(){
+		/*
+		 * we want to create a method in the console which will take a list and
+		 * create a string with the relevant data player start / finish / current
+		 * time which will then get passed to the relevant JTextArea in the console
+		 * display
+		 */
+		return displayList;
+	}
+	
 }

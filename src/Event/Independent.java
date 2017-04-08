@@ -201,4 +201,15 @@ public class Independent extends Event{
 		return endList;
 	}
 	
+	/*
+	 * players List that will be displayed on console screen 
+	 */
+	public List<Player> getDisplayList(){
+		List<Player> dis = new ArrayList<>(5);
+		dis.add(players.get(queueEndNum -1));//last to finish
+		for(int i = 0; i < 4; i++){
+			dis.add(players.get(queueEndNum + i)); //add the next couple of players to the list;
+		}
+		return dis;
+	}
 }

@@ -222,4 +222,19 @@ public class parallelIndependent  extends Event{
 		return endList;
 	}
 	
+	
+	/*
+	 * players List that will be displayed on console screen 
+	 */
+	public List<Player> getDisplayList(){
+		List<Player> dis = new ArrayList<>(6);
+		dis.add(lane1.get(queue1EndNum -1));//last pair to finish
+		dis.add(lane2.get(queue2EndNum -1));
+		dis.add(lane1.get(queue1EndNum));//pair currently running
+		dis.add(lane2.get(queue2EndNum));
+		dis.add(players.get(queueStartNum));//next to pair start
+		dis.add(players.get(queueStartNum + 1));
+		return dis;
+		
+	}
 }

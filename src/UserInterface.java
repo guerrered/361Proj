@@ -119,6 +119,14 @@ public class UserInterface {
 				System.out.println("Too many arguments");
 			}
 			break;
+		case("PRINTPOWER"):
+			if(instructions.length == 2){
+				console.printerPower();
+			}
+			else{
+				System.out.println("Too many arguments");
+			}
+			break;
 		case("RESET"):
 			if(instructions.length == 2){
 				console.Reset();

@@ -70,7 +70,15 @@ public class Group extends Event{
 		}
 		
 		return false;
-		
+	}
+	
+	/*
+	 * players List that will be displayed on console screen 
+	 */
+	public List<Player> getDisplayLsit(){
+		List<Player> dis = new ArrayList<>(1);
+		dis.add(playersFinished.get(numberFinished));
+		return dis;
 	}
 	
 }
