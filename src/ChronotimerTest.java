@@ -614,6 +614,24 @@ public class ChronotimerTest {
 		assertFalse(group.start(0));
 	}
 	
+	@Test
+	public void testGroupFinishNoStart(){
+		console.Power();
+		console.endRun();
+		assertFalse(group.finish(1));
+	}
+	
+	@Test
+	public void testGroupCancel(){
+		console.Power();
+		console.endRun();
+		group.start(1);
+		assertEquals(1, group.getStartTime());
+		group.cancel();
+		assertEquals(-1, group.getStartTime());
+		assertFalse(group.finish(1));
+	}
+	
 	
 
 }

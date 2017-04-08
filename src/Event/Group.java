@@ -5,26 +5,16 @@ import java.util.List;
 
 public class Group extends Event{
 	
-	List <Player> players = new ArrayList<>(9999);
 	List <Player> playersFinished = new ArrayList<>();
 	
-	int queueStartNum = 0;
-	int queueEndNum = 0;
 	private long startTime = -1; //start time is negative if there is no current race. A new race is legal to begin.
 	
 	private int numberFinished = 0; //as racers finish (this specific race), they are assigned a placeholder number 
 	private int numberFinishedMarked = 0; //this number is increased as IDs are entered
-	private int newID = 10000; //new ID to be assigned when ID gets replaced
 	
 	public Group(){
 		startTime =-1;
 		numberFinished = numberFinishedMarked = 0;
-		//create a list of temp racers. Temp racers can be replaced with proper IDs after the race ends.
-//		for(int i=1; i <=9999; i++){
-//			//the ID acts as a placeholder number
-//			Player temp = new Player(i);
-//			players.add(temp);
-//		}
 	}
 	
 	public boolean start(long time){
@@ -42,13 +32,14 @@ public class Group extends Event{
 	}
 	
 	public boolean finish(long time){
+		if(startTime==-1){
+			return false;
+		}
+		
 		Player temp = new Player(numberFinished);
-//		if(!temp.ran){
 
-//		}
 		temp.start(startTime);
 		temp.end(time);
-		temp.participated();
 		numberFinished++;
 		playersFinished.add(temp);
 		
@@ -79,6 +70,19 @@ public class Group extends Event{
 		List<Player> dis = new ArrayList<>(1);
 		dis.add(playersFinished.get(numberFinished));
 		return dis;
+	}
+	
+	/*
+	 * cancel started race
+	 */
+	public void cancel(){
+		startTime = -1;
+		//normally we'd mark started racers as such, but we are don't know how many started.
+	}
+	
+	//getter for StartTime
+	public long getStartTime(){
+		return startTime;
 	}
 	
 }
