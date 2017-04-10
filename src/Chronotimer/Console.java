@@ -712,7 +712,21 @@ public class Console implements Observer{
 	}
 	
 	public String getMenu(){
-		return "Menu";
+		String menu = "1.Event\n2.RaceOperations\n3.Run\n4.FileExport\n";
+		return menu;
+	}
+	
+	public String eventSubMenu(){
+		String eventSub =  "1.IND\n2.PARIND\n3.GRP\n";
+		return eventSub;
+	}
+	public String raceOpSubMenu(){
+		String raceOpSub =  "1.DNF\n2.Cancel\n";
+		return raceOpSub;
+	}
+	public String runSubMenu(){
+		String runSub = "1.ENDRUN\n2.NEWRUN\n";
+		return runSub;
 	}
 	
 	/**

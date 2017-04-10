@@ -739,6 +739,12 @@ public class GUI extends javax.swing.JFrame {
     
     private void jFunctionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFunctionActionPerformed
         // TODO add your handling code here:
+    	con.changeDisplayState();
+    	if(!con.getDisplayState()){//if false that means we are in the menu
+    		jDisplay.setText(con.getMenu());
+    	}
+    	//else should start displaying the displayList since state is true again
+    	
     }//GEN-LAST:event_jFunctionActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
