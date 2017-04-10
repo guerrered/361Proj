@@ -685,6 +685,7 @@ public class Console implements Observer{
 	 * @return string in the format that it will be printed in display
 	 */
 	public String DisplayListString(){
+		if(onCheck() && curRunCheck()){
 		List<Player> displayList = getDisplayList();
 		String asString = "";
 		for(int i = 0; i < displayList.size(); i++){//if finished use finish time else currenttime
@@ -702,6 +703,8 @@ public class Console implements Observer{
 			}
 		}
 		return asString;
+		}
+		return null;
 	}
 	
 	public String getMenu(){

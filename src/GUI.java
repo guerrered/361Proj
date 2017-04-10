@@ -1,3 +1,5 @@
+import javax.swing.JTextArea;
+
 import Chronotimer.Console;
 
 /*
@@ -59,7 +61,7 @@ public class GUI extends javax.swing.JFrame {
         jToggleButton8 = new javax.swing.JToggleButton();
         jPanel1 = new javax.swing.JPanel();
         jPrinterDisplay = new javax.swing.JLabel();
-        jDisplay = new javax.swing.JLabel();
+        jDisplay = new javax.swing.JTextArea();
         jQRFTime = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jNum1 = new javax.swing.JButton();
@@ -85,7 +87,10 @@ public class GUI extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         MeFile = new javax.swing.JMenu();
         MeExit = new javax.swing.JMenuItem();
-
+        
+        Runnable r1 = new displayTextUpdater(jDisplay, con);
+        Thread t = new Thread(r1);
+        t.start();
         jCheckBoxMenuItem1.setSelected(true);
         jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
 
@@ -967,7 +972,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel Title;
     private javax.swing.JLabel jChan;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
-    private javax.swing.JLabel jDisplay;
+    private JTextArea jDisplay;
     private javax.swing.JButton jFunction;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;

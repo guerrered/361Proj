@@ -206,8 +206,15 @@ public class Independent extends Event{
 	 */
 	public List<Player> getDisplayList(){
 		List<Player> dis = new ArrayList<>(5);
-		dis.add(players.get(queueEndNum -1));//last to finish
-		for(int i = 0; i < 4; i++){
+		int count =0;
+		if(queueEndNum > 0){
+			dis.add(players.get(queueEndNum -1));//last to finish
+		}
+		else{
+			dis.add(players.get(queueEndNum));
+			count++;
+		}
+		for(int i = count; i < 4; i++){
 			dis.add(players.get(queueEndNum + i)); //add the next couple of players to the list;
 		}
 		return dis;
