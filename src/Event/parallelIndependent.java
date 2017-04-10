@@ -228,12 +228,27 @@ public class parallelIndependent  extends Event{
 	 */
 	public List<Player> getDisplayList(){
 		List<Player> dis = new ArrayList<>(6);
-		dis.add(lane1.get(queue1EndNum -1));//last pair to finish
-		dis.add(lane2.get(queue2EndNum -1));
-		dis.add(lane1.get(queue1EndNum));//pair currently running
-		dis.add(lane2.get(queue2EndNum));
-		dis.add(players.get(queueStartNum));//next to pair start
-		dis.add(players.get(queueStartNum + 1));
+		int count = 0;
+		if(queue1EndNum > 0){
+			dis.add(lane1.get(queue1EndNum -1));//last to finish in lane 1
+			count++;
+		}
+		if(queue2EndNum > 0){
+			dis.add(lane2.get(queue2EndNum -1));//last to finish in lane 2
+			count++;
+		}
+		if(queue1EndNum < lane1.size()){
+			dis.add(lane1.get(queue1EndNum));//currently running
+			count++;
+		}
+		if(queue2EndNum < lane2.size()){
+			dis.add(lane2.get(queue2EndNum));//currently running
+			count++;
+		}
+		for(int i = 0; i < 6 - count; i++){
+			dis.add(players.get(queueStartNum + i));//add the rest of the runners total 6 runners
+			//dis.add(players.get(queueStartNum + 1));
+		}
 		return dis;
 		
 	}

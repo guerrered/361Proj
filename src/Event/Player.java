@@ -128,4 +128,10 @@ public class Player {
 	public void setID(int ID) {
 		this.ID = ID;
 	}
+	
+	public String toString(){
+		String ret = "";
+		ret +=ID;
+		return ret;
+	}
 }

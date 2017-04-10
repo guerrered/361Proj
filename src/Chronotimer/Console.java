@@ -157,7 +157,7 @@ public class Console implements Observer{
 		}
 		return false;
 	}
-
+  
 	/**
 	 * if the machine is on it sets the current time to that of newtime
 	 * @param newTime
@@ -428,6 +428,7 @@ public class Console implements Observer{
 									break;
 								case(2):
 									race.finish(this.time.getTime());
+									System.out.println(DisplayListString());
 									break;
 								default:
 									System.out.println("Not a Channel");
@@ -440,12 +441,14 @@ public class Console implements Observer{
 									break;
 								case(2):
 									race.finish(this.time.getTime(),1);
+									System.out.println(DisplayListString());
 									break;
 								case(3):
 									race.start(this.time.getTime(),2);//lane 2
 									break;
 								case(4):
 									race.finish(this.time.getTime(),2);
+									System.out.println(DisplayListString());
 									break;
 								default:
 									System.out.println("Not a Channel");
@@ -666,5 +669,90 @@ public class Console implements Observer{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	
+	/**
+	 * 
+	 * @return the list that will be displayed on console display
+	 */
+	public List<Player> getDisplayList(){
+		return race.getDisplayList();
+	}
+	
+	/**
+	 * 
+	 * @return string in the format that it will be printed in display
+	 */
+	public String DisplayListString(){
+		List<Player> displayList = getDisplayList();
+		String asString = "";
+		for(int i = 0; i < displayList.size(); i++){//if finished use finish time else currenttime
+			Player temp = displayList.get(i);
+			if(temp.participated()){
+				if(temp.DNF){
+					asString += temp.toString() + "\tDNF\n";
+				}
+				else{
+					asString += temp.toString() + "\t" + timeConvert(temp.getEndTime() - temp.getStartTime()) + "\n";
+				}
+			}
+			else{
+				asString += temp.toString() + "\t" + timeConvert(time.getTime() - temp.getStartTime()) + "\n";
+			}
+		}
+		return asString;
+	}
+	
+	public String getMenu(){
+		return "Menu";
+	}
+	
+	/**
+	 * 
+	 * @param currentTime a long variable denoting a time value
+	 * @return the time value as a string
+	 */
+	public String timeConvert(long currentTime){
+			long hours = currentTime / 3600000;
+			currentTime = currentTime % 3600000;
+			long min = currentTime / 60000;
+			currentTime = currentTime % 60000;
+			long seconds = currentTime / 1000;
+			currentTime = currentTime % 1000;
+			long hundreths = currentTime / 10;
+			//currentTime = currentTime % 10;
+			
+			String hoursString;
+			String minString;
+			String secString;
+			String hundString;
+			if(hours < 10){
+				hoursString = "0" + hours+":";
+			}
+			else{
+				hoursString = hours + ":";
+			}
+			if(min < 10){
+				minString = "0" +min+":";
+			}
+			else{
+				minString = min + ":";
+			}
+			if(seconds < 10){
+				secString = "0" + seconds + ".";
+			}
+			else{
+				secString = seconds + ".";
+			}
+			if(hundreths < 10){
+				hundString = "0" + hundreths;
+			}
+			else{
+				hundString = "" + hundreths;
+			}
+			String ret = hoursString + minString  + secString + hundString;
+			return ret;
+		
 	}
 }
