@@ -23,7 +23,8 @@ public class Console implements Observer{
 	public boolean powerState = false;
 	
 	boolean CurRunOn = false;
-	public Printer printer;
+	boolean displayState = true;//used to discern between list being displayed and menu
+	public Printer printer;//true is the displayList false is menu;
 	public Event race;
 	public Time time;
 	Channels channels;
@@ -677,7 +678,10 @@ public class Console implements Observer{
 	 * @return the list that will be displayed on console display
 	 */
 	public List<Player> getDisplayList(){
-		return race.getDisplayList();
+		if(onCheck() && curRunCheck()){
+			return race.getDisplayList();
+		}
+		return null;
 	}
 	
 	/**
@@ -704,7 +708,7 @@ public class Console implements Observer{
 		}
 		return asString;
 		}
-		return null;
+		return "";//emptyString
 	}
 	
 	public String getMenu(){
@@ -757,5 +761,15 @@ public class Console implements Observer{
 			String ret = hoursString + minString  + secString + hundString;
 			return ret;
 		
+	}
+	
+	public boolean getDisplayState(){
+		return displayState;
+	}
+	
+	
+	//used when function is called so it can alternate between display states
+	public void changeDisplayState(){
+		displayState = !displayState;
 	}
 }

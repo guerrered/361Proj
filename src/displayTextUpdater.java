@@ -12,7 +12,7 @@ public class displayTextUpdater implements Runnable{
 	}
 	@Override
 	public void run() {
-		while(true){
+		while(console.getDisplayState()){//display state must be true aka listDisplay
 			T.setText(console.DisplayListString());
 			try {
 				Thread.sleep(10);
