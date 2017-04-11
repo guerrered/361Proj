@@ -90,6 +90,7 @@ public class GUI extends javax.swing.JFrame {
         
         Runnable r1 = new displayTextUpdater(jDisplay, con);
         Thread t = new Thread(r1);
+        
         t.start();
         jCheckBoxMenuItem1.setSelected(true);
         jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
@@ -743,8 +744,11 @@ public class GUI extends javax.swing.JFrame {
     	if(!con.getDisplayState()){//if false that means we are in the menu
     		jDisplay.setText(con.getMenu());
     	}
-    	//else should start displaying the displayList since state is true again
-    	
+    	else{//should start a new thread to display the thread
+    		Runnable rN = new displayTextUpdater(jDisplay, con);
+    		Thread tN = new Thread(rN);
+    		tN.start();
+    	}
     }//GEN-LAST:event_jFunctionActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
