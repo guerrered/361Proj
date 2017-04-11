@@ -92,6 +92,13 @@ public class GUI extends javax.swing.JFrame {
         
         rN = new displayTextUpdater(jDisplay, con);
         tN = new Thread(rN);
+        jUp = new javax.swing.JButton();
+        jLeft = new javax.swing.JButton();
+        jRight = new javax.swing.JButton();
+        jDown = new javax.swing.JButton();
+        
+        Num="";
+        
         
         tN.start();
         jCheckBoxMenuItem1.setSelected(true);
@@ -444,7 +451,35 @@ public class GUI extends javax.swing.JFrame {
                 jPrinterPwrActionPerformed(evt);
             }
         });
+        
+        jUp.setText("UP");
+        jUp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jUpActionPerformed(evt);
+            }
+        });
 
+        jLeft.setText("<");
+        jLeft.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jLeftActionPerformed(evt);
+            }
+        });
+
+        jRight.setText(">");
+        jRight.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRightActionPerformed(evt);
+            }
+        });
+
+        jDown.setText("Down");
+        jDown.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jDownActionPerformed(evt);
+            }
+        });
+        
         javax.swing.GroupLayout JPanel1Layout = new javax.swing.GroupLayout(JPanel1);
         JPanel1.setLayout(JPanel1Layout);
         JPanel1Layout.setHorizontalGroup(
@@ -458,7 +493,7 @@ public class GUI extends javax.swing.JFrame {
             .addGroup(JPanel1Layout.createSequentialGroup()
                 .addGroup(JPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(JPanel1Layout.createSequentialGroup()
-                        .addGap(275, 275, 275)
+                        .addGap(150, 150, 150)
                         .addGroup(JPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3)
                             .addComponent(JEAble2)
@@ -512,18 +547,37 @@ public class GUI extends javax.swing.JFrame {
                                 .addComponent(jToggleButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18,18, 18)
                                 .addComponent(jToggleButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                         .addGroup(JPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPrinterPwr, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(45, 45, 45))))
             .addGroup(JPanel1Layout.createSequentialGroup()
                 .addGroup(JPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(JPanel1Layout.createSequentialGroup()
+                   .addGroup(JPanel1Layout.createParallelGroup()
+                		  .addGroup(JPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                		.addGroup(JPanel1Layout.createSequentialGroup()
                         .addGap(93, 93, 93)
-                        .addComponent(jChan)
-                        .addGap(449, 449, 449)
-                        .addGroup(JPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jChan))
+                        
+    //modify start
+                        .addGroup(JPanel1Layout.createSequentialGroup()
+                                .addGap(66, 66, 66)
+                                .addGroup(JPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jUp, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(JPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jDown, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jRight, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                		  
+                       
+    //modify end                  
+                        
+                        
+                        .addGroup(JPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        		.addGap(650, 650, 650)
                             .addComponent(jQRFTime)
                             .addComponent(jDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(JPanel1Layout.createSequentialGroup()
@@ -588,7 +642,22 @@ public class GUI extends javax.swing.JFrame {
                             .addGroup(JPanel1Layout.createSequentialGroup()
                                 .addComponent(jFunction)
                                 .addGap(18, 18, 18)
-                                .addComponent(jSwap)))
+                                .addComponent(jSwap)
+                                
+ //modify start                           		
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jUp)
+                                .addGap(5, 5, 5)
+                                .addGroup(JPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLeft)
+                                    .addComponent(jDown)
+                                    .addComponent(jRight))))
+                        
+ //modify end                       
+                        
+                        
+                        
+                        
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(JPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jQRFTime)
@@ -694,38 +763,47 @@ public class GUI extends javax.swing.JFrame {
 
     private void jNum1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum1ActionPerformed
         // TODO add your handling code here:
+    	Num+="1";
     }//GEN-LAST:event_jNum1ActionPerformed
 
     private void jNum2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum2ActionPerformed
         // TODO add your handling code here:
+    	Num+="2";
     }//GEN-LAST:event_jNum2ActionPerformed
 
     private void jNum3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum3ActionPerformed
         // TODO add your handling code here:
+    	Num+="3";
     }//GEN-LAST:event_jNum3ActionPerformed
 
     private void jNum4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum4ActionPerformed
         // TODO add your handling code here:
+    	Num+="4";
     }//GEN-LAST:event_jNum4ActionPerformed
 
     private void jNum5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum5ActionPerformed
         // TODO add your handling code here:
+    	Num+="5";
     }//GEN-LAST:event_jNum5ActionPerformed
 
     private void jNum6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum6ActionPerformed
         // TODO add your handling code here:
+    	Num+="6";
     }//GEN-LAST:event_jNum6ActionPerformed
 
     private void jNum7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum7ActionPerformed
         // TODO add your handling code here:
+    	Num+="7";
     }//GEN-LAST:event_jNum7ActionPerformed
 
     private void jNum8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum8ActionPerformed
         // TODO add your handling code here:
+    	Num+="8";
     }//GEN-LAST:event_jNum8ActionPerformed
 
     private void jNum9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum9ActionPerformed
         // TODO add your handling code here:
+    	Num+="9";
     }//GEN-LAST:event_jNum9ActionPerformed
 
     private void jNumStarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNumStarActionPerformed
@@ -734,10 +812,15 @@ public class GUI extends javax.swing.JFrame {
 
     private void jNum0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum0ActionPerformed
         // TODO add your handling code here:
+    	Num+="0";
     }//GEN-LAST:event_jNum0ActionPerformed
 
     private void jNumPoundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNumPoundActionPerformed
         // TODO add your handling code here:
+    	int cnt = Integer.parseInt(Num);
+    	Num="";
+    	con.Num(cnt);
+
     }//GEN-LAST:event_jNumPoundActionPerformed
     
     private void jFunctionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFunctionActionPerformed
@@ -758,6 +841,21 @@ public class GUI extends javax.swing.JFrame {
     		tN.start();
     	}
     }//GEN-LAST:event_jFunctionActionPerformed
+    
+    private void jUpActionPerformed(java.awt.event.ActionEvent evt) {                                      
+        // TODO add your handling code here:
+    }  
+    private void jDownActionPerformed(java.awt.event.ActionEvent evt) {                                      
+        // TODO add your handling code here:
+    }  
+    
+    private void jRightActionPerformed(java.awt.event.ActionEvent evt) {                                      
+        // TODO add your handling code here:
+    }  
+    
+    private void jLeftActionPerformed(java.awt.event.ActionEvent evt) {                                      
+        // TODO add your handling code here:
+    }  
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
@@ -1022,5 +1120,11 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton6;
     private javax.swing.JToggleButton jToggleButton7;
     private javax.swing.JToggleButton jToggleButton8;
+    private javax.swing.JButton jUp;
+    private javax.swing.JButton jDown;
+    private javax.swing.JButton jRight;
+    private javax.swing.JButton jLeft;
+    private String Num;
+    
     // End of variables declaration//GEN-END:variables
 }
