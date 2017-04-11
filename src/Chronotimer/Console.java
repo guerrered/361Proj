@@ -684,27 +684,56 @@ public class Console implements Observer{
 		return null;
 	}
 	
+
 	/**
 	 * 
 	 * @return string in the format that it will be printed in display
+	 * F is printed aside if runner finished
+	 * R if they are currently running
+	 * < if they are the next on the queue
 	 */
 	public String DisplayListString(){
 		if(onCheck() && curRunCheck()){
 		List<Player> displayList = getDisplayList();
 		String asString = "";
+		int count = 0;//count is 0 for group since only 1 runner is printed at a time
+		if(eventType.equals("PARIND")){
+			count = 2;
+		}
+		if(eventType.equals("IND")){
+			count = 1;
+		}
 		for(int i = 0; i < displayList.size(); i++){//if finished use finish time else currenttime
 			Player temp = displayList.get(i);
+			String tempString = "";
 			if(temp.participated()){
 				if(temp.DNF){
-					asString += temp.toString() + "\tDNF\n";
+					tempString += temp.toString() + "\tDNF\tF\n";
 				}
 				else{
-					asString += temp.toString() + "\t" + timeConvert(temp.getEndTime() - temp.getStartTime()) + "\n";
+					tempString += temp.toString() + "\t" + timeConvert(temp.getEndTime() - temp.getStartTime()) + "\tF\n";
 				}
 			}
-			else{
-				asString += temp.toString() + "\t" + timeConvert(time.getTime() - temp.getStartTime()) + "\n";
+			
+			else if(temp.isRunning()){
+				tempString += temp.toString() + "\t" + timeConvert(time.getTime() - temp.getStartTime()) + "\tR\n";
 			}
+			else{
+				if(count > 0){
+					if(temp.wasCanceled()){
+						tempString += temp.toString() + "\tCanceled<\n";//usually next in queue might as well check
+					}
+					else{
+						tempString += temp.toString() + "\t" + timeConvert(time.getTime()) + "<\n";//currentTime next in queue
+					}
+					count--;
+				}
+				else{
+					tempString += temp.toString() + "\t" + timeConvert(time.getTime()) + "\n";//currentTime
+				}
+			}
+			tempString = tempString.concat(asString);
+			asString = tempString;
 		}
 		return asString;
 		}

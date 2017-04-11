@@ -19,6 +19,8 @@ public class GUI extends javax.swing.JFrame {
      * Creates new form MainFrame
      */
     Console con;
+    Thread tN;
+    Runnable rN;
     public GUI(Console con) {
         this.con=con;
         initComponents();
@@ -88,10 +90,10 @@ public class GUI extends javax.swing.JFrame {
         MeFile = new javax.swing.JMenu();
         MeExit = new javax.swing.JMenuItem();
         
-        Runnable r1 = new displayTextUpdater(jDisplay, con);
-        Thread t = new Thread(r1);
+        rN = new displayTextUpdater(jDisplay, con);
+        tN = new Thread(rN);
         
-        t.start();
+        tN.start();
         jCheckBoxMenuItem1.setSelected(true);
         jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
 
@@ -742,11 +744,17 @@ public class GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     	con.changeDisplayState();
     	if(!con.getDisplayState()){//if false that means we are in the menu
+    		try {
+				tN.join();//ensure thread ends
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
     		jDisplay.setText(con.getMenu());
     	}
     	else{//should start a new thread to display the thread
-    		Runnable rN = new displayTextUpdater(jDisplay, con);
-    		Thread tN = new Thread(rN);
+    		rN = new displayTextUpdater(jDisplay, con);
+    		tN = new Thread(rN);
     		tN.start();
     	}
     }//GEN-LAST:event_jFunctionActionPerformed
