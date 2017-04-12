@@ -47,9 +47,9 @@ public class GUI extends javax.swing.JFrame {
         JStartLabel = new javax.swing.JLabel();
         J2468Label1 = new javax.swing.JLabel();
         jToggleButton1 = new javax.swing.JButton();
-        jToggleButton3 = new javax.swing.JToggleButton();
-        jToggleButton5 = new javax.swing.JToggleButton();
-        jToggleButton7 = new javax.swing.JToggleButton();
+        jToggleButton3 = new javax.swing.JButton();
+        jToggleButton5 = new javax.swing.JButton();
+        jToggleButton7 = new javax.swing.JButton();
         JEAble = new javax.swing.JLabel();
         JEAble2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -57,10 +57,10 @@ public class GUI extends javax.swing.JFrame {
         JFinish4 = new javax.swing.JButton();
         JFinish6 = new javax.swing.JButton();
         JFinish8 = new javax.swing.JButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
-        jToggleButton4 = new javax.swing.JToggleButton();
-        jToggleButton6 = new javax.swing.JToggleButton();
-        jToggleButton8 = new javax.swing.JToggleButton();
+        jToggleButton2 = new javax.swing.JButton();
+        jToggleButton4 = new javax.swing.JButton();
+        jToggleButton6 = new javax.swing.JButton();
+        jToggleButton8 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPrinterDisplay = new javax.swing.JLabel();
         jDisplay = new javax.swing.JTextArea();
@@ -874,16 +874,13 @@ public class GUI extends javax.swing.JFrame {
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
                 // TODO add your handling code here:
     	if(con.powerState==true){
-         if(jToggleButton2.isSelected())
-        {
-            jToggleButton2.setText("ON");
-            con.Tog(2);
-        }
-        else
-        {
-            jToggleButton2.setText("OFF");
-            con.Tog(2);
-        }
+    		con.Tog(2);
+    		if(con.isConnected(2)){
+    			jToggleButton2.setText("ON");
+    		}
+    		else{
+    			jToggleButton2.setText("OFF");
+    		}
     	}
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
@@ -891,32 +888,26 @@ public class GUI extends javax.swing.JFrame {
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
         // TODO add your handling code here:
     	if(con.powerState==true){
-           if(jToggleButton3.isSelected())
-        {
-            jToggleButton3.setText("ON");
-            con.Tog(3);
-        }
-        else
-        {
-            jToggleButton3.setText("OFF");
-            con.Tog(3);
-        }
+    		con.Tog(3);
+    		if(con.isConnected(3)){
+    			jToggleButton3.setText("ON");
+    		}
+    		else{
+    			jToggleButton3.setText("OFF");
+    		}
     	}
     }//GEN-LAST:event_jToggleButton3ActionPerformed
 
     private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
         // TODO add your handling code here:
     	if(con.powerState==true){
-           if(jToggleButton4.isSelected())
-        {
-            jToggleButton4.setText("ON");
-            con.Tog(4);
-        }
-        else
-        {
-            jToggleButton4.setText("OFF");
-            con.Tog(4);
-        }
+    		con.Tog(4);
+    		if(con.isConnected(4)){
+    			jToggleButton4.setText("ON");
+    		}
+    		else{
+    			jToggleButton4.setText("OFF");
+    		}
     	}
     }//GEN-LAST:event_jToggleButton4ActionPerformed
 
@@ -924,67 +915,67 @@ public class GUI extends javax.swing.JFrame {
     private void jToggleButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton5ActionPerformed
         // TODO add your handling code here:
     	if(con.powerState==true){
-           if(jToggleButton5.isSelected())
-        {
-            jToggleButton5.setText("ON");
-            con.Tog(5);
-        }
-        else
-        {
-            jToggleButton5.setText("OFF");
-            con.Tog(5);
-        }
+    		con.Tog(5);
+    		if(con.isConnected(5)){
+    			jToggleButton5.setText("ON");
+    		}
+    		else{
+    			jToggleButton5.setText("OFF");
+    		}
     	}
     }//GEN-LAST:event_jToggleButton5ActionPerformed
 
     private void jToggleButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton6ActionPerformed
         // TODO add your handling code here:
     	if(con.powerState==true){
-           if(jToggleButton6.isSelected())
-        {
-            jToggleButton6.setText("ON");
-            con.Tog(6);
-        }
-        else
-        {
-            jToggleButton6.setText("OFF");
-            con.Tog(6);
-        }
+    		con.Tog(6);
+    		if(con.isConnected(6)){
+    			jToggleButton6.setText("ON");
+    		}
+    		else{
+    			jToggleButton6.setText("OFF");
+    		}
     	}
     }//GEN-LAST:event_jToggleButton6ActionPerformed
 
     private void jToggleButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton7ActionPerformed
         // TODO add your handling code here:
     	if(con.powerState==true){
-           if(jToggleButton7.isSelected())
-        {
-            jToggleButton7.setText("ON");
-            con.Tog(7);
-        }
-        else
-        {
-            jToggleButton7.setText("OFF");
-            con.Tog(7);
-        }
+    		con.Tog(7);
+    		if(con.isConnected(7)){
+    			jToggleButton7.setText("ON");
+    		}
+    		else{
+    			jToggleButton7.setText("OFF");
+    		}
     	}
     }//GEN-LAST:event_jToggleButton7ActionPerformed
 
     private void jToggleButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton8ActionPerformed
         // TODO add your handling code here:
     	if(con.powerState==true){
-           if(jToggleButton8.isSelected())
-        {
-            jToggleButton8.setText("ON");
-            con.Tog(7);
-        }
-        else
-        {
-            jToggleButton8.setText("OFF");
-            con.Tog(7);
-        }
+    		con.Tog(8);
+    		if(con.isConnected(8)){
+    			jToggleButton8.setText("ON");
+    		}
+    		else{
+    			jToggleButton8.setText("OFF");
+    		}
     	}
     }//GEN-LAST:event_jToggleButton8ActionPerformed
 
+    private void PowerOFFUpdate()
+    {
+    	jToggleButton1.setText("OFF");
+    	jToggleButton2.setText("OFF");
+    	jToggleButton3.setText("OFF");
+    	jToggleButton4.setText("OFF");
+    	jToggleButton5.setText("OFF");
+    	jToggleButton6.setText("OFF");
+    	jToggleButton7.setText("OFF");
+    	jToggleButton8.setText("OFF");
+    }
+    
     private void jPowerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPowerActionPerformed
         // TODO add your handling code here:
     	
@@ -996,7 +987,8 @@ public class GUI extends javax.swing.JFrame {
         else
         {
             jPower.setText("Power:OFF");
-            jToggleButton1.setText("OFF");
+            PowerOFFUpdate();
+            
             con.Power();
         }
     	
@@ -1111,13 +1103,13 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jQRFTime;
     private javax.swing.JButton jSwap;
     private javax.swing.JButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
-    private javax.swing.JToggleButton jToggleButton3;
-    private javax.swing.JToggleButton jToggleButton4;
-    private javax.swing.JToggleButton jToggleButton5;
-    private javax.swing.JToggleButton jToggleButton6;
-    private javax.swing.JToggleButton jToggleButton7;
-    private javax.swing.JToggleButton jToggleButton8;
+    private javax.swing.JButton jToggleButton2;
+    private javax.swing.JButton jToggleButton3;
+    private javax.swing.JButton jToggleButton4;
+    private javax.swing.JButton jToggleButton5;
+    private javax.swing.JButton jToggleButton6;
+    private javax.swing.JButton jToggleButton7;
+    private javax.swing.JButton jToggleButton8;
     private javax.swing.JButton jUp;
     private javax.swing.JButton jDown;
     private javax.swing.JButton jRight;
