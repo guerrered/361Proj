@@ -833,6 +833,7 @@ public class GUI extends javax.swing.JFrame {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+    		con.instantiateMenu();
     		jDisplay.setText(con.getMenu());
     	}
     	else{//should start a new thread to display the thread
@@ -842,18 +843,26 @@ public class GUI extends javax.swing.JFrame {
     	}
     }//GEN-LAST:event_jFunctionActionPerformed
     
-    private void jUpActionPerformed(java.awt.event.ActionEvent evt) {                                      
+    private void jUpActionPerformed(java.awt.event.ActionEvent evt) {    
+    	con.menuUP();
+    	jDisplay.setText(con.getMenu());
         // TODO add your handling code here:
     }  
-    private void jDownActionPerformed(java.awt.event.ActionEvent evt) {                                      
+    private void jDownActionPerformed(java.awt.event.ActionEvent evt) { 
+    	con.menuDOWN();
+    	jDisplay.setText(con.getMenu());
         // TODO add your handling code here:
     }  
     
-    private void jRightActionPerformed(java.awt.event.ActionEvent evt) {                                      
+    private void jRightActionPerformed(java.awt.event.ActionEvent evt) {     
+    	con.menuRIGHT();
+    	jDisplay.setText(con.getMenu());
         // TODO add your handling code here:
     }  
     
-    private void jLeftActionPerformed(java.awt.event.ActionEvent evt) {                                      
+    private void jLeftActionPerformed(java.awt.event.ActionEvent evt) {   
+    	con.menuLEFT();
+    	jDisplay.setText(con.getMenu());
         // TODO add your handling code here:
     }  
 
@@ -974,6 +983,7 @@ public class GUI extends javax.swing.JFrame {
     	jToggleButton6.setText("OFF");
     	jToggleButton7.setText("OFF");
     	jToggleButton8.setText("OFF");
+    	jDisplay.setText("");
     }
     
     private void jPowerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPowerActionPerformed
@@ -982,7 +992,9 @@ public class GUI extends javax.swing.JFrame {
     	if(jPower.isSelected())
         {
             jPower.setText("Power:ON");
+            
             con.Power();
+
         }
         else
         {

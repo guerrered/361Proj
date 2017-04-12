@@ -27,6 +27,8 @@ public class Console implements Observer{
 	public Printer printer;//true is the displayList false is menu;
 	public Event race;
 	public Time time;
+	public menuStates menu;
+	public boolean menuOn = false;
 	Channels channels;
 	String eventType;
 	File log;
@@ -747,24 +749,45 @@ public class Console implements Observer{
 		return "";//emptyString
 	}
 	
+	public String instantiateMenu(){
+		menuOn = true;
+		menu = new menuStates();
+		return menu.getCurrentState();
+	}
+	
+	public void menuUP(){
+		if(menuOn){
+			menu.up();
+		}
+	}
+	
+	public void menuDOWN(){
+		if(menuOn){
+			menu.down();
+		}
+	}
+	
+	public void menuLEFT(){
+		if(menuOn){
+			menu.prev();
+		}
+	}
+	
+	public void menuRIGHT(){
+		if(menuOn){
+			menu.next();
+		}
+	}
 	public String getMenu(){
-		String menu = "1.Event\n2.RaceOperations\n3.Run\n4.FileExport\n";
-		return menu;
+		if(menuOn){
+			return menu.getCurrentState();
+		}
+		return "";
 	}
-	
-	public String eventSubMenu(){
-		String eventSub =  "1.IND\n2.PARIND\n3.GRP\n";
-		return eventSub;
+	public void closeMenu(){
+		menu = null;
+		menuOn = false;
 	}
-	public String raceOpSubMenu(){
-		String raceOpSub =  "1.DNF\n2.Cancel\n";
-		return raceOpSub;
-	}
-	public String runSubMenu(){
-		String runSub = "1.ENDRUN\n2.NEWRUN\n";
-		return runSub;
-	}
-	
 	/**
 	 * 
 	 * @param currentTime a long variable denoting a time value
