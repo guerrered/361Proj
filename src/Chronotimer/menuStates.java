@@ -12,7 +12,7 @@ public class menuStates {
 	 * 
 	 * 
 	 * mainMenu
-	 * 
+	 * 0				1				2				3				4
 	 * eventSub		raceOPSub		runSub			Print			export			
 	 * 
 	 * 1-export		1-eventSub		1-raceOPSub		1-runSub		1-print
@@ -24,6 +24,7 @@ public class menuStates {
 	 * 
 	 * evenSubMENU
 	 * 
+	 * 5					6				7
 	 * IND				PARIND				GRP
 	 * 1-grp			1-IND				1-parIND
 	 * 2-parIND			2-GRP				2-IND
@@ -32,7 +33,7 @@ public class menuStates {
 	 * 
 	 * 
 	 * raceOPSubMENU
-	 * 
+	 * 8					9
 	 * DNF				CANCEL		
 	 * 1-cancel			1-DNF
 	 * 2-cancel			2-DNF
@@ -41,7 +42,7 @@ public class menuStates {
 	 * 	
 	 * 
 	 * runSubMENU
-	 * 
+	 * 10				11
 	 * endrun			newRun
 	 * 1-newrun			1-endrun
 	 * 2-newrun			2-endrun

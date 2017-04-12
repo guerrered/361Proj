@@ -46,7 +46,7 @@ public class GUI extends javax.swing.JFrame {
         JStart7 = new javax.swing.JButton();
         JStartLabel = new javax.swing.JLabel();
         J2468Label1 = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        jToggleButton1 = new javax.swing.JButton();
         jToggleButton3 = new javax.swing.JToggleButton();
         jToggleButton5 = new javax.swing.JToggleButton();
         jToggleButton7 = new javax.swing.JToggleButton();
@@ -860,16 +860,13 @@ public class GUI extends javax.swing.JFrame {
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
     	if(con.powerState==true){
-    	if(jToggleButton1.isSelected())
-        {
-            jToggleButton1.setText("ON");
-            con.Tog(1);
-        }
-        else
-        {
-            jToggleButton1.setText("OFF");
-            con.Tog(1);
-        }
+    		con.Tog(1);
+    		if(con.isConnected(1)){
+    			jToggleButton1.setText("ON");
+    		}
+    		else{
+    			jToggleButton1.setText("OFF");
+    		}
     	}
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
@@ -999,6 +996,7 @@ public class GUI extends javax.swing.JFrame {
         else
         {
             jPower.setText("Power:OFF");
+            jToggleButton1.setText("OFF");
             con.Power();
         }
     	
@@ -1112,7 +1110,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JToggleButton jPrinterPwr;
     private javax.swing.JLabel jQRFTime;
     private javax.swing.JButton jSwap;
-    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton jToggleButton3;
     private javax.swing.JToggleButton jToggleButton4;

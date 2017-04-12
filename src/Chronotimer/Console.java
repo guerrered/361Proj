@@ -386,6 +386,13 @@ public class Console implements Observer{
 			channels.connect(type, ChNum);
 		}
 	}
+	
+	public boolean isConnected(int i){
+		if(onCheck()){
+			return channels.isConnected(i);
+		}
+		return false;
+	}
 	/**
 	 * disconnect the sensor at chNum
 	 * @param chNum
