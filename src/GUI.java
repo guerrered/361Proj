@@ -765,55 +765,65 @@ public class GUI extends javax.swing.JFrame {
     	}
     }//GEN-LAST:event_JFinish8ActionPerformed
 
+    //we want to display the current num generated into the display
     private void jNum1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum1ActionPerformed
         // TODO add your handling code here:
     	Num+="1";
+    	jDisplay.setText("Num: " + Num);
     }//GEN-LAST:event_jNum1ActionPerformed
 
     private void jNum2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum2ActionPerformed
         // TODO add your handling code here:
     	Num+="2";
+    	jDisplay.setText("Num: " + Num);
     }//GEN-LAST:event_jNum2ActionPerformed
 
     private void jNum3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum3ActionPerformed
         // TODO add your handling code here:
     	Num+="3";
+    	jDisplay.setText("Num: " + Num);
     }//GEN-LAST:event_jNum3ActionPerformed
 
     private void jNum4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum4ActionPerformed
         // TODO add your handling code here:
     	Num+="4";
+    	jDisplay.setText("Num: " + Num);
     }//GEN-LAST:event_jNum4ActionPerformed
 
     private void jNum5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum5ActionPerformed
         // TODO add your handling code here:
     	Num+="5";
+    	jDisplay.setText("Num: " + Num);
     }//GEN-LAST:event_jNum5ActionPerformed
 
     private void jNum6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum6ActionPerformed
         // TODO add your handling code here:
     	Num+="6";
+    	jDisplay.setText("Num: " + Num);
     }//GEN-LAST:event_jNum6ActionPerformed
 
     private void jNum7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum7ActionPerformed
         // TODO add your handling code here:
     	Num+="7";
+    	jDisplay.setText("Num: " + Num);
     }//GEN-LAST:event_jNum7ActionPerformed
 
     private void jNum8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum8ActionPerformed
         // TODO add your handling code here:
     	Num+="8";
+    	jDisplay.setText("Num: " + Num);
     }//GEN-LAST:event_jNum8ActionPerformed
 
     private void jNum9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum9ActionPerformed
         // TODO add your handling code here:
     	Num+="9";
+    	jDisplay.setText("Num: " + Num);
     }//GEN-LAST:event_jNum9ActionPerformed
 
     private void jNumStarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNumStarActionPerformed
     	if(con.powerState==true){
         	con.getChannels().getCh(1).Trig();//another shorthand for trig 1
-        	}
+        }
     }//GEN-LAST:event_jNumStarActionPerformed
 
     private void jNum0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum0ActionPerformed
@@ -825,10 +835,19 @@ public class GUI extends javax.swing.JFrame {
         //the first time the button is pressed it will start reading a number 
     	numSwitch = !numSwitch;
     	if(numSwitch == true){
+    		tN.interrupt();//it might be inactive so nothing to interrupt //but ensure we do incase display list is shown 
     		Num = "";
+    		jDisplay.setText("Num: ");
     	}
     	
     	else{//the second time it is pressed it will run the the num command from console
+    		if(!con.getDisplayState()){// if we werent in the display list go back to running screen
+    			con.changeDisplayState();
+    			rN = new displayTextUpdater(jDisplay, con);//must start the thread over since fucntion had killed it
+    			tN = new Thread(rN);
+    			tN.start();
+    		}
+    		((displayTextUpdater) rN).ExitInterrupt();//else if we came from display list exit the interrupt cycle
     		int id = Integer.parseInt(Num); // turning power off should reset this function
     		con.Num(id); 
     	}

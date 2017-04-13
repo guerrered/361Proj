@@ -5,6 +5,7 @@ import Chronotimer.Console;
 public class displayTextUpdater implements Runnable{
 	JTextArea T;
 	Console console;
+	boolean interrupt;//used so we can tell if the thread is currently interrupted
 	
 	public displayTextUpdater(JTextArea ta, Console cons){
 		T = ta;
@@ -18,10 +19,20 @@ public class displayTextUpdater implements Runnable{
 			try {
 				Thread.sleep(10);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				interrupt = true;//interrupt cycle for when we want other inputs on the screen and were on display list
+				while(interrupt){
+					try {
+						Thread.sleep(1);
+					} catch (InterruptedException e1) {
+						System.out.println("All Good");
+					}
+				}
 			}
 		}
+	}
+	
+	public void ExitInterrupt(){//exiting the interrupt cycle
+		interrupt = false;
 	}
 
 }
