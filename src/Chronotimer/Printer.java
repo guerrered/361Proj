@@ -37,8 +37,9 @@ public class Printer {
 	 * @param p - the list of players that need to be printed.
 	 * @param event - the event name 
 	 */
-	public void print(List<Player> p, String event){///might want to sort finish times with parind//
+	public String print(List<Player> p, String event){///might want to sort finish times with parind//
 		Player tempP;
+		String ret = "";
 		for(int i =0; i <p.size(); i++){
 			tempP = p.get(i);
 			if(tempP.participated()){
@@ -48,18 +49,20 @@ public class Printer {
 			 * <NUMBER> <FINISH> <EVENT	TIME>
 			 */
 				if(!tempP.DNF){
-					System.out.println("Start: "+timeFormat(tempP.getStartTime()) + " Event: " + event + '\t'+ "ID: "+  
-						p.get(i).getID() + " Finish: " + timeFormat(tempP.endTime) + " Total: " + timeFormat(tempP.getTotalTime()));
+					ret += "Start: "+timeFormat(tempP.getStartTime()) + " Event: " + event + '\t'+ "ID: "+  
+						p.get(i).getID() + " Finish: " + timeFormat(tempP.endTime) + " Total: " + timeFormat(tempP.getTotalTime()) +"\n";
 				}
 				else{
-						System.out.println("Start: "+timeFormat(tempP.getStartTime()) + " Event: " + event + '\t'+ "ID: "  
-						+p.get(i).getID() + " DNF");	
+						ret += "Start: "+timeFormat(tempP.getStartTime()) + " Event: " + event + '\t'+ "ID: "  
+						+p.get(i).getID() + " DNF\n";	
 					}
 			}
 			/*else{
 				break;//since in order can just break here to save time
 			}*/
 		}
+		System.out.println(ret);
+		return ret;
 	}
 	
 	 /**

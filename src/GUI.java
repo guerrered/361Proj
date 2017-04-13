@@ -64,7 +64,7 @@ public class GUI extends javax.swing.JFrame {
         jToggleButton6 = new javax.swing.JButton();
         jToggleButton8 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jPrinterDisplay = new javax.swing.JLabel();
+        jPrinterDisplay = new javax.swing.JTextArea();
         jDisplay = new javax.swing.JTextArea();
         jQRFTime = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -92,6 +92,7 @@ public class GUI extends javax.swing.JFrame {
         MeFile = new javax.swing.JMenu();
         MeExit = new javax.swing.JMenuItem();
         
+        jDisplay.setEditable(false);
         rN = new displayTextUpdater(jDisplay, con);
         tN = new Thread(rN);
         jUp = new javax.swing.JButton();
@@ -236,7 +237,7 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        jPrinterDisplay.setText("Printer");
+        jPrinterDisplay.setEditable(false);
         jPrinterDisplay.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), javax.swing.BorderFactory.createCompoundBorder()));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -244,7 +245,7 @@ public class GUI extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPrinterDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                .addComponent(jPrinterDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -832,7 +833,6 @@ public class GUI extends javax.swing.JFrame {
     		try {
 				tN.join();//ensure thread ends
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
     		con.instantiateMenu();
@@ -873,7 +873,7 @@ public class GUI extends javax.swing.JFrame {
     			switch(nextState){
     				case("print"):
     					if(con.printerOnCheck()){
-    						con.Print();
+    						jPrinterDisplay.setText(con.Print());
     					}
     					break;
     				case("export"):
@@ -907,6 +907,7 @@ public class GUI extends javax.swing.JFrame {
     					break;
     				case("exit"):
     					con.closeMenu();
+    					con.changeDisplayState();
     					rN = new displayTextUpdater(jDisplay, con);
     					tN = new Thread(rN);
     					tN.start();
@@ -927,11 +928,14 @@ public class GUI extends javax.swing.JFrame {
     			String nextState = con.getMenu();
     			if(nextState.equals("exit")){
     				con.closeMenu();
+    				con.changeDisplayState();
 					rN = new displayTextUpdater(jDisplay, con);
 					tN = new Thread(rN);
 					tN.start();
+					
+    			}else{
+    				jDisplay.setText(nextState);
     			}
-    			jDisplay.setText(nextState);
     		}
     	}
         // TODO add your handling code here:
@@ -1181,7 +1185,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JToggleButton jPower;
-    private javax.swing.JLabel jPrinterDisplay;
+    private JTextArea jPrinterDisplay;
     private javax.swing.JToggleButton jPrinterPwr;
     private javax.swing.JLabel jQRFTime;
     private javax.swing.JButton jSwap;

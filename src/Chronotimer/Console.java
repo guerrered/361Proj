@@ -364,11 +364,12 @@ public class Console implements Observer{
 	 * if machine is on and and event is currently happening the machine will print 
 	 * all the participating runners
 	 */
-	public void Print(){
+	public String Print(){
 		if(onCheck() && curRunCheck()){
 			writeToLog("Print");
-			this.printer.print(this.race.getEndList(), this.eventType);
+			return printer.print(this.race.getEndList(), this.eventType);
 		}
+		return "";
 	}
 	
 	public void printerPower(){
@@ -438,7 +439,6 @@ public class Console implements Observer{
 									break;
 								case(2):
 									race.finish(this.time.getTime());
-									System.out.println(DisplayListString());
 									break;
 								default:
 									System.out.println("Not a Channel");
@@ -451,14 +451,12 @@ public class Console implements Observer{
 									break;
 								case(2):
 									race.finish(this.time.getTime(),1);
-									System.out.println(DisplayListString());
 									break;
 								case(3):
 									race.start(this.time.getTime(),2);//lane 2
 									break;
 								case(4):
 									race.finish(this.time.getTime(),2);
-									System.out.println(DisplayListString());
 									break;
 								default:
 									System.out.println("Not a Channel");
