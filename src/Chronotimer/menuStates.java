@@ -7,6 +7,7 @@ public class menuStates {
 	String currentState;
 	String[] menuItems;
 	
+	//We gotta make sure we test all the movements between states
 	public menuStates(){
 		//main menu
 		stateIndex= 0;
@@ -25,7 +26,16 @@ public class menuStates {
 		//run SubMenu
 		String s11 = "1.NEWRUN<\n2.ENDRUN";
 		String s12 = "1.NEWRUN\n2.ENDRUN<";
-		String s13 = "function";
+		String s13 = "print";
+		String s14 = "export";
+		String s15 = "ind";
+		String s16 = "parind";
+		String s17 = "grp";
+		String s18 = "dnf";
+		String s19 = "cancel";
+		String s20 = "newrun";
+		String s21 = "endrun";
+		String s22 = "exit";
 		
 		menuItems = new String[22];
 		menuItems[0] = s1;
@@ -41,15 +51,15 @@ public class menuStates {
 		menuItems[10] = s11;
 		menuItems[11] = s12;
 		menuItems[12] = s13;
-		menuItems[13] = s13;
-		menuItems[14] = s13;
-		menuItems[15] = s13;
-		menuItems[16] = s13;
-		menuItems[17] = s13;
-		menuItems[18] = s13;
-		menuItems[19] = s13;
-		menuItems[20] = s13;
-		menuItems[21] = s13;
+		menuItems[13] = s14;
+		menuItems[14] = s15;
+		menuItems[15] = s16;
+		menuItems[16] = s17;
+		menuItems[17] = s18;
+		menuItems[18] = s19;
+		menuItems[19] = s20;
+		menuItems[20] = s21;
+		menuItems[21] = s22;
 				
 		currentState = s1;
 		
@@ -117,11 +127,11 @@ public class menuStates {
 		menu[3][6] = 0;//main menu
 		menu[3][7] = 0;//main menu
 		
-		menu[3][8] = 0;//main menu
-		menu[3][9] = 0;//main menu
+		menu[3][8] = 1;//main menu
+		menu[3][9] = 1;//main menu
 		
-		menu[3][10] = 0;//main menu
-		menu[3][11] = 0;//main menu
+		menu[3][10] = 2;//main menu
+		menu[3][11] = 2;//main menu
 		
 	}
 	

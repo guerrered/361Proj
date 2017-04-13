@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 import javax.swing.JTextArea;
 
 import Chronotimer.Console;
@@ -837,32 +839,101 @@ public class GUI extends javax.swing.JFrame {
     		jDisplay.setText(con.getMenu());
     	}
     	else{//should start a new thread to display the thread
+    		con.closeMenu();
     		rN = new displayTextUpdater(jDisplay, con);
     		tN = new Thread(rN);
     		tN.start();
     	}
     }//GEN-LAST:event_jFunctionActionPerformed
     
-    private void jUpActionPerformed(java.awt.event.ActionEvent evt) {    
-    	con.menuUP();
-    	jDisplay.setText(con.getMenu());
+    private void jUpActionPerformed(java.awt.event.ActionEvent evt) {   
+    	if(con.onCheck()){
+    		if(con.isMenuOn()){
+    			con.menuUP();
+    			jDisplay.setText(con.getMenu());
+    		}
+    	}
         // TODO add your handling code here:
     }  
     private void jDownActionPerformed(java.awt.event.ActionEvent evt) { 
-    	con.menuDOWN();
-    	jDisplay.setText(con.getMenu());
+    	if(con.onCheck()){
+    		if(con.isMenuOn()){
+    			con.menuDOWN();
+    			jDisplay.setText(con.getMenu());
+    		}
+    	}
         // TODO add your handling code here:
     }  
     
     private void jRightActionPerformed(java.awt.event.ActionEvent evt) {     
-    	con.menuRIGHT();
-    	jDisplay.setText(con.getMenu());
+    	if(con.onCheck()){
+    		if(con.isMenuOn()){
+    			con.menuRIGHT();
+    			String nextState = con.getMenu();
+    			switch(nextState){
+    				case("print"):
+    					if(con.printerOnCheck()){
+    						con.Print();
+    					}
+    					break;
+    				case("export"):
+    					try {
+    						con.export();
+    					} catch (IOException e) {
+    						// TODO Auto-generated catch block
+    						e.printStackTrace();
+    					}
+    					break;
+    				case("ind"):
+    					con.Event("IND");
+    					break;
+    				case("parind"):
+    					con.Event("PARIND");
+    					break;
+    				case("grp"):
+    					con.Event("GRP");
+    					break;
+    				case("dnf"):
+    					con.DNF();
+    					break;
+    				case("cancel"):
+    					con.Cancel();
+    					break;
+    				case("newrun"):
+    					con.newRun();
+    					break;
+    				case("endrun"):
+    					con.endRun();
+    					break;
+    				case("exit"):
+    					con.closeMenu();
+    					rN = new displayTextUpdater(jDisplay, con);
+    					tN = new Thread(rN);
+    					tN.start();
+    					break;
+    				default:
+    					jDisplay.setText(nextState);
+    					break;
+    			}
+    		}
+    	}
         // TODO add your handling code here:
     }  
     
     private void jLeftActionPerformed(java.awt.event.ActionEvent evt) {   
-    	con.menuLEFT();
-    	jDisplay.setText(con.getMenu());
+    	if(con.onCheck()){
+    		if(con.isMenuOn()){
+    			con.menuLEFT();
+    			String nextState = con.getMenu();
+    			if(nextState.equals("exit")){
+    				con.closeMenu();
+					rN = new displayTextUpdater(jDisplay, con);
+					tN = new Thread(rN);
+					tN.start();
+    			}
+    			jDisplay.setText(nextState);
+    		}
+    	}
         // TODO add your handling code here:
     }  
 

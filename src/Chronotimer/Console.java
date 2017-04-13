@@ -505,10 +505,13 @@ public class Console implements Observer{
 	 * @return boolean regarding the powerstate of the machine
 	 * whether it is on or off
 	 */
-	private boolean onCheck(){
+	public boolean onCheck(){
 		return powerState;
 	}
 	
+	public boolean printerOnCheck(){
+		return printer.onCheck();
+	}
 	/**
 	 * 
 	 * @return boolean regarding an event currently being held
@@ -787,6 +790,10 @@ public class Console implements Observer{
 	public void closeMenu(){
 		menu = null;
 		menuOn = false;
+	}
+	
+	public boolean isMenuOn(){
+		return menuOn;
 	}
 	/**
 	 * 

@@ -23,6 +23,10 @@ public class Printer {
 		PrinterPower=!PrinterPower;
 	}
 	
+	public boolean onCheck(){
+		return PrinterPower;
+	}
+	
 	
 	/**
 	 * print() outputs the race times following the format: 
