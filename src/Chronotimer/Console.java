@@ -43,6 +43,7 @@ public class Console implements Observer{
 		time = new Time();
 		channels = new Channels();
 		channels.register(this);
+		printer = new Printer();
 		Runnable r1 = new runnableTimer(time);
 		Thread timer = new Thread(r1);
 		timer.start();
@@ -90,13 +91,13 @@ public class Console implements Observer{
 			this.eventType = "IND";//default
 			this.race = new Independent();//default
 			CurRunOn = true;
-			printer = new Printer();
-			
 		}
 		else{
 			//save race contents first
+			if(printer.PrinterPower){//if printer is on shut it off
+				printer.Power();
+			}
 			this.race = null;
-			printer = null;
 		}
 		writeToLog("Power");
 		return powerState;

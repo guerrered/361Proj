@@ -23,6 +23,7 @@ public class GUI extends javax.swing.JFrame {
     Console con;
     Thread tN;
     Runnable rN;
+    boolean numSwitch = false;
     public GUI(Console con) {
         this.con=con;
         initComponents();
@@ -87,23 +88,23 @@ public class GUI extends javax.swing.JFrame {
         J2468Label2 = new javax.swing.JLabel();
         J1357Label1 = new javax.swing.JLabel();
         jPower = new javax.swing.JToggleButton();
-        jPrinterPwr = new javax.swing.JToggleButton();
+        jPrinterPwr = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         MeFile = new javax.swing.JMenu();
         MeExit = new javax.swing.JMenuItem();
         
         jDisplay.setEditable(false);
-        rN = new displayTextUpdater(jDisplay, con);
-        tN = new Thread(rN);
+        
         jUp = new javax.swing.JButton();
         jLeft = new javax.swing.JButton();
         jRight = new javax.swing.JButton();
         jDown = new javax.swing.JButton();
         
         Num="";
-        
-        
+        rN = new displayTextUpdater(jDisplay, con);
+        tN = new Thread(rN);
         tN.start();
+        
         jCheckBoxMenuItem1.setSelected(true);
         jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
 
@@ -810,7 +811,9 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jNum9ActionPerformed
 
     private void jNumStarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNumStarActionPerformed
-        // TODO add your handling code here:
+    	if(con.powerState==true){
+        	con.getChannels().getCh(1).Trig();//another shorthand for trig 1
+        	}
     }//GEN-LAST:event_jNumStarActionPerformed
 
     private void jNum0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum0ActionPerformed
@@ -819,10 +822,17 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jNum0ActionPerformed
 
     private void jNumPoundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNumPoundActionPerformed
-        // TODO add your handling code here:
-    	int cnt = Integer.parseInt(Num);
-    	Num="";
-    	con.Num(cnt);
+        //the first time the button is pressed it will start reading a number 
+    	numSwitch = !numSwitch;
+    	if(numSwitch == true){
+    		Num = "";
+    	}
+    	
+    	else{//the second time it is pressed it will run the the num command from console
+    		int id = Integer.parseInt(Num); // turning power off should reset this function
+    		con.Num(id); 
+    	}
+   
 
     }//GEN-LAST:event_jNumPoundActionPerformed
     
@@ -1059,6 +1069,12 @@ public class GUI extends javax.swing.JFrame {
     	jToggleButton7.setText("OFF");
     	jToggleButton8.setText("OFF");
     	jDisplay.setText("");
+    	if(con.printerOnCheck()){
+    		con.printerPower();//turn off
+    		jPrinterPwr.setText("Printer Pwr:OFF");
+        	jPrinterDisplay.setText("");
+    	}
+    	
     }
     
     private void jPowerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPowerActionPerformed
@@ -1067,15 +1083,20 @@ public class GUI extends javax.swing.JFrame {
     	if(jPower.isSelected())
         {
             jPower.setText("Power:ON");
-            
             con.Power();
-
+            if(con.getDisplayState() == false){
+            	con.changeDisplayState();
+            	 rN = new displayTextUpdater(jDisplay, con);
+                 tN = new Thread(rN);
+                 tN.start();
+            }
+          
         }
         else
         {
             jPower.setText("Power:OFF");
             PowerOFFUpdate();
-            
+            numSwitch = false;//reset numpad reading
             con.Power();
         }
     	
@@ -1084,15 +1105,16 @@ public class GUI extends javax.swing.JFrame {
     private void jPrinterPwrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPrinterPwrActionPerformed
         // TODO add your handling code here:
     	if(con.powerState==true){
-    	if(jPrinterPwr.isSelected())
+    	if(!con.printerOnCheck())//if printer off turn it on
         {
             jPrinterPwr.setText("Printer Pwr:ON");
-            con.printer.Power();
+            con.printerPower();
         }
         else
         {
             jPrinterPwr.setText("Printer Pwr:OFF");
-            con.printer.Power();
+            con.printerPower();
+            jPrinterDisplay.setText("");
         }
     	}
     }//GEN-LAST:event_jPrinterPwrActionPerformed
@@ -1186,7 +1208,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JToggleButton jPower;
     private JTextArea jPrinterDisplay;
-    private javax.swing.JToggleButton jPrinterPwr;
+    private javax.swing.JButton jPrinterPwr;
     private javax.swing.JLabel jQRFTime;
     private javax.swing.JButton jSwap;
     private javax.swing.JButton jToggleButton1;
