@@ -632,6 +632,42 @@ public class ChronotimerTest {
 		assertFalse(group.finish(1));
 	}
 	
+	@Test
+	public void testGroupNum(){
+		console.Power();
+		console.endRun();
+		group.start(1);
+		group.finish(2);
+		//simulate num <22>
+		group.setPlayerID(22);
+		assertTrue(group.getPlayerList().get(0).getID()==22);
+	}
+	
+	@Test
+	public void testGroupNumSame(){
+		console.Power();
+		console.endRun();
+		group.start(1);
+		group.finish(2);
+		group.finish(3);
+		//simulate num <22>
+		group.setPlayerID(22);
+		group.setPlayerID(22);
+		assertTrue(group.getPlayerList().get(0).getID()==22);
+		assertFalse(group.getPlayerList().get(1).getID()==22);
+		//the ID should still be the temp one since we don't allow duplicate IDs
+		assertTrue(group.getPlayerList().get(1).getID()==2);
+	}
+	
+	@Test
+	public void testGroupNumEmpty(){
+		console.Power();
+		console.endRun();
+		group.start(1);
+		group.finish(2);
+		group.setPlayerID(22);
+		assertFalse(group.setPlayerID(23));
+	}
 	
 
 }

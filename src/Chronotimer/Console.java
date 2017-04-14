@@ -244,9 +244,9 @@ public class Console implements Observer{
 		if(onCheck()){//log old race
 			writeToLog("endrun");
 			
-			if(eventType.equals("GROUP")){
-				race.endRace();
-			}
+//			if(eventType.equals("GROUP")){
+//				race.endRace();
+//			}
 			
 			if(curRunCheck()){
 				try {

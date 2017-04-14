@@ -58,18 +58,20 @@ public class Group extends Event{
 	
 	//called when IDs are entered after players finished.
 	public boolean setPlayerID(int ID){
+		if(playersFinished.size()==0){
+			return false;
+		}
 		for(Player p: playersFinishedMarked){
 			if(p.getID()==ID){
-				System.out.println("Player exits in list");
+				System.out.println("Player exists in list");
 				return false;
 			}
-			else{
-				playersFinishedMarked.add(playersFinished.get(0));//add next up temp player to marked list
-				playersFinished.remove(0); //remove the player from temp list 
-				return true;
-			}
 		}
-		return false;
+		Player temp = playersFinished.get(0);
+		temp.setID(ID);
+		playersFinishedMarked.add(temp);//add to marked list
+		playersFinished.remove(0); //remove the player from temp list 
+		return true;
 	}
 	
 	/*
@@ -98,7 +100,7 @@ public class Group extends Event{
 		return playersFinished.size()+playersFinishedMarked.size();
 	}
 	
-	public List<Player> getEndList(){
+	public List<Player> getPlayerList(){
 		List<Player> pList = new ArrayList<>();
 		pList.addAll(playersFinishedMarked);
 		pList.addAll(playersFinished);
