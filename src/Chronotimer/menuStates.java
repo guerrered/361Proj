@@ -11,33 +11,38 @@ public class menuStates {
 	public menuStates(){
 		//main menu
 		stateIndex= 0;
-		String s1 = "1.Event<\n2.RaceOperations\n3.Run\n4.Print\n5.FileExport\n";
-		String s2 = "1.Event\n2.RaceOperations<\n3.Run\n4.Print\n5.FileExport\n";
-		String s3 = "1.Event\n2.RaceOperations\n3.Run<\n4.Print\n5.FileExport\n";
-		String s4 = "1.Event\n2.RaceOperations\n3.Run\n4.Print<\n5.FileExport\n";
-		String s5 = "1.Event\n2.RaceOperations\n3.Run\n4.Print\n5.FileExport<\n";
+		String s1 = "1.Event<\n2.RaceOperations\n3.Run\n4.Print\n5.FileExport\n6.Reset\n";
+		String s2 = "1.Event\n2.RaceOperations<\n3.Run\n4.Print\n5.FileExport\n6.Reset\n";
+		String s3 = "1.Event\n2.RaceOperations\n3.Run<\n4.Print\n5.FileExport\n6.Reset\n";
+		String s4 = "1.Event\n2.RaceOperations\n3.Run\n4.Print<\n5.FileExport\n6.Reset\n";
+		String s5 = "1.Event\n2.RaceOperations\n3.Run\n4.Print\n5.FileExport<\n6.Reset\n";
+		String s6 = "1.Event\n2.RaceOperations\n3.Run\n4.Print\n5.FileExport\n6.Reset<\n";
 		//event submenu
-		String s6 = "1.IND<\n2.PARIND\n3.GRP";
-		String s7 = "1.IND\n2.PARIND<\n3.GRP";
-		String s8 = "1.IND\n2.PARIND\n3.GRP<";
+		String s7 = "1.IND<\n2.PARIND\n3.GRP\n4.PARGRP";
+		String s8 = "1.IND\n2.PARIND<\n3.GRP\n4.PARGRP";
+		String s9 = "1.IND\n2.PARIND\n3.GRP<\n4.PARGRP";
+		String s10 = "1.IND\n2.PARIND\n3.GRP\n4.PARGRP<";
 		//raceop submenu
-		String s9 = "1.DNF<\n2.CANCEL";
-		String s10 = "1.DNF\n2.CANCEL<";
+		String s11 = "1.DNF<\n2.CANCEL";
+		String s12 = "1.DNF\n2.CANCEL<";
 		//run SubMenu
-		String s11 = "1.NEWRUN<\n2.ENDRUN";
-		String s12 = "1.NEWRUN\n2.ENDRUN<";
-		String s13 = "print";
-		String s14 = "export";
-		String s15 = "ind";
-		String s16 = "parind";
-		String s17 = "grp";
-		String s18 = "dnf";
-		String s19 = "cancel";
-		String s20 = "newrun";
-		String s21 = "endrun";
-		String s22 = "exit";
+		String s13 = "1.NEWRUN<\n2.ENDRUN";
+		String s14 = "1.NEWRUN\n2.ENDRUN<";
 		
-		menuItems = new String[22];
+		String s15 = "print";
+		String s16 = "export";
+		String s17 = "ind";
+		String s18 = "parind";
+		String s19 = "grp";
+		String s20 = "paragrp";
+		String s21 = "dnf";
+		String s22 = "cancel";
+		String s23 = "newrun";
+		String s24 = "endrun";
+		String s25 = "exit";
+		String s26 = "reset";
+		
+		menuItems = new String[26];
 		menuItems[0] = s1;
 		menuItems[1] = s2;
 		menuItems[2] = s3;
@@ -60,26 +65,32 @@ public class menuStates {
 		menuItems[19] = s20;
 		menuItems[20] = s21;
 		menuItems[21] = s22;
+		menuItems[22] = s23;
+		menuItems[23] = s24;
+		menuItems[24] = s25;
+		menuItems[25] = s26;
 				
 		currentState = s1;
 		
 		// 0-up  1-down 2-right 3-left
-		menu = new int[4][12];//4*12 grid of menu states
-		menu[0][0] = 4;//the answer is the vertical index of state
+		menu = new int[4][114];//4*12 grid of menu states
+		menu[0][0] = 5;//the answer is the vertical index of state
 		menu[0][1] = 0;
 		menu[0][2] = 1;
 		menu[0][3] = 2;
 		menu[0][4] = 3;
+		menu[0][5] = 4;
 		
-		menu[0][5] = 7;
-		menu[0][6] = 5;
+		menu[0][6] = 9;
 		menu[0][7] = 6;
-		
-		menu[0][8] = 9;
+		menu[0][8] = 7;
 		menu[0][9] = 8;
 		
 		menu[0][10] =11;
 		menu[0][11] = 10;
+		
+		menu[0][12] = 13;
+		menu[0][13] = 12;
 		
 		
 		//--going down
@@ -87,58 +98,67 @@ public class menuStates {
 		menu[1][1] = 2;
 		menu[1][2] = 3;
 		menu[1][3] = 4;
-		menu[1][4] = 0;
+		menu[1][4] = 5;
+		menu[1][5] = 0;
 		
-		menu[1][5] = 6;
 		menu[1][6] = 7;
-		menu[1][7] = 5;
-		
+		menu[1][7] = 8;
 		menu[1][8] = 9;
-		menu[1][9] = 8;
+		menu[1][9] = 6;
 		
 		menu[1][10] = 11;
 		menu[1][11] = 10;
 		
+		menu[1][12] = 13;
+		menu[1][13] = 12;
+		
+		
 		//--moving right
-		menu[2][0] = 5;
-		menu[2][1] = 8;
-		menu[2][2] = 10;
-		menu[2][3] = 12;//print
-		menu[2][4] = 13;//export
+		menu[2][0] = 6;
+		menu[2][1] = 10;
+		menu[2][2] = 12;
+		menu[2][3] = 14;
+		menu[2][4] = 15;
+		menu[2][5] = 25;
 		
-		menu[2][5] = 14;//EVENT(IND)
-		menu[2][6] = 15;//EVENT(PARIND)
-		menu[2][7] =  16;//EVENT(GRP)
+		menu[2][6] = 16;
+		menu[2][7] = 17;
+		menu[2][8] = 18;
+		menu[2][9] = 19;
 		
-		menu[2][8] =17;//DNF
-		menu[2][9] = 18;//CANCEL
+		menu[2][10] = 20;
+		menu[2][11] = 21;
 		
-		menu[2][10] =19;//NEWRUN
-		menu[2][11] = 20;//ENDRUN
+		menu[2][12] = 22;
+		menu[2][13] = 23;
+		
 		
 		//--moving left
-		menu[3][0] = 21;//exit menu
-		menu[3][1] = 21;//exit menu
-		menu[3][2] = 21;//exit menu
-		menu[3][3] = 21;//exit menu
-		menu[3][4] = 21;//exit menu
+		menu[3][0] = 24;//exit menu
+		menu[3][1] = 24;//exit menu
+		menu[3][2] = 24;//exit menu
+		menu[3][3] = 24;//exit menu
+		menu[3][4] = 24;//exit menu
+		menu[3][5] = 24;//main menu
 		
-		menu[3][5] = 0;//main menu
 		menu[3][6] = 0;//main menu
 		menu[3][7] = 0;//main menu
+		menu[3][8] = 0;//main menu
+		menu[3][9] = 0;//main menu
 		
-		menu[3][8] = 1;//main menu
-		menu[3][9] = 1;//main menu
+		menu[3][10] = 1;//main menu
+		menu[3][11] = 1;//main menu
 		
-		menu[3][10] = 2;//main menu
-		menu[3][11] = 2;//main menu
+		menu[3][12] = 2;
+		menu[3][13] = 2;
+		
 		
 	}
 	
 	public void next(){//2
 		int nextState = menu[2][stateIndex];
 		String nextStateVal = menuItems[nextState];
-		if(nextState <= 11){
+		if(nextState <= 13){
 			stateIndex = nextState;//if < 11 then no function was executed 
 		}
 		currentState = nextStateVal;
@@ -147,7 +167,7 @@ public class menuStates {
 	public void prev(){//3
 		int nextState = menu[3][stateIndex];
 		String nextStateVal = menuItems[nextState];
-		if(nextState <= 11){
+		if(nextState <= 13){
 			stateIndex = nextState;//if < 11 then no function was executed 
 		}
 		currentState = nextStateVal;
@@ -156,7 +176,7 @@ public class menuStates {
 	public void up(){//0
 		int nextState = menu[0][stateIndex];
 		String nextStateVal = menuItems[nextState];
-		if(nextState <= 11){
+		if(nextState <= 13){
 			stateIndex = nextState;//if < 11 then no function was executed 
 		}
 		currentState = nextStateVal;
@@ -165,7 +185,7 @@ public class menuStates {
 	public void down(){//1
 		int nextState = menu[1][stateIndex];
 		String nextStateVal = menuItems[nextState];
-		if(nextState <= 11){
+		if(nextState <= 13){
 			stateIndex = nextState;//if < 11 then no function was executed 
 		}
 		currentState = nextStateVal;

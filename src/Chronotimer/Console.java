@@ -23,7 +23,7 @@ public class Console implements Observer{
 	public boolean powerState = false;
 	
 	boolean CurRunOn = false;
-	boolean displayState = true;//used to discern between list being displayed and menu
+	boolean displayState = false;//used to discern between list being displayed and menu
 	public Printer printer;//true is the displayList false is menu;
 	public Event race;
 	public Time time;
@@ -89,14 +89,17 @@ public class Console implements Observer{
 		powerState = !powerState;
 		if(powerState == true){
 			this.eventType = "IND";//default
-			this.race = new Independent();//default
-			CurRunOn = true;
+			instantiateMenu();//we want to see the menu so turn it on
+			//this.race = new Independent();//default race is not instantiated right away
+			//CurRunOn = true;
 		}
 		else{
 			//save race contents first
 			if(printer.PrinterPower){//if printer is on shut it off
 				printer.Power();
 			}
+			displayState =false;
+			CurRunOn =false;
 			this.race = null;
 		}
 		writeToLog("Power");
@@ -138,10 +141,19 @@ public class Console implements Observer{
 				}
 			}
 			eventType = "IND";//default type of event;
-			this.race = new Independent();
-			race.setFileNumber(1);
-			CurRunOn = true;
-			printer = new Printer();
+			
+			displayState = false;//no printing currentList
+			instantiateMenu();//we want to see menu
+			
+			if(race!=null){
+				race.setFileNumber(1);
+			}
+			this.race = null;
+			CurRunOn =false;
+			//CurRunOn = true;
+			if(printerOnCheck()){//turn printer off
+				printerPower();
+			}
 			clearSavedData();
 			log.delete();
 			try {
@@ -188,7 +200,7 @@ public class Console implements Observer{
 				return true;
 			}
 			else{
-				System.out.println("An event is ongoing end it first.");
+				System.out.println("An event is ongoing end it first.");//might want to return this as string
 				return false;
 			}
 		}
@@ -214,6 +226,7 @@ public class Console implements Observer{
 						this.race = new Group();
 						break;
 				}
+				displayState = true;//can display a list from race
 				return true;
 			}
 			else{
@@ -237,6 +250,8 @@ public class Console implements Observer{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				
+				displayState = false;//cant diplay list anymore
 				this.race = null;
 				CurRunOn=false;
 				return true;
@@ -786,7 +801,7 @@ public class Console implements Observer{
 		}
 		return "";
 	}
-	public void closeMenu(){
+	public void closeMenu(){//discerned by machine running console
 		menu = null;
 		menuOn = false;
 	}

@@ -101,9 +101,11 @@ public class GUI extends javax.swing.JFrame {
         jDown = new javax.swing.JButton();
         
         Num="";
+        
+        /*shouldnt start a thread right away because there is race to run
         rN = new displayTextUpdater(jDisplay, con);
         tN = new Thread(rN);
-        tN.start();
+        tN.start();*/
         
         jCheckBoxMenuItem1.setSelected(true);
         jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
@@ -833,30 +835,50 @@ public class GUI extends javax.swing.JFrame {
 
     private void jNumPoundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNumPoundActionPerformed
         //the first time the button is pressed it will start reading a number 
-    	numSwitch = !numSwitch;
-    	if(numSwitch == true){
-    		tN.interrupt();//it might be inactive so nothing to interrupt //but ensure we do incase display list is shown 
-    		Num = "";
-    		jDisplay.setText("Num: ");
-    	}
+    	if(con.onCheck()){
+    		if(con.getDisplayState()){
+    			if(con.isMenuOn()){
+    				con.closeMenu();//we dont need this anymore
+    			}
+    			numSwitch = !numSwitch;
+    			if(numSwitch == true){
+    				tN.interrupt();//it might be inactive so nothing to interrupt //but ensure we do incase display list is shown 
+    				Num = "";
+    				jDisplay.setText("Num: ");
+    			}	
     	
-    	else{//the second time it is pressed it will run the the num command from console
-    		if(!con.getDisplayState()){// if we werent in the display list go back to running screen
-    			con.changeDisplayState();
-    			rN = new displayTextUpdater(jDisplay, con);//must start the thread over since fucntion had killed it
-    			tN = new Thread(rN);
-    			tN.start();
+    			else{//the second time it is pressed it will run the the num command from console
+    				/*
+    				if(!con.getDisplayState()){// if we werent in the display list go back to running screen
+    					con.changeDisplayState();
+    					rN = new displayTextUpdater(jDisplay, con);//must start the thread over since fucntion had killed it
+    					tN = new Thread(rN);
+    					tN.start();
+    				}*/
+    				((displayTextUpdater) rN).ExitInterrupt();//else if we came from display list exit the interrupt cycle
+    				int id = Integer.parseInt(Num); // turning power off should reset this function
+    				con.Num(id); 
+    			}
     		}
-    		((displayTextUpdater) rN).ExitInterrupt();//else if we came from display list exit the interrupt cycle
-    		int id = Integer.parseInt(Num); // turning power off should reset this function
-    		con.Num(id); 
     	}
-   
 
     }//GEN-LAST:event_jNumPoundActionPerformed
     
     private void jFunctionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFunctionActionPerformed
-        // TODO add your handling code here:
+    	if(con.getDisplayState()){//if menu is off
+    		if(!con.isMenuOn()){
+    			tN.interrupt();
+    			con.instantiateMenu();
+    			jDisplay.setText(con.getMenu());
+    		}
+    		else{
+    			con.closeMenu();
+    			((displayTextUpdater) rN).ExitInterrupt();
+    			
+    		}
+    	}
+    	//else stay in menu as nothing else to display
+    	/*
     	con.changeDisplayState();
     	if(!con.getDisplayState()){//if false that means we are in the menu
     		try {
@@ -872,7 +894,7 @@ public class GUI extends javax.swing.JFrame {
     		rN = new displayTextUpdater(jDisplay, con);
     		tN = new Thread(rN);
     		tN.start();
-    	}
+    	}*/
     }//GEN-LAST:event_jFunctionActionPerformed
     
     private void jUpActionPerformed(java.awt.event.ActionEvent evt) {   
@@ -922,6 +944,9 @@ public class GUI extends javax.swing.JFrame {
     				case("grp"):
     					con.Event("GRP");
     					break;
+    				case("pargrp"):
+    					con.Event("GRP");
+    					break;
     				case("dnf"):
     					con.DNF();
     					break;
@@ -929,17 +954,51 @@ public class GUI extends javax.swing.JFrame {
     					con.Cancel();
     					break;
     				case("newrun"):
-    					con.newRun();
+    					con.newRun();//will turn on displayState /therefore a thread can be started
+    					con.closeMenu();
+    					rN = new displayTextUpdater(jDisplay, con);
+    					tN = new Thread(rN);
+    					tN.start();
     					break;
     				case("endrun"):
-    					con.endRun();
+    					if(con.getDisplayState()){//display list must bre true because a run is on
+    						con.endRun();//will close displayState so we can wait for it to exit
+    						((displayTextUpdater) rN).ExitInterrupt();//exit interrupt from menu
+    						try {
+    							tN.join();//join displayList thread
+    						} catch (InterruptedException e) {
+    							e.printStackTrace();
+    						}
+    					}
     					break;
     				case("exit"):
-    					con.closeMenu();
+    					if(con.getDisplayState()){//if a list can be displayed display it
+    						con.closeMenu();
+    						((displayTextUpdater) rN).ExitInterrupt();
+    					}
+    					//else stay here
+    					/*
     					con.changeDisplayState();
     					rN = new displayTextUpdater(jDisplay, con);
     					tN = new Thread(rN);
     					tN.start();
+    					*/
+    					break;
+    				case("reset"):
+    					con.closeMenu();
+    					con.Reset();
+    					if(con.getDisplayState()){
+    						((displayTextUpdater) rN).ExitInterrupt();//exit interrupt from menu
+    						try {
+    							tN.join();//join displayList thread
+    						} catch (InterruptedException e) {
+    							e.printStackTrace();
+    						}
+    					}
+    					PowerOFFUpdate();
+    					jPrinterDisplay.setText("");
+    					jPrinterPwr.setText("Printer Pwr: OFF");
+    					jDisplay.setText(con.getMenu());
     					break;
     				default:
     					jDisplay.setText(nextState);
@@ -957,10 +1016,18 @@ public class GUI extends javax.swing.JFrame {
     			String nextState = con.getMenu();
     			if(nextState.equals("exit")){
     				con.closeMenu();
+    				if(con.getDisplayState()){//if list to be displayed is available display it
+    					((displayTextUpdater) rN).ExitInterrupt();
+    				}
+    				
+    				//else stay here
+    				/*
+    				con.closeMenu();
     				con.changeDisplayState();
 					rN = new displayTextUpdater(jDisplay, con);
 					tN = new Thread(rN);
 					tN.start();
+					*/
 					
     			}else{
     				jDisplay.setText(nextState);
@@ -1103,12 +1170,15 @@ public class GUI extends javax.swing.JFrame {
         {
             jPower.setText("Power:ON");
             con.Power();
+            jDisplay.setText(con.getMenu());//first thing to see is the menu
+          /*
             if(con.getDisplayState() == false){
             	con.changeDisplayState();
             	 rN = new displayTextUpdater(jDisplay, con);
                  tN = new Thread(rN);
                  tN.start();
             }
+           */
           
         }
         else
