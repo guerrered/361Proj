@@ -1,5 +1,6 @@
 import java.io.IOException;
 
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
@@ -1168,34 +1169,452 @@ public class GUI extends javax.swing.JFrame {
 
     private void jCh1ActionPerformed(java.awt.event.ActionEvent evt) {                                     
         // TODO add your handling code here:
+    	if(jCh1.getSelectedItem().equals("EYE"))
+    	{
+    		if(con.getChannels().getCh(1).isSensor()==true)
+    		{
+    			con.getChannels().getCh(1).removeSens();
+    		}
+    		else
+    		{
+    			con.getChannels().getCh(1).connect("EYE");
+    		}
+    		
+    	}
+    	else if(jCh1.getSelectedItem().equals("GATE"))
+    	{
+    		if(con.getChannels().getCh(1).isSensor()==true)
+    		{
+    			con.getChannels().getCh(1).removeSens();
+    		}
+    		else
+    		{
+    			con.getChannels().getCh(1).connect("GATE");
+    		}
+    		
+    		
+    	}
+    	else if(jCh1.getSelectedItem().equals("PAD"))
+    	{
+    		if(con.getChannels().getCh(1).isSensor()==true)
+    		{
+    			con.getChannels().getCh(1).removeSens();
+    		}
+    		else
+    		{
+    			con.getChannels().getCh(1).connect("PAD");
+    		}
+    		
+    		
+    	}
+    	else if(jCh1.getSelectedItem().equals("None"))
+    	{
+    		if(con.getChannels().getCh(1).isSensor()==true)
+    		{
+    			con.getChannels().getCh(1).removeSens();
+    		}
+    		else
+    		{
+    			JOptionPane.showMessageDialog(jCh1, "No sensor was armed");
+    		}
+    		
+    		
+    	}
+    	
+    	
+    	
     }                                    
 
     private void jCh3ActionPerformed(java.awt.event.ActionEvent evt) {                                     
         // TODO add your handling code here:
+       	if(jCh3.getSelectedItem().equals("EYE"))
+    	{
+    		if(con.getChannels().getCh(3).isSensor()==true)
+    		{
+    			con.getChannels().getCh(3).removeSens();
+    		}
+    		else
+    		{
+    			con.getChannels().getCh(3).connect("EYE");
+    		}
+    		
+    	}
+    	else if(jCh3.getSelectedItem().equals("GATE"))
+    	{
+    		if(con.getChannels().getCh(3).isSensor()==true)
+    		{
+    			con.getChannels().getCh(3).removeSens();
+    		}
+    		else
+    		{
+    			con.getChannels().getCh(3).connect("GATE");
+    		}
+    		
+    		
+    	}
+    	else if(jCh3.getSelectedItem().equals("PAD"))
+    	{
+    		if(con.getChannels().getCh(3).isSensor()==true)
+    		{
+    			con.getChannels().getCh(3).removeSens();
+    		}
+    		else
+    		{
+    			con.getChannels().getCh(3).connect("PAD");
+    		}
+    		
+    		
+    	}
+    	else if(jCh3.getSelectedItem().equals("None"))
+    	{
+    		if(con.getChannels().getCh(3).isSensor()==true)
+    		{
+    			con.getChannels().getCh(3).removeSens();
+    		}
+    		else
+    		{
+    			JOptionPane.showMessageDialog(jCh3, "No sensor was armed");
+    		}
+    		
+    		
+    	}
+    	
     }                                    
 
     private void jCh5ActionPerformed(java.awt.event.ActionEvent evt) {                                     
         // TODO add your handling code here:
+       	if(jCh5.getSelectedItem().equals("EYE"))
+    	{
+    		if(con.getChannels().getCh(5).isSensor()==true)
+    		{
+    			con.getChannels().getCh(5).removeSens();
+    		}
+    		else
+    		{
+    			con.getChannels().getCh(5).connect("EYE");
+    		}
+    		
+    	}
+    	else if(jCh5.getSelectedItem().equals("GATE"))
+    	{
+    		if(con.getChannels().getCh(5).isSensor()==true)
+    		{
+    			con.getChannels().getCh(5).removeSens();
+    		}
+    		else
+    		{
+    			con.getChannels().getCh(5).connect("GATE");
+    		}
+    		
+    		
+    	}
+    	else if(jCh5.getSelectedItem().equals("PAD"))
+    	{
+    		if(con.getChannels().getCh(5).isSensor()==true)
+    		{
+    			con.getChannels().getCh(5).removeSens();
+    		}
+    		else
+    		{
+    			con.getChannels().getCh(5).connect("PAD");
+    		}
+    		
+    		
+    	}
+    	else if(jCh5.getSelectedItem().equals("None"))
+    	{
+    		if(con.getChannels().getCh(5).isSensor()==true)
+    		{
+    			con.getChannels().getCh(5).removeSens();
+    		}
+    		else
+    		{
+    			JOptionPane.showMessageDialog(jCh5, "No sensor was armed");
+    		}
+    		
+    		
+    	}
+    	
     }                                    
 
     private void jCh7ActionPerformed(java.awt.event.ActionEvent evt) {                                     
         // TODO add your handling code here:
+       	if(jCh7.getSelectedItem().equals("EYE"))
+    	{
+    		if(con.getChannels().getCh(7).isSensor()==true)
+    		{
+    			con.getChannels().getCh(7).removeSens();
+    		}
+    		else
+    		{
+    			con.getChannels().getCh(7).connect("EYE");
+    		}
+    		
+    	}
+    	else if(jCh7.getSelectedItem().equals("GATE"))
+    	{
+    		if(con.getChannels().getCh(7).isSensor()==true)
+    		{
+    			con.getChannels().getCh(7).removeSens();
+    		}
+    		else
+    		{
+    			con.getChannels().getCh(7).connect("GATE");
+    		}
+    		
+    		
+    	}
+    	else if(jCh7.getSelectedItem().equals("PAD"))
+    	{
+    		if(con.getChannels().getCh(7).isSensor()==true)
+    		{
+    			con.getChannels().getCh(7).removeSens();
+    		}
+    		else
+    		{
+    			con.getChannels().getCh(7).connect("PAD");
+    		}
+    		
+    		
+    	}
+    	else if(jCh7.getSelectedItem().equals("None"))
+    	{
+    		if(con.getChannels().getCh(7).isSensor()==true)
+    		{
+    			con.getChannels().getCh(7).removeSens();
+    		}
+    		else
+    		{
+    			JOptionPane.showMessageDialog(jCh7, "No sensor was armed");
+    		}
+    		
+    		
+    	}
+    	
     }                                    
 
     private void jCh2ActionPerformed(java.awt.event.ActionEvent evt) {                                     
         // TODO add your handling code here:
+       	if(jCh2.getSelectedItem().equals("EYE"))
+    	{
+    		if(con.getChannels().getCh(2).isSensor()==true)
+    		{
+    			con.getChannels().getCh(2).removeSens();
+    		}
+    		else
+    		{
+    			con.getChannels().getCh(2).connect("EYE");
+    		}
+    		
+    	}
+    	else if(jCh2.getSelectedItem().equals("GATE"))
+    	{
+    		if(con.getChannels().getCh(2).isSensor()==true)
+    		{
+    			con.getChannels().getCh(2).removeSens();
+    		}
+    		else
+    		{
+    			con.getChannels().getCh(2).connect("GATE");
+    		}
+    		
+    		
+    	}
+    	else if(jCh2.getSelectedItem().equals("PAD"))
+    	{
+    		if(con.getChannels().getCh(2).isSensor()==true)
+    		{
+    			con.getChannels().getCh(2).removeSens();
+    		}
+    		else
+    		{
+    			con.getChannels().getCh(2).connect("PAD");
+    		}
+    		
+    		
+    	}
+    	else if(jCh2.getSelectedItem().equals("None"))
+    	{
+    		if(con.getChannels().getCh(2).isSensor()==true)
+    		{
+    			con.getChannels().getCh(2).removeSens();
+    		}
+    		else
+    		{
+    			JOptionPane.showMessageDialog(jCh2, "No sensor was armed");
+    		}
+    		
+    		
+    	}
+    	
     }                                    
 
     private void jCh4ActionPerformed(java.awt.event.ActionEvent evt) {                                     
         // TODO add your handling code here:
+       	if(jCh4.getSelectedItem().equals("EYE"))
+    	{
+    		if(con.getChannels().getCh(4).isSensor()==true)
+    		{
+    			con.getChannels().getCh(4).removeSens();
+    		}
+    		else
+    		{
+    			con.getChannels().getCh(4).connect("EYE");
+    		}
+    		
+    	}
+    	else if(jCh4.getSelectedItem().equals("GATE"))
+    	{
+    		if(con.getChannels().getCh(4).isSensor()==true)
+    		{
+    			con.getChannels().getCh(4).removeSens();
+    		}
+    		else
+    		{
+    			con.getChannels().getCh(4).connect("GATE");
+    		}
+    		
+    		
+    	}
+    	else if(jCh4.getSelectedItem().equals("PAD"))
+    	{
+    		if(con.getChannels().getCh(4).isSensor()==true)
+    		{
+    			con.getChannels().getCh(4).removeSens();
+    		}
+    		else
+    		{
+    			con.getChannels().getCh(4).connect("PAD");
+    		}
+    		
+    		
+    	}
+    	else if(jCh4.getSelectedItem().equals("None"))
+    	{
+    		if(con.getChannels().getCh(4).isSensor()==true)
+    		{
+    			con.getChannels().getCh(4).removeSens();
+    		}
+    		else
+    		{
+    			JOptionPane.showMessageDialog(jCh4, "No sensor was armed");
+    		}
+    		
+    		
+    	}
+    	
     }                                    
 
     private void jCh6ActionPerformed(java.awt.event.ActionEvent evt) {                                     
         // TODO add your handling code here:
+       	if(jCh6.getSelectedItem().equals("EYE"))
+    	{
+    		if(con.getChannels().getCh(6).isSensor()==true)
+    		{
+    			con.getChannels().getCh(6).removeSens();
+    		}
+    		else
+    		{
+    			con.getChannels().getCh(6).connect("EYE");
+    		}
+    		
+    	}
+    	else if(jCh6.getSelectedItem().equals("GATE"))
+    	{
+    		if(con.getChannels().getCh(6).isSensor()==true)
+    		{
+    			con.getChannels().getCh(6).removeSens();
+    		}
+    		else
+    		{
+    			con.getChannels().getCh(6).connect("GATE");
+    		}
+    		
+    		
+    	}
+    	else if(jCh6.getSelectedItem().equals("PAD"))
+    	{
+    		if(con.getChannels().getCh(6).isSensor()==true)
+    		{
+    			con.getChannels().getCh(6).removeSens();
+    		}
+    		else
+    		{
+    			con.getChannels().getCh(6).connect("PAD");
+    		}
+    		
+    		
+    	}
+    	else if(jCh6.getSelectedItem().equals("None"))
+    	{
+    		if(con.getChannels().getCh(6).isSensor()==true)
+    		{
+    			con.getChannels().getCh(6).removeSens();
+    		}
+    		else
+    		{
+    			JOptionPane.showMessageDialog(jCh6, "No sensor was armed");
+    		}
+    		
+    		
+    	}
+    	
     }                                    
 
     private void jCh8ActionPerformed(java.awt.event.ActionEvent evt) {                                     
         // TODO add your handling code here:
+       	if(jCh8.getSelectedItem().equals("EYE"))
+    	{
+    		if(con.getChannels().getCh(8).isSensor()==true)
+    		{
+    			con.getChannels().getCh(8).removeSens();
+    		}
+    		else
+    		{
+    			con.getChannels().getCh(8).connect("EYE");
+    		}
+    		
+    	}
+    	else if(jCh8.getSelectedItem().equals("GATE"))
+    	{
+    		if(con.getChannels().getCh(8).isSensor()==true)
+    		{
+    			con.getChannels().getCh(8).removeSens();
+    		}
+    		else
+    		{
+    			con.getChannels().getCh(8).connect("GATE");
+    		}
+    		
+    		
+    	}
+    	else if(jCh8.getSelectedItem().equals("PAD"))
+    	{
+    		if(con.getChannels().getCh(8).isSensor()==true)
+    		{
+    			con.getChannels().getCh(8).removeSens();
+    		}
+    		else
+    		{
+    			con.getChannels().getCh(8).connect("PAD");
+    		}
+    		
+    		
+    	}
+    	else if(jCh8.getSelectedItem().equals("None"))
+    	{
+    		if(con.getChannels().getCh(8).isSensor()==true)
+    		{
+    			con.getChannels().getCh(8).removeSens();
+    		}
+    		else
+    		{
+    			JOptionPane.showMessageDialog(jCh8, "No sensor was armed");
+    		}
+    		
+    		
+    	}
+    	
     }                  
     
     

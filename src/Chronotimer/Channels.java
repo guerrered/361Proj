@@ -218,7 +218,20 @@ public class Channels implements Subject, Observer{
     	return this.sens;
     }
     
-
+    public Boolean isSensor()
+    {
+       if(this.sens==null)
+       {
+    	return false;
+       }
+      else
+       {
+    	return true;
+        }
+    
+    	
+    }
+    
 	/**
 	 * method that remove channel's sensor
 	 * 
