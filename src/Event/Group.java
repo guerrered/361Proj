@@ -6,15 +6,15 @@ import java.util.List;
 public class Group extends Event{
 	
 	List <Player> playersFinished = new ArrayList<>();
+	List <Player> playersFinishedMarked = new ArrayList<Player>();
 	
 	private long startTime = -1; //start time is negative if there is no current race. A new race is legal to begin.
 	
-	private int numberFinished = 0; //as racers finish (this specific race), they are assigned a placeholder number 
-	private int numberFinishedMarked = 0; //this number is increased as IDs are entered
+	private int tempNumber = 0; //as racers finish (this specific race), they are assigned a placeholder number 
 	
 	public Group(){
 		startTime =-1;
-		numberFinished = numberFinishedMarked = 0;
+		tempNumber = 0;
 	}
 	
 	public boolean start(long time){
@@ -31,35 +31,44 @@ public class Group extends Event{
 		return false;
 	}
 	
+	//called as players cross finish line
 	public boolean finish(long time){
 		if(startTime==-1){
 			return false;
 		}
-		
-		Player temp = new Player(numberFinished);
-
+		tempNumber++;
+		Player temp = new Player(tempNumber);
 		temp.start(startTime);
 		temp.end(time);
-		numberFinished++;
 		playersFinished.add(temp);
-		
 		return true;
+	}
+	
+	
+	//merge into one list
+	public void endRace(){
+		startTime =-1;
+		for(Player p: playersFinished){
+			while(!setPlayerID(p.getID())){
+				tempNumber++;
+				setPlayerID(tempNumber);
+			}
+		}
 	}
 	
 	//called when IDs are entered after players finished.
 	public boolean setPlayerID(int ID){
-		if(numberFinished>numberFinishedMarked){
-			for(int i=0; i<playersFinished.size(); i++){
-				if(playersFinished.get(i).getID()==ID){
-					return false;
-				}
+		for(Player p: playersFinishedMarked){
+			if(p.getID()==ID){
+				System.out.println("Player exits in list");
+				return false;
 			}
-			Player finishedTemp = playersFinished.get(numberFinishedMarked);
-			finishedTemp.setID(ID);
-			numberFinishedMarked++;
-			return true;
+			else{
+				playersFinishedMarked.add(playersFinished.get(0));//add next up temp player to marked list
+				playersFinished.remove(0); //remove the player from temp list 
+				return true;
+			}
 		}
-		
 		return false;
 	}
 	
@@ -68,7 +77,7 @@ public class Group extends Event{
 	 */
 	public List<Player> getDisplayLsit(){
 		List<Player> dis = new ArrayList<>(1);
-		dis.add(playersFinished.get(numberFinished));
+		dis.add(playersFinished.get(tempNumber));
 		return dis;
 	}
 	
@@ -85,4 +94,7 @@ public class Group extends Event{
 		return startTime;
 	}
 	
+	public int getTotalNumberFinished(){
+		return playersFinished.size()+playersFinishedMarked.size();
+	}
 }
