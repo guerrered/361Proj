@@ -97,4 +97,12 @@ public class Group extends Event{
 	public int getTotalNumberFinished(){
 		return playersFinished.size()+playersFinishedMarked.size();
 	}
+	
+	public List<Player> getEndList(){
+		List<Player> pList = new ArrayList<>();
+		pList.addAll(playersFinishedMarked);
+		pList.addAll(playersFinished);
+		
+		return pList;
+	}
 }

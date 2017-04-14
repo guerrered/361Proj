@@ -243,6 +243,11 @@ public class Console implements Observer{
 	public boolean endRun(){
 		if(onCheck()){//log old race
 			writeToLog("endrun");
+			
+			if(eventType.equals("GROUP")){
+				race.endRace();
+			}
+			
 			if(curRunCheck()){
 				try {
 					export();
@@ -265,7 +270,11 @@ public class Console implements Observer{
 	 * @param ID1
 	 */
 	public void Num(int ID1){
-		if(onCheck() && curRunCheck()){
+		if(eventType.equals("GROUP")){
+			race.setPlayerID(ID1);
+		}
+		
+		else if(onCheck() && curRunCheck()){
 			this.race.next(ID1);
 		}
 		writeToLog("Num " + ID1);
