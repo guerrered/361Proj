@@ -11,38 +11,40 @@ public class menuStates {
 	public menuStates(){
 		//main menu
 		stateIndex= 0;
-		String s1 = "1.Event<\n2.RaceOperations\n3.Run\n4.Print\n5.FileExport\n6.Reset\n";
-		String s2 = "1.Event\n2.RaceOperations<\n3.Run\n4.Print\n5.FileExport\n6.Reset\n";
-		String s3 = "1.Event\n2.RaceOperations\n3.Run<\n4.Print\n5.FileExport\n6.Reset\n";
-		String s4 = "1.Event\n2.RaceOperations\n3.Run\n4.Print<\n5.FileExport\n6.Reset\n";
-		String s5 = "1.Event\n2.RaceOperations\n3.Run\n4.Print\n5.FileExport<\n6.Reset\n";
-		String s6 = "1.Event\n2.RaceOperations\n3.Run\n4.Print\n5.FileExport\n6.Reset<\n";
+		String s1 = "1.Event<\n2.RaceOperations\n3.Run\n4.Print\n5.FileExport\n6.Reset\n7.Time\n";
+		String s2 = "1.Event\n2.RaceOperations<\n3.Run\n4.Print\n5.FileExport\n6.Reset\n7.Time\n";
+		String s3 = "1.Event\n2.RaceOperations\n3.Run<\n4.Print\n5.FileExport\n6.Reset\n7.Time\n";
+		String s4 = "1.Event\n2.RaceOperations\n3.Run\n4.Print<\n5.FileExport\n6.Reset\n7.Time\n";
+		String s5 = "1.Event\n2.RaceOperations\n3.Run\n4.Print\n5.FileExport<\n6.Reset\n7.Time\n";
+		String s6 = "1.Event\n2.RaceOperations\n3.Run\n4.Print\n5.FileExport\n6.Reset<\n7.Time\n";
+		String s7 = "1.Event\n2.RaceOperations\n3.Run\n4.Print\n5.FileExport\n6.Reset\n7.Time<\n";
 		//event submenu
-		String s7 = "1.IND<\n2.PARIND\n3.GRP\n4.PARGRP";
-		String s8 = "1.IND\n2.PARIND<\n3.GRP\n4.PARGRP";
-		String s9 = "1.IND\n2.PARIND\n3.GRP<\n4.PARGRP";
-		String s10 = "1.IND\n2.PARIND\n3.GRP\n4.PARGRP<";
+		String s8 = "1.IND<\n2.PARIND\n3.GRP\n4.PARGRP";
+		String s9 = "1.IND\n2.PARIND<\n3.GRP\n4.PARGRP";
+		String s10 = "1.IND\n2.PARIND\n3.GRP<\n4.PARGRP";
+		String s11 = "1.IND\n2.PARIND\n3.GRP\n4.PARGRP<";
 		//raceop submenu
-		String s11 = "1.DNF<\n2.CANCEL";
-		String s12 = "1.DNF\n2.CANCEL<";
+		String s12 = "1.DNF<\n2.CANCEL";
+		String s13 = "1.DNF\n2.CANCEL<";
 		//run SubMenu
-		String s13 = "1.NEWRUN<\n2.ENDRUN";
-		String s14 = "1.NEWRUN\n2.ENDRUN<";
+		String s14 = "1.NEWRUN<\n2.ENDRUN";
+		String s15 = "1.NEWRUN\n2.ENDRUN<";
 		
-		String s15 = "print";
-		String s16 = "export";
-		String s17 = "ind";
-		String s18 = "parind";
-		String s19 = "grp";
-		String s20 = "paragrp";
-		String s21 = "dnf";
-		String s22 = "cancel";
-		String s23 = "newrun";
-		String s24 = "endrun";
-		String s25 = "exit";
-		String s26 = "reset";
+		String s16 = "print";
+		String s17 = "export";
+		String s18 = "ind";
+		String s19 = "parind";
+		String s20 = "grp";
+		String s21 = "paragrp";
+		String s22 = "dnf";
+		String s23 = "cancel";
+		String s24 = "newrun";
+		String s25 = "endrun";
+		String s26 = "exit";
+		String s27 = "reset";
+		String s28 = "time";
 		
-		menuItems = new String[26];
+		menuItems = new String[28];
 		menuItems[0] = s1;
 		menuItems[1] = s2;
 		menuItems[2] = s3;
@@ -69,28 +71,31 @@ public class menuStates {
 		menuItems[23] = s24;
 		menuItems[24] = s25;
 		menuItems[25] = s26;
+		menuItems[26] = s27;
+		menuItems[27] = s28;
 				
 		currentState = s1;
 		
 		// 0-up  1-down 2-right 3-left
-		menu = new int[4][114];//4*12 grid of menu states
-		menu[0][0] = 5;//the answer is the vertical index of state
+		menu = new int[4][15];//4*12 grid of menu states
+		menu[0][0] = 6;//the answer is the vertical index of state
 		menu[0][1] = 0;
 		menu[0][2] = 1;
 		menu[0][3] = 2;
 		menu[0][4] = 3;
 		menu[0][5] = 4;
+		menu[0][6] = 5;
 		
-		menu[0][6] = 9;
-		menu[0][7] = 6;
+		menu[0][7] = 10;
 		menu[0][8] = 7;
 		menu[0][9] = 8;
+		menu[0][10] = 9;
 		
-		menu[0][10] =11;
-		menu[0][11] = 10;
+		menu[0][11] = 12;
+		menu[0][12] = 11;
 		
-		menu[0][12] = 13;
-		menu[0][13] = 12;
+		menu[0][13] = 14;
+		menu[0][14] = 13;
 		
 		
 		//--going down
@@ -99,67 +104,68 @@ public class menuStates {
 		menu[1][2] = 3;
 		menu[1][3] = 4;
 		menu[1][4] = 5;
-		menu[1][5] = 0;
+		menu[1][5] = 6;
+		menu[1][6] = 0;
 		
-		menu[1][6] = 7;
 		menu[1][7] = 8;
 		menu[1][8] = 9;
-		menu[1][9] = 6;
+		menu[1][9] = 10;
+		menu[1][10] = 7;
 		
-		menu[1][10] = 11;
-		menu[1][11] = 10;
+		menu[1][11] = 12;
+		menu[1][12] = 11;
 		
-		menu[1][12] = 13;
-		menu[1][13] = 12;
+		menu[1][13] = 14;
+		menu[1][14] = 13;
 		
 		
 		//--moving right
-		menu[2][0] = 6;
-		menu[2][1] = 10;
-		menu[2][2] = 12;
-		menu[2][3] = 14;
-		menu[2][4] = 15;
-		menu[2][5] = 25;
+		menu[2][0] = 7;
+		menu[2][1] = 11;
+		menu[2][2] = 13;
+		menu[2][3] = 15;
+		menu[2][4] = 16;
+		menu[2][5] = 26;
+		menu[2][6] = 27;
 		
-		menu[2][6] = 16;
 		menu[2][7] = 17;
 		menu[2][8] = 18;
 		menu[2][9] = 19;
-		
 		menu[2][10] = 20;
+		
 		menu[2][11] = 21;
-		
 		menu[2][12] = 22;
-		menu[2][13] = 23;
 		
+		menu[2][13] = 23;
+		menu[2][14] = 24;
 		
 		//--moving left
-		menu[3][0] = 24;//exit menu
-		menu[3][1] = 24;//exit menu
-		menu[3][2] = 24;//exit menu
-		menu[3][3] = 24;//exit menu
-		menu[3][4] = 24;//exit menu
-		menu[3][5] = 24;//main menu
+		menu[3][0] = 25;//exit menu
+		menu[3][1] = 25;//exit menu
+		menu[3][2] = 25;//exit menu
+		menu[3][3] = 25;//exit menu
+		menu[3][4] = 25;//exit menu
+		menu[3][5] = 25;//main menu
+		menu[3][6] = 25;//main menu
 		
-		menu[3][6] = 0;//main menu
 		menu[3][7] = 0;//main menu
 		menu[3][8] = 0;//main menu
 		menu[3][9] = 0;//main menu
+		menu[3][10] = 0;//main menu
 		
-		menu[3][10] = 1;//main menu
 		menu[3][11] = 1;//main menu
+		menu[3][12] = 1;
 		
-		menu[3][12] = 2;
 		menu[3][13] = 2;
-		
+		menu[3][14] = 2;
 		
 	}
 	
 	public void next(){//2
 		int nextState = menu[2][stateIndex];
 		String nextStateVal = menuItems[nextState];
-		if(nextState <= 13){
-			stateIndex = nextState;//if < 11 then no function was executed 
+		if(nextState <= 14){
+			stateIndex = nextState;
 		}
 		currentState = nextStateVal;
 	}
@@ -167,8 +173,8 @@ public class menuStates {
 	public void prev(){//3
 		int nextState = menu[3][stateIndex];
 		String nextStateVal = menuItems[nextState];
-		if(nextState <= 13){
-			stateIndex = nextState;//if < 11 then no function was executed 
+		if(nextState <= 14){
+			stateIndex = nextState; 
 		}
 		currentState = nextStateVal;
 	}
@@ -176,8 +182,8 @@ public class menuStates {
 	public void up(){//0
 		int nextState = menu[0][stateIndex];
 		String nextStateVal = menuItems[nextState];
-		if(nextState <= 13){
-			stateIndex = nextState;//if < 11 then no function was executed 
+		if(nextState <= 14){
+			stateIndex = nextState; 
 		}
 		currentState = nextStateVal;
 	}
@@ -185,8 +191,8 @@ public class menuStates {
 	public void down(){//1
 		int nextState = menu[1][stateIndex];
 		String nextStateVal = menuItems[nextState];
-		if(nextState <= 13){
-			stateIndex = nextState;//if < 11 then no function was executed 
+		if(nextState <= 14){
+			stateIndex = nextState;
 		}
 		currentState = nextStateVal;
 	}
