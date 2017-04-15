@@ -77,7 +77,7 @@ public class Group extends Event{
 	/*
 	 * players List that will be displayed on console screen 
 	 */
-	public List<Player> getDisplayLsit(){
+	public List<Player> getDisplayList(){
 		List<Player> dis = new ArrayList<>(1);
 		dis.add(playersFinished.get(tempNumber));
 		return dis;
