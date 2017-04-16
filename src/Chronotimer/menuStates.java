@@ -6,7 +6,9 @@ public class menuStates {
 	int stringIndex;
 	String currentState;
 	String[] menuItems;
-	
+	/**
+	 * instantiates a menu and the movements between its states
+	 */
 	//We gotta make sure we test all the movements between states
 	public menuStates(){
 		//main menu
@@ -161,6 +163,10 @@ public class menuStates {
 		
 	}
 	
+	
+	/**
+	 * moves the current menu state to the next according to a right button click
+	 */
 	public void next(){//2
 		int nextState = menu[2][stateIndex];
 		String nextStateVal = menuItems[nextState];
@@ -169,7 +175,9 @@ public class menuStates {
 		}
 		currentState = nextStateVal;
 	}
-	
+	/**
+	 * moves the current menu state to the next according to a left button click
+	 */
 	public void prev(){//3
 		int nextState = menu[3][stateIndex];
 		String nextStateVal = menuItems[nextState];
@@ -178,7 +186,9 @@ public class menuStates {
 		}
 		currentState = nextStateVal;
 	}
-	
+	/**
+	 * moves the current menu state to the next according to a up button click
+	 */
 	public void up(){//0
 		int nextState = menu[0][stateIndex];
 		String nextStateVal = menuItems[nextState];
@@ -188,6 +198,9 @@ public class menuStates {
 		currentState = nextStateVal;
 	}
 	
+	/**
+	 * moves the current menu state to the next according to a down button click
+	 */
 	public void down(){//1
 		int nextState = menu[1][stateIndex];
 		String nextStateVal = menuItems[nextState];
@@ -197,6 +210,19 @@ public class menuStates {
 		currentState = nextStateVal;
 	}
 	
+	
+	/**
+	 * resets the menu to initial state
+	 */
+	public void resetState(){
+		currentState = menuItems[0];//go back to initial state
+		stateIndex = 0;
+	}
+	
+	/**
+	 * 
+	 * @return the current menu state as a string
+	 */
 	public String getCurrentState(){
 		return currentState;
 	}

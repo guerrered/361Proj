@@ -44,6 +44,7 @@ public class Console implements Observer{
 		channels = new Channels();
 		channels.register(this);
 		printer = new Printer();
+		instantiateMenu();
 		Runnable r1 = new runnableTimer(time);
 		Thread timer = new Thread(r1);
 		timer.start();
@@ -89,7 +90,8 @@ public class Console implements Observer{
 		powerState = !powerState;
 		if(powerState == true){
 			this.eventType = "IND";//default
-			instantiateMenu();//we want to see the menu so turn it on
+			//instantiateMenu();//we want to see the menu so turn it on
+			openMenu();
 			//this.race = new Independent();//default race is not instantiated right away
 			//CurRunOn = true;
 		}
@@ -98,6 +100,7 @@ public class Console implements Observer{
 			if(printer.PrinterPower){//if printer is on shut it off
 				printer.Power();
 			}
+			closeMenu();
 			displayState =false;
 			CurRunOn =false;
 			this.race = null;
@@ -108,7 +111,7 @@ public class Console implements Observer{
 	}
 	
 	/**
-	 *  
+	 *  exits system closes log beforehand
 	 *  
 	 */
 	public void exit(){
@@ -143,7 +146,7 @@ public class Console implements Observer{
 			eventType = "IND";//default type of event;
 			
 			displayState = false;//no printing currentList
-			instantiateMenu();//we want to see menu
+			openMenu();//we want to see menu
 			
 			if(race!=null){
 				race.setFileNumber(1);
@@ -271,6 +274,7 @@ public class Console implements Observer{
 		writeToLog("Num " + ID1);
 	}
 	
+	//deprecate
 	/**
 	 * if the machine is on and and event is happening it swaps the ending order of the
 	 * racer associated with ID1 and ID2 
@@ -303,7 +307,7 @@ public class Console implements Observer{
 		writeToLog("Swap");
 	}
 	
-
+	//deprecate
 	/**
 	 *  Method that swaps the next two runners to finish in a specific lane
 	 *  
@@ -335,6 +339,7 @@ public class Console implements Observer{
 		writeToLog("DNF");
 	}
 	
+	//deprecate
 	/**
 	 *  Method that sets the next runner to finish in a specific lane as DNF 
 	 *  
@@ -347,6 +352,7 @@ public class Console implements Observer{
 		}
 		writeToLog("DNF " + lane);
 	}
+	
 	/**
 	 * if the machine is on and event is currently happening the runner associated with runnerID 
 	 * will be removed from event
@@ -368,7 +374,8 @@ public class Console implements Observer{
 		}
 		writeToLog("Cancel");
 	}
-	//might erase
+	
+	//deprecate
 	public void Cancel(int lane){
 		if(onCheck() && curRunCheck()){
 			if(eventType.equals("PARIND")){
@@ -388,6 +395,9 @@ public class Console implements Observer{
 		return "";
 	}
 	
+	/**
+	 * swicthes the power of the printer
+	 */
 	public void printerPower(){
 		if(onCheck()){
 			writeToLog("PrinterPower");
@@ -766,46 +776,90 @@ public class Console implements Observer{
 		return "";//emptyString
 	}
 	
+	
+	/**
+	 * instantiates a menu 
+	 * @return the first state in the menu
+	 */
 	public String instantiateMenu(){
-		menuOn = true;
 		menu = new menuStates();
 		return menu.getCurrentState();
 	}
 	
+	/**
+	 * moves the menu according to an up click
+	 */
 	public void menuUP(){
-		if(menuOn){
-			menu.up();
+		if(onCheck()){
+			if(isMenuOn()){
+				menu.up();
+			}
 		}
 	}
 	
+	/**
+	 * moves the menu according to an down click
+	 */
 	public void menuDOWN(){
-		if(menuOn){
-			menu.down();
+		if(onCheck()){
+			if(isMenuOn()){
+				menu.down();
+			}
 		}
 	}
 	
+	/**
+	 * moves the menu according to a left click
+	 */
 	public void menuLEFT(){
-		if(menuOn){
-			menu.prev();
+		if(onCheck()){
+			if(isMenuOn()){
+				menu.prev();
+			}	
 		}
 	}
 	
+	/**
+	 * moves the menu according to an down click
+	 */
 	public void menuRIGHT(){
-		if(menuOn){
-			menu.next();
+		if(onCheck()){
+			if(isMenuOn()){
+				menu.next();
+			}
 		}
 	}
+	/**
+	 * 
+	 * @return the current menu state 
+	 */
 	public String getMenu(){
-		if(menuOn){
-			return menu.getCurrentState();
+		if(onCheck()){
+			if(isMenuOn()){
+				return menu.getCurrentState();
+			}
 		}
 		return "";
 	}
+	
+	/**
+	 * closes the menu 
+	 */
 	public void closeMenu(){//discerned by machine running console
-		menu = null;
 		menuOn = false;
 	}
+	/**
+	 * allows the menu to be viewed again and resets to default state
+	 */
+	public void openMenu(){
+		menuOn = true;
+		menu.resetState();
+	}
 	
+	/**
+	 * 
+	 * @return true if menu is available
+	 */
 	public boolean isMenuOn(){
 		return menuOn;
 	}
@@ -857,12 +911,18 @@ public class Console implements Observer{
 		
 	}
 	
+	/**
+	 * 
+	 * @return boolean if the display List can be displayed
+	 */
 	public boolean getDisplayState(){
 		return displayState;
 	}
 	
 	
-	//used when function is called so it can alternate between display states
+	/**
+	 * switches the current displayState
+	 */
 	public void changeDisplayState(){
 		displayState = !displayState;
 	}

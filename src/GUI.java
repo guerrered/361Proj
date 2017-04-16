@@ -30,7 +30,8 @@ public class GUI extends javax.swing.JFrame {
     boolean timeGet = false;//used so we can know when time is being entered;
     int count1 = 0;//used to keep track of numbers being entered for time;
     int count2 = 0;
-    
+
+   
     public GUI(Console con) {
         this.con=con;
         initComponents();
@@ -1116,7 +1117,7 @@ public class GUI extends javax.swing.JFrame {
     					//((displayTextUpdater) rN).ExitInterrupt();
     					timeGet=false;
     					con.Time(Num);
-    					con.instantiateMenu();
+    					con.openMenu();
     					jDisplay.setText(con.getMenu());
     				}
     			}
@@ -1130,7 +1131,7 @@ public class GUI extends javax.swing.JFrame {
     	if(con.getDisplayState()){//if menu is off
     		if(!con.isMenuOn()){
     			tN.interrupt();
-    			con.instantiateMenu();
+    			con.openMenu();
     			jDisplay.setText(con.getMenu());
     		}
     		else{
@@ -1143,7 +1144,7 @@ public class GUI extends javax.swing.JFrame {
     		if(con.isMenuOn()){
     			con.closeMenu();
     		}
-    		con.instantiateMenu();
+    		con.openMenu();
     		jDisplay.setText(con.getMenu());
     	}
     	//else stay in menu as nothing else to display
