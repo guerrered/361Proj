@@ -50,7 +50,7 @@ public class ChronotimerTest {
 		assertFalse(console.powerState);
 		//turn on console
 		console.Power();
-		
+		console.newRun();
 		assertEquals("IND",console.getRaceType());
 		assertEquals(1,console.getRaceNum());
 		Channels c = console.getChannels();
@@ -269,6 +269,7 @@ public class ChronotimerTest {
 	public void testSensorTrig()
 	{
 		console.Power();
+		console.newRun();
 		console.Connect("eye", 1);
 		console.Connect("eye", 2);
 		console.getChannels().getCh(1).getSens().notifyObserver();
@@ -306,11 +307,13 @@ public class ChronotimerTest {
 		console.Power();
 		console.Connect("eye", 1);
 		console.Connect("eye", 2);
+		console.newRun();
 		console.getChannels().getCh(1).getSens().notifyObserver();
 		console.getChannels().getCh(2).getSens().notifyObserver();
 		assertTrue(console.race.getPlayerList().get(0).ran);
 		console.Power();
 		console.Power();
+		console.newRun();
 		assertEquals(null,console.getChannels().getCh(1).getSens());
 		assertEquals(null,console.getChannels().getCh(2).getSens());
 		assertFalse(console.race.getPlayerList().get(0).ran);
@@ -342,6 +345,7 @@ public class ChronotimerTest {
 	public void testLoad() throws IOException{
 		File file;
 		console.Power();
+		console.newRun();
 		console.Connect("pad", 1);
 		console.Connect("pad", 2);
 		console.getChannels().getCh(1).getSens().notifyObserver();
@@ -367,6 +371,7 @@ public class ChronotimerTest {
 	@Test
 	public void testLoadMultiple() throws IOException{
 		console.Power();
+		console.newRun();
 		File file;
 		console.Connect("pad", 1);
 		console.Connect("pad", 2);
@@ -420,7 +425,9 @@ public class ChronotimerTest {
 	public void testBlankRun(){
 		if(!console.powerState){
 			console.Power();
+			console.newRun();
 			console.Reset();
+			console.newRun();
 		}
 		console.newRun();
 		console.endRun();
@@ -433,6 +440,7 @@ public class ChronotimerTest {
 	@Test
 	public void testAddNewRunCurrentRun(){
 		console.Power();
+		assertTrue(console.newRun());
 		assertFalse(console.newRun());//cant create new run while current is on
 	}
 	@Test
@@ -474,6 +482,7 @@ public class ChronotimerTest {
 	public void testChangeEventCurrentRun(){
 		console.Power();
 		assertEquals("IND", console.getRaceType());
+		console.newRun();
 		assertFalse(console.Event("PARIND"));//cant change event
 		assertTrue(console.endRun());
 		assertTrue(console.Event("PARIND"));//event changes
@@ -488,6 +497,7 @@ public class ChronotimerTest {
 	@Test
 	public void testEndRun(){
 		console.Power();
+		console.newRun();
 		assertTrue(console.endRun()); 
 		assertFalse(console.endRun());//cant end run if no run
 	}
@@ -495,6 +505,7 @@ public class ChronotimerTest {
 	@Test
 	public void testReset(){
 		console.Power();
+		console.newRun();
 		console.endRun();
 		console.Event("PARIND");
 		assertEquals("PARIND", console.getRaceType());
@@ -503,6 +514,7 @@ public class ChronotimerTest {
 		console.newRun();
 		assertNotEquals(1, console.race.getFileNumber());//multiple races have been created
 		assertTrue(console.Reset());
+		console.newRun();
 		assertEquals("IND", console.getRaceType());//event should revert to IND after reset
 		assertEquals(1, console.race.getFileNumber());//race # reset to 1
 		console.Power();
@@ -522,6 +534,7 @@ public class ChronotimerTest {
 	@Test
 	public void testTriggerChannelONOFF(){
 		console.Power();
+		console.newRun();
 		for(int i = 1; i <= 8 ; i++){//channel on
 			console.Tog(i);
 		}
@@ -559,6 +572,7 @@ public class ChronotimerTest {
 	public void testSensorHandleInorderTriger()
 	{
 		console.Power();
+		console.newRun();
 		console.Connect("eye", 1);
 		console.Connect("eye", 2);
 		console.getChannels().getCh(2).getSens().notifyObserver();
