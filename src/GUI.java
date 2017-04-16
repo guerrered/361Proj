@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.io.IOException;
 
 import javax.swing.JOptionPane;
@@ -50,6 +51,16 @@ public class GUI extends javax.swing.JFrame {
 
         jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
         JPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        //set backGround
+        JPanel1.setOpaque(true);
+        JPanel1.setBackground(Color.getHSBColor(234, 80, 100));
+        jPanel2.setBackground(Color.getHSBColor(234, 80, 100));
+        jPanel3.setOpaque(true);
+        jPanel3.setBackground(Color.getHSBColor(234, 80, 100));
+        //
+        
         Title = new javax.swing.JLabel();
         J1357Label = new javax.swing.JLabel();
         JStart1 = new javax.swing.JButton();
@@ -77,7 +88,7 @@ public class GUI extends javax.swing.JFrame {
         jPrinterDisplay = new javax.swing.JTextArea();
         jDisplay = new javax.swing.JTextArea();
         jQRFTime = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        
         jNum1 = new javax.swing.JButton();
         jNum2 = new javax.swing.JButton();
         jNum3 = new javax.swing.JButton();
@@ -586,7 +597,7 @@ public class GUI extends javax.swing.JFrame {
             }
         });
         
-        jUp.setText("UP");
+        jUp.setText("^");
         jUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jUpActionPerformed(evt);
@@ -607,7 +618,7 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        jDown.setText("Down");
+        jDown.setText("v");
         jDown.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jDownActionPerformed(evt);
@@ -825,7 +836,7 @@ public class GUI extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+               
                 .addComponent(JPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
