@@ -177,5 +177,11 @@ public class Event {
 		 */
 		return displayList;
 	}
+	public void endRace() {
+		
+	}
+	public boolean setPlayerID(int iD1) {
+		return false;
+	}
 	
 }
