@@ -742,8 +742,11 @@ public class Console implements Observer{
 		if(onCheck() && curRunCheck()){
 			String asString = "";
 			if(eventType.equals("GROUP")){
-				
-				asString = "Time: " +timeConvert(time.getTime());
+				long s = race.getStartTime();
+				asString ="Time: ";
+				if(s > 0){
+					asString += timeConvert(time.getTime());
+				}
 				if(!getDisplayList().isEmpty()){
 					List <Player> displayList = getDisplayList();
 					Player temp = displayList.get(0);

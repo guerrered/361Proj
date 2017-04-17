@@ -102,7 +102,12 @@ public class Group extends Event{
 	
 	//getter for StartTime
 	public long getStartTime(){
-		return startTime;
+		if(startTime > 0){
+			return startTime;
+		}
+		else{
+			return -1;
+		}
 	}
 	
 	public int getTotalNumberFinished(){
@@ -125,4 +130,5 @@ public class Group extends Event{
 		
 		return pList;
 	}
+	
 }

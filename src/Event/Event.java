@@ -25,6 +25,7 @@ public class Event {
 	List <Player> displayList = new ArrayList<>();
 	public long clockTime;
 	public int runNumber=1;
+	long startTime;
 	public int numRunners;
 	
 	/**
@@ -179,6 +180,10 @@ public class Event {
 	}
 	public void endRace() {
 		
+	}
+	
+	public long getStartTime(){
+		return startTime;
 	}
 	public boolean setPlayerID(int iD1) {
 		return false;
