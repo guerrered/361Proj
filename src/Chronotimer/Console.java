@@ -193,27 +193,27 @@ public class Console implements Observer{
 	 * type of event to event otherwise it asks the user to end the current event
 	 * @param event
 	 */
-	public boolean Event(String event){
+	public String Event(String event){
 		if(onCheck()){
 			writeToLog("Event " + event);
 			if(!curRunCheck()){
 				this.eventType = event;
 				//new event need to be created
 				System.out.println("Event has changed to "+ event);
-				return true;
+				return "Event has changed to " + event;
 			}
 			else{
 				System.out.println("An event is ongoing end it first.");//might want to return this as string
-				return false;
+				return "An Event is ongoing end it first";
 			}
 		}
-		return false;
+		return "";//empty string if power off
 	}
 	
 	/**
 	 * if the machine is on and there isnt an event currently it creates a new event of eventType 
 	 */
-	public boolean newRun(){
+	public String newRun(){
 		if(onCheck()){
 			writeToLog("newrun");
 			if(!curRunCheck()){
@@ -230,20 +230,20 @@ public class Console implements Observer{
 						break;
 				}
 				displayState = true;//can display a list from race
-				return true;
+				return "";//if succesfull gui wil go straight to race
 			}
 			else{
 				System.out.println("End the current run first");
-				return false;
+				return "An event is ongoing end it first";
 			}
 		}
-		return false;
+		return "";
 	}
 	
 	/**
 	 * if the machine is on and there is an event currently running it ends it
 	 */
-	public boolean endRun(){
+	public String endRun(){
 		if(onCheck()){//log old race
 			writeToLog("endrun");
 			
@@ -262,10 +262,11 @@ public class Console implements Observer{
 				displayState = false;//cant diplay list anymore
 				this.race = null;
 				CurRunOn=false;
-				return true;
+				return "Event ended";
 			}
+			return "No event to end";
 		}
-		return false;
+		return "";//power off nothing to return
 	}
 	/**
 	 * if the machine is on and an event is happening it 
@@ -846,6 +847,15 @@ public class Console implements Observer{
 		if(onCheck()){
 			if(isMenuOn()){
 				return menu.getCurrentState();
+			}
+		}
+		return "";
+	}
+	
+	public String getLastMenu(){
+		if(onCheck()){
+			if(isMenuOn()){
+				return menu.getLastValidState();
 			}
 		}
 		return "";

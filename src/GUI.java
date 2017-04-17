@@ -1127,8 +1127,11 @@ public class GUI extends javax.swing.JFrame {
     				else{
     					//((displayTextUpdater) rN).ExitInterrupt();
     					timeGet=false;
+    					//ensure Num is in the right format
     					con.Time(Num);
     					con.openMenu();
+    					count1=0;
+    					count2=0;
     					jDisplay.setText(con.getMenu());
     				}
     			}
@@ -1652,13 +1655,18 @@ public class GUI extends javax.swing.JFrame {
     private void jRightActionPerformed(java.awt.event.ActionEvent evt) {     
     	if(con.onCheck()){
     		if(con.isMenuOn()){
-    			String currentState = con.getMenu();
+    			//String currentState = con.getMenu();
     			con.menuRIGHT();
+    			String currentState = con.getLastMenu();
     			String nextState = con.getMenu();
+    			String x;
     			switch(nextState){
     				case("print"):
     					if(con.printerOnCheck()){
     						jPrinterDisplay.setText(con.Print());
+    					}
+    					else{
+    						jDisplay.setText(currentState +"\n\n\nThe printer is off");
     					}
     					break;
     				case("export"):
@@ -1670,16 +1678,19 @@ public class GUI extends javax.swing.JFrame {
     					}
     					break;
     				case("ind"):
-    					con.Event("IND");
+    					x = con.Event("IND");
+    					jDisplay.setText(currentState + "\n\n\n" + x);
     					break;
     				case("parind"):
-    					con.Event("PARIND");
+    					x = con.Event("PARIND");
+						jDisplay.setText(currentState + "\n\n\n" + x);
     					break;
     				case("grp"):
-    					con.Event("GRP");
+    					x = con.Event("GRP");
+						jDisplay.setText(currentState + "\n\n\n" + x);
     					break;
-    				case("pargrp"):
-    					con.Event("GRP");
+    				case("paragrp"):
+    					jDisplay.setText(currentState + "\n\n\nUNAVAILABLE");
     					break;
     				case("dnf"):
     					con.DNF();
@@ -1688,15 +1699,21 @@ public class GUI extends javax.swing.JFrame {
     					con.Cancel();
     					break;
     				case("newrun"):
-    					con.newRun();//will turn on displayState /therefore a thread can be started
-    					con.closeMenu();
-    					rN = new displayTextUpdater(jDisplay, con);
-    					tN = new Thread(rN);
-    					tN.start();
+    					x = con.newRun();//will turn on displayState /therefore a thread can be started
+    					if(x.equals("")){
+    						con.closeMenu();
+    						rN = new displayTextUpdater(jDisplay, con);
+    						tN = new Thread(rN);
+    						tN.start();
+    					}
+    					else{
+    						jDisplay.setText(currentState + "\n\n\n" + x);
+    					}
     					break;
     				case("endrun"):
+    					x = con.endRun();
     					if(con.getDisplayState()){//display list must bre true because a run is on
-    						con.endRun();//will close displayState so we can wait for it to exit
+    						//will close displayState so we can wait for it to exit
     						((displayTextUpdater) rN).ExitInterrupt();//exit interrupt from menu
     						try {
     							tN.join();//join displayList thread
@@ -1704,6 +1721,7 @@ public class GUI extends javax.swing.JFrame {
     							e.printStackTrace();
     						}
     					}
+    					jDisplay.setText(currentState + "\n\n\n" + x);
     					break;
     				case("time"):
     					//must press num to enter num;
@@ -1712,6 +1730,9 @@ public class GUI extends javax.swing.JFrame {
     						timeGet = true;//we are taking time
     						jDisplay.setText("Press # to enter a time in format xx:xx:xx.xx\npress * to enter:");//press # to enter time
     						con.closeMenu();
+    					}
+    					else{
+    						jDisplay.setText(currentState + "\n\n\nCan't change timer during an event");
     					}
     					break;
     				case("exit"):

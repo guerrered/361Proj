@@ -4,6 +4,7 @@ public class menuStates {
 	int[][] menu;
 	int stateIndex;
 	int stringIndex;
+	String lastValid;
 	String currentState;
 	String[] menuItems;
 	/**
@@ -77,6 +78,7 @@ public class menuStates {
 		menuItems[27] = s28;
 				
 		currentState = s1;
+		lastValid = s1;
 		
 		// 0-up  1-down 2-right 3-left
 		menu = new int[4][15];//4*12 grid of menu states
@@ -172,6 +174,7 @@ public class menuStates {
 		String nextStateVal = menuItems[nextState];
 		if(nextState <= 14){
 			stateIndex = nextState;
+			lastValid = menuItems[nextState];
 		}
 		currentState = nextStateVal;
 	}
@@ -183,6 +186,7 @@ public class menuStates {
 		String nextStateVal = menuItems[nextState];
 		if(nextState <= 14){
 			stateIndex = nextState; 
+			lastValid = menuItems[nextState];
 		}
 		currentState = nextStateVal;
 	}
@@ -194,6 +198,7 @@ public class menuStates {
 		String nextStateVal = menuItems[nextState];
 		if(nextState <= 14){
 			stateIndex = nextState; 
+			lastValid = menuItems[nextState];
 		}
 		currentState = nextStateVal;
 	}
@@ -206,6 +211,7 @@ public class menuStates {
 		String nextStateVal = menuItems[nextState];
 		if(nextState <= 14){
 			stateIndex = nextState;
+			lastValid = menuItems[nextState];
 		}
 		currentState = nextStateVal;
 	}
@@ -216,6 +222,7 @@ public class menuStates {
 	 */
 	public void resetState(){
 		currentState = menuItems[0];//go back to initial state
+		lastValid = menuItems[0];
 		stateIndex = 0;
 	}
 	
@@ -225,6 +232,10 @@ public class menuStates {
 	 */
 	public String getCurrentState(){
 		return currentState;
+	}
+	
+	public String getLastValidState(){
+		return lastValid;
 	}
 	/*	1-up	 2-down		3-next	4-prev
 	 * 

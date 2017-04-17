@@ -440,8 +440,8 @@ public class ChronotimerTest {
 	@Test
 	public void testAddNewRunCurrentRun(){
 		console.Power();
-		assertTrue(console.newRun());
-		assertFalse(console.newRun());//cant create new run while current is on
+		assertEquals(console.newRun(),"");
+		assertEquals(console.newRun(),"An event is ongoing end it first");//cant create new run while current is on
 	}
 	@Test
 	public void testExportEventCodes(){
@@ -483,9 +483,9 @@ public class ChronotimerTest {
 		console.Power();
 		assertEquals("IND", console.getRaceType());
 		console.newRun();
-		assertFalse(console.Event("PARIND"));//cant change event
-		assertTrue(console.endRun());
-		assertTrue(console.Event("PARIND"));//event changes
+		assertEquals(console.Event("PARIND"),"An Event is ongoing end it first" );//cant change event
+		assertEquals(console.endRun(),"Event ended");
+		assertEquals(console.Event("PARIND"), "Event has changed to " + console.getRaceType());//event changes
 		assertEquals("PARIND", console.getRaceType());
 	}
 	
@@ -498,8 +498,8 @@ public class ChronotimerTest {
 	public void testEndRun(){
 		console.Power();
 		console.newRun();
-		assertTrue(console.endRun()); 
-		assertFalse(console.endRun());//cant end run if no run
+		assertEquals(console.endRun(),"Event ended"); 
+		assertEquals(console.endRun(),"No event to end");//cant end run if no run
 	}
 	
 	@Test
