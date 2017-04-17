@@ -683,5 +683,16 @@ public class ChronotimerTest {
 		assertFalse(group.setPlayerID(23));
 	}
 	
+	@Test
+	public void testGroupDNF(){
+		console.Power();
+		console.endRun();
+		group.start(1);
+		group.finish(2);
+		group.DNF(23);
+		assertEquals(23, group.getEndList().get(1).getID());
+		assertTrue(group.getEndList().get(1).DNF);
+	}
+	
 
 }
