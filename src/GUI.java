@@ -1,9 +1,16 @@
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 
+import javax.swing.AbstractAction;
+import javax.swing.ActionMap;
+import javax.swing.InputMap;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.KeyStroke;
 import javax.swing.ScrollPaneConstants;
 
 import Chronotimer.Console;
@@ -32,6 +39,7 @@ public class GUI extends javax.swing.JFrame {
     int count1 = 0;//used to keep track of numbers being entered for time;
     int count2 = 0;
 
+    
    
     public GUI(Console con) {
         this.con=con;
@@ -60,7 +68,26 @@ public class GUI extends javax.swing.JFrame {
         jPanel3.setOpaque(true);
         jPanel3.setBackground(Color.getHSBColor(953, 30, 50));
         //
+        //KeyBinding
+        InputMap im=JPanel1.getInputMap(JPanel1.WHEN_IN_FOCUSED_WINDOW);
+        ActionMap am = JPanel1.getActionMap();
         
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, 0), "RightArrow");
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0), "LeftArrow");
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), "UpArrow");
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0), "DownArrow");
+
+        am.put("RightArrow", new ArrowAction("RightArrow"));
+        am.put("LeftArrow", new ArrowAction("LeftArrow"));
+        am.put("UpArrow", new ArrowAction("UpArrow"));
+        am.put("DownArrow", new ArrowAction("DownArrow"));
+        
+       
+        
+        
+        
+        
+        //
         Title = new javax.swing.JLabel();
         J1357Label = new javax.swing.JLabel();
         JStart1 = new javax.swing.JButton();
@@ -2018,6 +2045,34 @@ public class GUI extends javax.swing.JFrame {
     }
 	*/
 
+    public class ArrowAction extends AbstractAction {
+
+        private String cmd;
+
+        public ArrowAction(String cmd) {
+            this.cmd = cmd;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (cmd.equalsIgnoreCase("LeftArrow")) {
+               jLeft.doClick();
+            } else if (cmd.equalsIgnoreCase("RightArrow")) {
+                jRight.doClick();
+            } else if (cmd.equalsIgnoreCase("UpArrow")) {
+                jUp.doClick();
+            } else if (cmd.equalsIgnoreCase("DownArrow")) {
+               jDown.doClick();
+            }
+        }
+
+		
+    }
+    
+    
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel J1357Label;
     private javax.swing.JLabel J1357Label1;
