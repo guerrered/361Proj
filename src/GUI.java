@@ -55,10 +55,10 @@ public class GUI extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         //set backGround
         JPanel1.setOpaque(true);
-        JPanel1.setBackground(Color.getHSBColor(234, 80, 100));
-        jPanel2.setBackground(Color.getHSBColor(234, 80, 100));
+        JPanel1.setBackground(Color.getHSBColor(953, 30, 50));
+        jPanel2.setBackground(Color.getHSBColor(953, 30, 50));
         jPanel3.setOpaque(true);
-        jPanel3.setBackground(Color.getHSBColor(234, 80, 100));
+        jPanel3.setBackground(Color.getHSBColor(953, 30, 50));
         //
         
         Title = new javax.swing.JLabel();
