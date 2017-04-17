@@ -13,18 +13,24 @@ public class Group extends Event{
 	
 	private int tempNumber = 0; //as racers finish (this specific race), they are assigned a placeholder number 
 	
+	
+	/**
+	 * startTime =-1 signifies that a new race is ready to begin
+	 * temp number is reset to 0
+	 */
 	public Group(){
 		startTime =-1;
 		tempNumber = 0;
 	}
 	
+	/**
+	 * sets start time
+	 * 
+	 * @param time - long that will be the start time for all players
+	 * @return boolean - based on success
+	 */
 	public boolean start(long time){
 		if(startTime==-1){
-			/*
-			 * not sure if we know how many are supposed to start let alone
-			 * which racers are starting so I don't think we can check if they've participated
-			 * already like we do in other races.
-			 */
 			startTime = time;
 			return true;
 		}
@@ -33,6 +39,12 @@ public class Group extends Event{
 	}
 	
 	//called as players cross finish line
+	/**
+	 * sets finish time
+	 * 
+	 * @param finish - long that will be the end time for one player
+	 * @return boolean - based on success 
+	 */
 	public boolean finish(long time){
 		if(startTime==-1){
 			return false;
@@ -45,13 +57,22 @@ public class Group extends Event{
 		return true;
 	}
 	
+	/**
+	 * sets did not finish
+	 * 
+	 * @param num - int that will be the runners ID
+	 */
 	public void DNF(int num){
 		Player temp = new Player(num);
 		temp.DNF();
 		DNFs.add(temp);
 		
 	}
-	//merge into one list
+	
+	/**
+	 * ends the current race
+	 * 
+	 */
 	public void endRace(){
 		startTime =-1;
 		for(Player p: playersFinished){
@@ -62,7 +83,12 @@ public class Group extends Event{
 		}
 	}
 	
-	//called when IDs are entered after players finished.
+	/**
+	 * Called when NUM is clicked. It's used to overwrite temp numbers
+	 * 
+	 * @param ID - int to be set as ID
+	 * @return boolean - false if player exists in list already
+	 */
 	public boolean setPlayerID(int ID){
 		if(playersFinished.size()==0){
 			return false;
@@ -80,8 +106,11 @@ public class Group extends Event{
 		return true;
 	}
 	
-	/*
-	 * players List that will be displayed on console screen 
+	
+	/**
+	 * Players list that will be displayed on the console screen
+	 * 
+	 * @return List<Player>
 	 */
 	public List<Player> getDisplayList(){
 		List<Player> dis = new ArrayList<>(1);
@@ -92,15 +121,17 @@ public class Group extends Event{
 	}
 	
 	
-	/*
-	 * cancel started race
+	/**
+	 * Cancels the started race by resetting startTime 
 	 */
 	public void cancel(){
 		startTime = -1;
 		//normally we'd mark started racers as such, but we are don't know how many started.
 	}
 	
-	//getter for StartTime
+	/**
+	 * @return long - startTime
+	 */
 	public long getStartTime(){
 		if(startTime > 0){
 			return startTime;
@@ -110,10 +141,16 @@ public class Group extends Event{
 		}
 	}
 	
+	/**
+	 * @return int - total number of racers (marked, unmarked, and DNF)
+	 */
 	public int getTotalNumberFinished(){
-		return playersFinished.size()+playersFinishedMarked.size();
+		return playersFinished.size()+playersFinishedMarked.size() + DNFs.size();
 	}
 	
+	/**
+	 * @return List<Player> - list of all racers
+	 */
 	public List<Player> getPlayerList(){
 		List<Player> pList = new ArrayList<>();
 		pList.addAll(playersFinishedMarked);
@@ -122,6 +159,9 @@ public class Group extends Event{
 		return pList;
 	}
 	
+	/**
+	 * @return List<Player> - list of all racers
+	 */
 	public List<Player> getEndList(){//list to print
 		List<Player> pList = new ArrayList<>();
 		pList.addAll(playersFinishedMarked);
