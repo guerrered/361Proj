@@ -349,18 +349,18 @@ public class Console implements Observer{
 		writeToLog("DNF");
 	}
 	
-	//deprecate
+	
 	/**
-	 *  Method that sets the next runner to finish in a specific lane as DNF 
+	 *  Method that sets the runner with a certain num DNF
 	 *  
 	 */
-	public void DNF(int lane){
+	public void DNF(int Num){
 		if(onCheck() && curRunCheck()){
-			if(eventType.equals("PARIND")){
-					this.race.DNF(lane);
+			if(eventType.equals("GROUP")){//only for group event
+					this.race.DNF(Num);
 			}
 		}
-		writeToLog("DNF " + lane);
+		writeToLog("DNF " + Num);
 	}
 	
 	/**
@@ -740,48 +740,70 @@ public class Console implements Observer{
 	 */
 	public String DisplayListString(){
 		if(onCheck() && curRunCheck()){
-		List<Player> displayList = getDisplayList();
-		String asString = "";
-		int count = 0;//count is 0 for group since only 1 runner is printed at a time
-		if(eventType.equals("PARIND")){
-			count = 2;
-		}
-		if(eventType.equals("IND")){
-			count = 1;
-		}
-		for(int i = 0; i < displayList.size(); i++){//if finished use finish time else currenttime
-			Player temp = displayList.get(i);
-			String tempString = "";
-			if(temp.participated()){
-				if(temp.DNF){
-					tempString += temp.toString() + "\tDNF\tF\n";
+			String asString = "";
+			if(eventType.equals("GROUP")){
+				
+				asString = "Time: " +timeConvert(time.getTime());
+				if(!getDisplayList().isEmpty()){
+					List <Player> displayList = getDisplayList();
+					Player temp = displayList.get(0);
+					String tempString = "";
+					if(temp.participated()){
+						if(temp.DNF){
+							tempString += temp.toString() + "\tDNF\tF\n";
+						}
+						else{
+							tempString += temp.toString() + "\t" + timeConvert(temp.getEndTime() - temp.getStartTime()) + "\tF\n";
+						}
+					}
+					asString += "\n\n\n" + tempString;
 				}
-				else{
-					tempString += temp.toString() + "\t" + timeConvert(temp.getEndTime() - temp.getStartTime()) + "\tF\n";
-				}
-			}
-			
-			else if(temp.isRunning()){
-				tempString += temp.toString() + "\t" + timeConvert(time.getTime() - temp.getStartTime()) + "\tR\n";
+				return asString;
 			}
 			else{
-				if(count > 0){
-					if(temp.wasCanceled()){
-						tempString += temp.toString() + "\tCanceled<\n";//usually next in queue might as well check
+				asString = "";
+				List <Player> displayList = getDisplayList();
+				int count = 0;//count is 0 for group since only 1 runner is printed at a time
+				if(eventType.equals("PARIND")){
+					count = 2;
+				}
+				if(eventType.equals("IND")){
+					count = 1;
+				}
+				for(int i = 0; i < displayList.size(); i++){//if finished use finish time else currenttime
+					Player temp = displayList.get(i);
+					String tempString = "";
+					if(temp.participated()){
+						if(temp.DNF){
+							tempString += temp.toString() + "\tDNF\tF\n";
+						}
+						else{
+							tempString += temp.toString() + "\t" + timeConvert(temp.getEndTime() - temp.getStartTime()) + "\tF\n";
+						}
+					}
+			
+					else if(temp.isRunning()){
+						tempString += temp.toString() + "\t" + timeConvert(time.getTime() - temp.getStartTime()) + "\tR\n";
 					}
 					else{
-						tempString += temp.toString() + "\t" + timeConvert(time.getTime()) + "<\n";//currentTime next in queue
+						if(count > 0){
+							if(temp.wasCanceled()){
+								tempString += temp.toString() + "\tCanceled<\n";//usually next in queue might as well check
+							}
+							else{
+								tempString += temp.toString() + "\t" + timeConvert(time.getTime()) + "<\n";//currentTime next in queue
+							}
+							count--;
+						}
+						else{
+							tempString += temp.toString() + "\t" + timeConvert(time.getTime()) + "\n";//currentTime
+						}	
 					}
-					count--;
-				}
-				else{
-					tempString += temp.toString() + "\t" + timeConvert(time.getTime()) + "\n";//currentTime
+					tempString = tempString.concat(asString);
+					asString = tempString;
 				}
 			}
-			tempString = tempString.concat(asString);
-			asString = tempString;
-		}
-		return asString;
+			return asString;
 		}
 		return "";//emptyString
 	}

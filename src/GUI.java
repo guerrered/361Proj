@@ -1,10 +1,12 @@
 import java.awt.Color;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingUtilities;
 
 import Chronotimer.Console;
 
@@ -28,6 +30,7 @@ public class GUI extends javax.swing.JFrame {
     Thread tN;
     Runnable rN;
     boolean numSwitch = false;
+    boolean DNFFlag = false;
     boolean timeGet = false;//used so we can know when time is being entered;
     int count1 = 0;//used to keep track of numbers being entered for time;
     int count2 = 0;
@@ -1094,25 +1097,43 @@ public class GUI extends javax.swing.JFrame {
     			if(con.isMenuOn()){
     				con.closeMenu();//we dont need this anymore
     			}
-    			numSwitch = !numSwitch;
-    			if(numSwitch == true){
-    				tN.interrupt();//it might be inactive so nothing to interrupt //but ensure we do incase display list is shown 
-    				Num = "";
-    				jDisplay.setText("Num: ");
-    			}	
+    			if(DNFFlag){
+    				numSwitch = !numSwitch;
+    				if(numSwitch == true){
+    					tN.interrupt();//it might be inactive so nothing to interrupt //but ensure we do incase display list is shown 
+    					Num = "";
+    					jDisplay.setText("Num: ");
+    				}
+    				else{
+    					((displayTextUpdater) rN).ExitInterrupt();//else if we came from display list exit the interrupt cycle
+						if(!Num.equals("")){
+							int id = Integer.parseInt(Num); // turning power off should reset this function
+							con.DNF(id); 
+							DNFFlag = false;
+						}
+    				}
+    			}
+    			else{
+    				numSwitch = !numSwitch;
+    				if(numSwitch == true){
+    					tN.interrupt();//it might be inactive so nothing to interrupt //but ensure we do incase display list is shown 
+    					Num = "";
+    					jDisplay.setText("Num: ");
+    				}	
     	
-    			else{//the second time it is pressed it will run the the num command from console
-    				/*
-    				if(!con.getDisplayState()){// if we werent in the display list go back to running screen
-    					con.changeDisplayState();
-    					rN = new displayTextUpdater(jDisplay, con);//must start the thread over since fucntion had killed it
-    					tN = new Thread(rN);
-    					tN.start();
-    				}*/
-    				((displayTextUpdater) rN).ExitInterrupt();//else if we came from display list exit the interrupt cycle
-    				if(!Num.equals("")){
-    					int id = Integer.parseInt(Num); // turning power off should reset this function
-    					con.Num(id); 
+    				else{//the second time it is pressed it will run the the num command from console
+    					/*
+    					if(!con.getDisplayState()){// if we werent in the display list go back to running screen
+    						con.changeDisplayState();
+    						rN = new displayTextUpdater(jDisplay, con);//must start the thread over since fucntion had killed it
+    						tN = new Thread(rN);
+    						tN.start();
+    					}*/
+    					((displayTextUpdater) rN).ExitInterrupt();//else if we came from display list exit the interrupt cycle
+    					if(!Num.equals("")){
+    						int id = Integer.parseInt(Num); // turning power off should reset this function
+    						con.Num(id); 
+    					}
     				}
     			}
     		}
@@ -1686,14 +1707,21 @@ public class GUI extends javax.swing.JFrame {
 						jDisplay.setText(currentState + "\n\n\n" + x);
     					break;
     				case("grp"):
-    					x = con.Event("GRP");
+    					x = con.Event("GROUP");
 						jDisplay.setText(currentState + "\n\n\n" + x);
     					break;
     				case("paragrp"):
     					jDisplay.setText(currentState + "\n\n\nUNAVAILABLE");
     					break;
     				case("dnf"):
-    					con.DNF();
+    					if(con.getRaceType().equals("GROUP")){
+    						jDisplay.setText("Num: ");
+    						DNFFlag = true;
+    						//press pound first
+    					}
+    					else{
+    						con.DNF();
+    					}
     					break;
     				case("cancel"):
     					con.Cancel();
@@ -1705,6 +1733,15 @@ public class GUI extends javax.swing.JFrame {
     						rN = new displayTextUpdater(jDisplay, con);
     						tN = new Thread(rN);
     						tN.start();
+    						/*try {
+								SwingUtilities.invokeAndWait(new displayTextUpdater(jDisplay,con));
+							} catch (InvocationTargetException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}*/
     					}
     					else{
     						jDisplay.setText(currentState + "\n\n\n" + x);
