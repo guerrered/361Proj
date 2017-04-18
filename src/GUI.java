@@ -80,15 +80,50 @@ public class GUI extends javax.swing.JFrame {
         im.put(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), "UpArrow");
         im.put(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0), "DownArrow");
 
+        //add KeyPad 
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_0,0), "Zero");
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_1,0), "One");
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_2,0), "Two");
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_3,0), "Three");
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_4,0), "Four");
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_5,0), "Five");
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_6,0), "Six");
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_7,0), "Seven");
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_8,0), "Eight");
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_9,0), "Nine");
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_NUMBER_SIGN, java.awt.event.InputEvent.SHIFT_DOWN_MASK), "#");
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_ASTERISK ,java.awt.event.InputEvent.SHIFT_DOWN_MASK), "*");
+        //
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_F,0), "Function");
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_S,0), "Swap");
+        
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_P,0), "Power");
+        
+        am.put("Power", new ArrowAction("Power"));
+        
+        am.put("Function", new ArrowAction("Function"));
+        am.put("Swap", new ArrowAction("Swap"));
+        
         am.put("RightArrow", new ArrowAction("RightArrow"));
         am.put("LeftArrow", new ArrowAction("LeftArrow"));
         am.put("UpArrow", new ArrowAction("UpArrow"));
         am.put("DownArrow", new ArrowAction("DownArrow"));
         
-       
+        //
+        am.put("Zero", new ArrowAction("Zero"));
+        am.put("One", new ArrowAction("One"));
+        am.put("Two", new ArrowAction("Two"));
+        am.put("Three", new ArrowAction("Three"));
+        am.put("Four", new ArrowAction("Four"));
+        am.put("Five", new ArrowAction("Five"));
+        am.put("Six", new ArrowAction("Six"));
+        am.put("Seven", new ArrowAction("Seven"));
+        am.put("Eight", new ArrowAction("Eight"));
+        am.put("Nine", new ArrowAction("Nine"));
+        am.put("#", new ArrowAction("#"));
+        am.put("*", new ArrowAction("*"));
         
-        
-        
+        //
         
         //
         Title = new javax.swing.JLabel();
@@ -754,7 +789,7 @@ public class GUI extends javax.swing.JFrame {
                         .addGroup(JPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         		.addGap(650, 650, 650)
                             .addComponent(jQRFTime)
-                            .addComponent(jDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(JPanel1Layout.createSequentialGroup()
                         .addGap(150, 150, 150)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -2092,15 +2127,80 @@ public class GUI extends javax.swing.JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (cmd.equalsIgnoreCase("LeftArrow")) {
+            if (cmd.equalsIgnoreCase("LeftArrow")) 
+            {
                jLeft.doClick();
-            } else if (cmd.equalsIgnoreCase("RightArrow")) {
+            } else if (cmd.equalsIgnoreCase("RightArrow")) 
+            {
                 jRight.doClick();
-            } else if (cmd.equalsIgnoreCase("UpArrow")) {
+            } else if (cmd.equalsIgnoreCase("UpArrow")) 
+            {
                 jUp.doClick();
-            } else if (cmd.equalsIgnoreCase("DownArrow")) {
+            } else if (cmd.equalsIgnoreCase("DownArrow")) 
+            {
                jDown.doClick();
             }
+            else if (cmd.equalsIgnoreCase("Zero"))
+            {
+            	jNum0.doClick();
+            }
+            else if (cmd.equalsIgnoreCase("One"))
+            {
+            	jNum1.doClick();
+            }
+            else if (cmd.equalsIgnoreCase("Two"))
+            {
+            	jNum2.doClick();
+            }
+            else if (cmd.equalsIgnoreCase("Three"))
+            {
+            	jNum3.doClick();
+            }
+            else if (cmd.equalsIgnoreCase("Four"))
+            {
+            	jNum4.doClick();
+            }
+            else if (cmd.equalsIgnoreCase("Five"))
+            {
+            	jNum5.doClick();
+            }
+            else if (cmd.equalsIgnoreCase("Six"))
+            {
+            	jNum6.doClick();
+            }
+            else if (cmd.equalsIgnoreCase("Seven"))
+            {
+            	jNum7.doClick();
+            }
+            else if (cmd.equalsIgnoreCase("Eight"))
+            {
+            	jNum8.doClick();
+            }
+            else if (cmd.equalsIgnoreCase("Nine"))
+            {
+            	jNum9.doClick();
+            }
+            else if (cmd.equalsIgnoreCase("#"))
+            {
+            	jNumPound.doClick();
+            }
+            else if (cmd.equalsIgnoreCase("*"))
+            {
+            	jNumStar.doClick();
+            }
+            else if (cmd.equalsIgnoreCase("Function"))
+            {
+            	jFunction.doClick();
+            }
+            else if (cmd.equalsIgnoreCase("Swap"))
+            {
+            	jSwap.doClick();
+            }
+            else if (cmd.equalsIgnoreCase("Power"))
+            {
+            	jPower.doClick();
+            }
+            
         }
 
 		
