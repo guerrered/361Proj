@@ -12,7 +12,7 @@ public class Group extends Event{
 	private long startTime = -1; //start time is negative if there is no current race. A new race is legal to begin.
 	
 	private int tempNumber = 0; //as racers finish (this specific race), they are assigned a placeholder number 
-	
+	private int markedNum = 0;
 	
 	/**
 	 * startTime =-1 signifies that a new race is ready to begin
@@ -62,11 +62,17 @@ public class Group extends Event{
 	 * 
 	 * @param num - int that will be the runners ID
 	 */
-	public void DNF(int num){
+	public boolean DNF(int num){
+		for(Player p: DNFs){
+			if(p.getID()==num){
+				System.out.println("Player exists in list");
+				return false;
+			}
+		}
 		Player temp = new Player(num);
 		temp.DNF();
 		DNFs.add(temp);
-		
+		return true;
 	}
 	
 	/**
@@ -99,11 +105,20 @@ public class Group extends Event{
 				return false;
 			}
 		}
-		Player temp = playersFinished.get(0);
+		for(Player p: DNFs){
+			if(p.getID()==ID){
+				System.out.println("Player exists in list");
+				return false;
+			}
+		}
+		if(markedNum < playersFinished.size()){
+		Player temp = playersFinished.get(markedNum++);
 		temp.setID(ID);
 		playersFinishedMarked.add(temp);//add to marked list
-		playersFinished.remove(0); //remove the player from temp list 
+		//playersFinished.remove(0); //remove the player from temp list 
 		return true;
+		}
+		return false;//prompted setID more times than players exist
 	}
 	
 	
@@ -164,7 +179,7 @@ public class Group extends Event{
 	 */
 	public List<Player> getEndList(){//list to print
 		List<Player> pList = new ArrayList<>();
-		pList.addAll(playersFinishedMarked);
+		//pList.addAll(playersFinishedMarked);
 		pList.addAll(playersFinished);
 		pList.addAll(DNFs);
 		

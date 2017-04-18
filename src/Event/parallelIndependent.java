@@ -122,12 +122,13 @@ public class parallelIndependent  extends Event{
 	 * 	sets the next runner to finish in a specific lane as DNF 
 	 * @param lane	the lane in which the racer is participating
 	 */
-	public void DNF(int lane){
+	public boolean DNF(int lane){
 		if(lane == 1){
 			if(lane1.size() > queue1EndNum){
 				if(lane1.get(queue1EndNum).isRunning()){//breaks in raceInd
 					endList.add(lane1.get(queue1EndNum));
 					lane1.get(queue1EndNum++).DNF();//preemptively point spot to next however if nothing is present it wont be able to execute if it gets here
+					return true;
 				}
 			}
 		}
@@ -136,9 +137,11 @@ public class parallelIndependent  extends Event{
 				if(lane2.get(queue2EndNum).isRunning()){
 						endList.add(lane2.get(queue2EndNum));
 						lane2.get(queue2EndNum++).DNF();
+						return true;
 				}
 			}
 		}
+		return false;
 	}
 	
 	/**

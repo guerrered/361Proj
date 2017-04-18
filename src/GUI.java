@@ -976,14 +976,16 @@ public class GUI extends javax.swing.JFrame {
     private void jNum1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum1ActionPerformed
     	 if(con.onCheck()){
     		 if(!timeGet){
-    			 Num+="1";
-     			jDisplay.setText("Num: " + Num);
+    			 //Num+="1";
+    			 con.addToNum("1");
+     			jDisplay.setText("Num: " + con.getNum());
     		 }
     		 else{
     			if(count1 < 2){
-    				Num+="1";
+    				con.addToNum("1");
+    				//Num+="1";
     				count1++;
-    				jDisplay.setText("Time: " + Num);
+    				jDisplay.setText("Time: " + con.getNum());
     			}
     		 }
          }
@@ -992,14 +994,16 @@ public class GUI extends javax.swing.JFrame {
     private void jNum2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum2ActionPerformed
     	 if(con.onCheck()){
     		 if(!timeGet){
-    			 Num+="2";
-     			jDisplay.setText("Num: " + Num);
+    			 con.addToNum("2");
+    			 //Num+="2";
+     			jDisplay.setText("Num: " + con.getNum());
     		 }
     		 else{
      			if(count1 < 2){
-     				Num+="2";
+     				con.addToNum("2");
+     				//Num+="2";
      				count1++;
-     				jDisplay.setText("Time: " + Num);
+     				jDisplay.setText("Time: " + con.getNum());
      			}
      		 }
          }
@@ -1008,14 +1012,16 @@ public class GUI extends javax.swing.JFrame {
     private void jNum3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum3ActionPerformed
     	 if(con.onCheck()){
     		 if(!timeGet){
-    			 Num+="3";
-     			jDisplay.setText("Num: " + Num);
+    			con.addToNum("3");
+    			 // Num+="3";
+     			jDisplay.setText("Num: " + con.getNum());
     		 }
     		 else{
      			if(count1 < 2){
-     				Num+="3";
+     				con.addToNum("3");
+     				//Num+="3";
      				count1++;
-     				jDisplay.setText("Time: " + Num);
+     				jDisplay.setText("Time: " + con.getNum());
      			}
      		 }
          }
@@ -1024,14 +1030,16 @@ public class GUI extends javax.swing.JFrame {
     private void jNum4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum4ActionPerformed
     	 if(con.onCheck()){
     		 if(!timeGet){
-    			 Num+="4";
-     			jDisplay.setText("Num: " + Num);
+    			 con.addToNum("4");
+    			 //Num+="4";
+     			jDisplay.setText("Num: " + con.getNum());
     		 }
     		 else{
      			if(count1 < 2){
-     				Num+="4";
+     				con.addToNum("4");
+     				//Num+="4";
      				count1++;
-     				jDisplay.setText("Time: " + Num);
+     				jDisplay.setText("Time: " + con.getNum());
      			}
      		 }
          }
@@ -1040,14 +1048,16 @@ public class GUI extends javax.swing.JFrame {
     private void jNum5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum5ActionPerformed
     	 if(con.onCheck()){
     		 if(!timeGet){
-    			 Num+="5";
-     			jDisplay.setText("Num: " + Num);
+    			 con.addToNum("5");
+    			 //Num+="5";
+     			jDisplay.setText("Num: " + con.getNum());
     		 }
     		 else{
      			if(count1 < 2){
-     				Num+="5";
+     				con.addToNum("5");
+     				//Num+="5";
      				count1++;
-     				jDisplay.setText("Time: " + Num);
+     				jDisplay.setText("Time: " + con.getNum());
      			}
      		 }
          }
@@ -1056,14 +1066,16 @@ public class GUI extends javax.swing.JFrame {
     private void jNum6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum6ActionPerformed
     	 if(con.onCheck()){
     		 if(!timeGet){
-    			 Num+="6";
-     			jDisplay.setText("Num: " + Num);
+    			 con.addToNum("6");
+    			 //Num+="6";
+     			jDisplay.setText("Num: " + con.getNum());
     		 }
     		 else{
      			if(count1 < 2){
-     				Num+="6";
+     				con.addToNum("6");
+     				//Num+="6";
      				count1++;
-     				jDisplay.setText("Time: " + Num);
+     				jDisplay.setText("Time: " + con.getNum());
      			}
      		 }
          }
@@ -1072,14 +1084,16 @@ public class GUI extends javax.swing.JFrame {
     private void jNum7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum7ActionPerformed
     	 if(con.onCheck()){
     		 if(!timeGet){
-    			 Num+="7";
-     			jDisplay.setText("Num: " + Num);
+    			 con.addToNum("7");
+    			 //Num+="7";
+     			jDisplay.setText("Num: " + con.getNum());
     		 }
     		 else{
      			if(count1 < 2){
-     				Num+="7";
+     				con.addToNum("7");
+     				//Num+="7";
      				count1++;
-     				jDisplay.setText("Time: " + Num);
+     				jDisplay.setText("Time: " + con.getNum());
      			}
      		 }
     	}
@@ -1088,14 +1102,16 @@ public class GUI extends javax.swing.JFrame {
     private void jNum8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum8ActionPerformed
     	 if(con.onCheck()){
     		 if(!timeGet){
-    			 Num+="8";
-     			jDisplay.setText("Num: " + Num);
+    			 con.addToNum("8");
+    			 //Num+="8";
+     			jDisplay.setText("Num: " + con.getNum());
     		 }
     		 else{
      			if(count1 < 2){
-     				Num+="8";
+     				con.addToNum("8");
+     				//Num+="8";
      				count1++;
-     				jDisplay.setText("Time: " + Num);
+     				jDisplay.setText("Time: " + con.getNum());
      			}
      		 }
          }
@@ -1104,14 +1120,16 @@ public class GUI extends javax.swing.JFrame {
     private void jNum9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum9ActionPerformed
         if(con.onCheck()){
         	if(!timeGet){
-   				Num+="9";
-    			jDisplay.setText("Num: " + Num);
+        		con.addToNum("9");
+   				//Num+="9";
+    			jDisplay.setText("Num: " + con.getNum());
         	}
         	else{
     			if(count1 < 2){
-    				Num+="9";
+    				con.addToNum("9");
+    				//Num+="9";
     				count1++;
-    				jDisplay.setText("Time: " + Num);
+    				jDisplay.setText("Time: " + con.getNum());
     			}
     		 }
         }
@@ -1125,13 +1143,15 @@ public class GUI extends javax.swing.JFrame {
     		else{
     			if(count2 < 2){
     				count2++;
-    				Num+=":";
+    				con.addToNum(":");
+    				//Num+=":";
     			}
     			else if(count2 == 2){
-    				Num+=".";
+    				con.addToNum(".");
+    				//Num+=".";
     			}
     			count1 = 0;
-    			jDisplay.setText("Time: " + Num);
+    			jDisplay.setText("Time: " + con.getNum());
     		}
         }
     }//GEN-LAST:event_jNumStarActionPerformed
@@ -1139,13 +1159,15 @@ public class GUI extends javax.swing.JFrame {
     private void jNum0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum0ActionPerformed
         if(con.onCheck()){
         	if(!timeGet){
-   			 	Num+="0";
-    			jDisplay.setText("Num: " + Num);
+        		con.addToNum("0");
+   			 	//Num+="0";
+    			jDisplay.setText("Num: " + con.getNum());
    		 	}
         	else{
     			if(count1 < 2){
-    				Num+="0";
-    				jDisplay.setText("Time: " + Num);
+    				con.addToNum("0");
+    				//Num+="0"
+    				jDisplay.setText("Time: " + con.getNum());
     				count1++;
     			}
     		 }
@@ -1156,26 +1178,31 @@ public class GUI extends javax.swing.JFrame {
         //the first time the button is pressed it will start reading a number 
     	if(con.onCheck()){
     		if(con.getDisplayState()){
-    			if(con.isMenuOn()){
-    				con.closeMenu();//we dont need this anymore
-    			}
-    			if(DNFFlag){
+    			//if(con.isMenuOn()){
+    				//con.closeMenu();//we dont need this anymore
+    			//}
+    			if(!DNFFlag){
     				numSwitch = !numSwitch;
     				if(numSwitch == true){
     					tN.interrupt();//it might be inactive so nothing to interrupt //but ensure we do incase display list is shown 
-    					Num = "";
+    					//Num = "";
+    					con.clearNum();
     					jDisplay.setText("Num: ");
     				}
     				else{
-    					((displayTextUpdater) rN).ExitInterrupt();//else if we came from display list exit the interrupt cycle
-						if(!Num.equals("")){
-							int id = Integer.parseInt(Num); // turning power off should reset this function
-							con.DNF(id); 
-							DNFFlag = false;
+							//int id = Integer.parseInt(Num); // turning power off should reset this function
+							if(!con.getNum().equals("")){
+								int id = Integer.parseInt(con.getNum());
+								con.Num(id); 
+								con.clearNum();
+							}
+							//DNFFlag = false;
+							((displayTextUpdater) rN).ExitInterrupt();//else if we came from display list exit the interrupt cycle
+							
 						}
-    				}
     			}
-    			else{
+    		
+    			else{/*
     				numSwitch = !numSwitch;
     				if(numSwitch == true){
     					tN.interrupt();//it might be inactive so nothing to interrupt //but ensure we do incase display list is shown 
@@ -1191,35 +1218,39 @@ public class GUI extends javax.swing.JFrame {
     						tN = new Thread(rN);
     						tN.start();
     					}*/
-    					((displayTextUpdater) rN).ExitInterrupt();//else if we came from display list exit the interrupt cycle
-    					if(!Num.equals("")){
-    						int id = Integer.parseInt(Num); // turning power off should reset this function
-    						con.Num(id); 
+    					if(!con.getNum().equals("")){
+    						int id = Integer.parseInt(con.getNum()); // turning power off should reset this function
+    						con.DNF(id); 
+    						con.clearNum();
+    						DNFFlag = false;
     					}
-    				}
+    					//((displayTextUpdater) rN).ExitInterrupt();//else if we came from display list exit the interrupt cycle
+    					jDisplay.setText(con.getLastMenu());//we want to stay in DNF menu in case multiple dnfs
     			}
     		}
     		else{//if no run is currently on then we can change the time
-    			if(timeGet){
+    			if(timeGet){/*
     				numSwitch = !numSwitch;
     				if(numSwitch){
     					//tN.interrupt();
     					Num ="";
     					jDisplay.setText("Time: ");
     				}
-    				else{
+    				else{*/
     					//((displayTextUpdater) rN).ExitInterrupt();
     					timeGet=false;
     					//ensure Num is in the right format
-    					con.Time(Num);
-    					con.openMenu();
+    					if(con.validifyTime(con.getNum())){
+    						con.Time(con.getNum());
+    					}
+    					//con.openMenu();
+    					con.clearNum();
     					count1=0;
     					count2=0;
-    					jDisplay.setText(con.getMenu());
-    				}
+    					jDisplay.setText(con.getLastMenu());//last operable menu spot
     			}
-    			
     		}
+    			
     	}
 
     }//GEN-LAST:event_jNumPoundActionPerformed
@@ -1777,9 +1808,14 @@ public class GUI extends javax.swing.JFrame {
     					break;
     				case("dnf"):
     					if(con.getRaceType().equals("GRP")){
-    						jDisplay.setText("Num: ");
+    						//jDisplay.setText("Num: ");
+    	    				//tN.interrupt();//it might be inactive so nothing to interrupt //but ensure we do incase display list is shown 
+    	    				//Num = "";
+    						con.clearNum();
+    	    				jDisplay.setText("Num: ");
     						DNFFlag = true;
     						//press pound first
+    						//menu not closed can still be referenced
     					}
     					else{
     						x = con.DNF();
@@ -1840,7 +1876,11 @@ public class GUI extends javax.swing.JFrame {
     					if(!con.getDisplayState()){//can only change time if there is not current run
     						timeGet = true;//we are taking time
     						jDisplay.setText("Press # to enter a time in format xx:xx:xx.xx\npress * to enter:");//press # to enter time
-    						con.closeMenu();
+    						//Num = "";
+    						con.clearNum();
+    						count1 = 0;
+    						count2 = 0;
+    						//con.closeMenu();
     					}
     					else{
     						jDisplay.setText(currentState + "\n\n\nCan't change timer during an event");

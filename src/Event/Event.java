@@ -26,6 +26,7 @@ public class Event {
 	public long clockTime;
 	public int runNumber=1;
 	long startTime;
+	boolean ret;
 	public int numRunners;
 	
 	/**
@@ -128,7 +129,8 @@ public class Event {
 	public void DNF(){
 	}
 	
-	public void DNF(int lane){
+	public boolean DNF(int lane){
+		return ret;
 	}
 	
 	/**

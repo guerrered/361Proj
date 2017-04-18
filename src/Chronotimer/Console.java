@@ -32,6 +32,8 @@ public class Console implements Observer{
 	Channels channels;
 	String eventType;
 	File log;
+	String Num;
+	String timeString;
 	public FileWriter logWriter;
 	BufferedWriter bufferedLogWrite;
 	
@@ -92,6 +94,7 @@ public class Console implements Observer{
 			this.eventType = "IND";//default
 			//instantiateMenu();//we want to see the menu so turn it on
 			openMenu();
+			clearNum();//reset Num string
 			//this.race = new Independent();//default race is not instantiated right away
 			//CurRunOn = true;
 		}
@@ -147,7 +150,7 @@ public class Console implements Observer{
 			
 			displayState = false;//no printing currentList
 			openMenu();//we want to see menu
-			
+			clearNum();
 			if(race!=null){
 				race.setFileNumber(1);
 			}
@@ -762,6 +765,9 @@ public class Console implements Observer{
 				if(s > 0){
 					asString += timeConvert(time.getTime()-s);
 				}
+				else{
+					asString += "Event Has Not Started";
+				}
 				if(!getDisplayList().isEmpty()){
 					List <Player> displayList = getDisplayList();
 					Player temp = displayList.get(0);
@@ -984,5 +990,47 @@ public class Console implements Observer{
 	 */
 	public void changeDisplayState(){
 		displayState = !displayState;
+	}
+	
+	/**
+	 * clears the Num String
+	 */
+	public void clearNum(){
+		Num = "";
+	}
+	
+	/**
+	 * 
+	 * @param i an int that is concatenated onto Num
+	 */
+	public void addToNum(String i){
+		Num +=i;//add i to end of Num
+	}
+	
+	/**
+	 * 
+	 * @return String Num which should hold a number
+	 */
+	public String getNum(){
+		return Num;
+	}
+	
+	/**
+	 * 
+	 * @param s a string that should be in the format xx:xx:xx.x
+	 * @return true if the string is in format xx:xx:xx.x
+	 */
+	public boolean validifyTime(String s){
+		//char[] c = s.toCharArray();
+		if(s.length() >=10){
+			if(s.charAt(2) == ':'){
+				if(s.charAt(5) ==':'){
+					if(s.charAt(8) == '.'){
+						return true;
+					}
+				}
+			}
+		}
+		return false;
 	}
 }
