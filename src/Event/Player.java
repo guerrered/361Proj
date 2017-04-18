@@ -41,7 +41,7 @@ public class Player {
 	 */
 	public void start(long time){
 		this.running = true;
-		this.cancel = false; 
+		//this.cancel = false; 
 		this.startTime = time;
 	}
 
@@ -52,6 +52,7 @@ public class Player {
 	public void end(long time) {
 		this.endTime = time;
 		this.ran = true;
+		this.cancel = false;
 		this.running = false;
 		this.totalTime = this.endTime - this.startTime;
 		if(this.totalTime > 9999990){//timeoverflow for player 9999seconds 99hundreths 
@@ -127,6 +128,14 @@ public class Player {
 	
 	public boolean wasCanceled(){
 		return cancel;
+	}
+	public boolean isCanceled(){
+		if(cancel){
+			if(!running){
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public void setID(int ID) {

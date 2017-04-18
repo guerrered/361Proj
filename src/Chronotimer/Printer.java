@@ -42,13 +42,16 @@ public class Printer {
 		String ret = "";
 		for(int i =0; i <p.size(); i++){
 			tempP = p.get(i);
-			if(tempP.participated()){
+			//if(tempP.participated()){
 			/*
 			 * Format 
 			 * <START> <EVENT>
 			 * <NUMBER> <FINISH> <EVENT	TIME>
 			 */
-				if(!tempP.DNF){
+				if(tempP.isCanceled()){
+					ret+="<" + tempP.getID() + ">\tCANCELED\n";
+				}
+				else if(!tempP.DNF){
 					ret += "Start: "+timeFormat(tempP.getStartTime()) + " Event: " + event + '\t'+ "ID: "+  
 						p.get(i).getID() + " Finish: " + timeFormat(tempP.endTime) + " Total: " + timeFormat(tempP.getTotalTime()) +"\n";
 				}
@@ -56,7 +59,7 @@ public class Printer {
 						ret += "Start: "+timeFormat(tempP.getStartTime()) + " Event: " + event + '\t'+ "ID: "  
 						+p.get(i).getID() + " DNF\n";	
 					}
-			}
+			//}
 			/*else{
 				break;//since in order can just break here to save time
 			}*/

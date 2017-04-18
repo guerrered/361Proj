@@ -198,7 +198,16 @@ public class Independent extends Event{
 		return players;
 	}
 	public List<Player> getEndList(){
-		return endList;
+		List<Player>  toRet = new ArrayList<>();
+		toRet.addAll(endList);
+		for(int i = queueStartNum; i < 9999; i++ ){
+			if(players.get(i).isCanceled()){
+				toRet.add(players.get(i));
+			}
+			//if others are added it will move them back so its possible for the next to not be canceled
+			//therefore we have to check the whole list
+		}
+		return toRet;
 	}
 	
 	/*
