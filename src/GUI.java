@@ -1734,24 +1734,36 @@ public class GUI extends javax.swing.JFrame {
 						jDisplay.setText(currentState + "\n\n\n" + x);
     					break;
     				case("grp"):
-    					x = con.Event("GROUP");
+    					x = con.Event("GRP");
 						jDisplay.setText(currentState + "\n\n\n" + x);
     					break;
     				case("paragrp"):
     					jDisplay.setText(currentState + "\n\n\nUNAVAILABLE");
     					break;
     				case("dnf"):
-    					if(con.getRaceType().equals("GROUP")){
+    					if(con.getRaceType().equals("GRP")){
     						jDisplay.setText("Num: ");
     						DNFFlag = true;
     						//press pound first
     					}
     					else{
-    						con.DNF();
+    						x = con.DNF();
+    						if(con.getDisplayState()){//go to run Screen
+    							((displayTextUpdater) rN).ExitInterrupt();
+    						}
+    						else{
+    							jDisplay.setText(currentState + "\n\n\n" + x);
+    						}
     					}
     					break;
     				case("cancel"):
-    					con.Cancel();
+    					x = con.Cancel();
+    					if(con.getDisplayState()){//go to Run screen
+    						((displayTextUpdater) rN).ExitInterrupt();
+    					}
+    					else{
+    						jDisplay.setText(currentState + "\n\n\n" + x);
+    					}
     					break;
     				case("newrun"):
     					x = con.newRun();//will turn on displayState /therefore a thread can be started

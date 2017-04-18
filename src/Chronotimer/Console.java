@@ -225,7 +225,7 @@ public class Console implements Observer{
 					case("PARIND"):
 						this.race = new parallelIndependent();
 						break;
-					case("GROUP"):
+					case("GRP"):
 						this.race = new Group();
 						break;
 				}
@@ -274,7 +274,7 @@ public class Console implements Observer{
 	 * @param ID1
 	 */
 	public void Num(int ID1){
-		if(eventType.equals("GROUP")){
+		if(eventType.equals("GRP")){
 			race.setPlayerID(ID1);
 		}
 		
@@ -335,18 +335,23 @@ public class Console implements Observer{
 	 * if the machine is on and an event is currently happening
 	 * the next runner to finish will get a DNF
 	 */
-	public void DNF(){
-		if(onCheck() && curRunCheck()){
-			switch(eventType){
-			case("IND"):
-				this.race.DNF();
-				break;
-			case("PARIND")://if we just get a swap from the console it will swap the players in the first lane
-				this.race.DNF(1);
-				break;
+	public String DNF(){
+		if(onCheck()){
+			if(curRunCheck()){
+				switch(eventType){
+				case("IND"):
+					this.race.DNF();
+					break;
+				case("PARIND")://if we just get a swap from the console it will swap the players in the first lane
+					this.race.DNF(1);
+					break;
+				}
+				return "";//success
 			}
+			return "There is no event";
 		}
 		writeToLog("DNF");
+		return "off";
 	}
 	
 	
@@ -354,13 +359,18 @@ public class Console implements Observer{
 	 *  Method that sets the runner with a certain num DNF
 	 *  
 	 */
-	public void DNF(int Num){
-		if(onCheck() && curRunCheck()){
-			if(eventType.equals("GROUP")){//only for group event
+	public String DNF(int Num){
+		if(onCheck()){
+			if(curRunCheck()){
+				if(eventType.equals("GRP")){//only for group event
 					this.race.DNF(Num);
+					return "";//success
+				}
 			}
+			return "No group event";
 		}
 		writeToLog("DNF " + Num);
+		return "off";
 	}
 	
 	/**
@@ -378,11 +388,16 @@ public class Console implements Observer{
 	 * if the machine is on and and event is currently happening the last runner to start will 
 	 * be his start time cleared and will be place back as next to start
 	 */
-	public void Cancel(){
-		if(onCheck() && curRunCheck()){
-			this.race.cancel();
+	public String Cancel(){
+		if(onCheck()){
+			if(curRunCheck()){
+				this.race.cancel();
+				return "";//success
+			}
+			return "There is no event";
 		}
 		writeToLog("Cancel");
+		return "off";//poweroff
 	}
 	
 	//deprecate
@@ -498,7 +513,7 @@ public class Console implements Observer{
 									System.out.println("Not a Channel");
 							}
 							break;
-						case("GROUP"):
+						case("GRP"):
 							switch(chNum){
 								case(1):
 									race.start(this.time.getTime());
@@ -741,11 +756,11 @@ public class Console implements Observer{
 	public String DisplayListString(){
 		if(onCheck() && curRunCheck()){
 			String asString = "";
-			if(eventType.equals("GROUP")){
+			if(eventType.equals("GRP")){
 				long s = race.getStartTime();
 				asString ="Time: ";
 				if(s > 0){
-					asString += timeConvert(time.getTime());
+					asString += timeConvert(time.getTime()-s);
 				}
 				if(!getDisplayList().isEmpty()){
 					List <Player> displayList = getDisplayList();

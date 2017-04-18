@@ -32,7 +32,7 @@ public class displayTextUpdater implements Runnable{
 					try {
 						Thread.sleep(1);
 					} catch (InterruptedException e1) {
-						System.out.println("All Good");
+						//e1.printStackTrace();
 					}
 				}
 			}
