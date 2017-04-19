@@ -2068,6 +2068,15 @@ public class GUI extends javax.swing.JFrame {
     private void jLeftActionPerformed(java.awt.event.ActionEvent evt) {   
     	if(con.onCheck()){
     		if(con.isMenuOn()){
+    			String prevState = con.getMenu();
+    			if(prevState.equals("time")){
+    				timeGet = false;
+    				count1 = 0;
+    				count2 = 0;
+    				//con.closeMenu();
+    				//con.openMenu();
+    				jDisplay.setText(con.getLastMenu());
+    			}
     			con.menuLEFT();
     			String nextState = con.getMenu();
     			if(nextState.equals("exit")){
@@ -2085,7 +2094,8 @@ public class GUI extends javax.swing.JFrame {
 					tN.start();
 					*/
 					
-    			}else{
+    			}
+    			else{
     				jDisplay.setText(nextState);
     			}
     		}
