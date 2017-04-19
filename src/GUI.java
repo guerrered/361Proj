@@ -65,11 +65,12 @@ public class GUI extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         //set backGround
-        JPanel1.setOpaque(true);
-        JPanel1.setBackground(Color.getHSBColor(953, 30, 50));
-        jPanel2.setBackground(Color.getHSBColor(953, 30, 50));
         jPanel3.setOpaque(true);
-        jPanel3.setBackground(Color.getHSBColor(953, 30, 50));
+        jPanel3.setBackground(Color.getHSBColor((float) 1.56, (float) 1, 100));
+        JPanel1.setBackground(Color.getHSBColor((float) 1.56, (float) 1, 100));
+        jPanel2.setBackground(Color.getHSBColor((float) 1.56, (float) 1, 100));
+       
+       
         //
         //KeyBinding
         InputMap im=JPanel1.getInputMap(JPanel1.WHEN_IN_FOCUSED_WINDOW);
@@ -97,8 +98,11 @@ public class GUI extends javax.swing.JFrame {
         im.put(KeyStroke.getKeyStroke(KeyEvent.VK_F,0), "Function");
         im.put(KeyStroke.getKeyStroke(KeyEvent.VK_S,0), "Swap");
         
-        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_P,0), "Power");
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_Q,0), "Power");
+        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_P,0), "PrinterPower");
         
+        
+        am.put("PrinterPower", new ArrowAction("PrinterPower"));
         am.put("Power", new ArrowAction("Power"));
         
         am.put("Function", new ArrowAction("Function"));
@@ -1478,11 +1482,9 @@ public class GUI extends javax.swing.JFrame {
     		if(con.getChannels().getCh(1).isSensor()==true)
     		{
     			con.getChannels().getCh(1).removeSens();
+    
     		}
-    		else
-    		{
-    			con.getChannels().getCh(1).connect("EYE");
-    		}
+    		con.getChannels().getCh(1).connect("EYE");
     		
     	}
     	else if(jCh1.getSelectedItem().equals("GATE"))
@@ -1490,12 +1492,12 @@ public class GUI extends javax.swing.JFrame {
     		if(con.getChannels().getCh(1).isSensor()==true)
     		{
     			con.getChannels().getCh(1).removeSens();
-    		}
-    		else
-    		{
-    			con.getChannels().getCh(1).connect("GATE");
+    	
+    			
+    			
     		}
     		
+    		con.getChannels().getCh(1).connect("GATE");
     		
     	}
     	else if(jCh1.getSelectedItem().equals("PAD"))
@@ -1503,11 +1505,9 @@ public class GUI extends javax.swing.JFrame {
     		if(con.getChannels().getCh(1).isSensor()==true)
     		{
     			con.getChannels().getCh(1).removeSens();
+    			
     		}
-    		else
-    		{
-    			con.getChannels().getCh(1).connect("PAD");
-    		}
+    		con.getChannels().getCh(1).connect("PAD");
     		
     		
     	}
@@ -1536,11 +1536,10 @@ public class GUI extends javax.swing.JFrame {
     		if(con.getChannels().getCh(3).isSensor()==true)
     		{
     			con.getChannels().getCh(3).removeSens();
+    		
+    		
     		}
-    		else
-    		{
-    			con.getChannels().getCh(3).connect("EYE");
-    		}
+    		con.getChannels().getCh(3).connect("EYE");
     		
     	}
     	else if(jCh3.getSelectedItem().equals("GATE"))
@@ -1548,11 +1547,10 @@ public class GUI extends javax.swing.JFrame {
     		if(con.getChannels().getCh(3).isSensor()==true)
     		{
     			con.getChannels().getCh(3).removeSens();
+    	
+    			
     		}
-    		else
-    		{
-    			con.getChannels().getCh(3).connect("GATE");
-    		}
+    		con.getChannels().getCh(3).connect("GATE");
     		
     		
     	}
@@ -1561,12 +1559,11 @@ public class GUI extends javax.swing.JFrame {
     		if(con.getChannels().getCh(3).isSensor()==true)
     		{
     			con.getChannels().getCh(3).removeSens();
-    		}
-    		else
-    		{
-    			con.getChannels().getCh(3).connect("PAD");
+    	
+    			
     		}
     		
+    		con.getChannels().getCh(3).connect("PAD");
     		
     	}
     	else if(jCh3.getSelectedItem().equals("None"))
@@ -1592,11 +1589,10 @@ public class GUI extends javax.swing.JFrame {
     		if(con.getChannels().getCh(5).isSensor()==true)
     		{
     			con.getChannels().getCh(5).removeSens();
+    	
+    			
     		}
-    		else
-    		{
-    			con.getChannels().getCh(5).connect("EYE");
-    		}
+    		con.getChannels().getCh(5).connect("EYE");
     		
     	}
     	else if(jCh5.getSelectedItem().equals("GATE"))
@@ -1604,12 +1600,9 @@ public class GUI extends javax.swing.JFrame {
     		if(con.getChannels().getCh(5).isSensor()==true)
     		{
     			con.getChannels().getCh(5).removeSens();
+
     		}
-    		else
-    		{
-    			con.getChannels().getCh(5).connect("GATE");
-    		}
-    		
+    		con.getChannels().getCh(5).connect("GATE");
     		
     	}
     	else if(jCh5.getSelectedItem().equals("PAD"))
@@ -1617,12 +1610,10 @@ public class GUI extends javax.swing.JFrame {
     		if(con.getChannels().getCh(5).isSensor()==true)
     		{
     			con.getChannels().getCh(5).removeSens();
+    	
+    			
     		}
-    		else
-    		{
-    			con.getChannels().getCh(5).connect("PAD");
-    		}
-    		
+    		con.getChannels().getCh(5).connect("PAD");
     		
     	}
     	else if(jCh5.getSelectedItem().equals("None"))
@@ -1648,11 +1639,10 @@ public class GUI extends javax.swing.JFrame {
     		if(con.getChannels().getCh(7).isSensor()==true)
     		{
     			con.getChannels().getCh(7).removeSens();
+    	
+    			
     		}
-    		else
-    		{
-    			con.getChannels().getCh(7).connect("EYE");
-    		}
+    		con.getChannels().getCh(7).connect("EYE");
     		
     	}
     	else if(jCh7.getSelectedItem().equals("GATE"))
@@ -1660,11 +1650,9 @@ public class GUI extends javax.swing.JFrame {
     		if(con.getChannels().getCh(7).isSensor()==true)
     		{
     			con.getChannels().getCh(7).removeSens();
+
     		}
-    		else
-    		{
-    			con.getChannels().getCh(7).connect("GATE");
-    		}
+    		con.getChannels().getCh(7).connect("GATE");
     		
     		
     	}
@@ -1673,12 +1661,9 @@ public class GUI extends javax.swing.JFrame {
     		if(con.getChannels().getCh(7).isSensor()==true)
     		{
     			con.getChannels().getCh(7).removeSens();
+
     		}
-    		else
-    		{
-    			con.getChannels().getCh(7).connect("PAD");
-    		}
-    		
+    		con.getChannels().getCh(7).connect("PAD");
     		
     	}
     	else if(jCh7.getSelectedItem().equals("None"))
@@ -1704,24 +1689,20 @@ public class GUI extends javax.swing.JFrame {
     		if(con.getChannels().getCh(2).isSensor()==true)
     		{
     			con.getChannels().getCh(2).removeSens();
-    		}
-    		else
-    		{
-    			con.getChannels().getCh(2).connect("EYE");
-    		}
+    	
     		
+    		}
+    		con.getChannels().getCh(2).connect("EYE");
     	}
     	else if(jCh2.getSelectedItem().equals("GATE"))
     	{
     		if(con.getChannels().getCh(2).isSensor()==true)
     		{
     			con.getChannels().getCh(2).removeSens();
+    	
+    			
     		}
-    		else
-    		{
-    			con.getChannels().getCh(2).connect("GATE");
-    		}
-    		
+    		con.getChannels().getCh(2).connect("GATE");
     		
     	}
     	else if(jCh2.getSelectedItem().equals("PAD"))
@@ -1729,12 +1710,10 @@ public class GUI extends javax.swing.JFrame {
     		if(con.getChannels().getCh(2).isSensor()==true)
     		{
     			con.getChannels().getCh(2).removeSens();
+    	
+    			
     		}
-    		else
-    		{
-    			con.getChannels().getCh(2).connect("PAD");
-    		}
-    		
+    		con.getChannels().getCh(2).connect("PAD");
     		
     	}
     	else if(jCh2.getSelectedItem().equals("None"))
@@ -1760,11 +1739,10 @@ public class GUI extends javax.swing.JFrame {
     		if(con.getChannels().getCh(4).isSensor()==true)
     		{
     			con.getChannels().getCh(4).removeSens();
+
+    			
     		}
-    		else
-    		{
-    			con.getChannels().getCh(4).connect("EYE");
-    		}
+    		con.getChannels().getCh(4).connect("EYE");
     		
     	}
     	else if(jCh4.getSelectedItem().equals("GATE"))
@@ -1772,12 +1750,10 @@ public class GUI extends javax.swing.JFrame {
     		if(con.getChannels().getCh(4).isSensor()==true)
     		{
     			con.getChannels().getCh(4).removeSens();
+
+    			
     		}
-    		else
-    		{
-    			con.getChannels().getCh(4).connect("GATE");
-    		}
-    		
+    		con.getChannels().getCh(4).connect("GATE");
     		
     	}
     	else if(jCh4.getSelectedItem().equals("PAD"))
@@ -1785,12 +1761,10 @@ public class GUI extends javax.swing.JFrame {
     		if(con.getChannels().getCh(4).isSensor()==true)
     		{
     			con.getChannels().getCh(4).removeSens();
+
+    			
     		}
-    		else
-    		{
-    			con.getChannels().getCh(4).connect("PAD");
-    		}
-    		
+    		con.getChannels().getCh(4).connect("PAD");
     		
     	}
     	else if(jCh4.getSelectedItem().equals("None"))
@@ -1816,24 +1790,18 @@ public class GUI extends javax.swing.JFrame {
     		if(con.getChannels().getCh(6).isSensor()==true)
     		{
     			con.getChannels().getCh(6).removeSens();
+	
     		}
-    		else
-    		{
-    			con.getChannels().getCh(6).connect("EYE");
-    		}
-    		
+    		con.getChannels().getCh(6).connect("EYE");
     	}
     	else if(jCh6.getSelectedItem().equals("GATE"))
     	{
     		if(con.getChannels().getCh(6).isSensor()==true)
     		{
     			con.getChannels().getCh(6).removeSens();
+
     		}
-    		else
-    		{
-    			con.getChannels().getCh(6).connect("GATE");
-    		}
-    		
+    		con.getChannels().getCh(6).connect("GATE");
     		
     	}
     	else if(jCh6.getSelectedItem().equals("PAD"))
@@ -1841,12 +1809,9 @@ public class GUI extends javax.swing.JFrame {
     		if(con.getChannels().getCh(6).isSensor()==true)
     		{
     			con.getChannels().getCh(6).removeSens();
+
     		}
-    		else
-    		{
-    			con.getChannels().getCh(6).connect("PAD");
-    		}
-    		
+    		con.getChannels().getCh(6).connect("PAD");
     		
     	}
     	else if(jCh6.getSelectedItem().equals("None"))
@@ -1872,11 +1837,10 @@ public class GUI extends javax.swing.JFrame {
     		if(con.getChannels().getCh(8).isSensor()==true)
     		{
     			con.getChannels().getCh(8).removeSens();
+ 
+    			
     		}
-    		else
-    		{
-    			con.getChannels().getCh(8).connect("EYE");
-    		}
+    		con.getChannels().getCh(8).connect("EYE");
     		
     	}
     	else if(jCh8.getSelectedItem().equals("GATE"))
@@ -1884,12 +1848,10 @@ public class GUI extends javax.swing.JFrame {
     		if(con.getChannels().getCh(8).isSensor()==true)
     		{
     			con.getChannels().getCh(8).removeSens();
+
+    			
     		}
-    		else
-    		{
-    			con.getChannels().getCh(8).connect("GATE");
-    		}
-    		
+    		con.getChannels().getCh(8).connect("GATE");
     		
     	}
     	else if(jCh8.getSelectedItem().equals("PAD"))
@@ -1897,12 +1859,9 @@ public class GUI extends javax.swing.JFrame {
     		if(con.getChannels().getCh(8).isSensor()==true)
     		{
     			con.getChannels().getCh(8).removeSens();
+
     		}
-    		else
-    		{
-    			con.getChannels().getCh(8).connect("PAD");
-    		}
-    		
+    		con.getChannels().getCh(8).connect("PAD");
     		
     	}
     	else if(jCh8.getSelectedItem().equals("None"))
@@ -2434,7 +2393,10 @@ public class GUI extends javax.swing.JFrame {
             {
             	jPower.doClick();
             }
-            
+            else if(cmd.equalsIgnoreCase("PrinterPower"))
+            {
+            	jPrinterPwr.doClick();
+            }
         }
 
 		
