@@ -29,6 +29,7 @@ public class Console implements Observer{
 	public Time time;
 	public menuStates menu;
 	public boolean menuOn = false;
+	public boolean numpadActive= false;
 	Channels channels;
 	String eventType;
 	File log;
@@ -277,14 +278,18 @@ public class Console implements Observer{
 	 * @param ID1
 	 */
 	public void Num(int ID1){
-		if(eventType.equals("GRP")){
-			race.setPlayerID(ID1);
-		}
-		
-		else if(onCheck() && curRunCheck()){
-			this.race.next(ID1);
+		if(onCheck() && curRunCheck()){
+			if(ID1 < 10000){//9999 is max # for all races
+				if(eventType.equals("GRP")){
+					race.setPlayerID(ID1);
+				}
+				else{
+					this.race.next(ID1);
+				}
+			}
 		}
 		writeToLog("Num " + ID1);
+		
 	}
 	
 	//deprecate
@@ -366,8 +371,10 @@ public class Console implements Observer{
 		if(onCheck()){
 			if(curRunCheck()){
 				if(eventType.equals("GRP")){//only for group event
-					this.race.DNF(Num);
-					return "";//success
+					if(Num <9999){
+						this.race.DNF(Num);
+						return "";//success
+					}
 				}
 			}
 			return "No group event";
@@ -950,7 +957,9 @@ public class Console implements Observer{
 	 * clears the Num String
 	 */
 	public void clearNum(){
-		Num = "";
+		if(onCheck()){
+			Num = "";
+		}
 	}
 	
 	/**
@@ -958,7 +967,11 @@ public class Console implements Observer{
 	 * @param i an int that is concatenated onto Num
 	 */
 	public void addToNum(String i){
-		Num +=i;//add i to end of Num
+		if(onCheck()){
+			if(isNumpadActive()){//cant add to num if numpad off
+				Num +=i;//add i to end of Num
+			}
+		}
 	}
 	
 	/**
@@ -966,7 +979,10 @@ public class Console implements Observer{
 	 * @return String Num which should hold a number
 	 */
 	public String getNum(){
-		return Num;
+		if(onCheck()){
+			return Num;
+		}
+		return "";
 	}
 	
 	/**
@@ -985,5 +1001,17 @@ public class Console implements Observer{
 			}
 		}
 		return false;
+	}
+	
+	public void activateNumpad(){
+		numpadActive = true;
+	}
+	
+	public void deactivateNumpad(){
+		numpadActive = false;
+	}
+	
+	public boolean isNumpadActive(){
+		return numpadActive;
 	}
 }

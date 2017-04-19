@@ -781,9 +781,14 @@ public class ChronotimerTest {
 	public void testNumString(){//test adding to the string that is used to store numpad input
 		console.Power();
 		console.addToNum("1");
-		assertEquals(console.getNum(),"1");
-		console.clearNum();
+		assertNotEquals(console.getNum(),"1");//numpad is inactive
 		assertEquals(console.getNum(), "");
+		console.activateNumpad();
+		console.addToNum("9");
+		assertEquals(console.getNum(), "9");
+		console.deactivateNumpad();
+		console.addToNum("9");
+		assertNotEquals(console.getNum(),"99");
 	}
 	
 	@Test

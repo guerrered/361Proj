@@ -975,163 +975,289 @@ public class GUI extends javax.swing.JFrame {
     //we want to display the current num generated into the display
     private void jNum1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum1ActionPerformed
     	 if(con.onCheck()){
-    		 if(!timeGet){
-    			 //Num+="1";
-    			 con.addToNum("1");
-     			jDisplay.setText("Num: " + con.getNum());
-    		 }
-    		 else{
-    			if(count1 < 2){
-    				con.addToNum("1");
-    				//Num+="1";
-    				count1++;
-    				jDisplay.setText("Time: " + con.getNum());
-    			}
+    		 if(con.isNumpadActive()){//can only read from numpad if active
+    			 if(!timeGet){
+    			 	//Num+="1";
+    			 	con.addToNum("1");
+     				jDisplay.setText("Num: " + con.getNum());
+    		 	}
+    		 	else{
+    			 if(count1 < 2){
+    					con.addToNum("1");
+    					//Num+="1";
+    					count1++;
+    					if(count1 ==2){
+    						if(count2 == 2){
+    							con.addToNum(".");
+    							count1--;//can only add 1 more num
+    							count2++;//cant add anything else
+    						}
+    						else if(count2 < 2){
+    							con.addToNum(":");
+    							count1 = 0;
+    							count2++;
+    						}
+    					}
+    					jDisplay.setText("Time: " + con.getNum());
+    				}
+    		 	}
     		 }
          }
     }//GEN-LAST:event_jNum1ActionPerformed
 
     private void jNum2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum2ActionPerformed
     	 if(con.onCheck()){
-    		 if(!timeGet){
-    			 con.addToNum("2");
-    			 //Num+="2";
-     			jDisplay.setText("Num: " + con.getNum());
+    		 if(con.isNumpadActive()){
+    			 if(!timeGet){
+    			 	con.addToNum("2");
+    			 	//Num+="2";
+     				jDisplay.setText("Num: " + con.getNum());
+    		 	}
+    			else{
+    	    		 if(count1 < 2){
+    	    			con.addToNum("2");
+    	    			//Num+="1";
+    	    			count1++;
+    	    			if(count1 ==2){
+    	    				if(count2 == 2){
+    	    					con.addToNum(".");
+    	    					count1--;//can only add 1 more num
+    	    					count2++;//cant add anything else
+    	    				}
+    	    				else if(count2 < 2){
+    	    					con.addToNum(":");
+    	    					count1 = 0;
+    	    					count2++;
+    	    				}
+    	    			}
+    	    			jDisplay.setText("Time: " + con.getNum());
+    	    		}
+    			}
     		 }
-    		 else{
-     			if(count1 < 2){
-     				con.addToNum("2");
-     				//Num+="2";
-     				count1++;
-     				jDisplay.setText("Time: " + con.getNum());
-     			}
-     		 }
          }
     }//GEN-LAST:event_jNum2ActionPerformed
 
     private void jNum3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum3ActionPerformed
     	 if(con.onCheck()){
-    		 if(!timeGet){
-    			con.addToNum("3");
-    			 // Num+="3";
-     			jDisplay.setText("Num: " + con.getNum());
+    		 if(con.isNumpadActive()){
+    			 if(!timeGet){
+    			 con.addToNum("3");
+    				// Num+="3";
+     				jDisplay.setText("Num: " + con.getNum());
+    		 	}
+    			else{
+    	    		 if(count1 < 2){
+    	    			con.addToNum("3");
+    	    			//Num+="1";
+    	    			count1++;
+    	    			if(count1 ==2){
+    	    				if(count2 == 2){
+    	    					con.addToNum(".");
+    	    					count1--;//can only add 1 more num
+    	    					count2++;//cant add anything else
+    	    				}
+    	    				else if(count2 < 2){
+    	    					con.addToNum(":");
+    	    					count1 = 0;
+    	    					count2++;
+    	    				}
+    	    			}
+    	    			jDisplay.setText("Time: " + con.getNum());
+    	    		}
+    			}
     		 }
-    		 else{
-     			if(count1 < 2){
-     				con.addToNum("3");
-     				//Num+="3";
-     				count1++;
-     				jDisplay.setText("Time: " + con.getNum());
-     			}
-     		 }
          }
     }//GEN-LAST:event_jNum3ActionPerformed
 
     private void jNum4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum4ActionPerformed
     	 if(con.onCheck()){
-    		 if(!timeGet){
-    			 con.addToNum("4");
-    			 //Num+="4";
-     			jDisplay.setText("Num: " + con.getNum());
+    		 if(con.isNumpadActive()){
+    			 if(!timeGet){
+    			 	con.addToNum("4");
+    			 	//Num+="4";
+     				jDisplay.setText("Num: " + con.getNum());
+    		 	}
+    				else{
+    	    			 if(count1 < 2){
+    	    					con.addToNum("4");
+    	    					//Num+="1";
+    	    					count1++;
+    	    					if(count1 ==2){
+    	    						if(count2 == 2){
+    	    							con.addToNum(".");
+    	    							count1--;//can only add 1 more num
+    	    							count2++;//cant add anything else
+    	    						}
+    	    						else if(count2 < 2){
+    	    							con.addToNum(":");
+    	    							count1 = 0;
+    	    							count2++;
+    	    						}
+    	    					}
+    	    					jDisplay.setText("Time: " + con.getNum());
+    	    				}
+    	    		 	}
     		 }
-    		 else{
-     			if(count1 < 2){
-     				con.addToNum("4");
-     				//Num+="4";
-     				count1++;
-     				jDisplay.setText("Time: " + con.getNum());
-     			}
-     		 }
          }
     }//GEN-LAST:event_jNum4ActionPerformed
 
     private void jNum5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum5ActionPerformed
     	 if(con.onCheck()){
-    		 if(!timeGet){
-    			 con.addToNum("5");
-    			 //Num+="5";
-     			jDisplay.setText("Num: " + con.getNum());
+    		 if(con.isNumpadActive()){
+    			 if(!timeGet){
+    			 	con.addToNum("5");
+    			 	//Num+="5";
+     				jDisplay.setText("Num: " + con.getNum());
+    		 	}
+    				else{
+    	    			 if(count1 < 2){
+    	    					con.addToNum("5");
+    	    					//Num+="1";
+    	    					count1++;
+    	    					if(count1 ==2){
+    	    						if(count2 == 2){
+    	    							con.addToNum(".");
+    	    							count1--;//can only add 1 more num
+    	    							count2++;//cant add anything else
+    	    						}
+    	    						else if(count2 < 2){
+    	    							con.addToNum(":");
+    	    							count1 = 0;
+    	    							count2++;
+    	    						}
+    	    					}
+    	    					jDisplay.setText("Time: " + con.getNum());
+    	    				}
+    	    		 	}
     		 }
-    		 else{
-     			if(count1 < 2){
-     				con.addToNum("5");
-     				//Num+="5";
-     				count1++;
-     				jDisplay.setText("Time: " + con.getNum());
-     			}
-     		 }
          }
     }//GEN-LAST:event_jNum5ActionPerformed
 
     private void jNum6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum6ActionPerformed
     	 if(con.onCheck()){
-    		 if(!timeGet){
-    			 con.addToNum("6");
-    			 //Num+="6";
-     			jDisplay.setText("Num: " + con.getNum());
+    		 if(con.isNumpadActive()){
+    			 if(!timeGet){
+    			 	con.addToNum("6");
+    			 	//Num+="6";
+     				jDisplay.setText("Num: " + con.getNum());
+    		 	}
+    				else{
+    	    			 if(count1 < 2){
+    	    					con.addToNum("6");
+    	    					//Num+="1";
+    	    					count1++;
+    	    					if(count1 ==2){
+    	    						if(count2 == 2){
+    	    							con.addToNum(".");
+    	    							count1--;//can only add 1 more num
+    	    							count2++;//cant add anything else
+    	    						}
+    	    						else if(count2 < 2){
+    	    							con.addToNum(":");
+    	    							count1 = 0;
+    	    							count2++;
+    	    						}
+    	    					}
+    	    					jDisplay.setText("Time: " + con.getNum());
+    	    				}
+    	    		 	}
     		 }
-    		 else{
-     			if(count1 < 2){
-     				con.addToNum("6");
-     				//Num+="6";
-     				count1++;
-     				jDisplay.setText("Time: " + con.getNum());
-     			}
-     		 }
          }
     }//GEN-LAST:event_jNum6ActionPerformed
 
     private void jNum7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum7ActionPerformed
     	 if(con.onCheck()){
-    		 if(!timeGet){
-    			 con.addToNum("7");
-    			 //Num+="7";
-     			jDisplay.setText("Num: " + con.getNum());
+    		 if(con.isNumpadActive()){
+    			 if(!timeGet){
+    			 	con.addToNum("7");
+    			 	//Num+="7";
+     				jDisplay.setText("Num: " + con.getNum());
+    		 	}
+    				else{
+    	    			 if(count1 < 2){
+    	    					con.addToNum("7");
+    	    					//Num+="1";
+    	    					count1++;
+    	    					if(count1 ==2){
+    	    						if(count2 == 2){
+    	    							con.addToNum(".");
+    	    							count1--;//can only add 1 more num
+    	    							count2++;//cant add anything else
+    	    						}
+    	    						else if(count2 < 2){
+    	    							con.addToNum(":");
+    	    							count1 = 0;
+    	    							count2++;
+    	    						}
+    	    					}
+    	    					jDisplay.setText("Time: " + con.getNum());
+    	    				}
+    	    		 	}
     		 }
-    		 else{
-     			if(count1 < 2){
-     				con.addToNum("7");
-     				//Num+="7";
-     				count1++;
-     				jDisplay.setText("Time: " + con.getNum());
-     			}
-     		 }
     	}
     }//GEN-LAST:event_jNum7ActionPerformed
 
     private void jNum8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum8ActionPerformed
     	 if(con.onCheck()){
-    		 if(!timeGet){
-    			 con.addToNum("8");
-    			 //Num+="8";
-     			jDisplay.setText("Num: " + con.getNum());
+    		 if(con.isNumpadActive()){
+    			 if(!timeGet){
+    			 	con.addToNum("8");
+    			 	//Num+="8";
+     				jDisplay.setText("Num: " + con.getNum());
+    		 	}
+    				else{
+    	    			 if(count1 < 2){
+    	    					con.addToNum("8");
+    	    					//Num+="1";
+    	    					count1++;
+    	    					if(count1 ==2){
+    	    						if(count2 == 2){
+    	    							con.addToNum(".");
+    	    							count1--;//can only add 1 more num
+    	    							count2++;//cant add anything else
+    	    						}
+    	    						else if(count2 < 2){
+    	    							con.addToNum(":");
+    	    							count1 = 0;
+    	    							count2++;
+    	    						}
+    	    					}
+    	    					jDisplay.setText("Time: " + con.getNum());
+    	    				}
+    	    		 	}
     		 }
-    		 else{
-     			if(count1 < 2){
-     				con.addToNum("8");
-     				//Num+="8";
-     				count1++;
-     				jDisplay.setText("Time: " + con.getNum());
-     			}
-     		 }
          }
     }//GEN-LAST:event_jNum8ActionPerformed
 
     private void jNum9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum9ActionPerformed
         if(con.onCheck()){
-        	if(!timeGet){
-        		con.addToNum("9");
-   				//Num+="9";
-    			jDisplay.setText("Num: " + con.getNum());
+        	if(con.isNumpadActive()){
+        		if(!timeGet){
+        			con.addToNum("9");
+   					//Num+="9";
+    				jDisplay.setText("Num: " + con.getNum());
+        		}
+        		else{
+       			 if(count1 < 2){
+       					con.addToNum("9");
+       					//Num+="1";
+       					count1++;
+       					if(count1 ==2){
+       						if(count2 == 2){
+       							con.addToNum(".");
+       							count1--;//can only add 1 more num
+       							count2++;//cant add anything else
+       						}
+       						else if(count2 < 2){
+       							con.addToNum(":");
+       							count1 = 0;
+       							count2++;
+       						}
+       					}
+       					jDisplay.setText("Time: " + con.getNum());
+       				}
+       		 	}
         	}
-        	else{
-    			if(count1 < 2){
-    				con.addToNum("9");
-    				//Num+="9";
-    				count1++;
-    				jDisplay.setText("Time: " + con.getNum());
-    			}
-    		 }
         }
     }//GEN-LAST:event_jNum9ActionPerformed
 
@@ -1140,37 +1266,54 @@ public class GUI extends javax.swing.JFrame {
     		if(!timeGet){
     			con.getChannels().getCh(1).Trig();//another shorthand for trig 1
     		}
-    		else{
-    			if(count2 < 2){
-    				count2++;
-    				con.addToNum(":");
-    				//Num+=":";
+    		/*deprecated
+    		else{//might take out and make the numbers automatically concat the : and .
+    			if(con.isNumpadActive()){
+    				if(count2 < 2){
+    					count2++;
+    					con.addToNum(":");
+    					//Num+=":";
+    				}
+    				else if(count2 == 2){
+    					con.addToNum(".");
+    					//Num+=".";
+    				}
+    				count1 = 0;
+    				jDisplay.setText("Time: " + con.getNum());
     			}
-    			else if(count2 == 2){
-    				con.addToNum(".");
-    				//Num+=".";
-    			}
-    			count1 = 0;
-    			jDisplay.setText("Time: " + con.getNum());
-    		}
+    		}*/
         }
     }//GEN-LAST:event_jNumStarActionPerformed
 
     private void jNum0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum0ActionPerformed
         if(con.onCheck()){
-        	if(!timeGet){
-        		con.addToNum("0");
-   			 	//Num+="0";
-    			jDisplay.setText("Num: " + con.getNum());
-   		 	}
-        	else{
-    			if(count1 < 2){
-    				con.addToNum("0");
-    				//Num+="0"
-    				jDisplay.setText("Time: " + con.getNum());
-    				count1++;
-    			}
-    		 }
+        	if(con.isNumpadActive()){
+        		if(!timeGet){
+        			con.addToNum("0");
+   			 		//Num+="0";
+    				jDisplay.setText("Num: " + con.getNum());
+   		 		}
+        		else{
+       			 if(count1 < 2){
+       					con.addToNum("0");
+       					//Num+="1";
+       					count1++;
+       					if(count1 ==2){
+       						if(count2 == 2){
+       							con.addToNum(".");
+       							count1--;//can only add 1 more num
+       							count2++;//cant add anything else
+       						}
+       						else if(count2 < 2){
+       							con.addToNum(":");
+       							count1 = 0;
+       							count2++;
+       						}
+       					}
+       					jDisplay.setText("Time: " + con.getNum());
+       				}
+       		 	}
+        	}
         }
     }//GEN-LAST:event_jNum0ActionPerformed
 
@@ -1182,8 +1325,13 @@ public class GUI extends javax.swing.JFrame {
     				//con.closeMenu();//we dont need this anymore
     			//}
     			if(!DNFFlag){
-    				numSwitch = !numSwitch;
-    				if(numSwitch == true){
+    				if(!con.isNumpadActive()){//if numpad inactive turn it on
+    					con.activateNumpad();
+    				}
+    				else{
+    					con.deactivateNumpad();
+    				}
+    				if(con.isNumpadActive()){
     					tN.interrupt();//it might be inactive so nothing to interrupt //but ensure we do incase display list is shown 
     					//Num = "";
     					con.clearNum();
@@ -1198,7 +1346,7 @@ public class GUI extends javax.swing.JFrame {
 							}
 							//DNFFlag = false;
 							((displayTextUpdater) rN).ExitInterrupt();//else if we came from display list exit the interrupt cycle
-							
+							con.deactivateNumpad();//turn numpad off
 						}
     			}
     		
@@ -1226,6 +1374,7 @@ public class GUI extends javax.swing.JFrame {
     					}
     					//((displayTextUpdater) rN).ExitInterrupt();//else if we came from display list exit the interrupt cycle
     					jDisplay.setText(con.getLastMenu());//we want to stay in DNF menu in case multiple dnfs
+    					con.deactivateNumpad();
     			}
     		}
     		else{//if no run is currently on then we can change the time
@@ -1248,6 +1397,7 @@ public class GUI extends javax.swing.JFrame {
     					count1=0;
     					count2=0;
     					jDisplay.setText(con.getLastMenu());//last operable menu spot
+    					con.deactivateNumpad();
     			}
     		}
     			
@@ -1256,25 +1406,41 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jNumPoundActionPerformed
     
     private void jFunctionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFunctionActionPerformed
-    	if(con.getDisplayState()){//if menu is off
-    		if(!con.isMenuOn()){
-    			tN.interrupt();
+    	if(con.onCheck()){
+    		con.clearNum();//if num had value reset/clear it
+    		con.deactivateNumpad();//in case numpad was activated that way it wont interfere by accident
+    		if(con.getDisplayState()){//if display list exists
+    			if(!con.isMenuOn()){
+    				tN.interrupt();
+    				con.openMenu();
+    				jDisplay.setText(con.getMenu());
+    			}
+    			else{
+    				if(con.getMenu().equals("dnf")){
+    					DNFFlag = false;//set dnf flag false else interferes with numpad actions
+    					con.closeMenu();
+    					con.openMenu();
+    					jDisplay.setText(con.getMenu());
+    				}
+    				else if(con.getMenu().equals("time")){
+    					timeGet = false;//similarly if we just exited time change turn of the flag so numpad no interrupted
+    					con.closeMenu();
+    					con.openMenu();
+    					jDisplay.setText(con.getMenu());
+    				}
+    				else{
+    					con.closeMenu();
+    					((displayTextUpdater) rN).ExitInterrupt();
+    				}
+    			}
+    		}
+    		else{//start menu over
+    			if(con.isMenuOn()){
+    				con.closeMenu();
+    			}
     			con.openMenu();
     			jDisplay.setText(con.getMenu());
     		}
-    		else{
-    			con.closeMenu();
-    			((displayTextUpdater) rN).ExitInterrupt();
-    			
-    		}
-    	}
-    	else{//start menu over
-    		if(con.isMenuOn()){
-    			con.closeMenu();
-    		}
-    		con.openMenu();
-    		jDisplay.setText(con.getMenu());
-    	}
     	//else stay in menu as nothing else to display
     	/*
     	con.changeDisplayState();
@@ -1293,6 +1459,7 @@ public class GUI extends javax.swing.JFrame {
     		tN = new Thread(rN);
     		tN.start();
     	}*/
+    	}
     }//GEN-LAST:event_jFunctionActionPerformed
     
 
@@ -1819,6 +1986,7 @@ public class GUI extends javax.swing.JFrame {
     						con.clearNum();
     	    				jDisplay.setText("Num: ");
     						DNFFlag = true;
+    						con.activateNumpad();
     						//press pound first
     						//menu not closed can still be referenced
     					}
@@ -1880,9 +2048,10 @@ public class GUI extends javax.swing.JFrame {
     					//press num again finish entering
     					if(!con.getDisplayState()){//can only change time if there is not current run
     						timeGet = true;//we are taking time
-    						jDisplay.setText("Press # to enter a time in format xx:xx:xx.xx\npress * to enter:");//press # to enter time
+    						jDisplay.setText("Enter a time in format xx:xx:xx.xx\npress # when done to set time");//press # to enter time
     						//Num = "";
     						con.clearNum();
+    						con.activateNumpad();
     						count1 = 0;
     						count2 = 0;
     						//con.closeMenu();
