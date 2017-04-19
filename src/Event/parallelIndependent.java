@@ -271,11 +271,21 @@ public class parallelIndependent  extends Event{
 		if(queue1EndNum < lane1.size()){
 			dis.add(lane1.get(queue1EndNum));//currently running
 			count++;
+			//int offset1 = queueStartNum - queue1EndNum +1;
+			for(int i = lane1.size() - queue1EndNum - 1; i > 0; i--){
+				dis.add(lane1.get(queue1EndNum + i));
+				count++;
+			}
 		}
 		if(queue2EndNum < lane2.size()){
 			dis.add(lane2.get(queue2EndNum));//currently running
 			count++;
-		}
+			//int offset2 = queueStartNum - queue2EndNum +1;//since queueStartNum id preemptively increase
+			for(int i = lane2.size() - queue2EndNum-1; i > 0; i--){
+				dis.add(lane2.get(queue2EndNum + i));
+				count++;
+			}
+		}//add racers that are currently running but but above queue1EndNum and queue2EndNum
 		for(int i = 0; i < 6 - count; i++){
 			dis.add(players.get(queueStartNum + i));//add the rest of the runners total 6 runners
 			//dis.add(players.get(queueStartNum + 1));
@@ -283,4 +293,5 @@ public class parallelIndependent  extends Event{
 		return dis;
 		
 	}
+	
 }
