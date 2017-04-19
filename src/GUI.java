@@ -1435,7 +1435,15 @@ public class GUI extends javax.swing.JFrame {
     			}
     		}
     		else{//start menu over
-    			if(con.isMenuOn()){
+    			if(con.getMenu().equals("time")){
+					timeGet = false;//similarly if we just exited time change turn of the flag so numpad no interrupted
+					con.closeMenu();
+					con.openMenu();
+					jDisplay.setText(con.getMenu());
+					count1=0;
+					count2=0;
+				}
+    			else if(con.isMenuOn()){
     				con.closeMenu();
     			}
     			con.openMenu();
