@@ -602,45 +602,46 @@ public class Console implements Observer{
 	 * @throws IOException 
 	 */
 	public File export() throws IOException{
-		//TODO
-		List<Player> p = race.getPlayerList();
-		List<ExportObject> eo = new ArrayList<>();
-		File file = race.createRaceOutputFile();
-		FileWriter fw = new FileWriter(file);
-		String data="";
+		if(onCheck()){
+			if(curRunCheck()){
+				List<Player> p = race.getPlayerList();
+				List<ExportObject> eo = new ArrayList<>();
+				File file = race.createRaceOutputFile();
+				FileWriter fw = new FileWriter(file);
+				String data="";
 		
-		Gson gson = new Gson();
+				Gson gson = new Gson();
 		
 		
-		for(Player player: p){
-			if(player.participated()||player.cancel||player.running){
-				if(player.DNF){
-					eo.add(new ExportObject(time.getTimeFancy(), eventType, idFormat(player.getID()),"DNF" ,""));	
+				for(Player player: p){
+					if(player.participated()||player.cancel||player.running){
+						if(player.DNF){
+							eo.add(new ExportObject(time.getTimeFancy(), eventType, idFormat(player.getID()),"DNF" ,""));	
+						}
+						else if(player.isRunning()){
+							eo.add(new ExportObject(time.getTimeFancy(), eventType, idFormat(player.getID()),"TRIG", ""));
+						}
+						else if(player.cancel){
+							eo.add(new ExportObject(time.getTimeFancy(), eventType, idFormat(player.getID()),"CANCEL", ""));
+						}
+						else{
+							eo.add(new ExportObject(time.getTimeFancy(), eventType, idFormat(player.getID()),"ELAPSED", timeFormat(player.getTotalTime())));
+						}
+					}
 				}
-				else if(player.isRunning()){
-					eo.add(new ExportObject(time.getTimeFancy(), eventType, idFormat(player.getID()),"TRIG", ""));
+		
+				if(eo.size()==0){
+					race.setFileNumber(race.getFileNumber()-1);
+					fw.close();
+					return null;
 				}
-				else if(player.cancel){
-					eo.add(new ExportObject(time.getTimeFancy(), eventType, idFormat(player.getID()),"CANCEL", ""));
-				}
-				else{
-					eo.add(new ExportObject(time.getTimeFancy(), eventType, idFormat(player.getID()),"ELAPSED", timeFormat(player.getTotalTime())));
-				}
-				
+				data = gson.toJson(eo);
+				fw.write(data);
+				fw.close();
+				return file;
 			}
 		}
-		
-		if(eo.size()==0){
-			race.setFileNumber(race.getFileNumber()-1);
-			fw.close();
-			return null;
-		}
-		data = gson.toJson(eo);
-		fw.write(data);
-		fw.close();
-		return file;
-		
-		
+		return null;//nothing to return
 	}
 	
 	/**
@@ -763,7 +764,7 @@ public class Console implements Observer{
 				long s = race.getStartTime();
 				asString ="Time: ";
 				if(s > 0){
-					asString += timeConvert(time.getTime()-s);
+					asString += timeFormat(time.getTime()-s);
 				}
 				else{
 					asString += "Event Has Not Started";
@@ -777,7 +778,7 @@ public class Console implements Observer{
 							tempString += temp.toString() + "\tDNF\tF\n";
 						}
 						else{
-							tempString += temp.toString() + "\t" + timeConvert(temp.getEndTime() - temp.getStartTime()) + "\tF\n";
+							tempString += temp.toString() + "\t" + timeFormat(temp.getEndTime() - temp.getStartTime()) + "\tF\n";
 						}
 					}
 					asString += "\n\n\n" + tempString;
@@ -802,12 +803,12 @@ public class Console implements Observer{
 							tempString += temp.toString() + "\tDNF\tF\n";
 						}
 						else{
-							tempString += temp.toString() + "\t" + timeConvert(temp.getEndTime() - temp.getStartTime()) + "\tF\n";
+							tempString += temp.toString() + "\t" + timeFormat(temp.getEndTime() - temp.getStartTime()) + "\tF\n";
 						}
 					}
 			
 					else if(temp.isRunning()){
-						tempString += temp.toString() + "\t" + timeConvert(time.getTime() - temp.getStartTime()) + "\tR\n";
+						tempString += temp.toString() + "\t" + timeFormat(time.getTime() - temp.getStartTime()) + "\tR\n";
 					}
 					else{
 						if(count > 0){
@@ -815,12 +816,12 @@ public class Console implements Observer{
 								tempString += temp.toString() + "\tCanceled<\n";//usually next in queue might as well check
 							}
 							else{
-								tempString += temp.toString() + "\t" + timeConvert(time.getTime()) + "<\n";//currentTime next in queue
+								tempString += temp.toString() + "\t" + timeFormat(time.getTime()) + "<\n";//currentTime next in queue
 							}
 							count--;
 						}
 						else{
-							tempString += temp.toString() + "\t" + timeConvert(time.getTime()) + "\n";//currentTime
+							tempString += temp.toString() + "\t" + timeFormat(time.getTime()) + "\n";//currentTime
 						}	
 					}
 					tempString = tempString.concat(asString);
@@ -928,54 +929,7 @@ public class Console implements Observer{
 	public boolean isMenuOn(){
 		return menuOn;
 	}
-	/**
-	 * 
-	 * @param currentTime a long variable denoting a time value
-	 * @return the time value as a string
-	 */
-	public String timeConvert(long currentTime){
-			long hours = currentTime / 3600000;
-			currentTime = currentTime % 3600000;
-			long min = currentTime / 60000;
-			currentTime = currentTime % 60000;
-			long seconds = currentTime / 1000;
-			currentTime = currentTime % 1000;
-			long hundreths = currentTime / 10;
-			//currentTime = currentTime % 10;
-			
-			String hoursString;
-			String minString;
-			String secString;
-			String hundString;
-			if(hours < 10){
-				hoursString = "0" + hours+":";
-			}
-			else{
-				hoursString = hours + ":";
-			}
-			if(min < 10){
-				minString = "0" +min+":";
-			}
-			else{
-				minString = min + ":";
-			}
-			if(seconds < 10){
-				secString = "0" + seconds + ".";
-			}
-			else{
-				secString = seconds + ".";
-			}
-			if(hundreths < 10){
-				hundString = "0" + hundreths;
-			}
-			else{
-				hundString = "" + hundreths;
-			}
-			String ret = hoursString + minString  + secString + hundString;
-			return ret;
-		
-	}
-	
+
 	/**
 	 * 
 	 * @return boolean if the display List can be displayed
@@ -1021,8 +975,7 @@ public class Console implements Observer{
 	 * @return true if the string is in format xx:xx:xx.x
 	 */
 	public boolean validifyTime(String s){
-		//char[] c = s.toCharArray();
-		if(s.length() >=10){
+		if(s.length() ==10){
 			if(s.charAt(2) == ':'){
 				if(s.charAt(5) ==':'){
 					if(s.charAt(8) == '.'){

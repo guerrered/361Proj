@@ -125,6 +125,7 @@ public class Channels implements Subject, Observer{
 	public class Channel implements Subject, Observer{
 		public boolean connect=false;
 		Sensors sens;
+		String sensType;
 		public int ChNum;
 		Observer obs;
 		
@@ -177,13 +178,14 @@ public class Channels implements Subject, Observer{
 		 */
 		public void connect(String type)
 		{
-		
+			
 			if(this.connect==true&&this.sens!=null)
 			{
 				System.out.println("Channel is currently connected");
 			}
 			else
 			{
+				sensType = type.toUpperCase();
 				this.connect=true;
 				switch(type.toUpperCase())
 				{
@@ -200,7 +202,7 @@ public class Channels implements Subject, Observer{
 						throw new IllegalArgumentException();
 				}	
 				sens.register(this);
-			System.out.println("Channel connected");
+			System.out.println("Connected a " + sensType + "to channel " + ChNum);
 		}
 		
 	}
@@ -238,6 +240,7 @@ public class Channels implements Subject, Observer{
 	 */
     public void removeSens()
     {
+    	System.out.println("removed a/n " + sensType +" from channel " + ChNum );
     	sens=null;
     }
     

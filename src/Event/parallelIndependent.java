@@ -168,6 +168,7 @@ public class parallelIndependent  extends Event{
 	}
 	
 	
+	//deprecated
 	/**
 	 * swaps the next next 2 runners to finish in the specified lane
 	 * if no lane is specified the console will automatically choose lane 1
@@ -240,8 +241,16 @@ public class parallelIndependent  extends Event{
 		List<Player> printList = sortByFinishTime(players);
 		return printList;
 	}
+	
 	public List<Player> getEndList(){
-		return endList;
+		List<Player> toRet = new ArrayList<>();
+		toRet.addAll(endList);//add all finished/DNF
+		for(int i = queueStartNum; i< players.size(); i++){
+			if(players.get(i).isCanceled()){
+				toRet.add(players.get(i));//add all canceled players
+			}
+		}
+		return toRet;
 	}
 	
 	

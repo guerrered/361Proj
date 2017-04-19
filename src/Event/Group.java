@@ -69,6 +69,12 @@ public class Group extends Event{
 				return false;
 			}
 		}
+		for(Player p: playersFinishedMarked){
+			if(p.getID()==num){
+				System.out.println("Player exists in list");
+				return false;
+			}
+		}
 		Player temp = new Player(num);
 		temp.DNF();
 		DNFs.add(temp);
@@ -98,6 +104,9 @@ public class Group extends Event{
 	public boolean setPlayerID(int ID){
 		if(playersFinished.size()==0){
 			return false;
+		}
+		if(markedNum>9999){
+			return false;//upperLimit of # of racers
 		}
 		for(Player p: playersFinishedMarked){
 			if(p.getID()==ID){
@@ -160,7 +169,7 @@ public class Group extends Event{
 	 * @return int - total number of racers (marked, unmarked, and DNF)
 	 */
 	public int getTotalNumberFinished(){
-		return playersFinished.size()+playersFinishedMarked.size() + DNFs.size();
+		return playersFinished.size()+ playersFinishedMarked.size() + DNFs.size();
 	}
 	
 	/**
@@ -169,7 +178,10 @@ public class Group extends Event{
 	public List<Player> getPlayerList(){
 		List<Player> pList = new ArrayList<>();
 		pList.addAll(playersFinishedMarked);
-		pList.addAll(playersFinished);
+		for(int i = markedNum; i < playersFinished.size(); i++){
+			pList.add(playersFinished.get(i));
+		}
+		//pList.addAll(playersFinished);
 		
 		return pList;
 	}
@@ -179,8 +191,10 @@ public class Group extends Event{
 	 */
 	public List<Player> getEndList(){//list to print
 		List<Player> pList = new ArrayList<>();
-		//pList.addAll(playersFinishedMarked);
-		pList.addAll(playersFinished);
+		pList.addAll(playersFinishedMarked);
+		for(int i = markedNum; i < playersFinished.size(); i++){
+			pList.add(playersFinished.get(i));
+		}
 		pList.addAll(DNFs);
 		
 		return pList;

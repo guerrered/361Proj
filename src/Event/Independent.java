@@ -15,6 +15,8 @@ public class Independent extends Event{
 	int queueStartNum = 0;
 	int queueEndNum = 0;
 	List<Player> endList = new ArrayList<>();
+	boolean twoRunning =false;//used so we can tell if 2 people are running if true dont let more people start
+							 //max 2 people at a time
 	
 	/**
 	 * Constructor 
@@ -66,6 +68,9 @@ public class Independent extends Event{
 			if(players.get(queueEndNum).isRunning()){//check if active
 				endList.add(players.get(queueEndNum));
 				players.get(queueEndNum++).DNF();
+				if(twoRunning){
+					twoRunning = false;
+				}
 			}
 		}
 		else{
@@ -77,9 +82,14 @@ public class Independent extends Event{
 	 */
 	public boolean start(long time){
 		if(players.size()>queueStartNum){
-			if(!players.get(queueStartNum).participated()){//check if already ran
-				players.get(queueStartNum++).start(time);
-				return true;
+			if(!twoRunning){
+				if(!players.get(queueStartNum).participated()){//check if already ran
+					players.get(queueStartNum++).start(time);
+					if(queueStartNum-2 == queueEndNum){
+						twoRunning = true;// we dont want more than 2 people running at once
+					}
+					return true;
+				}
 			}
 		}
 	
@@ -95,6 +105,9 @@ public class Independent extends Event{
 			if(players.get(queueEndNum).isRunning()){//check if active
 				endList.add(players.get(queueEndNum));
 				players.get(queueEndNum++).end(time);
+				if(twoRunning){
+					twoRunning = false;//just ended a race therefore no longer 2 people running
+				}
 				return true;
 			}
 		}
@@ -197,6 +210,10 @@ public class Independent extends Event{
 	public List<Player> getPlayerList(){
 		return players;
 	}
+	
+	/**
+	 * returns the list of printable players
+	 */
 	public List<Player> getEndList(){
 		List<Player>  toRet = new ArrayList<>();
 		toRet.addAll(endList);

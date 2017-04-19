@@ -1784,11 +1784,16 @@ public class GUI extends javax.swing.JFrame {
     					}
     					break;
     				case("export"):
-    					try {
-    						con.export();
-    					} catch (IOException e) {
-    						// TODO Auto-generated catch block
-    						e.printStackTrace();
+    					if(con.getDisplayState()){//a run is currently ongoing
+    						try {
+    							con.export();
+    						} catch (IOException e) {
+    							// TODO Auto-generated catch block
+    							e.printStackTrace();
+    						}
+    					}
+    					else{
+    						jDisplay.setText(currentState+ "\n\n\nNo Current Event");
     					}
     					break;
     				case("ind"):

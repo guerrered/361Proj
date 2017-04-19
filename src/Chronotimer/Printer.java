@@ -52,12 +52,14 @@ public class Printer {
 					ret+="<" + tempP.getID() + ">\tCANCELED\n";
 				}
 				else if(!tempP.DNF){
-					ret += "Start: "+timeFormat(tempP.getStartTime()) + " Event: " + event + '\t'+ "ID: "+  
-						p.get(i).getID() + " Finish: " + timeFormat(tempP.endTime) + " Total: " + timeFormat(tempP.getTotalTime()) +"\n";
+					//ret += "Start: "+timeFormat(tempP.getStartTime()) + " Event: " + event + '\t'+ "ID: "+  
+					//	p.get(i).getID() + " Finish: " + timeFormat(tempP.endTime) + " Total: " + timeFormat(tempP.getTotalTime()) +"\n";
+					ret += "<" +tempP.getID() +">\t" + timeFormat(tempP.getTotalTime()) + "\n";
 				}
 				else{
-						ret += "Start: "+timeFormat(tempP.getStartTime()) + " Event: " + event + '\t'+ "ID: "  
-						+p.get(i).getID() + " DNF\n";	
+						//ret += "Start: "+timeFormat(tempP.getStartTime()) + " Event: " + event + '\t'+ "ID: "  
+						//+p.get(i).getID() + " DNF\n";	
+						ret += "<" +tempP.getID() +">\tDNF\n";
 					}
 			//}
 			/*else{
