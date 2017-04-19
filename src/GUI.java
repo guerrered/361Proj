@@ -848,7 +848,7 @@ public class GUI extends javax.swing.JFrame {
                 .addGroup(JPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(JPanel1Layout.createSequentialGroup()
                         .addGroup(JPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(JPanel1Layout.createSequentialGroup()
                                 .addComponent(jFunction)
                                 .addGap(18, 18, 18)
