@@ -68,9 +68,9 @@ public class Independent extends Event{
 			if(players.get(queueEndNum).isRunning()){//check if active
 				endList.add(players.get(queueEndNum));
 				players.get(queueEndNum++).DNF();
-				if(twoRunning){
+				/*if(twoRunning){
 					twoRunning = false;
-				}
+				}*/
 			}
 		}
 		else{
@@ -82,15 +82,15 @@ public class Independent extends Event{
 	 */
 	public boolean start(long time){
 		if(players.size()>queueStartNum){
-			if(!twoRunning){
+			//if(!twoRunning){
 				if(!players.get(queueStartNum).participated()){//check if already ran
 					players.get(queueStartNum++).start(time);
-					if(queueStartNum-2 == queueEndNum){
+					/*if(queueStartNum-2 == queueEndNum){
 						twoRunning = true;// we dont want more than 2 people running at once
-					}
+					}*/
 					return true;
 				}
-			}
+			//}
 		}
 	
 		return false;
@@ -105,9 +105,9 @@ public class Independent extends Event{
 			if(players.get(queueEndNum).isRunning()){//check if active
 				endList.add(players.get(queueEndNum));
 				players.get(queueEndNum++).end(time);
-				if(twoRunning){
+				/*if(twoRunning){
 					twoRunning = false;//just ended a race therefore no longer 2 people running
-				}
+				}*/
 				return true;
 			}
 		}
