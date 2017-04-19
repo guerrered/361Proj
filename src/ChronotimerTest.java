@@ -694,5 +694,123 @@ public class ChronotimerTest {
 		assertTrue(group.getEndList().get(1).DNF);
 	}
 	
+	@Test
+	public void testMenu(){//test the movements through the menu
+		console.Power();
+		assertEquals(console.getMenu(),"1.Event<\n2.RaceOperations\n3.Run\n4.Print\n5.FileExport\n6.Reset\n7.Time\n");
+		console.menuRIGHT();
+		assertEquals(console.getMenu(),"1.IND<\n2.PARIND\n3.GRP\n4.PARGRP");
+		console.menuRIGHT();
+		assertEquals(console.getMenu(), "ind");
+		console.menuDOWN();
+		assertEquals(console.getMenu(),"1.IND\n2.PARIND<\n3.GRP\n4.PARGRP");
+		console.menuRIGHT();
+		assertEquals(console.getMenu(), "parind");
+		console.menuDOWN();
+		assertEquals(console.getMenu(),"1.IND\n2.PARIND\n3.GRP<\n4.PARGRP");
+		console.menuRIGHT();
+		assertEquals(console.getMenu(), "grp");
+		console.menuDOWN();
+		assertEquals(console.getMenu(),"1.IND\n2.PARIND\n3.GRP\n4.PARGRP<");
+		console.menuRIGHT();
+		assertEquals(console.getMenu(), "paragrp");
+		console.menuDOWN();
+		assertEquals(console.getMenu(),"1.IND<\n2.PARIND\n3.GRP\n4.PARGRP");
+		console.menuLEFT();
+		assertEquals(console.getMenu(),"1.Event<\n2.RaceOperations\n3.Run\n4.Print\n5.FileExport\n6.Reset\n7.Time\n");
+		console.menuDOWN();
+		assertEquals(console.getMenu(),"1.Event\n2.RaceOperations<\n3.Run\n4.Print\n5.FileExport\n6.Reset\n7.Time\n");
+		console.menuRIGHT();
+		assertEquals(console.getMenu(), "1.DNF<\n2.CANCEL");
+		console.menuRIGHT();
+		assertEquals(console.getMenu(), "dnf");
+		console.menuDOWN();
+		assertEquals(console.getMenu(),"1.DNF\n2.CANCEL<");
+		console.menuRIGHT();
+		assertEquals(console.getMenu(),"cancel");
+		console.menuLEFT();
+		assertEquals(console.getMenu(), "1.Event\n2.RaceOperations<\n3.Run\n4.Print\n5.FileExport\n6.Reset\n7.Time\n");
+		console.menuDOWN();
+		assertEquals(console.getMenu(),"1.Event\n2.RaceOperations\n3.Run<\n4.Print\n5.FileExport\n6.Reset\n7.Time\n");
+		console.menuRIGHT();
+		assertEquals(console.getMenu(), "1.NEWRUN<\n2.ENDRUN");
+		console.menuRIGHT();
+		assertEquals(console.getMenu(), "newrun");
+		console.menuDOWN();
+		assertEquals(console.getMenu(), "1.NEWRUN\n2.ENDRUN<");
+		console.menuRIGHT();
+		assertEquals(console.getMenu(), "endrun");
+		console.menuLEFT();
+		assertEquals(console.getMenu(),"1.Event\n2.RaceOperations\n3.Run<\n4.Print\n5.FileExport\n6.Reset\n7.Time\n" );
+		console.menuDOWN();
+		assertEquals(console.getMenu(),"1.Event\n2.RaceOperations\n3.Run\n4.Print<\n5.FileExport\n6.Reset\n7.Time\n");
+		console.menuRIGHT();
+		assertEquals(console.getMenu(), "print");
+		console.menuDOWN();
+		assertEquals(console.getMenu(),"1.Event\n2.RaceOperations\n3.Run\n4.Print\n5.FileExport<\n6.Reset\n7.Time\n");
+		console.menuRIGHT();
+		assertEquals(console.getMenu(), "export");
+		console.menuDOWN();
+		assertEquals(console.getMenu(),"1.Event\n2.RaceOperations\n3.Run\n4.Print\n5.FileExport\n6.Reset<\n7.Time\n");
+		console.menuRIGHT();
+		assertEquals(console.getMenu(), "reset");
+		console.menuDOWN();
+		assertEquals(console.getMenu(),"1.Event\n2.RaceOperations\n3.Run\n4.Print\n5.FileExport\n6.Reset\n7.Time<\n");
+		console.menuRIGHT();
+		assertEquals(console.getMenu(), "time");
+		console.menuDOWN();
+		assertEquals(console.getMenu(),"1.Event<\n2.RaceOperations\n3.Run\n4.Print\n5.FileExport\n6.Reset\n7.Time\n");//loop back
+		console.menuLEFT();
+		assertEquals(console.getMenu(), "exit");
+	}
+	
+	@Test
+	public void testMenuOFF(){
+		console.Power();
+		assertEquals(console.getMenu(), "1.Event<\n2.RaceOperations\n3.Run\n4.Print\n5.FileExport\n6.Reset\n7.Time\n");
+		console.closeMenu();
+		assertEquals(console.getMenu(),"");
+		console.menuDOWN();
+		assertEquals(console.getMenu(),"");
+		console.menuRIGHT();
+		assertEquals(console.getMenu(),"");
+		console.openMenu();
+		assertEquals(console.getMenu(), "1.Event<\n2.RaceOperations\n3.Run\n4.Print\n5.FileExport\n6.Reset\n7.Time\n");
+	}
+	@Test
+	public void testNumString(){//test adding to the string that is used to store numpad input
+		console.Power();
+		console.addToNum("1");
+		assertEquals(console.getNum(),"1");
+		console.clearNum();
+		assertEquals(console.getNum(), "");
+	}
+	
+	@Test
+	public void testValidifyTime(){//test whether the time validifier works correctly
+		console.Power();
+		assertTrue(console.validifyTime("12:23:12.9"));
+		assertFalse(console.validifyTime(""));
+		assertFalse(console.validifyTime("123432145"));
+		assertFalse(console.validifyTime("asdfgfa"));
+		assertFalse(console.validifyTime("1:4:1.3"));
+	}
 
+	@Test
+	public void testDisplayState(){//test display state for list
+		console.Power();
+		assertFalse(console.getDisplayState());
+		console.newRun();
+		assertTrue(console.getDisplayState());
+		console.endRun();
+		assertFalse(console.getDisplayState());
+		console.newRun();
+		console.Reset();
+		assertFalse(console.getDisplayState());
+		console.newRun();
+		console.Power();
+		console.Power();
+		assertFalse(console.getDisplayState());
+		
+	}
 }
