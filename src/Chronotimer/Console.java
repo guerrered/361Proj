@@ -338,9 +338,9 @@ public class Console implements Observer{
 	 */
 	public void Swap(int lane){
 		if(onCheck() && curRunCheck()){
-			if(eventType.equals("PARIND")){///check so it does not call event that is not parallel
-				this.race.swap(lane);
-			}
+			//if(eventType.equals("PARIND")){///check so it does not call event that is not parallel
+			//	this.race.swap(lane);
+			//}
 		}
 		writeToLog("Swap " + lane);
 	}
