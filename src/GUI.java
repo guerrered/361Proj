@@ -1557,6 +1557,7 @@ public class GUI extends javax.swing.JFrame {
     
     		}
     		con.getChannels().getCh(1).connect("EYE");
+    		jToggleButton1.setText("ON");
     		
     	}
     	else if(jCh1.getSelectedItem().equals("GATE"))
@@ -1570,6 +1571,7 @@ public class GUI extends javax.swing.JFrame {
     		}
     		
     		con.getChannels().getCh(1).connect("GATE");
+    		jToggleButton1.setText("ON");
     		
     	}
     	else if(jCh1.getSelectedItem().equals("PAD"))
@@ -1580,14 +1582,16 @@ public class GUI extends javax.swing.JFrame {
     			
     		}
     		con.getChannels().getCh(1).connect("PAD");
-    		
+    		jToggleButton1.setText("ON");
     		
     	}
     	else if(jCh1.getSelectedItem().equals("None"))
     	{
     		if(con.getChannels().getCh(1).isSensor()==true)
     		{
-    			con.getChannels().getCh(1).removeSens();
+    			//con.getChannels().getCh(1).removeSens();
+    			con.Disconnect(1);
+    			jToggleButton1.setText("OFF");
     		}
     		else
     		{
@@ -1612,6 +1616,7 @@ public class GUI extends javax.swing.JFrame {
     		
     		}
     		con.getChannels().getCh(3).connect("EYE");
+    		jToggleButton3.setText("ON");
     		
     	}
     	else if(jCh3.getSelectedItem().equals("GATE"))
@@ -1623,6 +1628,7 @@ public class GUI extends javax.swing.JFrame {
     			
     		}
     		con.getChannels().getCh(3).connect("GATE");
+    		jToggleButton3.setText("ON");
     		
     		
     	}
@@ -1636,14 +1642,17 @@ public class GUI extends javax.swing.JFrame {
     		}
     		
     		con.getChannels().getCh(3).connect("PAD");
+    		jToggleButton3.setText("ON");
     		
     	}
     	else if(jCh3.getSelectedItem().equals("None"))
     	{
     		if(con.getChannels().getCh(3).isSensor()==true)
     		{
-    			con.getChannels().getCh(3).removeSens();
-    		}
+    			//con.getChannels().getCh(3).removeSens();
+    			con.Disconnect(3);
+    			jToggleButton3.setText("OFF");
+    		}	
     		else
     		{
     			JOptionPane.showMessageDialog(jCh3, "No sensor was armed");
@@ -1665,6 +1674,7 @@ public class GUI extends javax.swing.JFrame {
     			
     		}
     		con.getChannels().getCh(5).connect("EYE");
+    		jToggleButton5.setText("ON");
     		
     	}
     	else if(jCh5.getSelectedItem().equals("GATE"))
@@ -1675,7 +1685,7 @@ public class GUI extends javax.swing.JFrame {
 
     		}
     		con.getChannels().getCh(5).connect("GATE");
-    		
+    		jToggleButton5.setText("ON");
     	}
     	else if(jCh5.getSelectedItem().equals("PAD"))
     	{
@@ -1686,13 +1696,15 @@ public class GUI extends javax.swing.JFrame {
     			
     		}
     		con.getChannels().getCh(5).connect("PAD");
-    		
+    		jToggleButton5.setText("ON");
     	}
     	else if(jCh5.getSelectedItem().equals("None"))
     	{
     		if(con.getChannels().getCh(5).isSensor()==true)
     		{
-    			con.getChannels().getCh(5).removeSens();
+    			//con.getChannels().getCh(5).removeSens();
+    			con.Disconnect(5);
+    			jToggleButton5.setText("OFF");
     		}
     		else
     		{
@@ -1715,7 +1727,7 @@ public class GUI extends javax.swing.JFrame {
     			
     		}
     		con.getChannels().getCh(7).connect("EYE");
-    		
+    		jToggleButton7.setText("ON");
     	}
     	else if(jCh7.getSelectedItem().equals("GATE"))
     	{
@@ -1725,7 +1737,7 @@ public class GUI extends javax.swing.JFrame {
 
     		}
     		con.getChannels().getCh(7).connect("GATE");
-    		
+    		jToggleButton7.setText("ON");
     		
     	}
     	else if(jCh7.getSelectedItem().equals("PAD"))
@@ -1736,13 +1748,15 @@ public class GUI extends javax.swing.JFrame {
 
     		}
     		con.getChannels().getCh(7).connect("PAD");
-    		
+    		jToggleButton7.setText("ON");
     	}
     	else if(jCh7.getSelectedItem().equals("None"))
     	{
     		if(con.getChannels().getCh(7).isSensor()==true)
     		{
-    			con.getChannels().getCh(7).removeSens();
+    			//con.getChannels().getCh(7).removeSens();
+    			con.Disconnect(7);
+    			jToggleButton7.setText("OFF");
     		}
     		else
     		{
@@ -1765,6 +1779,7 @@ public class GUI extends javax.swing.JFrame {
     		
     		}
     		con.getChannels().getCh(2).connect("EYE");
+    		jToggleButton2.setText("ON");
     	}
     	else if(jCh2.getSelectedItem().equals("GATE"))
     	{
@@ -1775,7 +1790,7 @@ public class GUI extends javax.swing.JFrame {
     			
     		}
     		con.getChannels().getCh(2).connect("GATE");
-    		
+    		jToggleButton2.setText("ON");
     	}
     	else if(jCh2.getSelectedItem().equals("PAD"))
     	{
@@ -1786,13 +1801,15 @@ public class GUI extends javax.swing.JFrame {
     			
     		}
     		con.getChannels().getCh(2).connect("PAD");
-    		
+    		jToggleButton2.setText("ON");
     	}
     	else if(jCh2.getSelectedItem().equals("None"))
     	{
     		if(con.getChannels().getCh(2).isSensor()==true)
     		{
-    			con.getChannels().getCh(2).removeSens();
+    			//con.getChannels().getCh(2).removeSens();
+    			con.Disconnect(2);
+    			jToggleButton2.setText("OFF");
     		}
     		else
     		{
@@ -1815,7 +1832,7 @@ public class GUI extends javax.swing.JFrame {
     			
     		}
     		con.getChannels().getCh(4).connect("EYE");
-    		
+    		jToggleButton4.setText("ON");
     	}
     	else if(jCh4.getSelectedItem().equals("GATE"))
     	{
@@ -1826,7 +1843,7 @@ public class GUI extends javax.swing.JFrame {
     			
     		}
     		con.getChannels().getCh(4).connect("GATE");
-    		
+    		jToggleButton4.setText("ON");
     	}
     	else if(jCh4.getSelectedItem().equals("PAD"))
     	{
@@ -1837,13 +1854,15 @@ public class GUI extends javax.swing.JFrame {
     			
     		}
     		con.getChannels().getCh(4).connect("PAD");
-    		
+    		jToggleButton4.setText("ON");
     	}
     	else if(jCh4.getSelectedItem().equals("None"))
     	{
     		if(con.getChannels().getCh(4).isSensor()==true)
     		{
-    			con.getChannels().getCh(4).removeSens();
+    			//con.getChannels().getCh(4).removeSens();
+    			con.Disconnect(4);
+    			jToggleButton4.setText("OFF");
     		}
     		else
     		{
@@ -1865,6 +1884,7 @@ public class GUI extends javax.swing.JFrame {
 	
     		}
     		con.getChannels().getCh(6).connect("EYE");
+    		jToggleButton6.setText("ON");
     	}
     	else if(jCh6.getSelectedItem().equals("GATE"))
     	{
@@ -1874,7 +1894,7 @@ public class GUI extends javax.swing.JFrame {
 
     		}
     		con.getChannels().getCh(6).connect("GATE");
-    		
+    		jToggleButton6.setText("ON");
     	}
     	else if(jCh6.getSelectedItem().equals("PAD"))
     	{
@@ -1884,13 +1904,15 @@ public class GUI extends javax.swing.JFrame {
 
     		}
     		con.getChannels().getCh(6).connect("PAD");
-    		
+    		jToggleButton6.setText("ON");
     	}
     	else if(jCh6.getSelectedItem().equals("None"))
     	{
     		if(con.getChannels().getCh(6).isSensor()==true)
     		{
-    			con.getChannels().getCh(6).removeSens();
+    			//con.getChannels().getCh(6).removeSens();
+    			con.Disconnect(6);
+    			jToggleButton6.setText("OFF");
     		}
     		else
     		{
@@ -1913,7 +1935,7 @@ public class GUI extends javax.swing.JFrame {
     			
     		}
     		con.getChannels().getCh(8).connect("EYE");
-    		
+    		jToggleButton8.setText("ON");
     	}
     	else if(jCh8.getSelectedItem().equals("GATE"))
     	{
@@ -1924,7 +1946,7 @@ public class GUI extends javax.swing.JFrame {
     			
     		}
     		con.getChannels().getCh(8).connect("GATE");
-    		
+    		jToggleButton8.setText("ON");
     	}
     	else if(jCh8.getSelectedItem().equals("PAD"))
     	{
@@ -1934,13 +1956,15 @@ public class GUI extends javax.swing.JFrame {
 
     		}
     		con.getChannels().getCh(8).connect("PAD");
-    		
+    		jToggleButton8.setText("ON");
     	}
     	else if(jCh8.getSelectedItem().equals("None"))
     	{
     		if(con.getChannels().getCh(8).isSensor()==true)
     		{
-    			con.getChannels().getCh(8).removeSens();
+    			//con.getChannels().getCh(8).removeSens();
+    			con.Disconnect(8);
+    			jToggleButton8.setText("OFF");
     		}
     		else
     		{
@@ -2037,6 +2061,7 @@ public class GUI extends javax.swing.JFrame {
     					else{
     						x = con.DNF();
     						if(con.getDisplayState()){//go to run Screen
+    							con.closeMenu();
     							((displayTextUpdater) rN).ExitInterrupt();
     						}
     						else{
@@ -2047,6 +2072,7 @@ public class GUI extends javax.swing.JFrame {
     				case("cancel"):
     					x = con.Cancel();
     					if(con.getDisplayState()){//go to Run screen
+    						con.closeMenu();
     						((displayTextUpdater) rN).ExitInterrupt();
     					}
     					else{
