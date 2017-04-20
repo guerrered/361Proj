@@ -1984,6 +1984,7 @@ public class GUI extends javax.swing.JFrame {
     					else{
     						x = con.DNF();
     						if(con.getDisplayState()){//go to run Screen
+    							con.closeMenu();
     							((displayTextUpdater) rN).ExitInterrupt();
     						}
     						else{
@@ -1994,6 +1995,7 @@ public class GUI extends javax.swing.JFrame {
     				case("cancel"):
     					x = con.Cancel();
     					if(con.getDisplayState()){//go to Run screen
+    						con.closeMenu();
     						((displayTextUpdater) rN).ExitInterrupt();
     					}
     					else{
