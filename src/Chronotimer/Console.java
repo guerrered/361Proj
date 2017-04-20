@@ -201,10 +201,15 @@ public class Console implements Observer{
 		if(onCheck()){
 			writeToLog("Event " + event);
 			if(!curRunCheck()){
-				this.eventType = event;
-				//new event need to be created
-				System.out.println("Event has changed to "+ event);
-				return "Event has changed to " + event;
+				if(event.equals("IND") ||event.equals("PARIND")||event.equals("GRP")){
+					this.eventType = event;
+					//new event need to be created
+					System.out.println("Event has changed to "+ event);
+					return "Event has changed to " + event;
+				}
+				else{
+					return "Invalid event";
+				}
 			}
 			else{
 				System.out.println("An event is ongoing end it first.");//might want to return this as string
@@ -316,9 +321,10 @@ public class Console implements Observer{
 				case("IND"):
 					this.race.swap();
 					break;
-				case("PARIND")://if we just get a swap from the console it will swap the players in the first lane
+				//only swap in IND
+				/*case("PARIND")://if we just get a swap from the console it will swap the players in the first lane
 					this.race.swap(1);
-					break;
+					break;*/
 			}
 			
 		}
