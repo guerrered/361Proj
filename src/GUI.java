@@ -38,6 +38,7 @@ public class GUI extends javax.swing.JFrame {
     Runnable rN;
     boolean numSwitch = false;
     boolean DNFFlag = false;
+    boolean PARDNFFlag = false;
     boolean timeGet = false;//used so we can know when time is being entered;
     int count1 = 0;//used to keep track of numbers being entered for time;
     int count2 = 0;
@@ -980,11 +981,18 @@ public class GUI extends javax.swing.JFrame {
     private void jNum1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum1ActionPerformed
     	 if(con.onCheck()){
     		 if(con.isNumpadActive()){//can only read from numpad if active
-    			 if(!timeGet){
+    			 if(!timeGet && !PARDNFFlag){
     			 	//Num+="1";
     			 	con.addToNum("1");
      				jDisplay.setText("Num: " + con.getNum());
     		 	}
+    			else if(PARDNFFlag){
+    				 con.DNF(1);
+    				 PARDNFFlag = false;
+    				 con.deactivateNumpad();//numpad was active
+    				 ((displayTextUpdater)rN).ExitInterrupt();//race was happening
+    				 con.closeMenu();//menu was open
+    			}
     		 	else{
     			 if(count1 < 2){
     					con.addToNum("1");
@@ -1012,11 +1020,18 @@ public class GUI extends javax.swing.JFrame {
     private void jNum2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum2ActionPerformed
     	 if(con.onCheck()){
     		 if(con.isNumpadActive()){
-    			 if(!timeGet){
+    			 if(!timeGet && !PARDNFFlag){
     			 	con.addToNum("2");
     			 	//Num+="2";
      				jDisplay.setText("Num: " + con.getNum());
     		 	}
+    			else if(PARDNFFlag){
+    				 con.DNF(2);
+    				 PARDNFFlag = false;
+    				 con.deactivateNumpad();//numpad was active
+    				 ((displayTextUpdater)rN).ExitInterrupt();//race was happening
+    				 con.closeMenu();//menu was open
+    			}
     			else{
     	    		 if(count1 < 2){
     	    			con.addToNum("2");
@@ -1044,11 +1059,18 @@ public class GUI extends javax.swing.JFrame {
     private void jNum3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum3ActionPerformed
     	 if(con.onCheck()){
     		 if(con.isNumpadActive()){
-    			 if(!timeGet){
+    			 if(!timeGet && !PARDNFFlag){
     			 con.addToNum("3");
     				// Num+="3";
      				jDisplay.setText("Num: " + con.getNum());
     		 	}
+    			else if(PARDNFFlag){
+    				 con.DNF(2);
+    				 PARDNFFlag = false;
+    				 con.deactivateNumpad();//numpad was active
+    				 ((displayTextUpdater)rN).ExitInterrupt();//race was happening
+    				 con.closeMenu();//menu was open
+    			}
     			else{
     	    		 if(count1 < 2){
     	    			con.addToNum("3");
@@ -1076,12 +1098,19 @@ public class GUI extends javax.swing.JFrame {
     private void jNum4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum4ActionPerformed
     	 if(con.onCheck()){
     		 if(con.isNumpadActive()){
-    			 if(!timeGet){
+    			 if(!timeGet && !PARDNFFlag){
     			 	con.addToNum("4");
     			 	//Num+="4";
      				jDisplay.setText("Num: " + con.getNum());
     		 	}
-    				else{
+    			else if(PARDNFFlag){
+    				 con.DNF(4);
+    				 PARDNFFlag = false;
+    				 con.deactivateNumpad();//numpad was active
+    				 ((displayTextUpdater)rN).ExitInterrupt();//race was happening
+    				 con.closeMenu();//menu was open
+    			}
+    			else{
     	    			 if(count1 < 2){
     	    					con.addToNum("4");
     	    					//Num+="1";
@@ -1108,11 +1137,18 @@ public class GUI extends javax.swing.JFrame {
     private void jNum5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum5ActionPerformed
     	 if(con.onCheck()){
     		 if(con.isNumpadActive()){
-    			 if(!timeGet){
+    			 if(!timeGet && !PARDNFFlag){
     			 	con.addToNum("5");
     			 	//Num+="5";
      				jDisplay.setText("Num: " + con.getNum());
     		 	}
+    			else if(PARDNFFlag){
+    				 con.DNF(5);
+    				 PARDNFFlag = false;
+    				 con.deactivateNumpad();//numpad was active
+    				 ((displayTextUpdater)rN).ExitInterrupt();//race was happening
+    				 con.closeMenu();//menu was open
+    			}
     				else{
     	    			 if(count1 < 2){
     	    					con.addToNum("5");
@@ -1140,11 +1176,18 @@ public class GUI extends javax.swing.JFrame {
     private void jNum6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum6ActionPerformed
     	 if(con.onCheck()){
     		 if(con.isNumpadActive()){
-    			 if(!timeGet){
+    			 if(!timeGet && !PARDNFFlag){
     			 	con.addToNum("6");
     			 	//Num+="6";
      				jDisplay.setText("Num: " + con.getNum());
     		 	}
+    			 else if(PARDNFFlag){
+    				 con.DNF(6);
+    				 PARDNFFlag = false;
+    				 con.deactivateNumpad();//numpad was active
+    				 ((displayTextUpdater)rN).ExitInterrupt();//race was happening
+    				 con.closeMenu();//menu was open
+    			}
     				else{
     	    			 if(count1 < 2){
     	    					con.addToNum("6");
@@ -1172,11 +1215,18 @@ public class GUI extends javax.swing.JFrame {
     private void jNum7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum7ActionPerformed
     	 if(con.onCheck()){
     		 if(con.isNumpadActive()){
-    			 if(!timeGet){
+    			 if(!timeGet && !PARDNFFlag){
     			 	con.addToNum("7");
     			 	//Num+="7";
      				jDisplay.setText("Num: " + con.getNum());
     		 	}
+    			 else if(PARDNFFlag){
+    				 con.DNF(7);
+    				 PARDNFFlag = false;
+    				 con.deactivateNumpad();//numpad was active
+    				 ((displayTextUpdater)rN).ExitInterrupt();//race was happening
+    				 con.closeMenu();//menu was open
+    			}
     				else{
     	    			 if(count1 < 2){
     	    					con.addToNum("7");
@@ -1204,11 +1254,18 @@ public class GUI extends javax.swing.JFrame {
     private void jNum8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum8ActionPerformed
     	 if(con.onCheck()){
     		 if(con.isNumpadActive()){
-    			 if(!timeGet){
+    			 if(!timeGet && !PARDNFFlag){
     			 	con.addToNum("8");
     			 	//Num+="8";
      				jDisplay.setText("Num: " + con.getNum());
     		 	}
+    			 else if(PARDNFFlag){
+    				 con.DNF(8);
+    				 PARDNFFlag = false;
+    				 con.deactivateNumpad();//numpad was active
+    				 ((displayTextUpdater)rN).ExitInterrupt();//race was happening
+    				 con.closeMenu();//menu was open
+    			}
     				else{
     	    			 if(count1 < 2){
     	    					con.addToNum("8");
@@ -1236,10 +1293,17 @@ public class GUI extends javax.swing.JFrame {
     private void jNum9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum9ActionPerformed
         if(con.onCheck()){
         	if(con.isNumpadActive()){
-        		if(!timeGet){
+        		if(!timeGet && !PARDNFFlag){
         			con.addToNum("9");
    					//Num+="9";
     				jDisplay.setText("Num: " + con.getNum());
+        		}
+        		else if(PARDNFFlag){//should be invalid no such lane
+   				 con.DNF(9);
+   				 PARDNFFlag = false;
+   				 con.deactivateNumpad();//numpad was active
+   				 ((displayTextUpdater)rN).ExitInterrupt();//race was happening
+   				 con.closeMenu();//menu was open
         		}
         		else{
        			 if(count1 < 2){
@@ -1292,11 +1356,18 @@ public class GUI extends javax.swing.JFrame {
     private void jNum0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNum0ActionPerformed
         if(con.onCheck()){
         	if(con.isNumpadActive()){
-        		if(!timeGet){
+        		if(!timeGet && !PARDNFFlag){
         			con.addToNum("0");
    			 		//Num+="0";
     				jDisplay.setText("Num: " + con.getNum());
    		 		}
+        		else if(PARDNFFlag){//should be invalid no such lane
+   				 con.DNF(0);
+   				 PARDNFFlag = false;
+   				 con.deactivateNumpad();//numpad was active
+   				 ((displayTextUpdater)rN).ExitInterrupt();//race was happening
+   				 con.closeMenu();//menu was open
+        		}
         		else{
        			 if(count1 < 2){
        					con.addToNum("0");
@@ -1422,6 +1493,7 @@ public class GUI extends javax.swing.JFrame {
     			else{
     				if(con.getMenu().equals("dnf")){
     					DNFFlag = false;//set dnf flag false else interferes with numpad actions
+    					PARDNFFlag = false;
     					con.closeMenu();
     					con.openMenu();
     					jDisplay.setText(con.getMenu());
@@ -1957,6 +2029,11 @@ public class GUI extends javax.swing.JFrame {
     						//press pound first
     						//menu not closed can still be referenced
     					}
+    					else if(con.getRaceType().equals("PARIND")){//also for PARGRP
+    						PARDNFFlag=true;
+    						con.activateNumpad();
+    						jDisplay.setText("Enter the Lane #");
+    					}
     					else{
     						x = con.DNF();
     						if(con.getDisplayState()){//go to run Screen
@@ -2069,6 +2146,9 @@ public class GUI extends javax.swing.JFrame {
     	if(con.onCheck()){
     		if(con.isMenuOn()){
     			String prevState = con.getMenu();
+    			PARDNFFlag = false;//in case they were on DNF should come back to RaceOperations<
+    			DNFFlag = false;
+    			con.deactivateNumpad();//could have been on with DNFFlags 
     			if(prevState.equals("time")){
     				timeGet = false;
     				count1 = 0;

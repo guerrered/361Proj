@@ -376,6 +376,10 @@ public class Console implements Observer{
 						return "";//success
 					}
 				}
+				else if(eventType.equals("PARIND")){//dnf at a lane for ParIND and ParGRP
+					this.race.DNF(Num);
+					return "";
+				}
 			}
 			return "No group event";
 		}
