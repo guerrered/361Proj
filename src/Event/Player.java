@@ -66,6 +66,7 @@ public class Player {
 	 */
 	public void DNF(){
 		this.running = false;
+		this.cancel = false;
 		this.ran = true;
 		this.DNF = true;
 	}

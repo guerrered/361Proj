@@ -916,6 +916,10 @@ public class Console implements Observer{
 		return "";
 	}
 	
+	/**
+	 * 
+	 * @return last printable menu state
+	 */
 	public String getLastMenu(){
 		if(onCheck()){
 			if(isMenuOn()){
@@ -1013,14 +1017,24 @@ public class Console implements Observer{
 		return false;
 	}
 	
+	/**
+	 * activates numpad use
+	 */
 	public void activateNumpad(){
 		numpadActive = true;
 	}
 	
+	/**
+	 * deactivates numpad use
+	 */
 	public void deactivateNumpad(){
 		numpadActive = false;
 	}
 	
+	/**
+	 * 
+	 * @return true if numpad is active false otherwise
+	 */
 	public boolean isNumpadActive(){
 		return numpadActive;
 	}

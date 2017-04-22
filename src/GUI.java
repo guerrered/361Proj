@@ -1338,22 +1338,6 @@ public class GUI extends javax.swing.JFrame {
     		if(!timeGet){
     			con.getChannels().getCh(1).Trig();//another shorthand for trig 1
     		}
-    		/*deprecated
-    		else{//might take out and make the numbers automatically concat the : and .
-    			if(con.isNumpadActive()){
-    				if(count2 < 2){
-    					count2++;
-    					con.addToNum(":");
-    					//Num+=":";
-    				}
-    				else if(count2 == 2){
-    					con.addToNum(".");
-    					//Num+=".";
-    				}
-    				count1 = 0;
-    				jDisplay.setText("Time: " + con.getNum());
-    			}
-    		}*/
         }
     }//GEN-LAST:event_jNumStarActionPerformed
 
@@ -1400,9 +1384,6 @@ public class GUI extends javax.swing.JFrame {
         //the first time the button is pressed it will start reading a number 
     	if(con.onCheck()){
     		if(con.getDisplayState()){
-    			//if(con.isMenuOn()){
-    				//con.closeMenu();//we dont need this anymore
-    			//}
     			if(!DNFFlag){
     				if(!con.isNumpadActive()){//if numpad inactive turn it on
     					con.activateNumpad();
@@ -1423,28 +1404,12 @@ public class GUI extends javax.swing.JFrame {
 								con.Num(id); 
 								con.clearNum();
 							}
-							//DNFFlag = false;
 							((displayTextUpdater) rN).ExitInterrupt();//else if we came from display list exit the interrupt cycle
 							con.deactivateNumpad();//turn numpad off
 						}
     			}
     		
-    			else{/*
-    				numSwitch = !numSwitch;
-    				if(numSwitch == true){
-    					tN.interrupt();//it might be inactive so nothing to interrupt //but ensure we do incase display list is shown 
-    					Num = "";
-    					jDisplay.setText("Num: ");
-    				}	
-    	
-    				else{//the second time it is pressed it will run the the num command from console
-    					/*
-    					if(!con.getDisplayState()){// if we werent in the display list go back to running screen
-    						con.changeDisplayState();
-    						rN = new displayTextUpdater(jDisplay, con);//must start the thread over since fucntion had killed it
-    						tN = new Thread(rN);
-    						tN.start();
-    					}*/
+    			else{
     					if(!con.getNum().equals("")){
     						int id = Integer.parseInt(con.getNum()); // turning power off should reset this function
     						con.DNF(id); 
@@ -1457,21 +1422,12 @@ public class GUI extends javax.swing.JFrame {
     			}
     		}
     		else{//if no run is currently on then we can change the time
-    			if(timeGet){/*
-    				numSwitch = !numSwitch;
-    				if(numSwitch){
-    					//tN.interrupt();
-    					Num ="";
-    					jDisplay.setText("Time: ");
-    				}
-    				else{*/
-    					//((displayTextUpdater) rN).ExitInterrupt();
+    			if(timeGet){
     					timeGet=false;
     					//ensure Num is in the right format
     					if(con.validifyTime(con.getNum())){
     						con.Time(con.getNum());
     					}
-    					//con.openMenu();
     					con.clearNum();
     					count1=0;
     					count2=0;
@@ -1530,23 +1486,6 @@ public class GUI extends javax.swing.JFrame {
     			jDisplay.setText(con.getMenu());
     		}
     	//else stay in menu as nothing else to display
-    	/*
-    	con.changeDisplayState();
-    	if(!con.getDisplayState()){//if false that means we are in the menu
-    		try {
-				tN.join();//ensure thread ends
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-    		con.instantiateMenu();
-    		jDisplay.setText(con.getMenu());
-    	}
-    	else{//should start a new thread to display the thread
-    		con.closeMenu();
-    		rN = new displayTextUpdater(jDisplay, con);
-    		tN = new Thread(rN);
-    		tN.start();
-    	}*/
     	}
     }//GEN-LAST:event_jFunctionActionPerformed
     
@@ -2047,9 +1986,6 @@ public class GUI extends javax.swing.JFrame {
     					break;
     				case("dnf"):
     					if(con.getRaceType().equals("GRP")){
-    						//jDisplay.setText("Num: ");
-    	    				//tN.interrupt();//it might be inactive so nothing to interrupt //but ensure we do incase display list is shown 
-    	    				//Num = "";
     						con.clearNum();
     	    				jDisplay.setText("Num: ");
     						DNFFlag = true;
@@ -2090,15 +2026,6 @@ public class GUI extends javax.swing.JFrame {
     						rN = new displayTextUpdater(jDisplay, con);
     						tN = new Thread(rN);
     						tN.start();
-    						/*try {
-								SwingUtilities.invokeAndWait(new displayTextUpdater(jDisplay,con));
-							} catch (InvocationTargetException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							} catch (InterruptedException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}*/
     					}
     					else{
     						jDisplay.setText(currentState + "\n\n\n" + x);
@@ -2140,24 +2067,18 @@ public class GUI extends javax.swing.JFrame {
     						((displayTextUpdater) rN).ExitInterrupt();
     					}
     					//else stay here
-    					/*
-    					con.changeDisplayState();
-    					rN = new displayTextUpdater(jDisplay, con);
-    					tN = new Thread(rN);
-    					tN.start();
-    					*/
     					break;
     				case("reset"):
     					con.closeMenu();
     					con.Reset();
-    					if(con.getDisplayState()){
+    					//if(con.getDisplayState()){//exit race thread if was present
     						((displayTextUpdater) rN).ExitInterrupt();//exit interrupt from menu
     						try {
     							tN.join();//join displayList thread
     						} catch (InterruptedException e) {
     							e.printStackTrace();
     						}
-    					}
+    					//}
     					PowerOFFUpdate();
     					jPrinterDisplay.setText("");
     					jPrinterPwr.setText("Printer Pwr: OFF");
@@ -2183,8 +2104,6 @@ public class GUI extends javax.swing.JFrame {
     				timeGet = false;
     				count1 = 0;
     				count2 = 0;
-    				//con.closeMenu();
-    				//con.openMenu();
     				jDisplay.setText(con.getLastMenu());
     			}
     			con.menuLEFT();
@@ -2194,16 +2113,7 @@ public class GUI extends javax.swing.JFrame {
     					con.closeMenu();
     					((displayTextUpdater) rN).ExitInterrupt();
     				}
-    				
     				//else stay here
-    				/*
-    				con.closeMenu();
-    				con.changeDisplayState();
-					rN = new displayTextUpdater(jDisplay, con);
-					tN = new Thread(rN);
-					tN.start();
-					*/
-					
     			}
     			else{
     				jDisplay.setText(nextState);
@@ -2347,22 +2257,23 @@ public class GUI extends javax.swing.JFrame {
             jPower.setText("Power:ON");
             con.Power();
             jDisplay.setText(con.getMenu());//first thing to see is the menu
-          /*
-            if(con.getDisplayState() == false){
-            	con.changeDisplayState();
-            	 rN = new displayTextUpdater(jDisplay, con);
-                 tN = new Thread(rN);
-                 tN.start();
-            }
-           */
-          
         }
         else
         {
             jPower.setText("Power:OFF");
             PowerOFFUpdate();
             numSwitch = false;//reset numpad reading
+            boolean displayWasOn = con.getDisplayState(); 
             con.Power();
+            if(displayWasOn){//make sure to end thread if was on 
+            	((displayTextUpdater) rN).ExitInterrupt();
+            	try {
+					tN.join();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            }
         }
     	
     }//GEN-LAST:event_jPowerActionPerformed
