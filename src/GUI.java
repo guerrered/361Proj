@@ -187,6 +187,9 @@ public class GUI extends javax.swing.JFrame {
         scrollPane.setBounds(10,60,780,500);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         
+        JScrollPane scrollPane2 = new JScrollPane(jDisplay);
+        scrollPane.setBounds(10,60,780,500);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         
         jDisplay.setEditable(false);
         
@@ -794,7 +797,7 @@ public class GUI extends javax.swing.JFrame {
                         .addGroup(JPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         		.addGap(650, 650, 650)
                             .addComponent(jQRFTime)
-                            .addComponent(jDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(scrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(JPanel1Layout.createSequentialGroup()
                         .addGap(150, 150, 150)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -853,7 +856,7 @@ public class GUI extends javax.swing.JFrame {
                 .addGroup(JPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(JPanel1Layout.createSequentialGroup()
                         .addGroup(JPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(scrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(JPanel1Layout.createSequentialGroup()
                                 .addComponent(jFunction)
                                 .addGap(18, 18, 18)
