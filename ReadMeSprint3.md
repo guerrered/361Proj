@@ -34,7 +34,18 @@
 #	S = Swap
 #	Arrow keys and num keys.
 #	'#' and '*' only works on Mac
-#
+##################
+#	In GUI when in PARIND DNF screen prompts lane
+#	Number simply select lane for DNF
+#	
+#	GRP DNF prompts a racer bib Number to set as DNF
+#	enter the number and press '#' to enter
+# 
+#	When entering a NUM press '#' and enter a 
+#	number press '#' again to enter 
+# 
+#	to change time select time and enter a time 
+#	when finished press '#' to enter
 #
 #
 #
