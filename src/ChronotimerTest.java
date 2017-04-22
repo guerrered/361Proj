@@ -607,8 +607,8 @@ public class ChronotimerTest {
 		console.endRun();
 		console.Connect("pad", 1);
 		console.Connect("gate", 2);
-		console.Event("GROUP");
-		assertEquals("GROUP", console.getRaceType());
+		console.Event("GRP");
+		assertEquals("GRP", console.getRaceType());
 		console.getChannels().getCh(1).getSens().notifyObserver();
 		console.getChannels().getCh(2).getSens().notifyObserver();
 		console.getChannels().getCh(2).getSens().notifyObserver();
