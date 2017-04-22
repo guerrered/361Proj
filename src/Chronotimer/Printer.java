@@ -49,17 +49,17 @@ public class Printer {
 			 * <NUMBER> <FINISH> <EVENT	TIME>
 			 */
 				if(tempP.isCanceled()){
-					ret+="<" + tempP.getID() + ">\tCANCELED\n";
+					ret+="<" + tempP.toString() + ">\tCANCELED\n";
 				}
 				else if(!tempP.DNF){
 					//ret += "Start: "+timeFormat(tempP.getStartTime()) + " Event: " + event + '\t'+ "ID: "+  
 					//	p.get(i).getID() + " Finish: " + timeFormat(tempP.endTime) + " Total: " + timeFormat(tempP.getTotalTime()) +"\n";
-					ret += "<" +tempP.getID() +">\t" + timeFormat(tempP.getTotalTime()) + "\n";
+					ret += "<" +tempP.toString() +">\t" + timeFormat(tempP.getTotalTime()) + "\n";
 				}
 				else{
 						//ret += "Start: "+timeFormat(tempP.getStartTime()) + " Event: " + event + '\t'+ "ID: "  
 						//+p.get(i).getID() + " DNF\n";	
-						ret += "<" +tempP.getID() +">\tDNF\n";
+						ret += "<" +tempP.toString() +">\tDNF\n";
 					}
 			//}
 			/*else{

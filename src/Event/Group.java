@@ -53,6 +53,15 @@ public class Group extends Event{
 		Player temp = new Player(tempNumber);
 		temp.start(startTime);
 		temp.end(time);
+		if(tempNumber < 10){
+			temp.setZeroOffset("000");//placing offsets
+		}
+		else if(tempNumber < 100){
+			temp.setZeroOffset("00");
+		}
+		else if(tempNumber < 1000){
+			temp.setZeroOffset("0");
+		}
 		playersFinished.add(temp);
 		return true;
 	}
@@ -123,6 +132,7 @@ public class Group extends Event{
 		if(markedNum < playersFinished.size()){
 		Player temp = playersFinished.get(markedNum++);
 		temp.setID(ID);
+		temp.setZeroOffset("");//clear ambigous offset
 		playersFinishedMarked.add(temp);//add to marked list
 		//playersFinished.remove(0); //remove the player from temp list 
 		return true;

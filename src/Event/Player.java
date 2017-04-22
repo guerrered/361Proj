@@ -18,6 +18,7 @@ public class Player {
 	public boolean ran = false;
 	public boolean running = false;
 	public boolean cancel =false;
+	public String zOffset = "";
 	
 	/**
 	 * Method that return player ID.
@@ -145,7 +146,11 @@ public class Player {
 	
 	public String toString(){
 		String ret = "";
-		ret +=ID;
+		ret +=zOffset+ID;
 		return ret;
+	}
+	
+	public void setZeroOffset(String x){
+		zOffset = x;
 	}
 }
