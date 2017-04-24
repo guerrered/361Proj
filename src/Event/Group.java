@@ -160,13 +160,12 @@ public class Group extends Event{
 	 */
 	public void cancel(){
 		startTime = -1;
+		playersFinished = new ArrayList<>();
+		playersFinishedMarked = new ArrayList<Player>();
+		DNFs = new ArrayList<>();
+		tempNumber = 0;
+		markedNum = 0;
 		//normally we'd mark started racers as such, but we are don't know how many started.
-		/*
-		 * should we just clear all the lists here?
-		 * DNFs = new ArrayList<>();
-		 * playersFinished = new ArrayList<>();
-		 * playersFinishedMarked = new ArrayList<>();
-		 */
 	}
 	
 	/**
