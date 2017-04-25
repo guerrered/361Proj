@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
 import javax.swing.AbstractAction;
 import javax.swing.ActionMap;
@@ -14,6 +15,7 @@ import javax.swing.JTextArea;
 import javax.swing.KeyStroke;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.SwingWorker;
 
 import Chronotimer.Console;
 
@@ -34,8 +36,9 @@ public class GUI extends javax.swing.JFrame {
      * Creates new form MainFrame
      */
     Console con;
-    Thread tN;
-    Runnable rN;
+    SwingWorker runningDisplay;
+    //Thread tN;
+    //Runnable rN;
     boolean numSwitch = false;
     boolean DNFFlag = false;
     boolean PARDNFFlag = false;
@@ -994,8 +997,10 @@ public class GUI extends javax.swing.JFrame {
     				 con.DNF(1);
     				 PARDNFFlag = false;
     				 con.deactivateNumpad();//numpad was active
-    				 ((displayTextUpdater)rN).ExitInterrupt();//race was happening
+    				 //((displayTextUpdater)rN).ExitInterrupt();//race was happening
     				 con.closeMenu();//menu was open
+    				 runningDisplay = new RunningDisplayTask();
+					 runningDisplay.execute();
     			}
     		 	else{
     			 if(count1 < 2){
@@ -1033,8 +1038,10 @@ public class GUI extends javax.swing.JFrame {
     				 con.DNF(2);
     				 PARDNFFlag = false;
     				 con.deactivateNumpad();//numpad was active
-    				 ((displayTextUpdater)rN).ExitInterrupt();//race was happening
+    				 //((displayTextUpdater)rN).ExitInterrupt();//race was happening
     				 con.closeMenu();//menu was open
+    				 runningDisplay = new RunningDisplayTask();
+						runningDisplay.execute();
     			}
     			else{
     	    		 if(count1 < 2){
@@ -1072,8 +1079,10 @@ public class GUI extends javax.swing.JFrame {
     				 con.DNF(2);
     				 PARDNFFlag = false;
     				 con.deactivateNumpad();//numpad was active
-    				 ((displayTextUpdater)rN).ExitInterrupt();//race was happening
+    				 //((displayTextUpdater)rN).ExitInterrupt();//race was happening
     				 con.closeMenu();//menu was open
+    				 runningDisplay = new RunningDisplayTask();
+						runningDisplay.execute();
     			}
     			else{
     	    		 if(count1 < 2){
@@ -1111,8 +1120,10 @@ public class GUI extends javax.swing.JFrame {
     				 con.DNF(4);
     				 PARDNFFlag = false;
     				 con.deactivateNumpad();//numpad was active
-    				 ((displayTextUpdater)rN).ExitInterrupt();//race was happening
+    				// ((displayTextUpdater)rN).ExitInterrupt();//race was happening
     				 con.closeMenu();//menu was open
+    				 runningDisplay = new RunningDisplayTask();
+						runningDisplay.execute();
     			}
     			else{
     	    			 if(count1 < 2){
@@ -1150,8 +1161,10 @@ public class GUI extends javax.swing.JFrame {
     				 con.DNF(5);
     				 PARDNFFlag = false;
     				 con.deactivateNumpad();//numpad was active
-    				 ((displayTextUpdater)rN).ExitInterrupt();//race was happening
+    				 //((displayTextUpdater)rN).ExitInterrupt();//race was happening
     				 con.closeMenu();//menu was open
+    				 runningDisplay = new RunningDisplayTask();
+						runningDisplay.execute();
     			}
     				else{
     	    			 if(count1 < 2){
@@ -1189,8 +1202,10 @@ public class GUI extends javax.swing.JFrame {
     				 con.DNF(6);
     				 PARDNFFlag = false;
     				 con.deactivateNumpad();//numpad was active
-    				 ((displayTextUpdater)rN).ExitInterrupt();//race was happening
+    				 //((displayTextUpdater)rN).ExitInterrupt();//race was happening
     				 con.closeMenu();//menu was open
+    				 runningDisplay = new RunningDisplayTask();
+						runningDisplay.execute();
     			}
     				else{
     	    			 if(count1 < 2){
@@ -1228,8 +1243,10 @@ public class GUI extends javax.swing.JFrame {
     				 con.DNF(7);
     				 PARDNFFlag = false;
     				 con.deactivateNumpad();//numpad was active
-    				 ((displayTextUpdater)rN).ExitInterrupt();//race was happening
+    				 //((displayTextUpdater)rN).ExitInterrupt();//race was happening
     				 con.closeMenu();//menu was open
+    				 runningDisplay = new RunningDisplayTask();
+						runningDisplay.execute();
     			}
     				else{
     	    			 if(count1 < 2){
@@ -1267,8 +1284,10 @@ public class GUI extends javax.swing.JFrame {
     				 con.DNF(8);
     				 PARDNFFlag = false;
     				 con.deactivateNumpad();//numpad was active
-    				 ((displayTextUpdater)rN).ExitInterrupt();//race was happening
+    				 //((displayTextUpdater)rN).ExitInterrupt();//race was happening
     				 con.closeMenu();//menu was open
+    				 runningDisplay = new RunningDisplayTask();
+						runningDisplay.execute();
     			}
     				else{
     	    			 if(count1 < 2){
@@ -1306,8 +1325,10 @@ public class GUI extends javax.swing.JFrame {
    				 con.DNF(9);
    				 PARDNFFlag = false;
    				 con.deactivateNumpad();//numpad was active
-   				 ((displayTextUpdater)rN).ExitInterrupt();//race was happening
+   				// ((displayTextUpdater)rN).ExitInterrupt();//race was happening
    				 con.closeMenu();//menu was open
+   				runningDisplay = new RunningDisplayTask();
+				runningDisplay.execute();
         		}
         		else{
        			 if(count1 < 2){
@@ -1353,8 +1374,10 @@ public class GUI extends javax.swing.JFrame {
    				 con.DNF(0);
    				 PARDNFFlag = false;
    				 con.deactivateNumpad();//numpad was active
-   				 ((displayTextUpdater)rN).ExitInterrupt();//race was happening
+   				 //((displayTextUpdater)rN).ExitInterrupt();//race was happening
    				 con.closeMenu();//menu was open
+   				runningDisplay = new RunningDisplayTask();
+				runningDisplay.execute();
         		}
         		else{
        			 if(count1 < 2){
@@ -1392,7 +1415,8 @@ public class GUI extends javax.swing.JFrame {
     					con.deactivateNumpad();
     				}
     				if(con.isNumpadActive()){
-    					tN.interrupt();//it might be inactive so nothing to interrupt //but ensure we do incase display list is shown 
+    					//tN.interrupt();//it might be inactive so nothing to interrupt //but ensure we do incase display list is shown 
+    					runningDisplay.cancel(true);
     					//Num = "";
     					con.clearNum();
     					jDisplay.setText("Num: ");
@@ -1404,7 +1428,9 @@ public class GUI extends javax.swing.JFrame {
 								con.Num(id); 
 								con.clearNum();
 							}
-							((displayTextUpdater) rN).ExitInterrupt();//else if we came from display list exit the interrupt cycle
+							//((displayTextUpdater) rN).ExitInterrupt();//else if we came from display list exit the interrupt cycle
+							runningDisplay = new RunningDisplayTask();
+							runningDisplay.execute();
 							con.deactivateNumpad();//turn numpad off
 						}
     			}
@@ -1446,7 +1472,7 @@ public class GUI extends javax.swing.JFrame {
     		con.deactivateNumpad();//in case numpad was activated that way it wont interfere by accident
     		if(con.getDisplayState()){//if display list exists
     			if(!con.isMenuOn()){
-    				tN.interrupt();
+    				runningDisplay.cancel(true);
     				con.openMenu();
     				jDisplay.setText(con.getMenu());
     			}
@@ -1466,7 +1492,8 @@ public class GUI extends javax.swing.JFrame {
     				}
     				else{
     					con.closeMenu();
-    					((displayTextUpdater) rN).ExitInterrupt();
+    					runningDisplay = new RunningDisplayTask();
+    					runningDisplay.execute();
     				}
     			}
     		}
@@ -2002,7 +2029,8 @@ public class GUI extends javax.swing.JFrame {
     						x = con.DNF();
     						if(con.getDisplayState()){//go to run Screen
     							con.closeMenu();
-    							((displayTextUpdater) rN).ExitInterrupt();
+    							runningDisplay = new RunningDisplayTask();
+    							runningDisplay.execute();
     						}
     						else{
     							jDisplay.setText(currentState + "\n\n\n" + x);
@@ -2013,7 +2041,8 @@ public class GUI extends javax.swing.JFrame {
     					x = con.Cancel();
     					if(con.getDisplayState()){//go to Run screen
     						con.closeMenu();
-    						((displayTextUpdater) rN).ExitInterrupt();
+    						runningDisplay = new RunningDisplayTask();
+							runningDisplay.execute();
     					}
     					else{
     						jDisplay.setText(currentState + "\n\n\n" + x);
@@ -2023,9 +2052,11 @@ public class GUI extends javax.swing.JFrame {
     					x = con.newRun();//will turn on displayState /therefore a thread can be started
     					if(x.equals("")){
     						con.closeMenu();
-    						rN = new displayTextUpdater(jDisplay, con);
-    						tN = new Thread(rN);
-    						tN.start();
+    						//rN = new displayTextUpdater(jDisplay, con);
+    						//tN = new Thread(rN);
+    						//tN.start();
+    						runningDisplay = new RunningDisplayTask();
+    						runningDisplay.execute();
     					}
     					else{
     						jDisplay.setText(currentState + "\n\n\n" + x);
@@ -2034,13 +2065,13 @@ public class GUI extends javax.swing.JFrame {
     				case("endrun"):
     					x = con.endRun();
     					if(con.getDisplayState()){//display list must bre true because a run is on
-    						//will close displayState so we can wait for it to exit
+    						/*will close displayState so we can wait for it to exit
     						((displayTextUpdater) rN).ExitInterrupt();//exit interrupt from menu
     						try {
     							tN.join();//join displayList thread
     						} catch (InterruptedException e) {
     							e.printStackTrace();
-    						}
+    						}*///already ended the task
     					}
     					jDisplay.setText(currentState + "\n\n\n" + x);
     					break;
@@ -2064,7 +2095,8 @@ public class GUI extends javax.swing.JFrame {
     				case("exit"):
     					if(con.getDisplayState()){//if a list can be displayed display it
     						con.closeMenu();
-    						((displayTextUpdater) rN).ExitInterrupt();
+    						runningDisplay = new RunningDisplayTask();
+							runningDisplay.execute();
     					}
     					//else stay here
     					break;
@@ -2072,12 +2104,12 @@ public class GUI extends javax.swing.JFrame {
     					con.closeMenu();
     					con.Reset();
     					//if(con.getDisplayState()){//exit race thread if was present
-    						((displayTextUpdater) rN).ExitInterrupt();//exit interrupt from menu
+    						/*((displayTextUpdater) rN).ExitInterrupt();//exit interrupt from menu
     						try {
     							tN.join();//join displayList thread
     						} catch (InterruptedException e) {
     							e.printStackTrace();
-    						}
+    						}*///already ended task
     					//}
     					PowerOFFUpdate();
     					jPrinterDisplay.setText("");
@@ -2111,7 +2143,9 @@ public class GUI extends javax.swing.JFrame {
     			if(nextState.equals("exit")){
     				if(con.getDisplayState()){//if list to be displayed is available display it
     					con.closeMenu();
-    					((displayTextUpdater) rN).ExitInterrupt();
+    					//((displayTextUpdater) rN).ExitInterrupt();
+    					runningDisplay = new RunningDisplayTask();
+						runningDisplay.execute();
     				}
     				//else stay here
     			}
@@ -2266,13 +2300,14 @@ public class GUI extends javax.swing.JFrame {
             boolean displayWasOn = con.getDisplayState(); 
             con.Power();
             if(displayWasOn){//make sure to end thread if was on 
-            	((displayTextUpdater) rN).ExitInterrupt();
+            	runningDisplay.cancel(true);
+            	/*((displayTextUpdater) rN).ExitInterrupt();
             	try {
 					tN.join();
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}
+				}*/
             }
         }
     	
@@ -2400,8 +2435,25 @@ public class GUI extends javax.swing.JFrame {
     }
     
     
-    
-    
+
+private class RunningDisplayTask extends SwingWorker<Void, String> {
+
+	@Override
+	protected Void doInBackground() throws Exception {
+		while(!isCancelled()){
+			publish(con.DisplayListString());
+		}
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	protected void process(List<String> toPrint){
+		if(!isCancelled()){
+			String toDisplay = toPrint.get(toPrint.size() -1);
+			jDisplay.setText(toDisplay);
+		}
+	}
+}
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel J1357Label;
