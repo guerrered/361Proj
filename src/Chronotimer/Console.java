@@ -560,25 +560,25 @@ public class Console implements Observer{
 								race.start(this.time.getTime());
 								break;
 							case(2):
-								race.finish(getTime(),2);
+								race.finish(this.time.getTime(),2);
 								break;
 							 case(3):
-								race.finish(getTime(),3);
+								race.finish(this.time.getTime(),3);
 								break;
 							 case(4):
-								race.finish(getTime(),4);
+								race.finish(this.time.getTime(),4);
 								break;
 							 case(5):
-								race.finish(getTime(),5);
+								race.finish(this.time.getTime(),5);
 								break;	
 							 case(6):
-								race.finish(getTime(),6);
+								race.finish(this.time.getTime(),6);
 								break;
 							 case(7):
-								race.finish(getTime(),7);
+								race.finish(this.time.getTime(),7);
 								break;	
 							 case(8):
-								race.finish(getTime(),8);
+								race.finish(this.time.getTime(),8);
 								break;	
 								
 							}
