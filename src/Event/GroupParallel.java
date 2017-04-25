@@ -30,7 +30,18 @@ public class GroupParallel extends Event {
 	public boolean start(long time){
 		if(startTime==-1&&!playersInGp.isEmpty()){
 			startTime = time;
+			for(Player p:playersInGp)
+			{
+				p.start(time);
+			}
 			return true;
+		}
+		else if(playersInGp.get(0)!=null)
+		{
+			if(playersInGp.get(0).isRunning())
+			{
+				playersInGp.get(0).end(time);
+			}
 		}
 		//there is currently a race in progress.
 		return false;
@@ -153,7 +164,7 @@ public class GroupParallel extends Event {
 	 * Method that add runner into the race
 	 *
 	 */
-	public boolean addRunner(int runnerID)
+	public boolean setPlayerID(int runnerID)
 	{
 		if(playersInGp.size()<8)
 		{	
