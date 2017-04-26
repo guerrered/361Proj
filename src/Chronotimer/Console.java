@@ -237,7 +237,7 @@ public class Console implements Observer{
 					case("GRP"):
 						this.race = new Group();
 						break;
-					case("INGP"):
+					case("PARGRP"):
 						this.race = new GroupParallel();
 						break;
 				}
@@ -288,7 +288,7 @@ public class Console implements Observer{
 	public void Num(int ID1){
 		if(onCheck() && curRunCheck()){
 			if(ID1 < 10000){//9999 is max # for all races
-				if(eventType.equals("GRP")||eventType.equals("INGP")){
+				if(eventType.equals("GRP")||eventType.equals("PARGRP")){
 					race.setPlayerID(ID1);
 				}
 				
@@ -390,7 +390,7 @@ public class Console implements Observer{
 					this.race.DNF(Num);
 					return "";
 				}
-				else if(eventType.equals("INGP"))
+				else if(eventType.equals("PARGRP"))
 				{
 					this.race.DNF(Num);
 					return "";
@@ -553,7 +553,7 @@ public class Console implements Observer{
 								default:
 									System.out.println("Not a Channel");
 							}
-						case("INGP"):
+						case("PARGRP"):
 							switch(chNum)
 							{
 							case(1):

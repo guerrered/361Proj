@@ -213,17 +213,10 @@ public class GroupParallel extends Event {
 	
 	//does cancel = DNF?
 	// cancel line or ID num?
-	public void cancel(int line)
+	public void cancel()
 	{
-		if(playersInGp.get(line-1)!=null)
-		{
-			if(playersInGp.get(line-1).isRunning())
-			{
-				playersInGp.get(line-1).cancel();
-			}
-			
-		}
-		
+		startTime = -1;
+		playersInGp = new ArrayList<>(8);
 	}
 	
 	/**
