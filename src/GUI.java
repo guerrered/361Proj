@@ -1404,7 +1404,7 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jNum0ActionPerformed
 
     private void jNumPoundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNumPoundActionPerformed
-        //the first time the button is pressed it will start reading a number 
+        //the first time the button is pressed it will start reading a number
     	if(con.onCheck()){
     		if(con.getDisplayState()){
     			if(!DNFFlag){
@@ -1417,6 +1417,9 @@ public class GUI extends javax.swing.JFrame {
     				if(con.isNumpadActive()){
     					//tN.interrupt();//it might be inactive so nothing to interrupt //but ensure we do incase display list is shown 
     					runningDisplay.cancel(true);
+    					if(con.isMenuOn()){
+    						con.closeMenu();
+    					}
     					//Num = "";
     					con.clearNum();
     					jDisplay.setText("Num: ");
