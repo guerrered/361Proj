@@ -237,6 +237,9 @@ public class Console implements Observer{
 					case("GRP"):
 						this.race = new Group();
 						break;
+					case("INGP"):
+						this.race = new GroupParallel();
+						break;
 				}
 				displayState = true;//can display a list from race
 				return "";//if succesfull gui wil go straight to race
@@ -285,10 +288,11 @@ public class Console implements Observer{
 	public void Num(int ID1){
 		if(onCheck() && curRunCheck()){
 			if(ID1 < 10000){//9999 is max # for all races
-				if(eventType.equals("GRP")){
+				if(eventType.equals("GRP")||eventType.equals("INGP")){
 					race.setPlayerID(ID1);
 				}
-				else{
+				
+				else {
 					this.race.next(ID1);
 				}
 			}
@@ -383,6 +387,11 @@ public class Console implements Observer{
 					}
 				}
 				else if(eventType.equals("PARIND")){//dnf at a lane for ParIND and ParGRP
+					this.race.DNF(Num);
+					return "";
+				}
+				else if(eventType.equals("INGP"))
+				{
 					this.race.DNF(Num);
 					return "";
 				}
@@ -540,10 +549,43 @@ public class Console implements Observer{
 									break;
 								case(2):
 									race.finish(time.getTime());
-									break;
+									break;	
 								default:
 									System.out.println("Not a Channel");
 							}
+						case("INGP"):
+							switch(chNum)
+							{
+							case(1):
+								race.start(this.time.getTime());
+								break;
+							case(2):
+								race.finish(this.time.getTime(),2);
+								break;
+							 case(3):
+								race.finish(this.time.getTime(),3);
+								break;
+							 case(4):
+								race.finish(this.time.getTime(),4);
+								break;
+							 case(5):
+								race.finish(this.time.getTime(),5);
+								break;	
+							 case(6):
+								race.finish(this.time.getTime(),6);
+								break;
+							 case(7):
+								race.finish(this.time.getTime(),7);
+								break;	
+							 case(8):
+								race.finish(this.time.getTime(),8);
+								break;	
+								
+							}
+						 
+							
+							
+						
 						}
 						return true;
 					}
