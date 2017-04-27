@@ -245,4 +245,13 @@ public class Independent extends Event{
 		}
 		return dis;
 	}
+	
+	public void endRace(){
+		for(int i = 0; i < queueStartNum; i++){
+			if(players.get(i).isRunning()){//DNF all players not finished and add them to endList
+				players.get(i).DNF();
+				endList.add(players.get(i));
+			}
+		}
+	}
 }

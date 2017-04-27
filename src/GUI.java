@@ -37,10 +37,6 @@ public class GUI extends javax.swing.JFrame {
      */
     Console con;
     SwingWorker<Void, String> runningDisplay;
-    //Thread tN;
-    //Runnable rN;
-    //TODO PARDNFFlag check in NUMPOUND
-    //TODO make sure a race is ongoing in RIGHTCLICK DNF
     //Maybe implement up and down to scroll display up and down so we can see 
     //racers if there are a lot of them currently running
     boolean numSwitch = false;
@@ -213,13 +209,7 @@ public class GUI extends javax.swing.JFrame {
         jCh4 = new javax.swing.JComboBox<>();
         jCh6 = new javax.swing.JComboBox<>();
         jCh8 = new javax.swing.JComboBox<>();
-        
-        Num="";
-        
-        /*shouldnt start a thread right away because there is race to run
-        rN = new displayTextUpdater(jDisplay, con);
-        tN = new Thread(rN);
-        tN.start();*/
+    
         
         jCheckBoxMenuItem1.setSelected(true);
         jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
@@ -927,7 +917,7 @@ public class GUI extends javax.swing.JFrame {
     //Lists of action
     private void MeExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MeExitActionPerformed
     	System.out.println("GUI exiting");
-    	System.exit(0);
+    	con.exit();//wasnt writing to log
         // TODO add your handling code here:
     }//GEN-LAST:event_MeExitActionPerformed
 
@@ -2022,7 +2012,6 @@ public class GUI extends javax.swing.JFrame {
     					jDisplay.setText(currentState + "\n\n\n" + x);
     					break;
     				case("dnf"):
-    					
     					if(con.getRaceType().equals("GRP")){
     						con.clearNum();
     	    				jDisplay.setText("Num: ");
@@ -2312,13 +2301,6 @@ public class GUI extends javax.swing.JFrame {
             con.Power();
             if(displayWasOn){//make sure to end thread if was on 
             	runningDisplay.cancel(true);
-            	/*((displayTextUpdater) rN).ExitInterrupt();
-            	try {
-					tN.join();
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}*/
             }
         }
     	
@@ -2454,12 +2436,11 @@ private class RunningDisplayTask extends SwingWorker<Void, String> {
 		while(!isCancelled()){
 			publish(con.DisplayListString());
 		}
-		// TODO Auto-generated method stub
 		return null;
 	}
 	
 	protected void process(List<String> toPrint){
-		if(!isCancelled()){
+		if(!isCancelled()){// we only want to print until task is canceled
 			String toDisplay = toPrint.get(toPrint.size() -1);
 			jDisplay.setText(toDisplay);
 		}
@@ -2524,7 +2505,6 @@ private class RunningDisplayTask extends SwingWorker<Void, String> {
     private javax.swing.JButton jDown;
     private javax.swing.JButton jRight;
     private javax.swing.JButton jLeft;
-    private String Num;
     private javax.swing.JComboBox<String> jCh1;
     private javax.swing.JComboBox<String> jCh2;
     private javax.swing.JComboBox<String> jCh3;

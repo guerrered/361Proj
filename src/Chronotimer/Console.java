@@ -31,6 +31,8 @@ public class Console implements Observer{
 	public boolean menuOn = false;
 	public boolean numpadActive= false;
 	Channels channels;
+	List<Player> lastList;//used so we can print the last event to end
+	String lastEvent;
 	String eventType;
 	File log;
 	String Num;
@@ -241,6 +243,7 @@ public class Console implements Observer{
 						this.race = new GroupParallel();
 						break;
 				}
+				lastList = null;//clear lastList
 				displayState = true;//can display a list from race
 				return "";//if succesfull gui wil go straight to race
 			}
@@ -270,11 +273,14 @@ public class Console implements Observer{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				if(eventType.equals("PARGRP")){//set all racers not finish to DNF
-					race.endRace();
-				}
+				//if(eventType.equals("PARGRP")){//set all racers not finish to DNF
+				race.endRace();//all racers not finished will be set as DNF for all racetypes
+				lastList = race.getEndList();
+				//}
+				lastEvent = eventType;
 				displayState = false;//cant diplay list anymore
 			
+				//send goes here
 				this.race = null;
 				CurRunOn=false;
 				return "Event ended";
@@ -445,9 +451,14 @@ public class Console implements Observer{
 	 * all the participating runners
 	 */
 	public String Print(){
-		if(onCheck() && curRunCheck()){
-			writeToLog("Print");
-			return printer.print(this.race.getEndList(), this.eventType);
+		writeToLog("Print");
+		if(onCheck()){
+			if(curRunCheck()){
+				return printer.print(this.race.getEndList(), this.eventType);
+			}
+			else{
+				return printer.print(lastList, lastEvent);//prints last event to end 
+			}
 		}
 		return "";
 	}
@@ -863,6 +874,7 @@ public class Console implements Observer{
 					count = 1;
 				}
 				if(eventType.equals("PARGRP")){
+					count = 8;
 					if(displayList == null){
 						return "Add the Racers";
 					}

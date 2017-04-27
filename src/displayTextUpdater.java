@@ -1,7 +1,7 @@
 import javax.swing.JTextArea;
 
 import Chronotimer.Console;
-
+//TO DELETE
 public class displayTextUpdater implements Runnable{
 	JTextArea T;
 	Console console;
