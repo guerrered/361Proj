@@ -36,7 +36,7 @@ public class GroupParallel extends Event {
 			}
 			return true;
 		}
-		else if(playersInGp.get(0)!=null)
+		else if((!playersInGp.isEmpty())&&playersInGp.get(0)!=null )
 		{
 			if(playersInGp.get(0).isRunning())
 			{
