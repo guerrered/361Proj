@@ -289,6 +289,9 @@ public class GroupParallel extends Event {
 		return null;
 	}
 	
+	public List<Player> getList(){
+		return playersInGp;
+	}
 	/**
 	 * @return long - startTime
 	 */
