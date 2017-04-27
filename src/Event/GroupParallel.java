@@ -14,10 +14,12 @@ public class GroupParallel extends Event {
 	List <Player> playersInGp = new ArrayList<>(8);
 	
 	private long startTime;
+	int tempLane;
 	
 	public GroupParallel()
 	{
 		startTime = -1;
+		tempLane = 0;
 	}
 	
 	
@@ -35,14 +37,14 @@ public class GroupParallel extends Event {
 				p.start(time);
 			}
 			return true;
-		}
-		else if(playersInGp.get(0)!=null)
+		}/*
+		else if(playersInGp.get(0)!=null)//this shouldn't be a case ever where we call start to finish a player
 		{
 			if(playersInGp.get(0).isRunning())
 			{
 				playersInGp.get(0).end(time);
 			}
-		}
+		}*/
 		//there is currently a race in progress.
 		return false;
 	}
@@ -59,7 +61,22 @@ public class GroupParallel extends Event {
 		{
 			return false;
 		}
-		if(lane==1&&playersInGp.get(0)!=null)
+		if(lane > 8 || lane < 0){ //only valid lanes are 0-8
+			return false;
+		}
+		if(lane > tempLane){
+			return false;//no player assigned to lane can't finish
+		}
+		Player temp = playersInGp.get(lane -1);
+		if(temp != null){//if there is a runner there
+			if(temp.isRunning()){//and they are running
+				temp.end(time);//end their race
+				return true;
+			}
+		}
+		return false;
+		/*
+		if(lane==1&&playersInGp.get(0)!=null)//redundant
 		{
 			if(playersInGp.get(0).isRunning())
 			{
@@ -157,34 +174,45 @@ public class GroupParallel extends Event {
 		}
 		
 		
-		return true;
+		return true;*/
 	}
 	
 	/**
 	 * Method that add runner into the race
 	 *
 	 */
-	public boolean setPlayerID(int runnerID)
+	public boolean setPlayerID(int runnerID)//can only run 8 players at a time
 	{
-		if(playersInGp.size()<8)
-		{	
+		if(playersInGp.size()<8){	
 			
-		for(int i =0; i<playersInGp.size(); i++){
-			if(playersInGp.get(i).getID()==runnerID)return false;
+			for(int i =0; i<tempLane; i++){//players have been initialized up to templane
+				if(playersInGp.get(i).getID()==runnerID)return false;
+			}
+			//playersInGp.add(new Player(runnerID));
+			playersInGp.add(tempLane++, new Player(runnerID));//add them to their specific lane
+			return true;
 		}
-		playersInGp.add(new Player(runnerID));
-		return true;
-		}
-		else
-		{
-			return false;
-		}
-		
+		return false;
+			
 	}
 	/**
 	 * Method that set Runner does not finish
 	 *
 	 */
+	public boolean DNF(int lane){// probably going by lane would make it simpler
+		if(lane > 8 || lane < 0){
+			return false; //invalid lane num
+		}
+		Player temp = playersInGp.get(lane -1);
+		if(temp!= null){
+			if(temp.isRunning()){
+				temp.DNF();
+				return true;
+			}
+		}
+		return false;
+	}
+	/*
 	public boolean DNF(int num)
 	{ int i=0;
 		for(Player p: playersInGp)
@@ -204,7 +232,7 @@ public class GroupParallel extends Event {
 			return false;
 		}
 	}
-	
+	*/
 	
 	/**
 	 * Method that cancel runner in a race;
@@ -216,47 +244,77 @@ public class GroupParallel extends Event {
 	public void cancel()
 	{
 		startTime = -1;
-		playersInGp = new ArrayList<>(8);
+		for(Player p: playersInGp){// we want to cancel and preserve racer numbers in list
+			p.cancel();
+		}
+		//playersInGp = new ArrayList<>(8);
 	}
 	
 	/**
 	 * Method to end the event
 	 *
 	 */
-	public void endRace()
+	public void endRace()//any racer still running at end gets DNFd
 	{
-		startTime = -1;
 		for(Player p:playersInGp)
 		{
-			if(!p.participated())
+			//if(!p.participated())all 
+			if(p.isRunning())//player still running when race is over means DNF
 			{
 				p.DNF();
+				System.out.println(p.DNF);
 			}
 		}
 		
 	}
 	
 	/**
-	 * Players list that will be displayed on the console screen
 	 * 
-	 * @return List<Player>
+	 * 
+	 * @return list of racers that participated(finished or DNF)
 	 */
 	
-	public List<Player> getList()
+	public List<Player> getEndList()
 	{
-		return playersInGp;
+		List<Player> toPrint = new ArrayList<>();
+		if(!playersInGp.isEmpty()){
+			for(Player p: playersInGp){
+				if(p.participated()){//might want to sort by time
+					toPrint.add(p);
+				}
+				return toPrint;
+			}
+		}
+		return null;
 	}
 	
 	/**
 	 * @return long - startTime
 	 */
 	public long getStartTime(){
-		if(startTime > 0){
+		return startTime;
+		/*
+		if(startTime > 0){redundant
 			return startTime;
 		}
 		else{
 			return -1;
+		}*/
+	}
+	
+	
+	/**
+	 * return list for the display
+	 */
+	public List<Player> getDisplayList(){
+		List<Player> displayList = new ArrayList<>();
+		if(!playersInGp.isEmpty()){
+			for(Player p: playersInGp){
+				displayList.add(p);
+			}
+			return displayList;
 		}
+		return null;
 	}
 	
 }

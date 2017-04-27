@@ -201,7 +201,7 @@ public class Console implements Observer{
 		if(onCheck()){
 			writeToLog("Event " + event);
 			if(!curRunCheck()){
-				if(event.equals("IND") ||event.equals("PARIND")||event.equals("GRP")){
+				if(event.equals("IND") ||event.equals("PARIND")||event.equals("GRP")|| event.equals("PARGRP")){
 					this.eventType = event;
 					//new event need to be created
 					System.out.println("Event has changed to "+ event);
@@ -270,7 +270,9 @@ public class Console implements Observer{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
+				if(eventType.equals("PARGRP")){//set all racers not finish to DNF
+					race.endRace();
+				}
 				displayState = false;//cant diplay list anymore
 				this.race = null;
 				CurRunOn=false;
@@ -392,7 +394,7 @@ public class Console implements Observer{
 				}
 				else if(eventType.equals("PARGRP"))
 				{
-					this.race.DNF(Num);
+					this.race.DNF(Num);//where num is the lane that will be DNFd
 					return "";
 				}
 			}
@@ -556,8 +558,13 @@ public class Console implements Observer{
 						case("PARGRP"):
 							switch(chNum)
 							{
-							case(1):
-								race.start(this.time.getTime());
+							case(1)://serves 2 purposes
+								if(race.getStartTime() == -1){
+									race.start(this.time.getTime());
+								}
+								else{
+									race.finish(this.time.getTime(),1);
+								}
 								break;
 							case(2):
 								race.finish(this.time.getTime(),2);
@@ -853,6 +860,11 @@ public class Console implements Observer{
 				}
 				if(eventType.equals("IND")){
 					count = 1;
+				}
+				if(eventType.equals("PARGRP")){
+					if(displayList == null){
+						return "Add the Racers";
+					}
 				}
 				for(int i = 0; i < displayList.size(); i++){//if finished use finish time else currenttime
 					Player temp = displayList.get(i);

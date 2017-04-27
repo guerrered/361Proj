@@ -79,7 +79,11 @@ public class Player {
 	public void cancel(){
 		this.running = false;
 		this.cancel = true;
-		startTime = endTime = totalTime = 0;
+		this.ran = false; // in case a pargrp gets canceled 
+		this.DNF = false;
+		startTime =0;
+		endTime = 0;
+		totalTime = 0;
 	}
 	/**
 	 * Method that return the total time that the player use for the run.

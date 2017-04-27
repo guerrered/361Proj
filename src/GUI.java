@@ -36,9 +36,13 @@ public class GUI extends javax.swing.JFrame {
      * Creates new form MainFrame
      */
     Console con;
-    SwingWorker runningDisplay;
+    SwingWorker<Void, String> runningDisplay;
     //Thread tN;
     //Runnable rN;
+    //TODO PARDNFFlag check in NUMPOUND
+    //TODO make sure a race is ongoing in RIGHTCLICK DNF
+    //Maybe implement up and down to scroll display up and down so we can see 
+    //racers if there are a lot of them currently running
     boolean numSwitch = false;
     boolean DNFFlag = false;
     boolean PARDNFFlag = false;
@@ -1405,6 +1409,8 @@ public class GUI extends javax.swing.JFrame {
 
     private void jNumPoundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNumPoundActionPerformed
         //the first time the button is pressed it will start reading a number
+    	
+    	 
     	if(con.onCheck()){
     		if(con.getDisplayState()){
     			if(!DNFFlag){
@@ -2012,9 +2018,11 @@ public class GUI extends javax.swing.JFrame {
 						jDisplay.setText(currentState + "\n\n\n" + x);
     					break;
     				case("paragrp"):
-    					jDisplay.setText(currentState + "\n\n\nUNAVAILABLE");
+    					x = con.Event("PARGRP");
+    					jDisplay.setText(currentState + "\n\n\n" + x);
     					break;
     				case("dnf"):
+    					
     					if(con.getRaceType().equals("GRP")){
     						con.clearNum();
     	    				jDisplay.setText("Num: ");
@@ -2023,7 +2031,7 @@ public class GUI extends javax.swing.JFrame {
     						//press pound first
     						//menu not closed can still be referenced
     					}
-    					else if(con.getRaceType().equals("PARIND")){//also for PARGRP
+    					else if(con.getRaceType().equals("PARIND") || con.getRaceType().equals("PARGRP")){//also for PARGRP
     						PARDNFFlag=true;
     						con.activateNumpad();
     						jDisplay.setText("Enter the Lane #");
