@@ -261,6 +261,7 @@ public class GroupParallel extends Event {
 			//if(!p.participated())all 
 			if(p.isRunning())//player still running when race is over means DNF
 			{
+				System.out.println("Hi");
 				p.DNF();
 				System.out.println(p.DNF);
 			}

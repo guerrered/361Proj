@@ -274,6 +274,7 @@ public class Console implements Observer{
 					race.endRace();
 				}
 				displayState = false;//cant diplay list anymore
+			
 				this.race = null;
 				CurRunOn=false;
 				return "Event ended";
