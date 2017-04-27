@@ -201,7 +201,7 @@ public class Console implements Observer{
 		if(onCheck()){
 			writeToLog("Event " + event);
 			if(!curRunCheck()){
-				if(event.equals("IND") ||event.equals("PARIND")||event.equals("GRP")){
+				if(event.equals("IND") ||event.equals("PARIND")||event.equals("GRP")||event.equals("PARGRP")){
 					this.eventType = event;
 					//new event need to be created
 					System.out.println("Event has changed to "+ event);
@@ -270,8 +270,20 @@ public class Console implements Observer{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				//After S3
 				
+				if(this.getRaceType().equals("PARGRP"))
+				{
+					
+					this.race.endRace();
+					
+				}
+				
+				
+				
+				//
 				displayState = false;//cant diplay list anymore
+			
 				this.race = null;
 				CurRunOn=false;
 				return "Event ended";

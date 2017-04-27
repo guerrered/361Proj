@@ -174,6 +174,7 @@ public class GroupParallel extends Event {
 		}
 		playersInGp.add(new Player(runnerID));
 		return true;
+		
 		}
 		else
 		{
@@ -225,11 +226,14 @@ public class GroupParallel extends Event {
 	 */
 	public void endRace()
 	{
+		System.out.println(playersInGp.size());
+		System.out.println("InGP");
 		startTime = -1;
 		for(Player p:playersInGp)
-		{
-			if(!p.participated())
+		{	System.out.println("HiOu");
+			if((!p.participated())||p.isRunning())
 			{
+				System.out.println("Hi");
 				p.DNF();
 			}
 		}

@@ -824,8 +824,8 @@ public class ChronotimerTest {
 	public void testEmptyGroupParaStart()
 	{
 		console.Power();
-		console.endRun();
 		console.Event("PARGRP");
+		console.newRun();
 		assertFalse(ParaGroup.start(0));
 		
 	}
@@ -834,13 +834,45 @@ public class ChronotimerTest {
 	public void testGroupParaStart()
 	{
 		console.Power();
-		console.endRun();
 		console.Event("PARGRP");
+		console.newRun();
 		ParaGroup.setPlayerID(1);
 		ParaGroup.setPlayerID(2);
 		assertTrue(ParaGroup.start(1));
 		assertTrue(ParaGroup.getStartTime()!=-1);
 		assertEquals(ParaGroup.getList().get(0).startTime,ParaGroup.getList().get(1).startTime);
+	}
+	
+	@Test
+	public void testDNFifEventEnd()
+	{
+		console.Power();
+		console.Event("PARGRP");
+		console.newRun();
+		ParaGroup.setPlayerID(1);
+		ParaGroup.setPlayerID(2);
+		ParaGroup.setPlayerID(3);
+		ParaGroup.setPlayerID(4);
+		ParaGroup.setPlayerID(5);
+		ParaGroup.setPlayerID(6);
+		ParaGroup.setPlayerID(7);
+		assertTrue(ParaGroup.setPlayerID(8));
+	
+		
+		
+		assertTrue(ParaGroup.start(1));
+		assertTrue(ParaGroup.finish((long) 2.0, 1));
+		
+		
+		Player p1 = ParaGroup.getList().get(1);
+	
+		System.out.println(p1.DNF);
+		System.out.println(ParaGroup.getList().size());
+		console.endRun();
+		//System.out.println(ParaGroup.getList().size());
+		System.out.println(p1.DNF);
+		assertTrue(p1.DNF);
+		
 	}
 	
 	
