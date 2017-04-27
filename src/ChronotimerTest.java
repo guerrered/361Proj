@@ -864,11 +864,12 @@ public class ChronotimerTest {
 		assertTrue(ParaGroup.finish((long) 2.0, 1));
 		
 		
-		Player p1 = ParaGroup.getList().get(1);
+		Player p1 = ParaGroup.getList().get(2);
 	
 		System.out.println(p1.DNF);
 		System.out.println(ParaGroup.getList().size());
-		console.endRun();
+		//console.endRun();
+		ParaGroup.endRace();
 		//System.out.println(ParaGroup.getList().size());
 		System.out.println(p1.DNF);
 		assertTrue(p1.DNF);
