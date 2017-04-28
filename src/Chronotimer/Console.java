@@ -32,6 +32,7 @@ public class Console implements Observer{
 	public boolean numpadActive= false;
 	Channels channels;
 	List<Player> lastList;//used so we can print the last event to end
+	List<ExportObject> eo; //used for client and export()
 	String lastEvent;
 	String eventType;
 	File log;
@@ -683,7 +684,7 @@ public class Console implements Observer{
 		if(onCheck()){
 			if(curRunCheck()){
 				List<Player> p = race.getPlayerList();
-				List<ExportObject> eo = new ArrayList<>();
+				eo = new ArrayList<>();
 				File file = race.createRaceOutputFile();
 				FileWriter fw = new FileWriter(file);
 				String data="";
@@ -727,7 +728,7 @@ public class Console implements Observer{
 	 * 
 	 */
 	public List<ExportObject> load(File file){
-		List<ExportObject> eo= new ArrayList<>();
+		eo= new ArrayList<>();
 		String str="";
 		//File file = new File("USB/RUN"+idFormat(file1)+".txt");
 		try {
