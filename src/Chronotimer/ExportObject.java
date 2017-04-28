@@ -5,22 +5,24 @@ package Chronotimer;
  *
  */
 public class ExportObject {
-	String timestamp;
-	String eventType;
-	String ID;
-	String totaltime;
-	String eventCode;
+	private String timestamp;
+	private String eventType;
+	private String ID;
+	private String totaltime;
+	private String eventCode;
+	private long timeRaw;
 
 	/**
 	 *  
 	 * 
 	 */
-	public ExportObject(String timestamp, String eventType, String string,String eventCode, String totalTime){
+	public ExportObject(String timestamp, String eventType, String string,String eventCode, String totalTime, long tR){
 		this.timestamp=timestamp;
 		this.eventType=eventType;
 		this.ID=string;
 		this.totaltime=totalTime;
 		this.eventCode=eventCode;
+		timeRaw = tR;
 		
 		printEO();
 	}
@@ -35,4 +37,17 @@ public class ExportObject {
 		System.out.println(timestamp+" "+eventType + "\n" + ID + " " +eventCode + " " + totaltime+"\n" );
 		
 	}
+	
+	public String getID(){
+		return ID;
+	}
+	
+	public String getCode(){
+		return eventCode;
+	}
+	
+	public long getTimeRaw(){
+		return timeRaw;
+	}
+	
 }

@@ -695,16 +695,16 @@ public class Console implements Observer{
 				for(Player player: p){
 					if(player.participated()||player.cancel||player.running){
 						if(player.DNF){
-							eo.add(new ExportObject(time.getTimeFancy(), eventType, idFormat(player.getID()),"DNF" ,""));	
+							eo.add(new ExportObject(time.getTimeFancy(), eventType, idFormat(player.getID()),"DNF" ,"", 0));	
 						}
 						else if(player.isRunning()){
-							eo.add(new ExportObject(time.getTimeFancy(), eventType, idFormat(player.getID()),"TRIG", ""));
+							eo.add(new ExportObject(time.getTimeFancy(), eventType, idFormat(player.getID()),"TRIG", "", 0));
 						}
 						else if(player.cancel){
-							eo.add(new ExportObject(time.getTimeFancy(), eventType, idFormat(player.getID()),"CANCEL", ""));
+							eo.add(new ExportObject(time.getTimeFancy(), eventType, idFormat(player.getID()),"CANCEL", "", 0));
 						}
 						else{
-							eo.add(new ExportObject(time.getTimeFancy(), eventType, idFormat(player.getID()),"ELAPSED", timeFormat(player.getTotalTime())));
+							eo.add(new ExportObject(time.getTimeFancy(), eventType, idFormat(player.getID()),"ELAPSED", timeFormat(player.getTotalTime()),player.getTotalTime()));
 						}
 					}
 				}
@@ -721,6 +721,9 @@ public class Console implements Observer{
 			}
 		}
 		return null;//nothing to return
+	}
+	public List<ExportObject>getExportList(){
+		return eo;
 	}
 	
 	/**
