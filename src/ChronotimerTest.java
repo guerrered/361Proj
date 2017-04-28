@@ -856,25 +856,70 @@ public class ChronotimerTest {
 		ParaGroup.setPlayerID(5);
 		ParaGroup.setPlayerID(6);
 		ParaGroup.setPlayerID(7);
-		assertTrue(ParaGroup.setPlayerID(8));
-	
-		
-		
+		ParaGroup.setPlayerID(8);
 		assertTrue(ParaGroup.start(1));
 		assertTrue(ParaGroup.finish((long) 2.0, 1));
-		
-		
-		Player p1 = ParaGroup.getList().get(2);
-	
-		System.out.println(p1.DNF);
-		System.out.println(ParaGroup.getList().size());
-		//console.endRun();
 		ParaGroup.endRace();
-		//System.out.println(ParaGroup.getList().size());
-		System.out.println(p1.DNF);
-		assertTrue(p1.DNF);
+		assertTrue(ParaGroup.getList().get(1).DNF);
+		assertTrue(ParaGroup.getList().get(2).DNF);
+		assertTrue(ParaGroup.getList().get(3).DNF);
+		assertTrue(ParaGroup.getList().get(4).DNF);
+		assertTrue(ParaGroup.getList().get(5).DNF);
+		assertTrue(ParaGroup.getList().get(6).DNF);
+		assertTrue(ParaGroup.getList().get(7).DNF);
+	}
+	
+	@Test
+	public void testSameIDInEvent()
+	{
+		console.Power();
+		console.Event("PARGRP");
+		console.newRun();
+		assertTrue(ParaGroup.setPlayerID(1));
+		assertFalse(ParaGroup.setPlayerID(1));
+	}
+	
+	@Test
+	public void testIrrelateLane()
+	{
+		console.Power();
+		console.Event("PARGRP");
+		console.newRun();
+		assertTrue(ParaGroup.setPlayerID(1));
+		assertTrue(ParaGroup.start(1));
+		assertFalse(ParaGroup.finish(2, 2));
+	}
+	
+	@Test
+	public void testLanePlayerOver()
+	{
+		console.Power();
+		console.Event("PARGRP");
+		console.newRun();
+		assertTrue(ParaGroup.setPlayerID(1));
+		assertTrue(ParaGroup.setPlayerID(2));
+		assertTrue(ParaGroup.setPlayerID(3));
+		assertTrue(ParaGroup.setPlayerID(4));
+		assertTrue(ParaGroup.setPlayerID(5));
+		assertTrue(ParaGroup.setPlayerID(6));
+		assertTrue(ParaGroup.setPlayerID(7));
+		assertTrue(ParaGroup.setPlayerID(8));
+		assertFalse(ParaGroup.setPlayerID(9));
+		ParaGroup.start(1);
+		assertTrue(ParaGroup.finish(2, 1));
+		assertTrue(ParaGroup.finish(2, 2));
+		assertTrue(ParaGroup.finish(2, 3));
+		assertTrue(ParaGroup.finish(2, 4));
+		assertTrue(ParaGroup.finish(2, 5));
+		assertTrue(ParaGroup.finish(2, 6));
+		assertTrue(ParaGroup.finish(2, 7));
+		assertTrue(ParaGroup.finish(2, 8));
+		assertFalse(ParaGroup.finish(2, 9));
+		
+		
 		
 	}
+	
 	
 	
 }
