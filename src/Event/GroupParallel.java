@@ -183,16 +183,19 @@ public class GroupParallel extends Event {
 	 */
 	public boolean setPlayerID(int runnerID)//can only run 8 players at a time
 	{
-		if(playersInGp.size()<8){	
+		if(startTime == -1){
+			if(playersInGp.size()<8){	
 			
-			for(int i =0; i<tempLane; i++){//players have been initialized up to templane
-				if(playersInGp.get(i).getID()==runnerID)return false;
+				for(int i =0; i<tempLane; i++){//players have been initialized up to templane
+					if(playersInGp.get(i).getID()==runnerID)return false;
+				}
+				//playersInGp.add(new Player(runnerID));
+				playersInGp.add(tempLane++, new Player(runnerID));//add them to their specific lane
+				return true;
 			}
-			//playersInGp.add(new Player(runnerID));
-			playersInGp.add(tempLane++, new Player(runnerID));//add them to their specific lane
-			return true;
 		}
 		return false;
+	
 			
 	}
 	/**
@@ -200,8 +203,11 @@ public class GroupParallel extends Event {
 	 *
 	 */
 	public boolean DNF(int lane){// probably going by lane would make it simpler
-		if(lane > 8 || lane < 0){
+		if(lane > 8 || lane <= 0){
 			return false; //invalid lane num
+		}
+		if(lane > tempLane){//not used
+			return false;
 		}
 		Player temp = playersInGp.get(lane -1);
 		if(temp!= null){

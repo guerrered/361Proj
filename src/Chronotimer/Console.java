@@ -1105,4 +1105,8 @@ public class Console implements Observer{
 	public boolean isNumpadActive(){
 		return numpadActive;
 	}
+	
+	public long getRaceStart(){
+		return race.getStartTime();
+	}
 }

@@ -1404,6 +1404,10 @@ public class GUI extends javax.swing.JFrame {
     	if(con.onCheck()){
     		if(con.getDisplayState()){
     			if(!DNFFlag){
+    				if(PARDNFFlag){
+    					PARDNFFlag = false;//handle PARDNF screen to NUM screen
+    					con.deactivateNumpad();
+    				}
     				if(!con.isNumpadActive()){//if numpad inactive turn it on
     					con.activateNumpad();
     				}
@@ -2012,39 +2016,56 @@ public class GUI extends javax.swing.JFrame {
     					jDisplay.setText(currentState + "\n\n\n" + x);
     					break;
     				case("dnf"):
-    					if(con.getRaceType().equals("GRP")){
-    						con.clearNum();
-    	    				jDisplay.setText("Num: ");
-    						DNFFlag = true;
-    						con.activateNumpad();
-    						//press pound first
-    						//menu not closed can still be referenced
-    					}
-    					else if(con.getRaceType().equals("PARIND") || con.getRaceType().equals("PARGRP")){//also for PARGRP
-    						PARDNFFlag=true;
-    						con.activateNumpad();
-    						jDisplay.setText("Enter the Lane #");
-    					}
-    					else{
-    						x = con.DNF();
-    						if(con.getDisplayState()){//go to run Screen
-    							con.closeMenu();
-    							runningDisplay = new RunningDisplayTask();
-    							runningDisplay.execute();
+    					
+    						if(con.getRaceType().equals("GRP")){
+    							if(con.getRaceStart() != -1){
+    								con.clearNum();
+    	    						jDisplay.setText("Num: ");
+    								DNFFlag = true;
+    								con.activateNumpad();
+    								//press pound first
+    								//menu not closed can still be referenced
+    							}
+    							else{
+    								jDisplay.setText(currentState + "\n\n\nEvent Has not Begun");
+    							}
+    						}
+    						else if(con.getRaceType().equals("PARIND") || con.getRaceType().equals("PARGRP")){//also for PARGRP
+    							if(con.getRaceStart() !=-1){
+    								PARDNFFlag=true;
+    								con.activateNumpad();
+    								jDisplay.setText("Enter the Lane #");
+    							}
+    							else{
+    								jDisplay.setText(currentState + "\n\n\nEvent Has not Begun");
+    							}
     						}
     						else{
-    							jDisplay.setText(currentState + "\n\n\n" + x);
+    							x = con.DNF();
+    							if(con.getDisplayState()){//go to run Screen
+    								con.closeMenu();
+    								runningDisplay = new RunningDisplayTask();
+    								runningDisplay.execute();
+    							}
+    							else{
+    								jDisplay.setText(currentState + "\n\n\n" + x);
+    							}
     						}
-    					}
     					break;
     				case("cancel"):
-    					x = con.Cancel();
     					if(con.getDisplayState()){//go to Run screen
+    						if(con.getRaceStart() != -1){
+    						con.Cancel();
     						con.closeMenu();
     						runningDisplay = new RunningDisplayTask();
 							runningDisplay.execute();
+    						}
+    						else{
+    							jDisplay.setText(currentState + "\n\n\nEvent Has not Begun");
+    						}
     					}
     					else{
+    						x = con.Cancel();
     						jDisplay.setText(currentState + "\n\n\n" + x);
     					}
     					break;
