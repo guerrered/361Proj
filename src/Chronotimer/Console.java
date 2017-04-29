@@ -40,6 +40,7 @@ public class Console implements Observer{
 	String timeString;
 	public FileWriter logWriter;
 	BufferedWriter bufferedLogWrite;
+	Client client = new Client();
 	
 	/**
 	 * instantiates a console with a time class that is counting concurrently to it
@@ -270,6 +271,7 @@ public class Console implements Observer{
 			if(curRunCheck()){
 				try {
 					export();
+					client.send(eo);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -722,9 +724,7 @@ public class Console implements Observer{
 		}
 		return null;//nothing to return
 	}
-	public List<ExportObject>getExportList(){
-		return eo;
-	}
+
 	
 	/**
 	 * method that load file of a form of Json and set it back to Gson and return it

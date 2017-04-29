@@ -14,7 +14,6 @@ import com.google.gson.Gson;
 
 
 public class Client {
-	Console console;
 	static DataOutputStream out;
 	static HttpURLConnection conn;
 	List <ExportObject> exportList = new ArrayList<>();
@@ -33,8 +32,8 @@ public class Client {
 		}
 	}
 	
-	public void send(){
-		populateServerObjectList();
+	public void send(List<ExportObject> eo){
+		populateServerObjectList(eo);
 		
 		System.out.println("Sending Data");
 		URL site = null;
@@ -93,8 +92,8 @@ public class Client {
 		conn.disconnect();
 	}
 
-	private void populateServerObjectList() {
-		exportList = console.getExportList();
+	private void populateServerObjectList(List<ExportObject> eo2) {
+		exportList = eo2;
 		
 		for(ExportObject eo: exportList){
 			soList.add(new ServerObject(Integer.parseInt(eo.getID()), eo.getTimeRaw(), eo.getCode()));
