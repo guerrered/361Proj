@@ -19,44 +19,25 @@ public class Client {
 	static DataOutputStream out;
 	static HttpURLConnection conn;
 	
-	public void send(List<Player> finalList){
+	public void send(List<Player> finalList, String url){
 		//populateServerObjectList(eo);
 		
-		System.out.println("Sending Data");
+		
 		URL site = null;
 		
 		try {
-			site = new URL("http://localhost:8000/sendresults");
-		} catch (MalformedURLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		try {
+			//site = new URL("http://localhost:8000/sendresults");
+			site = new URL(url);
 			conn = (HttpURLConnection) site.openConnection();
-		} catch (IOException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		}
-
-		// now create a POST request
-		try {
+			// now create a POST request
 			conn.setRequestMethod("POST");
-		} catch (ProtocolException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		conn.setDoOutput(true);
-		conn.setDoInput(true);
-		//DataOutputStream out = new DataOutputStream(conn.getOutputStream());
-		try {
+			
+			conn.setDoOutput(true);
+			conn.setDoInput(true);
+			
 			out = new DataOutputStream(conn.getOutputStream());
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-		//send info
-		try{
+			
+			System.out.println("Sending Data");
 			Gson gson = new Gson();
 			out.writeBytes(gson.toJson(finalList));
 			out.flush();
@@ -73,10 +54,13 @@ public class Client {
 				sb = sb.append((char) nextChar);
 			}
 			System.out.println("Return String: " + sb);
-		}catch (Exception ex) {
-			ex.printStackTrace();
+			
+			conn.disconnect();
+		} catch (IOException e1) {
+			System.out.println("no connection established");
 		}
-		conn.disconnect();
+		
+		
 	}
 
 }

@@ -296,6 +296,16 @@ public class UserInterface {
 				console.Event(instructions[2]);
 			}
 			break;
+		case("URL"):
+			if(instructions.length !=3){
+				System.out.println("Enter a String with the URL command");
+			}
+			else{
+				String s = "http://" + instructions[2] + ":8000/sendresults";
+				console.setURL(s);
+			}
+			break;
+		
 		default:
 			System.out.println("Not a valid command\n");
 			break;
