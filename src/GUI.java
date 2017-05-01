@@ -1427,8 +1427,17 @@ public class GUI extends javax.swing.JFrame {
     				else{
 							//int id = Integer.parseInt(Num); // turning power off should reset this function
 							if(!con.getNum().equals("")){
-								int id = Integer.parseInt(con.getNum());
-								con.Num(id); 
+								int id=-1;
+								try{
+								id = Integer.parseInt(con.getNum());
+								}
+								catch (NumberFormatException e)
+								{
+									System.out.println("Number too Big");
+								}
+								if(id!=-1){
+								con.Num(id);
+								}
 								con.clearNum();
 							}
 							//((displayTextUpdater) rN).ExitInterrupt();//else if we came from display list exit the interrupt cycle
