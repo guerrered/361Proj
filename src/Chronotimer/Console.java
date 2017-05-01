@@ -268,8 +268,10 @@ public class Console implements Observer{
 //			if(eventType.equals("GROUP")){
 //				race.endRace();
 //			}
-			
 			if(curRunCheck()){
+				race.endRace();//all racers not finished will be set as DNF for all racetypes
+				lastList = race.getEndList();//so we can still print this list
+				lastEvent = eventType;
 				try {
 					export();
 					client.send(race.getEndList(), url);
@@ -277,11 +279,7 @@ public class Console implements Observer{
 					// TODO Auto-generated catch block
 					
 				}
-				//if(eventType.equals("PARGRP")){//set all racers not finish to DNF
-				race.endRace();//all racers not finished will be set as DNF for all racetypes
-				lastList = race.getEndList();
-				//}
-				lastEvent = eventType;
+				
 				displayState = false;//cant diplay list anymore
 			
 				//send goes here
