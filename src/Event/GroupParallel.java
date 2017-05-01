@@ -293,7 +293,7 @@ public class GroupParallel extends Event {
 		return null;
 	}
 	
-	public List<Player> getList(){
+	public List<Player> getPlayerList(){
 		return playersInGp;
 	}
 	/**

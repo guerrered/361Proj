@@ -1436,7 +1436,7 @@ public class GUI extends javax.swing.JFrame {
 									System.out.println("Number too Big");
 								}
 								if(id!=-1){
-								con.Num(id);
+									con.Num(id);
 								}
 								con.clearNum();
 							}
@@ -1449,8 +1449,17 @@ public class GUI extends javax.swing.JFrame {
     		
     			else{
     					if(!con.getNum().equals("")){
-    						int id = Integer.parseInt(con.getNum()); // turning power off should reset this function
-    						con.DNF(id); 
+    						int id=-1;
+							try{
+							id = Integer.parseInt(con.getNum());
+							}
+							catch (NumberFormatException e)
+							{
+								System.out.println("Number too Big");
+							}
+							if(id!=-1){
+								con.DNF(id);
+							}
     						con.clearNum();
     						DNFFlag = false;
     					}
@@ -2027,7 +2036,7 @@ public class GUI extends javax.swing.JFrame {
     				case("dnf"):
     					
     						if(con.getRaceType().equals("GRP")){
-    							if(con.getRaceStart() != -1){
+    							if(con.getDisplayState()){
     								con.clearNum();
     	    						jDisplay.setText("Num: ");
     								DNFFlag = true;
@@ -2040,7 +2049,7 @@ public class GUI extends javax.swing.JFrame {
     							}
     						}
     						else if(con.getRaceType().equals("PARIND") || con.getRaceType().equals("PARGRP")){//also for PARGRP
-    							if(con.getRaceStart() !=-1){
+    							if(con.getDisplayState()){
     								PARDNFFlag=true;
     								con.activateNumpad();
     								jDisplay.setText("Enter the Lane #");

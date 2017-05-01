@@ -840,7 +840,7 @@ public class ChronotimerTest {
 		ParaGroup.setPlayerID(2);
 		assertTrue(ParaGroup.start(1));
 		assertTrue(ParaGroup.getStartTime()!=-1);
-		assertEquals(ParaGroup.getList().get(0).startTime,ParaGroup.getList().get(1).startTime);
+		assertEquals(ParaGroup.getPlayerList().get(0).startTime,ParaGroup.getPlayerList().get(1).startTime);
 	}
 	
 	@Test
@@ -860,13 +860,13 @@ public class ChronotimerTest {
 		assertTrue(ParaGroup.start(1));
 		assertTrue(ParaGroup.finish((long) 2.0, 1));
 		ParaGroup.endRace();
-		assertTrue(ParaGroup.getList().get(1).DNF);
-		assertTrue(ParaGroup.getList().get(2).DNF);
-		assertTrue(ParaGroup.getList().get(3).DNF);
-		assertTrue(ParaGroup.getList().get(4).DNF);
-		assertTrue(ParaGroup.getList().get(5).DNF);
-		assertTrue(ParaGroup.getList().get(6).DNF);
-		assertTrue(ParaGroup.getList().get(7).DNF);
+		assertTrue(ParaGroup.getPlayerList().get(1).DNF);
+		assertTrue(ParaGroup.getPlayerList().get(2).DNF);
+		assertTrue(ParaGroup.getPlayerList().get(3).DNF);
+		assertTrue(ParaGroup.getPlayerList().get(4).DNF);
+		assertTrue(ParaGroup.getPlayerList().get(5).DNF);
+		assertTrue(ParaGroup.getPlayerList().get(6).DNF);
+		assertTrue(ParaGroup.getPlayerList().get(7).DNF);
 	}
 	
 	@Test
