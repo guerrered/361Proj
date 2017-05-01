@@ -41,6 +41,7 @@ public class Console implements Observer{
 	public FileWriter logWriter;
 	BufferedWriter bufferedLogWrite;
 	Client client = new Client();
+	String url = "http://localhost:8000/sendresults";
 	
 	/**
 	 * instantiates a console with a time class that is counting concurrently to it
@@ -271,10 +272,10 @@ public class Console implements Observer{
 			if(curRunCheck()){
 				try {
 					export();
-					client.send(race.getEndList());
+					client.send(race.getEndList(), url);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					
 				}
 				//if(eventType.equals("PARGRP")){//set all racers not finish to DNF
 				race.endRace();//all racers not finished will be set as DNF for all racetypes
@@ -1112,5 +1113,11 @@ public class Console implements Observer{
 	
 	public long getRaceStart(){
 		return race.getStartTime();
+	}
+
+
+	public void setURL(String s) {
+		System.out.println("URL set to " + s);
+		url = s;	
 	}
 }
