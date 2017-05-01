@@ -2480,8 +2480,11 @@ private class RunningDisplayTask extends SwingWorker<Void, String> {
 	
 	protected void process(List<String> toPrint){
 		if(!isCancelled()){// we only want to print until task is canceled
-			String toDisplay = toPrint.get(toPrint.size() -1);
+			String toDisplay = toPrint.get(toPrint.size()-1);
 			jDisplay.setText(toDisplay);
+		}
+		else{
+			this.done();
 		}
 	}
 }

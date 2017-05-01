@@ -7,6 +7,7 @@ public class Group extends Event{
 	
 	List <Player> playersFinished = new ArrayList<>();
 	List <Player> playersFinishedMarked = new ArrayList<Player>();
+	List <Player> displayList = new ArrayList<Player>();
 	List <Player> DNFs = new ArrayList<>();
 	
 	private long startTime = -1; //start time is negative if there is no current race. A new race is legal to begin.
@@ -63,6 +64,7 @@ public class Group extends Event{
 			temp.setZeroOffset("0");
 		}
 		playersFinished.add(temp);
+		displayList.add(0, temp);
 		return true;
 	}
 	
@@ -147,11 +149,11 @@ public class Group extends Event{
 	 * @return List<Player>
 	 */
 	public List<Player> getDisplayList(){
-		List<Player> dis = new ArrayList<>(1);
+		/*List<Player> dis = new ArrayList<>(1);
 		if(!playersFinished.isEmpty()){
 			dis.add(playersFinished.get(tempNumber -1));//last to finish
-		}
-		return dis;
+		}*/
+		return displayList;
 	}
 	
 	
