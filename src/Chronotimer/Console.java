@@ -271,7 +271,7 @@ public class Console implements Observer{
 			if(curRunCheck()){
 				try {
 					export();
-					client.send(eo);
+					client.send(race.getEndList());
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

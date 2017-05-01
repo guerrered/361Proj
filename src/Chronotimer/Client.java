@@ -12,28 +12,15 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
+import Event.Player;
+
 
 public class Client {
 	static DataOutputStream out;
 	static HttpURLConnection conn;
-	List <ExportObject> exportList = new ArrayList<>();
-	List <ServerObject> soList = new ArrayList<>();
 	
-	
-	public class ServerObject{
-		int id;
-		long time;
-		String code;
-		
-		public ServerObject(int id, long time, String code){
-			this.id = id;
-			this.time = time;
-			this.code = code;
-		}
-	}
-	
-	public void send(List<ExportObject> eo){
-		populateServerObjectList(eo);
+	public void send(List<Player> finalList){
+		//populateServerObjectList(eo);
 		
 		System.out.println("Sending Data");
 		URL site = null;
@@ -71,7 +58,7 @@ public class Client {
 		//send info
 		try{
 			Gson gson = new Gson();
-			out.writeBytes(gson.toJson(soList));
+			out.writeBytes(gson.toJson(finalList));
 			out.flush();
 			
 			InputStreamReader inputStr = new InputStreamReader(conn.getInputStream());
@@ -92,13 +79,6 @@ public class Client {
 		conn.disconnect();
 	}
 
-	private void populateServerObjectList(List<ExportObject> eo2) {
-		exportList = eo2;
-		
-		for(ExportObject eo: exportList){
-			soList.add(new ServerObject(Integer.parseInt(eo.getID()), eo.getTimeRaw(), eo.getCode()));
-		}
-	}
 }
 
 
