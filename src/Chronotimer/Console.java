@@ -852,7 +852,7 @@ public class Console implements Observer{
 				}
 				if(!getDisplayList().isEmpty()){
 					List <Player> displayList = getDisplayList();
-					Player temp = displayList.get(0);
+					Player temp = displayList.get(displayList.size()-1);
 					String tempString = "";
 					if(temp.participated()){
 						if(temp.DNF){
