@@ -16,6 +16,7 @@ import javax.swing.KeyStroke;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
+import javax.swing.text.DefaultCaret;
 
 import Chronotimer.Console;
 
@@ -186,6 +187,11 @@ public class GUI extends javax.swing.JFrame {
         MeFile = new javax.swing.JMenu();
         MeExit = new javax.swing.JMenuItem();
         
+        //
+        DefaultCaret caret = (DefaultCaret)jDisplay.getCaret();
+        caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
+        
+        //
         JScrollPane scrollPane = new JScrollPane(jPrinterDisplay);
         scrollPane.setBounds(10,60,780,500);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
