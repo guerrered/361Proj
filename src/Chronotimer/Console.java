@@ -31,9 +31,9 @@ public class Console implements Observer{
 	public boolean menuOn = false;
 	public boolean numpadActive= false;
 	Channels channels;
-	List<Player> lastList;//used so we can print the last event to end
+	List<Player> lastList = null;//used so we can print the last event to end
 	List<ExportObject> eo; //used for client and export()
-	String lastEvent;
+	String lastEvent = null;
 	String eventType;
 	File log;
 	String Num;
@@ -459,7 +459,9 @@ public class Console implements Observer{
 				return printer.print(this.race.getEndList(), this.eventType);
 			}
 			else{
-				return printer.print(lastList, lastEvent);//prints last event to end 
+				if(lastEvent!=null && lastList !=null){
+					return printer.print(lastList, lastEvent);//prints last event to end 
+				}
 			}
 		}
 		return "";
