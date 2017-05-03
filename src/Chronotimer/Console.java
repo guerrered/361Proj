@@ -56,6 +56,12 @@ public class Console implements Observer{
 		Runnable r1 = new runnableTimer(time);
 		Thread timer = new Thread(r1);
 		timer.start();
+		
+		File directory = new File("RaceData");//create RaceData directory if it doesnt exist
+		if(!directory.exists()){
+			System.out.println("Directory doesn't exist. New directory has been created.");
+			directory.mkdirs();
+		}
 		log = new File ("RaceData/log.txt");
 		try{
 			log.createNewFile();
