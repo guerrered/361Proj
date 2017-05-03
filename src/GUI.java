@@ -1076,7 +1076,7 @@ public class GUI extends javax.swing.JFrame {
      				jDisplay.setText("Num: " + con.getNum());
     		 	}
     			else if(PARDNFFlag){
-    				 con.DNF(2);
+    				 con.DNF(3);
     				 PARDNFFlag = false;
     				 con.deactivateNumpad();//numpad was active
     				 //((displayTextUpdater)rN).ExitInterrupt();//race was happening

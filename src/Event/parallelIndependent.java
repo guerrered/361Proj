@@ -106,7 +106,7 @@ public class parallelIndependent  extends Event{
 				}
 			}
 		}
-		else if(lane == 2){
+		if(lane == 2){
 			if(lane2.size() > queue2EndNum){
 				if(lane2.get(queue2EndNum).isRunning()){
 					endList.add(lane2.get(queue2EndNum));
@@ -123,6 +123,9 @@ public class parallelIndependent  extends Event{
 	 * @param lane	the lane in which the racer is participating
 	 */
 	public boolean DNF(int lane){
+		if(lane > 2){
+			return false;
+		}
 		if(lane == 1){
 			if(lane1.size() > queue1EndNum){
 				if(lane1.get(queue1EndNum).isRunning()){//breaks in raceInd
@@ -132,7 +135,7 @@ public class parallelIndependent  extends Event{
 				}
 			}
 		}
-		else if(lane == 2){
+		if(lane == 2){
 			 if(lane2.size() > queue2EndNum){
 				if(lane2.get(queue2EndNum).isRunning()){
 						endList.add(lane2.get(queue2EndNum));
