@@ -36,18 +36,21 @@ public class UserInterface {
 			}
 			scan.close();
 			console = new Console();
+			readFromFile("RaceData/config.txt");
 			readFromFile(fileName);	
 		}
 		else if(choice.equalsIgnoreCase("c"))
 		{
 			System.out.println("Reading from console");
 			console = new Console();
+			readFromFile("RaceData/config.txt");
 			readFromConsole(scan);
 		}
 		else
 		{
 			System.out.println("GUI is opening");
 			console=new Console();
+			readFromFile("RaceData/config.txt");
 			new GUI(console);
 			
 		}
