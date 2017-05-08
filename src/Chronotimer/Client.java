@@ -29,9 +29,9 @@ public class Client {
 			//site = new URL("http://localhost:8000/sendresults");
 			site = new URL(url);
 			conn = (HttpURLConnection) site.openConnection();
+			conn.setConnectTimeout(1000);
 			// now create a POST request
 			conn.setRequestMethod("POST");
-			
 			conn.setDoOutput(true);
 			conn.setDoInput(true);
 			
