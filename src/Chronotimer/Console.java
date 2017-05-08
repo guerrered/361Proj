@@ -1,7 +1,9 @@
 package Chronotimer;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -62,17 +64,38 @@ public class Console implements Observer{
 			System.out.println("Directory doesn't exist. New directory has been created.");
 			directory.mkdirs();
 		}
+		File config = new File("RaceData/config.txt");
+		if(config.exists()){
+			try(BufferedReader buff = new BufferedReader(new FileReader(config))){
+				String currentLine;
+				while((currentLine = buff.readLine()) != null){
+					String[] toExec = currentLine.split("\t");
+					if(toExec[0].equals("EVENT")){
+						Event(toExec[1]);
+					}
+					if(toExec[0].equals("URL")){
+						setURL("http://" +toExec[1] +":8000/sendresults");
+					}
+				}
+			}catch(IOException e){
+				System.out.println("config reading failed");
+			}
+		}
+		else{
+			Event("IND");//set IND as default;
+			setURL("localhost");//default
+		}
 		log = new File ("RaceData/log.txt");
 		try{
 			log.createNewFile();
 		}catch(IOException e){
-			e.printStackTrace();
+			System.out.println("Log creatino failed");
 		}
 		try {
 			logWriter = new FileWriter(log,true);
 			bufferedLogWrite = new BufferedWriter(logWriter);
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("Log creatino failed");
 		}
 	}
 	
@@ -104,11 +127,8 @@ public class Console implements Observer{
 		powerState = !powerState;
 		if(powerState == true){
 			this.eventType = "IND";//default
-			//instantiateMenu();//we want to see the menu so turn it on
-			openMenu();
+			openMenu();//we want to see the menu so turn it on
 			clearNum();//reset Num string
-			//this.race = new Independent();//default race is not instantiated right away
-			//CurRunOn = true;
 		}
 		else{
 			//save race contents first
@@ -133,14 +153,12 @@ public class Console implements Observer{
 			try {
 				bufferedLogWrite.close();
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				System.out.println("Log close failed");
 			}
 			try {
 				logWriter.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println("Log close failed");
 			}
 		
 		System.exit(1);
@@ -168,7 +186,6 @@ public class Console implements Observer{
 			}
 			this.race = null;
 			CurRunOn =false;
-			//CurRunOn = true;
 			if(printerOnCheck()){//turn printer off
 				printerPower();
 			}
@@ -177,15 +194,13 @@ public class Console implements Observer{
 			try {
 				log.createNewFile();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println("Log creatino failed");
 			}
 			try {
 				logWriter = new FileWriter(log);
 				bufferedLogWrite = new BufferedWriter(logWriter);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println("Log creatino failed");
 			}
 			return true;
 		}
@@ -270,10 +285,6 @@ public class Console implements Observer{
 	public String endRun(){
 		if(onCheck()){//log old race
 			writeToLog("endrun");
-			
-//			if(eventType.equals("GROUP")){
-//				race.endRace();
-//			}
 			if(curRunCheck()){
 				race.endRace();//all racers not finished will be set as DNF for all racetypes
 				lastList = race.getEndList();//so we can still print this list
@@ -282,13 +293,10 @@ public class Console implements Observer{
 					export();
 					client.send(race.getEndList(), url);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					
 				}
 				
 				displayState = false;//cant diplay list anymore
-			
-				//send goes here
 				this.race = null;
 				CurRunOn=false;
 				return "Event ended";
@@ -318,20 +326,6 @@ public class Console implements Observer{
 		
 	}
 	
-	//deprecate
-	/**
-	 * if the machine is on and and event is happening it swaps the ending order of the
-	 * racer associated with ID1 and ID2 
-	 * @param ID1
-	 * @param ID2
-	 */
-	public void Swap(int ID1, int ID2){
-		if(onCheck() && curRunCheck()){
-			this.race.swap(ID1, ID2);
-		}
-		writeToLog("Swap " + ID1 +" "+  ID2);
-	}
-	
 	/**
 	 *  Method that swap the first two runner
 	 *  
@@ -342,28 +336,10 @@ public class Console implements Observer{
 				case("IND"):
 					this.race.swap();
 					break;
-				//only swap in IND
-				/*case("PARIND")://if we just get a swap from the console it will swap the players in the first lane
-					this.race.swap(1);
-					break;*/
 			}
 			
 		}
 		writeToLog("Swap");
-	}
-	
-	//deprecate
-	/**
-	 *  Method that swaps the next two runners to finish in a specific lane
-	 *  
-	 */
-	public void Swap(int lane){
-		if(onCheck() && curRunCheck()){
-			//if(eventType.equals("PARIND")){///check so it does not call event that is not parallel
-			//	this.race.swap(lane);
-			//}
-		}
-		writeToLog("Swap " + lane);
 	}
 	
 	/**
@@ -610,11 +586,7 @@ public class Console implements Observer{
 								race.finish(this.time.getTime(),8);
 								break;	
 								
-							}
-						 
-							
-							
-						
+							}	
 						}
 						return true;
 					}
@@ -821,7 +793,6 @@ public class Console implements Observer{
 		try {
 			bufferedLogWrite.write(getTimeAsString() + " " + toLog + " \n");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

@@ -1154,14 +1154,12 @@ public class GUI extends javax.swing.JFrame {
     		 if(con.isNumpadActive()){
     			 if(!timeGet && !PARDNFFlag){
     			 	con.addToNum("5");
-    			 	//Num+="5";
      				jDisplay.setText("Num: " + con.getNum());
     		 	}
     			else if(PARDNFFlag){
     				 con.DNF(5);
     				 PARDNFFlag = false;
     				 con.deactivateNumpad();//numpad was active
-    				 //((displayTextUpdater)rN).ExitInterrupt();//race was happening
     				 con.closeMenu();//menu was open
     				 runningDisplay = new RunningDisplayTask();
 						runningDisplay.execute();
@@ -1169,7 +1167,6 @@ public class GUI extends javax.swing.JFrame {
     				else{
     	    			 if(count1 < 2){
     	    					con.addToNum("5");
-    	    					//Num+="1";
     	    					count1++;
     	    					if(count1 ==2){
     	    						if(count2 == 2){
@@ -2005,6 +2002,7 @@ public class GUI extends javax.swing.JFrame {
     				case("print"):
     					if(con.printerOnCheck()){
     						jPrinterDisplay.setText(con.Print());
+    						jDisplay.setText(currentState);
     					}
     					else{
     						jDisplay.setText(currentState +"\n\n\nThe printer is off");
@@ -2097,9 +2095,6 @@ public class GUI extends javax.swing.JFrame {
     					x = con.newRun();//will turn on displayState /therefore a thread can be started
     					if(x.equals("")){
     						con.closeMenu();
-    						//rN = new displayTextUpdater(jDisplay, con);
-    						//tN = new Thread(rN);
-    						//tN.start();
     						runningDisplay = new RunningDisplayTask();
     						runningDisplay.execute();
     					}
@@ -2109,15 +2104,8 @@ public class GUI extends javax.swing.JFrame {
     					break;
     				case("endrun"):
     					x = con.endRun();
-    					if(con.getDisplayState()){//display list must bre true because a run is on
-    						/*will close displayState so we can wait for it to exit
-    						((displayTextUpdater) rN).ExitInterrupt();//exit interrupt from menu
-    						try {
-    							tN.join();//join displayList thread
-    						} catch (InterruptedException e) {
-    							e.printStackTrace();
-    						}*///already ended the task
-    					}
+    					con.getDisplayState();//display list must bre true because a run is on
+    					
     					jDisplay.setText(currentState + "\n\n\n" + x);
     					break;
     				case("time"):
@@ -2148,14 +2136,6 @@ public class GUI extends javax.swing.JFrame {
     				case("reset"):
     					con.closeMenu();
     					con.Reset();
-    					//if(con.getDisplayState()){//exit race thread if was present
-    						/*((displayTextUpdater) rN).ExitInterrupt();//exit interrupt from menu
-    						try {
-    							tN.join();//join displayList thread
-    						} catch (InterruptedException e) {
-    							e.printStackTrace();
-    						}*///already ended task
-    					//}
     					PowerOFFUpdate();
     					jPrinterDisplay.setText("");
     					jPrinterPwr.setText("Printer Pwr: OFF");

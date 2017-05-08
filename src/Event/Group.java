@@ -95,13 +95,7 @@ public class Group extends Event{
 	 * 
 	 */
 	public void endRace(){
-		/*startTime =-1;
-		for(Player p: playersFinished){
-			while(!setPlayerID(p.getID())){
-				tempNumber++;
-				setPlayerID(tempNumber);
-			}
-		}*/
+		//do nothing dnfs are manually entered
 	}
 	
 	/**

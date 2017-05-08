@@ -59,28 +59,15 @@ public class parallelIndependent  extends Event{
 			if(!players.get(queueStartNum).isRunning()){//breaks in raceInd
 				if(!players.get(queueStartNum).participated()){
 					Player p = players.get(queueStartNum);//++);
-					//p.start(time);
 					if(lane == 1){
-						/*if(inLane1 > 0){
-							if(lane1.get(inLane1-1).isRunning()){
-								return false;//cant run multiple people in lane
-							}
-						}*/
 						p.start(time);
 						lane1.add(p);
-						//inLane1++;
 						queueStartNum++;
 						return true;
 					}
 					else if(lane == 2){
-						/*if(inLane2 > 0){
-							if(lane2.get(inLane2-1).isRunning()){
-								return false;//cant run multiple people in lane
-							}
-						}*/
 						p.start(time);
 						lane2.add(p);
-						//inLane2++;
 						queueStartNum++;
 						return true;
 					}
@@ -160,11 +147,9 @@ public class parallelIndependent  extends Event{
 				canceled.cancel();
 				if(lane1.contains(canceled)){//we don't know which lane the runner was in
 					lane1.remove(canceled);
-					//inLane1--;
 				}
 				else{//if not in first lane then must be in 2nd
 					lane2.remove(canceled);
-					//inLane2--;
 				}
 			}
 		}
@@ -291,7 +276,6 @@ public class parallelIndependent  extends Event{
 		}//add racers that are currently running but but above queue1EndNum and queue2EndNum
 		for(int i = 0; i < 6 - count; i++){
 			dis.add(players.get(queueStartNum + i));//add the rest of the runners total 6 runners
-			//dis.add(players.get(queueStartNum + 1));
 		}
 		return dis;
 		

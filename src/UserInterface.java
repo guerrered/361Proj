@@ -36,21 +36,21 @@ public class UserInterface {
 			}
 			scan.close();
 			console = new Console();
-			readFromFile("RaceData/config.txt");
+			//readFromFile("RaceData/config.txt");
 			readFromFile(fileName);	
 		}
 		else if(choice.equalsIgnoreCase("c"))
 		{
 			System.out.println("Reading from console");
 			console = new Console();
-			readFromFile("RaceData/config.txt");
+			//readFromFile("RaceData/config.txt");
 			readFromConsole(scan);
 		}
 		else
 		{
 			System.out.println("GUI is opening");
 			console=new Console();
-			readFromFile("RaceData/config.txt");
+			//readFromFile("RaceData/config.txt");
 			new GUI(console);
 			
 		}
@@ -179,12 +179,7 @@ public class UserInterface {
 			}
 			break;
 		case("SWAP"):
-			if(instructions.length  == 4 ){//if extra arguments contained then they are the swap places
-				console.Swap(Integer.parseInt(instructions[2]), Integer.parseInt(instructions[3]));
-			}
-			else if(instructions.length == 3)//swaps at lane
-				console.Swap(Integer.parseInt(instructions[2]));
-			else if(instructions.length == 2){
+			if(instructions.length == 2){
 				console.Swap();
 			}
 			else{

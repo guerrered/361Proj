@@ -68,9 +68,6 @@ public class Independent extends Event{
 			if(players.get(queueEndNum).isRunning()){//check if active
 				endList.add(players.get(queueEndNum));
 				players.get(queueEndNum++).DNF();
-				/*if(twoRunning){
-					twoRunning = false;
-				}*/
 			}
 		}
 		else{
@@ -82,19 +79,13 @@ public class Independent extends Event{
 	 */
 	public boolean start(long time){
 		if(players.size()>queueStartNum){
-			//if(!twoRunning){
 				if(!players.get(queueStartNum).participated()){//check if already ran
 					players.get(queueStartNum++).start(time);
-					/*if(queueStartNum-2 == queueEndNum){
-						twoRunning = true;// we dont want more than 2 people running at once
-					}*/
 					return true;
 				}
-			//}
 		}
 	
 		return false;
-			//System.out.println("all racers have started");
 	}
 	
 	/**
@@ -105,16 +96,10 @@ public class Independent extends Event{
 			if(players.get(queueEndNum).isRunning()){//check if active
 				endList.add(players.get(queueEndNum));
 				players.get(queueEndNum++).end(time);
-				/*if(twoRunning){
-					twoRunning = false;//just ended a race therefore no longer 2 people running
-				}*/
 				return true;
 			}
 		}
 		return false;
-		
-		//System.out.println("all racers have finished");
-		
 	}
 	
 	/**
@@ -186,11 +171,6 @@ public class Independent extends Event{
 		return players.get(ID);
 	}
 	
-	//Prints to console in specified format
-	public void printRace(){
-		Printer p = new Printer();
-		p.print(players, "IND");
-	}
 	
 	// back in the queue as next to start
 	public void cancel(){

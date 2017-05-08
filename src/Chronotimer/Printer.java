@@ -39,10 +39,10 @@ public class Printer {
 	 */
 	public String print(List<Player> p, String event){///might want to sort finish times with parind//
 		Player tempP;
+		List<Player> sorted= sortByTime(p);
 		String ret = "";
-		for(int i =0; i <p.size(); i++){
-			tempP = p.get(i);
-			//if(tempP.participated()){
+		for(int i =0; i <sorted.size(); i++){
+			tempP = sorted.get(i);
 			/*
 			 * Format 
 			 * <START> <EVENT>
@@ -52,19 +52,11 @@ public class Printer {
 					ret+="<" + tempP.toString() + ">\tCANCELED\n";
 				}
 				else if(!tempP.DNF){
-					//ret += "Start: "+timeFormat(tempP.getStartTime()) + " Event: " + event + '\t'+ "ID: "+  
-					//	p.get(i).getID() + " Finish: " + timeFormat(tempP.endTime) + " Total: " + timeFormat(tempP.getTotalTime()) +"\n";
 					ret += "<" +tempP.toString() +">\t" + timeFormat(tempP.getTotalTime()) + "\n";
 				}
 				else{
-						//ret += "Start: "+timeFormat(tempP.getStartTime()) + " Event: " + event + '\t'+ "ID: "  
-						//+p.get(i).getID() + " DNF\n";	
 						ret += "<" +tempP.toString() +">\tDNF\n";
 					}
-			//}
-			/*else{
-				break;//since in order can just break here to save time
-			}*/
 		}
 		System.out.println(ret);
 		return ret;

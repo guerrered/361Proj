@@ -58,8 +58,11 @@ public class Client {
 			conn.disconnect();
 		} catch (IOException e1) {
 			System.out.println("no connection established");
+		}catch(IllegalArgumentException e2){
+			System.out.println("no connection");
+		}finally{
+			System.out.println("connected");
 		}
-		
 		
 	}
 
