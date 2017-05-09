@@ -42,7 +42,7 @@ public class Player {
 	 */
 	public void start(long time){
 		this.running = true;
-		//this.cancel = false; 
+		this.cancel = false; 
 		this.startTime = time;
 	}
 
